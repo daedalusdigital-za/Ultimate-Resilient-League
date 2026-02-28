@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--<< Header Area >>-->
+    <head>
+       <!-- ========== Meta Tags ========== -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Gramentheme">
+        <meta name="description" content="Ultimate Resilient League - Competitive Esports Tournament">
+        <!-- ======== Page title ============ -->
+        <title>Ultimate Resilient League</title>
+        <!--<< Favcion >>-->
+        <link rel="shortcut icon" href="assets/img/favicon.svg">
+        
+        <!-- Critical CSS - Load immediately -->
+        <!--<< Bootstrap min.css >>-->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <!--<< Main.css >>-->
+        <link rel="stylesheet" href="assets/css/main.css">
+        
+        <!-- Non-critical CSS - Deferred loading -->
+        <link rel="preload" href="assets/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="assets/css/all.min.css"></noscript>
+        
+        <link rel="preload" href="assets/css/animate.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="assets/css/animate.css"></noscript>
+        
+        <link rel="preload" href="assets/css/magnific-popup.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="assets/css/magnific-popup.css"></noscript>
+        
+        <link rel="preload" href="assets/css/meanmenu.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="assets/css/meanmenu.css"></noscript>
+        
+        <link rel="preload" href="assets/css/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="assets/css/swiper-bundle.min.css"></noscript>
+        
+        <link rel="preload" href="assets/css/nice-select.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="assets/css/nice-select.css"></noscript>
+                            
+    </head>
+    <body>
+
+        <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="spinner">                
+                </div>
+                <div class="txt-loading">
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="l" class="letters-loading">l</span>
+                    <span data-text-preloader="t" class="letters-loading">t</span>
+                    <span data-text-preloader="i" class="letters-loading">i</span>
+                    <span data-text-preloader="m" class="letters-loading">m</span>
+                    <span data-text-preloader="a" class="letters-loading">a</span>
+                    <span data-text-preloader="t" class="letters-loading">t</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader=" " class="letters-loading">&nbsp;</span>
+                    <span data-text-preloader="R" class="letters-loading">R</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader="s" class="letters-loading">s</span>
+                    <span data-text-preloader="i" class="letters-loading">i</span>
+                    <span data-text-preloader="l" class="letters-loading">l</span>
+                    <span data-text-preloader="i" class="letters-loading">i</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader="n" class="letters-loading">n</span>
+                    <span data-text-preloader="t" class="letters-loading">t</span>
+                    <span data-text-preloader=" " class="letters-loading">&nbsp;</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader="a" class="letters-loading">a</span>
+                    <span data-text-preloader="g" class="letters-loading">g</span>
+                    <span data-text-preloader="u" class="letters-loading">u</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                </div>
+                <p class="text-center">Loading</p>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+
+        <!-- GT Back To Top Start -->
+        <button id="gt-back-top" class="gt-back-to-top show">
+            <i class="fa-regular fa-arrow-up"></i>
+        </button>
+
+        <!-- GT MouseCursor Start -->
+        <div class="mouseCursor cursor-outer"></div>
+        <div class="mouseCursor cursor-inner"></div>
+
+        <!-- Offcanvas Area Start -->
+        <div class="fix-area">
+            <div class="offcanvas__info">
+                <div class="offcanvas__wrapper">
+                    <div class="offcanvas__content">
+                        <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                            <div class="offcanvas__logo">
+                                <a href="index.html">
+                                    <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="logo-img" style="max-height: 100px; width: auto;">
+                                </a>
+                            </div>
+                            <div class="offcanvas__close">
+                                <button>
+                                <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mobile-menu fix mb-3"></div>
+                            <div class="social-icon d-flex align-items-center">
+                                <a href="#"><i class="fab fa-discord"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas__overlay"></div>
+
+        <!-- Header Section Start -->
+        <header id="header-sticky" class="header-1">
+            <div class="container-fluid">
+                <div class="mega-menu-wrapper">
+                    <div class="header-main">
+                        <div class="header-left">
+                            <div class="logo">
+                                <a href="index.html" class="header-logo">
+                                    <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="logo-img" style="max-height: 100px; width: auto;">
+                                </a>
+                            </div>
+                            <div class="mean__menu-wrapper">
+                                <div class="main-menu">
+                                    <nav id="mobile-menu">
+                                        <ul>
+                                            <li class="active"><a href="index.html">Home</a></li>
+                                            <li>
+                                                <a href="league.html">
+                                                    League
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="players.html">
+                                                    Players
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="game.html">
+                                                    Teams
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="market.html">
+                                                    Market
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="match-details.html">Wagers</a>
+                                                <ul class="submenu">
+                                                    <li><a href="match.html">Team Wagers</a></li>
+                                                    <li><a href="match-details.html">Player Wagers</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-right d-flex justify-content-end align-items-center">
+                            <div class="header-right-icon">
+                                <a href="#" class="main-header__search search-toggler">
+                                    <i class="fa-regular fa-magnifying-glass"></i>
+                                </a>
+                                <a href="sponsor.html" class="game-icon"><i class=""></i> become a sponsor</a>
+                            </div>
+                            <div class="header__hamburger d-xl-block my-auto">
+                                <div class="sidebar__toggle">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- GT Search Start -->
+        <div class="search-popup">
+            <div class="search-popup__overlay search-toggler"></div>
+            <div class="search-popup__content">
+                <form role="search" method="get" class="search-popup__form" action="#">
+                    <input type="text" id="search" name="search" placeholder="Search Here...">
+                    <button type="submit" aria-label="search submit" class="search-btn">
+                        <span><i class="fa-regular fa-magnifying-glass"></i></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- GT Shop Details Popup Start -->
+        <div class="modal modal-common-wrap fade" id="exampleModal2" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog style-shop-details modal-dialog-centered modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <div class="gt-shop-details-left-item">
+                                    <ul class="nav">
+                                        <li class="nav-item">
+                                            <a href="#thumb4" data-bs-toggle="tab" class="nav-link ps-0">
+                                                <img loading="lazy" src="assets/img/inner-page/shop-details/product-1.jpg" alt="img">
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#thumb5" data-bs-toggle="tab" class="nav-link active">
+                                                <img loading="lazy" src="assets/img/inner-page/shop-details/product-2.jpg" alt="img">
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#thumb6" data-bs-toggle="tab" class="nav-link">
+                                                <img loading="lazy" src="assets/img/inner-page/shop-details/product-2.jpg" alt="img">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="thumb4" class="tab-pane fade">
+                                            <div class="shop-thumb">
+                                                <img loading="lazy" src="assets/img/inner-page/shop-details/product-4.jpg" alt="img">
+                                            </div>
+                                        </div>
+                                        <div id="thumb5" class="tab-pane fade show active">
+                                            <div class="shop-thumb">
+                                                <img loading="lazy" src="assets/img/inner-page/shop-details/product-4.jpg" alt="img">
+                                            </div>
+                                        </div>
+                                        <div id="thumb6" class="tab-pane fade">
+                                            <div class="shop-thumb">
+                                                <img loading="lazy" src="assets/img/inner-page/shop-details/product-4.jpg" alt="img">
+                                            </div>
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="gt-shop-details-content">
+                                    <ul class="gt-tag-list">
+                                        <li>
+                                            <i class="fa-solid fa-tag"></i>
+                                            GameMax
+                                        </li>
+                                    </ul>
+                                    <h4>
+                                        multi functional gaming chair
+                                    </h4>
+                                    <div class="star">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star gt-color"></i>
+                                        <span>(1customer review)</span>
+                                    </div>
+                                    <div class="gt-list-item">
+                                        <h6>Key Features</h6>
+                                        <ul class="gt-list">
+                                            <li>
+                                                100% vegan PU artificial leather cover
+                                            </li>
+                                            <li>
+                                                Fixed armrests with soft cushioning
+                                            </li>
+                                            <li>
+                                                Top-notch rocking mechanism up to 15Ãƒâ€šÃ‚Â°
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="gt-price-item">
+                                        <h6>
+                                            regular price <span>: $120.99</span>
+                                        </h6>
+                                        <h6 class="gt-bg">
+                                            discount price <span class="gt-color">: $99.99</span>
+                                        </h6>
+                                        <h6>
+                                            Product Code : 18396
+                                        </h6>
+                                    </div>
+                                    <h6 class="gt-text">
+                                        Status <span>: In Stock</span>
+                                    </h6>
+                                    <div class="gt-color-list">
+                                        <h6>
+                                            select color :
+                                        </h6>
+                                        <ul class="gt-list-color-product">
+                                            <li class="list-color-item color-swatch active">
+                                                <span class="swatch-value gt-bg-color"></span>
+                                            </li>
+                                            <li class="list-color-item color-swatch">
+                                                <span class="swatch-value gt-bg-color-2"></span>
+                                            </li>
+                                            <li class="list-color-item color-swatch">
+                                                <span class="swatch-value gt-bg-color-3"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="gt-button-wrapper">
+                                        <div class="cart-quantity">
+                                            <p class="qty">
+                                                <button class="qtyminus" aria-hidden="true">ÃƒÂ¢Ã‹â€ Ã¢â‚¬â„¢</button>
+                                                <input type="number" name="qty" id="qty3" min="1" max="10" step="1" value="1">
+                                                <button class="qtyplus" aria-hidden="true">+</button>
+                                            </p>
+                                        </div>
+                                        <a href="shop-details.html" class="gt-theme-btn">
+                                            add to cart
+                                        </a>
+                                        <a href="shop-details.html" class="gt-theme-btn gt-style-border style-2">
+                                            buy now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="smooth-wrapper">
+            <div id="smooth-content">
+                <section class="hero-section hero-1 fix bg-cover" style="background-image: url(assets/img/home-1/hero/hero-bg.jpg);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="hero-image wow animated-image">
+                                <img loading="lazy" src="assets/img/home-1/hero/hammer.png" alt="img">
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="hero-content">
+                                <h6 class="wow animated-image">The future of esports
+                                <h1 class="wow animated-image">
+                                    Ultimate Resilient League
+                                </h1>
+                                <div class="gt-hero-button wow animated-image">
+                                    <a href="league.html" class="gt-theme-btn">LeaderBoard</a>
+                                    <a href="players.html" class="gt-theme-btn gt-style-border">
+                                        Players
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+        <!-- GT About Section Start -->
+        <section class="gt-about-section fix section-padding">
+            <div class="container">
+                <div class="gt-about-wrapper style-2">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-lg-5">
+                            <div class="gt-about-image-2 rotatedscal">
+                                <img loading="lazy" src="assets/img/about/about-01.png" alt="img">
+                                <div class="gt-bg-shape">
+                                    <img loading="lazy" src="assets/img/about/bg-shape.png" alt="img">
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="gt-about-content">
+                                <div class="gt-section-title mb-0">
+                                    <h6 class="subtitle tz-sub-tilte tz-sub-anim  text-uppercase tx-subTitle">Ultimate Resilient League</h6>
+                                    <h2 class="tx-title sec_title  tz-itm-title tz-itm-anim">
+                                       The Future of Competitive Esports
+                                    </h2>
+                                </div>
+                                <p class="gt-about-text wow fadeInUp" data-wow-delay=".5s">
+                                   The Ultimate Resilient League it is not just a tournament it is a franchise-based league where investors own teams, managers build rosters, and players compete in a month-long competitive season.
+                               <div class="gt-about-box-wrapper wow fadeInUp" data-wow-delay=".3s">
+                                <div class="gt-about-box-item">
+                                    <div class="gt-about-box bg-color">
+                                        
+                                        <div class="content">
+                                            <h5>League Structure</h5>
+                                            <p>
+                                                Built on Structure. Fueled by Competition.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="gt-about-box border-none">
+                                        
+                                        <div class="content">
+                                            <h5>Competitive Balance System</h5>
+                                            <p>
+                                                Two Transfer Windows. Endless Possibilities.
+                                            </p>
+                                        </div>
+                                    </div>
+                                   </div>
+                                   <div class="gt-about-box-item">
+                                    <div class="gt-about-box">
+                                        
+                                        <div class="content">
+                                            <h5>Relegation System</h5>
+                                            <p>
+                                                Perform or Be Replaced,Survival Is Earned
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                    <div class="gt-about-box border-none bg-color">
+                                   
+                                        <div class="content">
+                                            <h5>URL Ecosystem</h5>
+                                            <p>
+                                                Fueling the Future of Esports,Competition Creates Value.
+                                            </p>
+                                        </div>
+                                    </div>
+                                   </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GT Marque Section Start -->
+        <div class="gt-marque-section">
+            <div class="overlay-shape">
+                <img loading="lazy" src="assets/img/home-1/overlay.png" alt="img">
+            </div>
+        <div class="marquee-text-slider-3 style-11">
+            <div class="swiper marquee-text-slider">
+                <div class="swiper-wrapper slide-transtion">
+                    <div class="swiper-slide brand-slide-element">
+                        <div class="marquee-text-3">
+                            <span class="text-marquee">The Ultimate Resilient League </span>
+                            <span><img loading="lazy" src="assets/img/home-1/circle.png" alt="img"></span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide brand-slide-element">
+                        <div class="marquee-text-3">
+                            <span class="text-marquee">DOMINATE OR DISAPPEAR</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            </div>
+            <div class="marquee-text-slider-3 style-12">
+            <div dir="rtl" class="swiper marquee-text-slider-2">
+                <div class="swiper-wrapper slide-transtion">
+                    <div class="swiper-slide brand-slide-element">
+                        <div class="marquee-text-3">
+                            <span class="text-marquee">PRESSURE BUILDS CHAMPIONS</span>
+                            <span><img loading="lazy" src="assets/img/home-1/circle.png" alt="img"></span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide brand-slide-element">
+                        <div class="marquee-text-3">
+                            <span class="text-marquee">RISE. FIGHT. REPEAT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- GT Game-bg Section Start -->
+       <section class="gt-game-bg-section fix bg-cover" style="background-image: url(assets/img/home-1/game/b1.jpg);">
+        <div class="text-shape">
+            <img loading="lazy" src="assets/img/home-1/game/text.png" alt="img">
+        </div>
+            <div class="container">
+                <div class="gt-gaming-bg-wrapper">
+                    <div class="row g-4 justify-content-between">
+                        <div class="col-lg-5">
+                            <div class="gt-games-content">
+                                <h6 class="text-white subtitle tz-sub-tilte tz-sub-anim  text-uppercase tx-subTitle">World Best Facilities Game</h6>
+                                <h2 class="text-white tx-title sec_title  tz-itm-title tz-itm-anim">
+                                    Forging Legends
+                                    Gaming world!
+                                </h2>
+                                <div class="gt-button top_view_2 item-hover">
+                                    <a href="game-details.html" class="gt-theme-btn gt-style-border">
+                                        Players
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="gt-games-content style-2">
+                                <h6 class="text-white subtitle tz-sub-tilte tz-sub-anim  text-uppercase tx-subTitle">Releases The Latest Game</h6>
+                                <h2 class="text-white tx-title sec_title  tz-itm-title tz-itm-anim">
+                                    Game On, Power <br>
+                                    Up, Win Big!
+                                </h2>
+                                <div class="gt-button gt-style-2 wow animated-image">
+                                    <a href="game-details.html" class="gt-theme-btn gt-style-border">
+                                        view more
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </section>
+       
+       <!-- GT Game Section Start -->
+       <section class="gt-game-section section-padding fix">
+            <div class="container-fluid">
+                <div class="gt-section-title-2 text-center">
+                    <h6 class="subtitle tz-sub-tilte tz-sub-anim  text-uppercase tx-subTitle">Technically Stabilized</h6>
+                    <h2 class="tx-title sec_title  tz-itm-title tz-itm-anim">
+                        High-Resolution Games
+                    </h2>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="gt-gaming-card-item">
+                            <div class="gt-gaming-image">
+                                <img loading="lazy" src="assets/img/home-1/game/game-1.png" alt="img">
+                                <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
+                                <div class="gt-gaming-content">
+                                    <h6>metaverse</h6>
+                                    <h3>
+                                        <a href="game-details.html">Sweet revenge gameplay</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                        <div class="gt-gaming-card-item">
+                            <div class="gt-gaming-image">
+                                <img loading="lazy" src="assets/img/home-1/game/game-2.png" alt="img">
+                                <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
+                                <div class="gt-gaming-content">
+                                    <h6>metaverse</h6>
+                                    <h3>
+                                        <a href="game-details.html">Sweet revenge gameplay</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
+                        <div class="gt-gaming-card-item">
+                            <div class="gt-gaming-image">
+                                <img loading="lazy" src="assets/img/home-1/game/game-3.png" alt="img">
+                                <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
+                                <div class="gt-gaming-content">
+                                    <h6>metaverse</h6>
+                                    <h3>
+                                        <a href="game-details.html">Sweet revenge gameplay</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
+                        <div class="gt-gaming-card-item">
+                            <div class="gt-gaming-image">
+                                <img loading="lazy" src="assets/img/home-1/game/game-4.png" alt="img">
+                                <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
+                                <div class="gt-gaming-content">
+                                    <h6>metaverse</h6>
+                                    <h3>
+                                        <a href="game-details.html">Sweet revenge gameplay</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                        <div class="gt-gaming-card-item">
+                            <div class="gt-gaming-image">
+                                <img loading="lazy" src="assets/img/home-1/game/game-5.png" alt="img">
+                                <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
+                                <div class="gt-gaming-content">
+                                    <h6>metaverse</h6>
+                                    <h3>
+                                        <a href="game-details.html">Sweet revenge gameplay</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                        <div class="gt-gaming-card-item">
+                            <div class="gt-gaming-image">
+                                <img loading="lazy" src="assets/img/home-1/game/game-6.png" alt="img">
+                                <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
+                                <div class="gt-gaming-content">
+                                    <h6>metaverse</h6>
+                                    <h3>
+                                        <a href="game-details.html">Sweet revenge gameplay</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
+                        <div class="gt-gaming-card-item">
+                            <div class="gt-gaming-image">
+                                <img loading="lazy" src="assets/img/home-1/game/game-7.png" alt="img">
+                                <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
+                                <div class="gt-gaming-content">
+                                    <h6>metaverse</h6>
+                                    <h3>
+                                        <a href="game-details.html">Sweet revenge gameplay</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
+                        <div class="gt-gaming-card-item">
+                            <div class="gt-gaming-image">
+                                <img loading="lazy" src="assets/img/home-1/game/game-8.png" alt="img">
+                                <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
+                                <div class="gt-gaming-content">
+                                    <h6>metaverse</h6>
+                                    <h3>
+                                        <a href="game-details.html">Sweet revenge gameplay</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </section>
+
+      
+
+       
+
+      
+
+       <!-- GT News Section Start -->
+       <section class="gt-news-section section-padding fix">
+            <div class="container">
+                <div class="gt-section-title-area">
+                    <div class="gt-section-title-2">
+                        <h6 class="subtitle tz-sub-tilte tz-sub-anim  text-uppercase tx-subTitle">latest news</h6>
+                        <h2 class="tx-title sec_title  tz-itm-title tz-itm-anim">
+                            latest news & blog
+                        </h2>
+                    </div>
+                    <a href="game.html" class="gt-theme-btn gt-style-border">
+                        view all blogs
+                    </a>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-6 col-md-6 item_right_1">
+                        <div class="gt-news-card-item">
+                            <div class="gt-news-image">
+                                <img loading="lazy" src="assets/img/home-1/news/news-1.jpg" alt="img">
+                            </div>
+                            <div class="gt-news-content">
+                                <ul class="gt-list">
+                                    <li>
+                                        <i class="fa-regular fa-calendar"></i>
+                                        30 May, 2025
+                                    </li>
+                                </ul>
+                                <h4>
+                                    <a href="index.html">
+                                        The evolution of online gaming and its rise
+                                    </a>
+                                </h4>
+                                <p>
+                                    Nunc consectetur ornare varius. Nulla massa velit, ultricies in volutpat a, viverra et nunc. spendisse non velit
+                                </p>
+                                <a href="index.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-6">
+                        <div class="gt-news-card-item">
+                            <div class="gt-news-image">
+                                <img loading="lazy" src="assets/img/home-1/news/news-2.jpg" alt="img">
+                            </div>
+                            <div class="gt-news-content">
+                                <ul class="gt-list">
+                                    <li>
+                                        <i class="fa-regular fa-calendar"></i>
+                                        30 May, 2025
+                                    </li>
+                                </ul>
+                                <h4>
+                                    <a href="index.html">
+                                        The evolution of online gaming and its rise
+                                    </a>
+                                </h4>
+                                <p>
+                                    Nunc consectetur ornare varius. Nulla massa velit, ultricies in volutpat a, viverra et nunc. spendisse non velit
+                                </p>
+                                <a href="index.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-6 item_left_1">
+                        <div class="gt-news-card-item">
+                            <div class="gt-news-image">
+                                <img loading="lazy" src="assets/img/home-1/news/news-3.jpg" alt="img">
+                            </div>
+                            <div class="gt-news-content">
+                                <ul class="gt-list">
+                                    <li>
+                                        <i class="fa-regular fa-calendar"></i>
+                                        30 May, 2025
+                                    </li>
+                                </ul>
+                                <h4>
+                                    <a href="index.html">
+                                        The evolution of online gaming and its rise
+                                    </a>
+                                </h4>
+                                <p>
+                                    Nunc consectetur ornare varius. Nulla massa velit, ultricies in volutpat a, viverra et nunc. spendisse non velit
+                                </p>
+                                <a href="index.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </section>
+
+       
+
+       <!-- GT Brand Section Start -->
+       <div class="gt-brand-section section-padding fix">
+            <div class="container">
+                <div class="swiper gt-brand-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="gt-brand-box">
+                                <div class="gt-brand-image text-center">
+                                    <img loading="lazy" src="assets/img/home-1/brand/b-1.png" alt="img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="gt-brand-box">
+                                <div class="gt-brand-image text-center">
+                                    <img loading="lazy" src="assets/img/home-1/brand/b-2.png" alt="img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="gt-brand-box">
+                                <div class="gt-brand-image text-center">
+                                    <img loading="lazy" src="assets/img/home-1/brand/b-3.png" alt="img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="gt-brand-box">
+                                <div class="gt-brand-image text-center">
+                                    <img loading="lazy" src="assets/img/home-1/brand/b-4.png" alt="img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="gt-brand-box">
+                                <div class="gt-brand-image text-center">
+                                    <img loading="lazy" src="assets/img/home-1/brand/b-5.png" alt="img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="gt-brand-box">
+                                <div class="gt-brand-image text-center">
+                                    <img loading="lazy" src="assets/img/home-1/brand/b-6.png" alt="img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+
+        <!-- GT Footer Section Start -->
+        <footer class="gt-footer-section section-bg">
+            <div class="container">
+                <div class="gt-footer-widget-wrapper">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-4 col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="gt-footer-widget-items">
+                                <div class="gt-widget-head">
+                                    <a href="index.html" class="gt-footer-logo">
+                                        <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="img" style="max-height: 100px; width: auto;">
+                                    </a>
+                                </div>
+                                <div class="gt-footer-content">
+                                    <div class="gt-social-icon d-flex align-items-center">
+                                        <a href="#"><i class="fab fa-discord"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom wow fadeInUp" data-wow-delay=".3s">
+                    <div class="footer-wrapper">
+                        <p> Ultimate Resilient League. All Rights Reserved.</p>
+                       
+                    </div>
+                </div>
+            </div>
+        </footer>
+            </div>
+        </div>
+
+        
+         
+        <!--<< All JS Plugins >>-->
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <!--<< Viewport Js >>-->
+        <script src="assets/js/viewport.jquery.js"></script>
+        <!--<< Bootstrap Js >>-->
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <!--<< nice-selec Js >>-->
+        <script src="assets/js/jquery.nice-select.min.js"></script>
+        <!--<< Waypoints Js >>-->
+        <script src="assets/js/jquery.waypoints.js"></script>
+        <!--<< Counterup Js >>-->
+        <script src="assets/js/jquery.counterup.min.js"></script>
+        <!--<< Swiper Slider Js >>-->
+        <script src="assets/js/swiper-bundle.min.js"></script>
+        <!--<< MeanMenu Js >>-->
+        <script src="assets/js/jquery.meanmenu.min.js"></script>
+        <!--<< Magnific Popup Js >>-->
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        
+        <!--<< Gsap Animation Js >>-->
+        <script src="assets/js/gsap.js"></script>
+        <script src="assets/js/gsap-scroll-to-plugin.js"></script>
+        <script src="assets/js/gsap-scroll-smoother.js"></script>
+        <script src="assets/js/gsap-scroll-trigger.js"></script>
+        <!--<< SplitText Js >>-->
+        <script src="assets/js/SplitText.min.js"></script>
+        <!--<< splitType Js >>-->
+        <script src="assets/js/splitType.js"></script>
+        <!--<< script-gsap Js >>-->
+        <script src="assets/js/script-gsap.js"></script>
+        
+        <!--<< Wow Animation Js >>-->
+        <script src="assets/js/wow.min.js"></script>
+        <!--<< Main.js >>-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>

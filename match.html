@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--<< Header Area >>-->
+    <head>
+       <!-- ========== Meta Tags ========== -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Gramentheme">
+        <meta name="description" content="Xriders - Riders & Sports Club HTML Template">
+        <!-- ======== Page title ============ -->
+        <title>URL - Wagers & Betting</title>
+        <!--<< Favcion >>-->
+        <link rel="shortcut icon" href="assets/img/favicon.svg">
+        <!--<< Bootstrap min.css >>-->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <!--<< All Min Css >>-->
+        <link rel="stylesheet" href="assets/css/all.min.css">
+        <!--<< Animate.css >>-->
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <!--<< Magnific Popup.css >>-->
+        <link rel="stylesheet" href="assets/css/magnific-popup.css">
+        <!--<< MeanMenu.css >>-->
+        <link rel="stylesheet" href="assets/css/meanmenu.css">
+        <!--<< Swiper Bundle.css >>-->
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+        <!--<< Nice Select.css >>-->
+        <link rel="stylesheet" href="assets/css/nice-select.css">
+        <!--<< Main.css >>-->
+        <link rel="stylesheet" href="assets/css/main.css">
+        
+        <!-- Team Wagers Custom Styles -->
+        <style>
+            /* Wager Card Status Badge */
+            .gt-trending-match-items {
+                position: relative;
+            }
+            
+            .gt-wager-status {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                padding: 6px 14px;
+                border-radius: 20px;
+                font-size: 11px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                z-index: 10;
+            }
+            
+            .gt-wager-status.live {
+                background: linear-gradient(90deg, #FF0040, #FF4060);
+                color: #fff;
+                animation: pulse 1.5s infinite;
+                box-shadow: 0 2px 15px rgba(255,0,64,0.4);
+            }
+            
+            .gt-wager-status.upcoming {
+                background: linear-gradient(90deg, #3B82F6, #60A5FA);
+                color: #fff;
+            }
+            
+            .gt-wager-status.completed {
+                background: linear-gradient(90deg, #10B981, #34D399);
+                color: #fff;
+            }
+            
+            @keyframes pulse {
+                0%, 100% { opacity: 1; box-shadow: 0 2px 15px rgba(255,0,64,0.4); }
+                50% { opacity: 0.8; box-shadow: 0 2px 25px rgba(255,0,64,0.6); }
+            }
+            
+            /* Wager Odds Container */
+            .gt-wager-odds {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                padding: 20px;
+                background: rgba(0,0,0,0.3);
+                border-radius: 12px;
+                border: 1px solid rgba(255,215,0,0.2);
+            }
+            
+            .gt-odds-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-bottom: 10px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .gt-odds-header span:first-child {
+                font-size: 14px;
+                font-weight: 600;
+                color: #FFD700;
+                text-transform: uppercase;
+            }
+            
+            .gt-pool-info {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 13px;
+                color: #4ADE80;
+                font-weight: 600;
+            }
+            
+            .gt-pool-info i {
+                color: #FFD700;
+            }
+            
+            /* Odds Row */
+            .gt-odds-row {
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+            }
+            
+            .gt-odds-team {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 12px 15px;
+                background: linear-gradient(145deg, rgba(255,215,0,0.08), rgba(255,107,0,0.03));
+                border: 1px solid rgba(255,215,0,0.2);
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .gt-odds-team:hover {
+                background: linear-gradient(145deg, rgba(255,215,0,0.15), rgba(255,107,0,0.1));
+                border-color: #FFD700;
+                transform: translateY(-2px);
+            }
+            
+            .gt-odds-team.draw {
+                background: rgba(100,100,100,0.15);
+                border-color: rgba(255,255,255,0.1);
+            }
+            
+            .gt-odds-team.draw:hover {
+                border-color: rgba(255,255,255,0.3);
+            }
+            
+            .gt-odds-team .team-name {
+                font-size: 11px;
+                color: #888;
+                margin-bottom: 4px;
+                text-transform: uppercase;
+            }
+            
+            .gt-odds-team .odds-value {
+                font-size: 18px;
+                font-weight: 700;
+                color: #FFD700;
+            }
+            
+            .gt-odds-team.draw .odds-value {
+                color: #999;
+            }
+            
+            /* Winner Highlight */
+            .gt-odds-team.winner {
+                background: linear-gradient(145deg, rgba(16,185,129,0.2), rgba(16,185,129,0.1));
+                border-color: #10B981;
+            }
+            
+            .gt-odds-team.winner .odds-value {
+                color: #10B981;
+            }
+            
+            /* Place Bet Button */
+            .gt-place-bet-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                width: 100%;
+                padding: 12px 20px;
+                background: linear-gradient(90deg, #FFD700, #FF6B00);
+                color: #000;
+                font-weight: 700;
+                text-transform: uppercase;
+                font-size: 13px;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                border: none;
+                cursor: pointer;
+                text-decoration: none;
+            }
+            
+            .gt-place-bet-btn:hover {
+                background: linear-gradient(90deg, #FF6B00, #FFD700);
+                transform: scale(1.02);
+                box-shadow: 0 5px 20px rgba(255,215,0,0.3);
+                color: #000;
+            }
+            
+            /* Result Badge for Completed */
+            .gt-result-badge {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                padding: 10px 20px;
+                background: rgba(16,185,129,0.15);
+                color: #10B981;
+                font-weight: 600;
+                text-transform: uppercase;
+                font-size: 12px;
+                border-radius: 8px;
+                border: 1px solid rgba(16,185,129,0.3);
+            }
+            
+            /* Mobile Responsive */
+            @media (max-width: 991px) {
+                .gt-wager-odds {
+                    padding: 15px;
+                }
+                
+                .gt-odds-row {
+                    flex-wrap: wrap;
+                }
+                
+                .gt-odds-team {
+                    min-width: calc(50% - 5px);
+                }
+                
+                .gt-odds-team.draw {
+                    min-width: 100%;
+                    order: 3;
+                }
+            }
+            
+            @media (max-width: 767px) {
+                .gt-wager-status {
+                    top: 10px;
+                    right: 10px;
+                    padding: 4px 10px;
+                    font-size: 10px;
+                }
+                
+                .gt-odds-team .team-name {
+                    font-size: 10px;
+                }
+                
+                .gt-odds-team .odds-value {
+                    font-size: 16px;
+                }
+                
+                .gt-odds-header {
+                    flex-direction: column;
+                    gap: 8px;
+                    align-items: flex-start;
+                }
+            }
+            
+            /* Custom Wager Section */
+            .gt-custom-wager-section {
+                background: linear-gradient(145deg, rgba(255,215,0,0.08), rgba(255,107,0,0.03));
+                border: 1px solid rgba(255,215,0,0.2);
+                border-radius: 16px;
+                padding: 30px;
+                margin-bottom: 30px;
+            }
+            
+            .gt-custom-wager-header {
+                text-align: center;
+                margin-bottom: 25px;
+            }
+            
+            .gt-custom-wager-header h4 {
+                color: #FFD700;
+                font-size: 22px;
+                margin-bottom: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .gt-custom-wager-header p {
+                color: #888;
+                font-size: 14px;
+            }
+            
+            .gt-custom-wager-form {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+            
+            .gt-team-select-wrapper {
+                flex: 1;
+                min-width: 200px;
+                max-width: 280px;
+            }
+            
+            .gt-team-select-wrapper label {
+                display: block;
+                color: #aaa;
+                font-size: 12px;
+                text-transform: uppercase;
+                margin-bottom: 8px;
+                letter-spacing: 1px;
+            }
+            
+            .gt-team-select {
+                width: 100%;
+                padding: 12px 15px;
+                background: rgba(0,0,0,0.4);
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 8px;
+                color: #fff;
+                font-size: 14px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .gt-team-select:hover,
+            .gt-team-select:focus {
+                border-color: #FFD700;
+                outline: none;
+            }
+            
+            .gt-team-select option {
+                background: #1a1a2e;
+                color: #fff;
+                padding: 10px;
+            }
+            
+            .gt-vs-divider {
+                font-size: 24px;
+                font-weight: 700;
+                color: #FFD700;
+                padding: 0 10px;
+            }
+            
+            .gt-create-wager-btn {
+                padding: 14px 35px;
+                background: linear-gradient(90deg, #FFD700, #FF6B00);
+                color: #000;
+                font-weight: 700;
+                text-transform: uppercase;
+                font-size: 14px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .gt-create-wager-btn:hover {
+                background: linear-gradient(90deg, #FF6B00, #FFD700);
+                transform: scale(1.05);
+                box-shadow: 0 5px 25px rgba(255,215,0,0.4);
+            }
+            
+            /* Trending Divider */
+            .gt-trending-divider {
+                text-align: center;
+                margin: 30px 0;
+                position: relative;
+            }
+            
+            .gt-trending-divider::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent);
+            }
+            
+            .gt-trending-divider span {
+                background: #0d0d1a;
+                padding: 10px 25px;
+                color: #FFD700;
+                font-size: 14px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .gt-trending-divider span i {
+                color: #FF6B00;
+            }
+            
+            /* Schedule Info Badge */
+            .gt-schedule-info {
+                background: rgba(59,130,246,0.1);
+                border: 1px solid rgba(59,130,246,0.3);
+                border-radius: 8px;
+                padding: 15px 20px;
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+            
+            .gt-schedule-info i {
+                color: #3B82F6;
+                font-size: 20px;
+            }
+            
+            .gt-schedule-info span {
+                color: #aaa;
+                font-size: 13px;
+            }
+            
+            .gt-schedule-info strong {
+                color: #fff;
+            }
+            
+            @media (max-width: 767px) {
+                .gt-custom-wager-section {
+                    padding: 20px 15px;
+                }
+                
+                .gt-custom-wager-form {
+                    flex-direction: column;
+                }
+                
+                .gt-team-select-wrapper {
+                    width: 100%;
+                    max-width: none;
+                }
+                
+                .gt-vs-divider {
+                    font-size: 18px;
+                }
+                
+                .gt-create-wager-btn {
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
+        </style>
+                            
+    </head>
+    <body>
+
+        <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="spinner">                
+                </div>
+                <div class="txt-loading">
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="l" class="letters-loading">l</span>
+                    <span data-text-preloader="t" class="letters-loading">t</span>
+                    <span data-text-preloader="i" class="letters-loading">i</span>
+                    <span data-text-preloader="m" class="letters-loading">m</span>
+                    <span data-text-preloader="a" class="letters-loading">a</span>
+                    <span data-text-preloader="t" class="letters-loading">t</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader=" " class="letters-loading">&nbsp;</span>
+                    <span data-text-preloader="R" class="letters-loading">R</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader="s" class="letters-loading">s</span>
+                    <span data-text-preloader="i" class="letters-loading">i</span>
+                    <span data-text-preloader="l" class="letters-loading">l</span>
+                    <span data-text-preloader="i" class="letters-loading">i</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader="n" class="letters-loading">n</span>
+                    <span data-text-preloader="t" class="letters-loading">t</span>
+                    <span data-text-preloader=" " class="letters-loading">&nbsp;</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader="a" class="letters-loading">a</span>
+                    <span data-text-preloader="g" class="letters-loading">g</span>
+                    <span data-text-preloader="u" class="letters-loading">u</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                </div>
+                <p class="text-center">Loading</p>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+
+        <!-- GT Back To Top Start -->
+        <button id="gt-back-top" class="gt-back-to-top show">
+            <i class="fa-regular fa-arrow-up"></i>
+        </button>
+
+        <!-- GT MouseCursor Start -->
+        <div class="mouseCursor cursor-outer"></div>
+        <div class="mouseCursor cursor-inner"></div>
+
+        <!-- Offcanvas Area Start -->
+        <div class="fix-area">
+            <div class="offcanvas__info">
+                <div class="offcanvas__wrapper">
+                    <div class="offcanvas__content">
+                        <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                            <div class="offcanvas__logo">
+                                <a href="index.html">
+                                    <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="logo-img" style="max-height: 100px; width: auto;">
+                                </a>
+                            </div>
+                            <div class="offcanvas__close">
+                                <button>
+                                <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mobile-menu fix mb-3"></div>
+                            <div class="social-icon d-flex align-items-center">
+                                <a href="#"><i class="fab fa-discord"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas__overlay"></div>
+
+        <!-- Header Section Start -->
+        <header id="header-sticky" class="header-1 header-2 header-3">
+            <div class="container-fluid">
+                <div class="mega-menu-wrapper">
+                    <div class="header-main">
+                        <div class="logo">
+                            <a href="index.html" class="header-logo">
+                                <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="logo-img" style="max-height: 100px; width: auto;">
+                            </a>
+                        </div>
+                        <div class="header-right d-flex justify-content-end align-items-center mt-0">
+                            <div class="mean__menu-wrapper">
+                                <div class="main-menu">
+                                    <nav id="mobile-menu">
+                                        <ul>
+                                            <li class="active"><a href="index.html">Home</a></li>
+                                            <li>
+                                                <a href="league.html">
+                                                    League
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="players.html">
+                                                    Players
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="game.html">
+                                                    Teams
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="market.html">
+                                                    Market
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="match-details.html">Wagers</a>
+                                                <ul class="submenu">
+                                                    <li><a href="match.html">Team Wagers</a></li>
+                                                    <li><a href="match-details.html">Player Wagers</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="header-right-icon">
+                                <a href="#" class="main-header__search search-toggler">
+                                    <i class="fa-regular fa-magnifying-glass"></i>
+                                </a>
+                            </div>
+                           <div class="header-button">
+                                <a href="sponsor.html" class="gt-theme-btn">become a sponsor
+                                </a>
+                            </div>
+                            <div class="header__hamburger d-xl-block my-auto">
+                                <div class="sidebar__toggle">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- GT Search Start -->
+        <div class="search-popup">
+            <div class="search-popup__overlay search-toggler"></div>
+            <div class="search-popup__content">
+                <form role="search" method="get" class="search-popup__form" action="#">
+                    <input type="text" id="search" name="search" placeholder="Search Here...">
+                    <button type="submit" aria-label="search submit" class="search-btn">
+                        <span><i class="fa-regular fa-magnifying-glass"></i></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="smooth-wrapper">
+            <div id="smooth-content">
+                <!-- GT Breadcrunb Section Start -->
+        <div class="gt-breadcrumb-wrapper bg-cover" style="background-image: url('assets/img/breadcrumb.png');">
+            <div class="gt-right-shape">
+                <img loading="lazy" src="assets/img/shape-2.png" alt="img">
+            </div>
+            <div class="gt-blur-shape">
+                
+            </div>
+            <div class="container">
+                <div class="gt-page-heading">
+                    <div class="gt-breadcrumb-sub-title">
+                        <h1 class="wow fadeInUp" data-wow-delay=".3s">Wagers & Betting</h1>
+                    </div>
+                    <ul class="gt-breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
+                        <li>
+                            <i class="fa-solid fa-house"></i>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                home :
+                            </a>
+                        </li>
+                        <li class="color">
+                            Wagers
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- GT Trending Wagers Section Start -->
+        <section class="gt-trending-match section-padding fix">
+            <div class="container">
+                <div class="gt-section-title-area">
+                    <div class="gt-section-title-2 mb-0">
+                        <h6 class="subtitle tz-sub-tilte tz-sub-anim  text-uppercase tx-subTitle">place your bets</h6>
+                        <h2 class="tx-title sec_title  tz-itm-title tz-itm-anim">
+                            TRENDING WAGERS
+                        </h2>
+                    </div>
+                    <ul class="nav">
+                        <li class="nav-item wow fadeInUp" data-wow-delay=".2s">
+                            <a href="#all" data-bs-toggle="tab" class="nav-link active">
+                                all wagers
+                            </a>
+                        </li>
+                        <li class="nav-item wow fadeInUp" data-wow-delay=".4s">
+                            <a href="#upcoming" data-bs-toggle="tab" class="nav-link">
+                                upcoming wagers
+                            </a>
+                        </li>
+                        <li class="nav-item wow fadeInUp" data-wow-delay=".6s">
+                            <a href="#latest" data-bs-toggle="tab" class="nav-link">
+                                previous wagers
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div id="all" class="tab-pane fade show active">
+                        <!-- Custom Wager Selection -->
+                        <div class="gt-custom-wager-section">
+                            <div class="gt-custom-wager-header">
+                                <h4><i class="fa-solid fa-plus-circle"></i> Create Custom Wager</h4>
+                                <p>Select any two teams to create your own wager prediction</p>
+                            </div>
+                            <div class="gt-custom-wager-form">
+                                <div class="gt-team-select-wrapper">
+                                    <label>Team 1</label>
+                                    <select class="gt-team-select" id="team1-select">
+                                        <option value="">Select Team...</option>
+                                        <option value="dark-veli">Dark Veli</option>
+                                        <option value="viltrum">Viltrum</option>
+                                        <option value="dream-team">Dream Team</option>
+                                        <option value="only-fans">Only Fans</option>
+                                        <option value="epstine-files">Epstine Files</option>
+                                        <option value="mamos-pink">Mamos Pink Cartel</option>
+                                        <option value="valhalla">Valhalla</option>
+                                        <option value="tier-0">Tier 0 Elites</option>
+                                        <option value="big-baddies">Big Baddies Of Suth Africa</option>
+                                        <option value="rouge-legion">Rouge Legion</option>
+                                    </select>
+                                </div>
+                                <div class="gt-vs-divider">VS</div>
+                                <div class="gt-team-select-wrapper">
+                                    <label>Team 2</label>
+                                    <select class="gt-team-select" id="team2-select">
+                                        <option value="">Select Team...</option>
+                                        <option value="dark-veli">Dark Veli</option>
+                                        <option value="viltrum">Viltrum</option>
+                                        <option value="dream-team">Dream Team</option>
+                                        <option value="only-fans">Only Fans</option>
+                                        <option value="epstine-files">Epstine Files</option>
+                                        <option value="mamos-pink">Mamos Pink Cartel</option>
+                                        <option value="valhalla">Valhalla</option>
+                                        <option value="tier-0">Tier 0 Elites</option>
+                                        <option value="big-baddies">Big Baddies Of Suth Africa</option>
+                                        <option value="rouge-legion">Rouge Legion</option>
+                                    </select>
+                                </div>
+                                <button class="gt-create-wager-btn"><i class="fa-solid fa-bolt"></i> Create Wager</button>
+                            </div>
+                        </div>
+
+                        <div class="gt-trending-divider">
+                            <span><i class="fa-solid fa-fire"></i> Fan Favorites - Most Popular Predictions</span>
+                        </div>
+
+                        <!-- Monday March 2nd - Round 1 (8:15 PM) -->
+                        <div class="gt-trending-match-items">
+                            <div class="gt-wager-status upcoming">UPCOMING</div>
+                            <div class="gt-match-logo">
+                                <img loading="lazy" src="assets/img/home-2/match/match-01.jpg" alt="Dark Veli" class="gt-match-thumb">
+                                <img loading="lazy" src="assets/img/home-2/match/vs.png" alt="vs">
+                                <img loading="lazy" src="assets/img/home-2/match/match-02.jpg" alt="Viltrum" class="gt-match-thumb">
+                            </div>
+                            <div class="gt-match-content">
+                                <ul class="gt-date-list">
+                                    <li><i class="fa-light fa-calendar"></i> Mon, 2 March 2026</li>
+                                    <li><i class="fa-regular fa-clock"></i> 8:15 PM</li>
+                                </ul>
+                                <h3><a href="match-details.html">Dark Veli vs Viltrum</a></h3>
+                                <p>Round 1 | Who wins this round? </p>
+                            </div>
+                            <div class="gt-wager-odds">
+                                <div class="gt-odds-header">
+                                    <span>Round Winner Odds</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                </div>
+                                <div class="gt-odds-row">
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Dark Veli</span>
+                                        <span class="odds-value">1.85</span>
+                                    </div>
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Viltrum</span>
+                                        <span class="odds-value">2.10</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="gt-place-bet-btn"><i class="fa-solid fa-money-bill-wave"></i> Place Bet</a>
+                            </div>
+                        </div>
+
+                        <!-- Monday March 2nd - Round 2 (8:40 PM) -->
+                        <div class="gt-trending-match-items">
+                            <div class="gt-wager-status upcoming">UPCOMING</div>
+                            <div class="gt-match-logo">
+                                <img loading="lazy" src="assets/img/home-2/match/match-03.jpg" alt="Dream Team" class="gt-match-thumb">
+                                <img loading="lazy" src="assets/img/home-2/match/vs.png" alt="vs">
+                                <img loading="lazy" src="assets/img/home-2/match/match-04.jpg" alt="Tier 0 Elites" class="gt-match-thumb">
+                            </div>
+                            <div class="gt-match-content">
+                                <ul class="gt-date-list">
+                                    <li><i class="fa-light fa-calendar"></i> Mon, 2 March 2026</li>
+                                    <li><i class="fa-regular fa-clock"></i> 8:40 PM</li>
+                                </ul>
+                                <h3><a href="match-details.html">Dream Team vs Tier 0 Elites</a></h3>
+                                <p>Round 2 | Who wins this round? </p>
+                            </div>
+                            <div class="gt-wager-odds">
+                                <div class="gt-odds-header">
+                                    <span>Round Winner Odds</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                </div>
+                                <div class="gt-odds-row">
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Dream Team</span>
+                                        <span class="odds-value">1.65</span>
+                                    </div>
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Tier 0 Elites</span>
+                                        <span class="odds-value">2.40</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="gt-place-bet-btn"><i class="fa-solid fa-money-bill-wave"></i> Place Bet</a>
+                            </div>
+                        </div>
+
+                        <!-- Monday March 2nd - Round 3 (9:05 PM) -->
+                        <div class="gt-trending-match-items">
+                            <div class="gt-wager-status upcoming">UPCOMING</div>
+                            <div class="gt-match-logo">
+                                <img loading="lazy" src="assets/img/home-2/match/match-05.jpg" alt="Valhalla" class="gt-match-thumb">
+                                <img loading="lazy" src="assets/img/home-2/match/vs.png" alt="vs">
+                                <img loading="lazy" src="assets/img/home-2/match/match-06.jpg" alt="Big Baddies" class="gt-match-thumb">
+                            </div>
+                            <div class="gt-match-content">
+                                <ul class="gt-date-list">
+                                    <li><i class="fa-light fa-calendar"></i> Mon, 2 March 2026</li>
+                                    <li><i class="fa-regular fa-clock"></i> 9:05 PM</li>
+                                </ul>
+                                <h3><a href="match-details.html">Valhalla vs Big Baddies Of SA</a></h3>
+                                <p>Round 3 | Who wins this round? </p>
+                            </div>
+                            <div class="gt-wager-odds">
+                                <div class="gt-odds-header">
+                                    <span>Round Winner Odds</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                </div>
+                                <div class="gt-odds-row">
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Valhalla</span>
+                                        <span class="odds-value">1.95</span>
+                                    </div>
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Big Baddies</span>
+                                        <span class="odds-value">1.90</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="gt-place-bet-btn"><i class="fa-solid fa-money-bill-wave"></i> Place Bet</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="upcoming" class="tab-pane fade">
+                        <!-- Tuesday March 3rd - Round 1 (8:15 PM) -->
+                        <div class="gt-trending-match-items">
+                            <div class="gt-wager-status upcoming">UPCOMING</div>
+                            <div class="gt-match-logo">
+                                <img loading="lazy" src="assets/img/home-2/match/match-01.jpg" alt="Rouge Legion" class="gt-match-thumb">
+                                <img loading="lazy" src="assets/img/home-2/match/vs.png" alt="vs">
+                                <img loading="lazy" src="assets/img/home-2/match/match-02.jpg" alt="Mamos Pink Cartel" class="gt-match-thumb">
+                            </div>
+                            <div class="gt-match-content">
+                                <ul class="gt-date-list">
+                                    <li><i class="fa-light fa-calendar"></i> Tue, 3 March 2026</li>
+                                    <li><i class="fa-regular fa-clock"></i> 8:15 PM</li>
+                                </ul>
+                                <h3><a href="match-details.html">Rouge Legion vs Mamos Pink Cartel</a></h3>
+                                <p>Round 1 | Who wins this round? </p>
+                            </div>
+                            <div class="gt-wager-odds">
+                                <div class="gt-odds-header">
+                                    <span>Round Winner Odds</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                </div>
+                                <div class="gt-odds-row">
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Rouge Legion</span>
+                                        <span class="odds-value">1.80</span>
+                                    </div>
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Mamos Pink</span>
+                                        <span class="odds-value">2.15</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="gt-place-bet-btn"><i class="fa-solid fa-money-bill-wave"></i> Place Bet</a>
+                            </div>
+                        </div>
+
+                        <!-- Tuesday March 3rd - Round 2 (8:40 PM) -->
+                        <div class="gt-trending-match-items">
+                            <div class="gt-wager-status upcoming">UPCOMING</div>
+                            <div class="gt-match-logo">
+                                <img loading="lazy" src="assets/img/home-2/match/match-03.jpg" alt="Only Fans" class="gt-match-thumb">
+                                <img loading="lazy" src="assets/img/home-2/match/vs.png" alt="vs">
+                                <img loading="lazy" src="assets/img/home-2/match/match-04.jpg" alt="Epstine Files" class="gt-match-thumb">
+                            </div>
+                            <div class="gt-match-content">
+                                <ul class="gt-date-list">
+                                    <li><i class="fa-light fa-calendar"></i> Tue, 3 March 2026</li>
+                                    <li><i class="fa-regular fa-clock"></i> 8:40 PM</li>
+                                </ul>
+                                <h3><a href="match-details.html">Only Fans vs Epstine Files</a></h3>
+                                <p>Round 2 | Who wins this round? </p>
+                            </div>
+                            <div class="gt-wager-odds">
+                                <div class="gt-odds-header">
+                                    <span>Round Winner Odds</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                </div>
+                                <div class="gt-odds-row">
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Only Fans</span>
+                                        <span class="odds-value">2.05</span>
+                                    </div>
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Epstine Files</span>
+                                        <span class="odds-value">1.85</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="gt-place-bet-btn"><i class="fa-solid fa-money-bill-wave"></i> Place Bet</a>
+                            </div>
+                        </div>
+
+                        <!-- Tuesday March 3rd - Round 3 (9:05 PM) -->
+                        <div class="gt-trending-match-items">
+                            <div class="gt-wager-status upcoming">UPCOMING</div>
+                            <div class="gt-match-logo">
+                                <img loading="lazy" src="assets/img/home-2/match/match-05.jpg" alt="Dark Veli" class="gt-match-thumb">
+                                <img loading="lazy" src="assets/img/home-2/match/vs.png" alt="vs">
+                                <img loading="lazy" src="assets/img/home-2/match/match-06.jpg" alt="Dream Team" class="gt-match-thumb">
+                            </div>
+                            <div class="gt-match-content">
+                                <ul class="gt-date-list">
+                                    <li><i class="fa-light fa-calendar"></i> Tue, 3 March 2026</li>
+                                    <li><i class="fa-regular fa-clock"></i> 9:05 PM</li>
+                                </ul>
+                                <h3><a href="match-details.html">Dark Veli vs Dream Team</a></h3>
+                                <p>Round 3 | Who wins this round? </p>
+                            </div>
+                            <div class="gt-wager-odds">
+                                <div class="gt-odds-header">
+                                    <span>Round Winner Odds</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                </div>
+                                <div class="gt-odds-row">
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Dark Veli</span>
+                                        <span class="odds-value">1.90</span>
+                                    </div>
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Dream Team</span>
+                                        <span class="odds-value">2.00</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="gt-place-bet-btn"><i class="fa-solid fa-money-bill-wave"></i> Place Bet</a>
+                            </div>
+                        </div>
+
+                        <!-- Wednesday March 4th - Round 1 (8:15 PM) -->
+                        <div class="gt-trending-match-items">
+                            <div class="gt-wager-status upcoming">UPCOMING</div>
+                            <div class="gt-match-logo">
+                                <img loading="lazy" src="assets/img/home-2/match/match-07.jpg" alt="Viltrum" class="gt-match-thumb">
+                                <img loading="lazy" src="assets/img/home-2/match/vs.png" alt="vs">
+                                <img loading="lazy" src="assets/img/home-2/match/match-08.jpg" alt="Tier 0 Elites" class="gt-match-thumb">
+                            </div>
+                            <div class="gt-match-content">
+                                <ul class="gt-date-list">
+                                    <li><i class="fa-light fa-calendar"></i> Wed, 4 March 2026</li>
+                                    <li><i class="fa-regular fa-clock"></i> 8:15 PM</li>
+                                </ul>
+                                <h3><a href="match-details.html">Viltrum vs Tier 0 Elites</a></h3>
+                                <p>Round 1 | Who wins this round? </p>
+                            </div>
+                            <div class="gt-wager-odds">
+                                <div class="gt-odds-header">
+                                    <span>Round Winner Odds</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                </div>
+                                <div class="gt-odds-row">
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Viltrum</span>
+                                        <span class="odds-value">1.75</span>
+                                    </div>
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Tier 0 Elites</span>
+                                        <span class="odds-value">2.20</span>
+                                    </div>
+                                </div>
+                                <a href="#" class="gt-place-bet-btn"><i class="fa-solid fa-money-bill-wave"></i> Place Bet</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="latest" class="tab-pane fade">
+                        <!-- Previous Wager 1 - Fri 27 Feb 2026 -->
+                        <div class="gt-trending-match-items">
+                            <div class="gt-wager-status completed">COMPLETED</div>
+                            <div class="gt-match-logo">
+                                <img loading="lazy" src="assets/img/home-2/match/match-01.jpg" alt="Tier 0 Elites" class="gt-match-thumb">
+                                <img loading="lazy" src="assets/img/home-2/match/vs.png" alt="vs">
+                                <img loading="lazy" src="assets/img/home-2/match/match-02.jpg" alt="Only Fans" class="gt-match-thumb">
+                            </div>
+                            <div class="gt-match-content">
+                                <ul class="gt-date-list">
+                                    <li><i class="fa-light fa-calendar"></i> Fri, 27 Feb 2026</li>
+                                    <li><i class="fa-regular fa-trophy"></i> Winner: Tier 0 Elites</li>
+                                </ul>
+                                <h3><a href="match-details.html">Tier 0 Elites vs Only Fans</a></h3>
+                                <p>Round 3 (9:05 PM) | Tier 0 Elites dominated this round</p>
+                            </div>
+                            <div class="gt-wager-odds">
+                                <div class="gt-odds-header">
+                                    <span>Final Results</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Payout: R18,200</span>
+                                </div>
+                                <div class="gt-odds-row">
+                                    <div class="gt-odds-team winner">
+                                        <span class="team-name">Tier 0 Elites</span>
+                                        <span class="odds-value">Ã¢Å“â€œ Won</span>
+                                    </div>
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Only Fans</span>
+                                        <span class="odds-value">Lost</span>
+                                    </div>
+                                </div>
+                                <span class="gt-result-badge">Wagers Settled</span>
+                            </div>
+                        </div>
+
+                        <!-- Previous Wager 2 - Fri 27 Feb 2026 -->
+                        <div class="gt-trending-match-items">
+                            <div class="gt-wager-status completed">COMPLETED</div>
+                            <div class="gt-match-logo">
+                                <img loading="lazy" src="assets/img/home-2/match/match-03.jpg" alt="Mamos Pink Cartel" class="gt-match-thumb">
+                                <img loading="lazy" src="assets/img/home-2/match/vs.png" alt="vs">
+                                <img loading="lazy" src="assets/img/home-2/match/match-04.jpg" alt="Rouge Legion" class="gt-match-thumb">
+                            </div>
+                            <div class="gt-match-content">
+                                <ul class="gt-date-list">
+                                    <li><i class="fa-light fa-calendar"></i> Fri, 27 Feb 2026</li>
+                                    <li><i class="fa-regular fa-trophy"></i> Winner: Rouge Legion</li>
+                                </ul>
+                                <h3><a href="match-details.html">Mamos Pink Cartel vs Rouge Legion</a></h3>
+                                <p>Round 2 (8:40 PM) | Rouge Legion clutched the win</p>
+                            </div>
+                            <div class="gt-wager-odds">
+                                <div class="gt-odds-header">
+                                    <span>Final Results</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Payout: R9,800</span>
+                                </div>
+                                <div class="gt-odds-row">
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Mamos Pink</span>
+                                        <span class="odds-value">Lost</span>
+                                    </div>
+                                    <div class="gt-odds-team winner">
+                                        <span class="team-name">Rouge Legion</span>
+                                        <span class="odds-value">Ã¢Å“â€œ Won</span>
+                                    </div>
+                                </div>
+                                <span class="gt-result-badge">Wagers Settled</span>
+                            </div>
+                        </div>
+
+                        <!-- Previous Wager 3 - Fri 27 Feb 2026 -->
+                        <div class="gt-trending-match-items">
+                            <div class="gt-wager-status completed">COMPLETED</div>
+                            <div class="gt-match-logo">
+                                <img loading="lazy" src="assets/img/home-2/match/match-05.jpg" alt="Dark Veli" class="gt-match-thumb">
+                                <img loading="lazy" src="assets/img/home-2/match/vs.png" alt="vs">
+                                <img loading="lazy" src="assets/img/home-2/match/match-06.jpg" alt="Viltrum" class="gt-match-thumb">
+                            </div>
+                            <div class="gt-match-content">
+                                <ul class="gt-date-list">
+                                    <li><i class="fa-light fa-calendar"></i> Fri, 27 Feb 2026</li>
+                                    <li><i class="fa-regular fa-trophy"></i> Winner: Dark Veli</li>
+                                </ul>
+                                <h3><a href="match-details.html">Dark Veli vs Viltrum</a></h3>
+                                <p>Round 1 (8:15 PM) | Dark Veli with a strong opening</p>
+                            </div>
+                            <div class="gt-wager-odds">
+                                <div class="gt-odds-header">
+                                    <span>Final Results</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Payout: R22,450</span>
+                                </div>
+                                <div class="gt-odds-row">
+                                    <div class="gt-odds-team winner">
+                                        <span class="team-name">Dark Veli</span>
+                                        <span class="odds-value">Ã¢Å“â€œ Won</span>
+                                    </div>
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Viltrum</span>
+                                        <span class="odds-value">Lost</span>
+                                    </div>
+                                </div>
+                                <span class="gt-result-badge">Wagers Settled</span>
+                            </div>
+                        </div>
+
+                        <!-- Previous Wager 4 - Thu 26 Feb 2026 -->
+                        <div class="gt-trending-match-items">
+                            <div class="gt-wager-status completed">COMPLETED</div>
+                            <div class="gt-match-logo">
+                                <img loading="lazy" src="assets/img/home-2/match/match-07.jpg" alt="Valhalla" class="gt-match-thumb">
+                                <img loading="lazy" src="assets/img/home-2/match/vs.png" alt="vs">
+                                <img loading="lazy" src="assets/img/home-2/match/match-08.jpg" alt="Big Baddies" class="gt-match-thumb">
+                            </div>
+                            <div class="gt-match-content">
+                                <ul class="gt-date-list">
+                                    <li><i class="fa-light fa-calendar"></i> Thu, 26 Feb 2026</li>
+                                    <li><i class="fa-regular fa-trophy"></i> Winner: Big Baddies</li>
+                                </ul>
+                                <h3><a href="match-details.html">Valhalla vs Big Baddies Of SA</a></h3>
+                                <p>Round 3 (9:05 PM) | Big Baddies upset victory</p>
+                            </div>
+                            <div class="gt-wager-odds">
+                                <div class="gt-odds-header">
+                                    <span>Final Results</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Payout: R15,600</span>
+                                </div>
+                                <div class="gt-odds-row">
+                                    <div class="gt-odds-team">
+                                        <span class="team-name">Valhalla</span>
+                                        <span class="odds-value">Lost</span>
+                                    </div>
+                                    <div class="gt-odds-team winner">
+                                        <span class="team-name">Big Baddies</span>
+                                        <span class="odds-value">Ã¢Å“â€œ Won</span>
+                                    </div>
+                                </div>
+                                <span class="gt-result-badge">Wagers Settled</span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GT Tournament-gallery Section Start -->
+        <section class="gt-tournament-gallery-section section-padding fix pt-0">
+            <div class="container">
+                <div class="gt-section-title-2 text-center">
+                    <h6 class="text-white subtitle tz-sub-tilte tz-sub-anim  text-uppercase tx-subTitle">gallery</h6>
+                    <h2 class="text-white tx-title sec_title  tz-itm-title tz-itm-anim">
+                        tournament gallery 
+                    </h2>
+                </div>
+            </div>
+            <div class="swiper gt-gallery-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="gt-epic-gallery-item gt-style-2">
+                            <div class="gt-gallery-iamge">
+                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-9.jpg" alt="img">
+                               <a href="#" class="icon">
+                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
+                               </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gt-epic-gallery-item gt-style-2">
+                            <div class="gt-gallery-iamge">
+                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-10.jpg" alt="img">
+                               <a href="#" class="icon">
+                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
+                               </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gt-epic-gallery-item gt-style-2">
+                            <div class="gt-gallery-iamge">
+                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-11.jpg" alt="img">
+                               <a href="#" class="icon">
+                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
+                               </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gt-epic-gallery-item gt-style-2">
+                            <div class="gt-gallery-iamge">
+                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-12.jpg" alt="img">
+                               <a href="#" class="icon">
+                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
+                               </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gt-epic-gallery-item gt-style-2">
+                            <div class="gt-gallery-iamge">
+                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-13.jpg" alt="img">
+                               <a href="#" class="icon">
+                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
+                               </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="gt-epic-gallery-item mb-0">
+                            <div class="gt-gallery-iamge">
+                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-14.jpg" alt="img">
+                               <a href="assets/img/inner-page/gallery/gallery-14.jpg" class="icon img-popup2">
+                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
+                              </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="gt-epic-gallery-item mb-0">
+                            <div class="gt-gallery-iamge">
+                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-15.jpg" alt="img">
+                               <a href="assets/img/inner-page/gallery/gallery-15.jpg" class="icon img-popup2">
+                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
+                              </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GT Pricing Section Start -->
+        <section class="gt-pricing-section-2 section-padding fix bg-cover" style="background-image: url('assets/img/home-2/pricing-bg.jpg');">
+            <div class="container">
+                <div class="gt-pricing-wrapper">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-xl-4 col-lg-12 col-md-12">
+                            <div class="gt-pricing-content">
+                                <div class="gt-section-title-2 mb-0">
+                                    <h6 class="subtitle tz-sub-tilte tz-sub-anim  text-uppercase tx-subTitle">best plan</h6>
+                                    <h2 class="tx-title sec_title  tz-itm-title tz-itm-anim">
+                                        best pricing
+                                        plan for you!
+                                    </h2>
+                                </div>
+                                <p class="gt-pricing-text wow fadeInUp" data-wow-delay=".5s">
+                                    A game studio crafting exciting, high-quality video games, prioritizing immersive gameplay and mechanics.
+                                </p>
+                                <div class="d-flex">
+                                    <div class="pricing-two__tab">
+                                        <nav>
+                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                <button class="nav-link active" id="pt-1-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#pt-1" type="button" role="tab" aria-controls="pt-1"
+                                                    aria-selected="true">Monthly</button>
+                                                <button class="nav-link" id="pt-2-tab" data-bs-toggle="tab" data-bs-target="#pt-2"
+                                                    type="button" role="tab" aria-controls="pt-2"
+                                                    aria-selected="false">Yearly</button>
+                
+                                            </div>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-8">
+                            <div class="pricing__tab-content">
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="pt-1" role="tabpanel" aria-labelledby="pt-1-tab">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                                <div class="gt-pricing-box-items-2" style="background-image: url('assets/img/home-2/pricing-item-bg.png');">
+                                                    <span class="gt-price-tag">basic pack</span>
+                                                    <div class="gt-pricing-header">
+                                                        <div class="gt-icon">
+                                                            <img loading="lazy" src="assets/img/home-2/diamond.svg" alt="img">
+                                                        </div>
+                                                        <h2>$19.99</h2>
+                                                        <p>
+                                                            Proin gravida nibh vel velit auctor
+                                                            aliquet. Aenean sollicitudin
+                                                        </p>
+                                                    </div>
+                                                    <ul class="gt-pricing-list">
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Unlimited access to core features
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Restricted usage limits on storage
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            nhanced security features included
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Complete Ad-free gaming
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Multiple user accounts at discount
+                                                        </li>
+                                                    </ul>
+                                                    <div class="gt-pricing-btn">
+                                                        <div class="gt-bg-shape">
+                                                            <img loading="lazy" src="assets/img/home-2/pricing-btn-shape.png" alt="img">
+                                                        </div>
+                                                        <a href="pricing.html" class="gt-pricing-text">
+                                                            choose plan <i class="fa-solid fa-arrow-right"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                                <div class="gt-pricing-box-items-2" style="background-image: url('assets/img/home-2/pricing-item-bg.png');">
+                                                    <span class="gt-price-tag gt-bg-white">pro pack</span>
+                                                    <div class="gt-pricing-header">
+                                                        <div class="gt-icon">
+                                                            <img loading="lazy" src="assets/img/home-2/diamond.svg" alt="img">
+                                                        </div>
+                                                        <h2>$39.99</h2>
+                                                        <p>
+                                                            Proin gravida nibh vel velit auctor
+                                                            aliquet. Aenean sollicitudin
+                                                        </p>
+                                                    </div>
+                                                    <ul class="gt-pricing-list">
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Unlimited access to core features
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Restricted usage limits on storage
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            nhanced security features included
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Complete Ad-free gaming
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Multiple user accounts at discount
+                                                        </li>
+                                                    </ul>
+                                                    <div class="gt-pricing-btn">
+                                                        <div class="gt-bg-shape">
+                                                            <img loading="lazy" src="assets/img/home-2/pricing-btn-shape-2.png" alt="img">
+                                                        </div>
+                                                        <a href="pricing.html" class="gt-pricing-text color-2">
+                                                            choose plan <i class="fa-solid fa-arrow-right"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pt-2" role="tabpanel" aria-labelledby="pt-2-tab">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                                <div class="gt-pricing-box-items-2" style="background-image: url('assets/img/home-2/pricing-item-bg.png');">
+                                                    <span class="gt-price-tag">basic pack</span>
+                                                    <div class="gt-pricing-header">
+                                                        <div class="gt-icon">
+                                                            <img loading="lazy" src="assets/img/home-2/diamond.svg" alt="img">
+                                                        </div>
+                                                        <h2>$19.99</h2>
+                                                        <p>
+                                                            Proin gravida nibh vel velit auctor
+                                                            aliquet. Aenean sollicitudin
+                                                        </p>
+                                                    </div>
+                                                    <ul class="gt-pricing-list">
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Unlimited access to core features
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Restricted usage limits on storage
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            nhanced security features included
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Complete Ad-free gaming
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Multiple user accounts at discount
+                                                        </li>
+                                                    </ul>
+                                                    <div class="gt-pricing-btn">
+                                                        <div class="gt-bg-shape">
+                                                            <img loading="lazy" src="assets/img/home-2/pricing-btn-shape.png" alt="img">
+                                                        </div>
+                                                        <a href="pricing.html" class="gt-pricing-text">
+                                                            choose plan <i class="fa-solid fa-arrow-right"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                                <div class="gt-pricing-box-items-2" style="background-image: url('assets/img/home-2/pricing-item-bg.png');">
+                                                    <span class="gt-price-tag gt-bg-white">pro pack</span>
+                                                    <div class="gt-pricing-header">
+                                                        <div class="gt-icon">
+                                                            <img loading="lazy" src="assets/img/home-2/diamond.svg" alt="img">
+                                                        </div>
+                                                        <h2>$39.99</h2>
+                                                        <p>
+                                                            Proin gravida nibh vel velit auctor
+                                                            aliquet. Aenean sollicitudin
+                                                        </p>
+                                                    </div>
+                                                    <ul class="gt-pricing-list">
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Unlimited access to core features
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Restricted usage limits on storage
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            nhanced security features included
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Complete Ad-free gaming
+                                                        </li>
+                                                        <li>
+                                                            <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
+                                                            Multiple user accounts at discount
+                                                        </li>
+                                                    </ul>
+                                                    <div class="gt-pricing-btn">
+                                                        <div class="gt-bg-shape">
+                                                            <img loading="lazy" src="assets/img/home-2/pricing-btn-shape-2.png" alt="img">
+                                                        </div>
+                                                        <a href="pricing.html" class="gt-pricing-text color-2">
+                                                            choose plan <i class="fa-solid fa-arrow-right"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GT Footer Section Start -->
+        <footer class="gt-footer-section section-bg">
+            <div class="container">
+                <div class="gt-footer-widget-wrapper">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-4 col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="gt-footer-widget-items">
+                                <div class="gt-widget-head">
+                                    <a href="index.html" class="gt-footer-logo">
+                                        <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="img" style="max-height: 100px; width: auto;">
+                                    </a>
+                                </div>
+                                <div class="gt-footer-content">
+                                    <div class="gt-social-icon d-flex align-items-center">
+                                        <a href="#"><i class="fab fa-discord"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom wow fadeInUp" data-wow-delay=".3s">
+                    <div class="footer-wrapper">
+                        <p>Ã‚Â© 2025Ã‚Â Ultimate Resilient League. All Rights Reserved.</p>
+                        <ul class="gt-footer-list wow fadeInUp" data-wow-delay=".3s">
+                            <li>
+                                <a href="index.html">Cookies</a>
+                            </li>
+                            <li>
+                                <a href="index.html">Privacy</a>
+                            </li>
+                            <li>
+                                <a href="index.html">Terms</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+            </div>
+        </div>
+
+        
+
+         
+        
+        
+        <!--<< All JS Plugins >>-->
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <!--<< Viewport Js >>-->
+        <script src="assets/js/viewport.jquery.js"></script>
+        <!--<< Bootstrap Js >>-->
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <!--<< nice-selec Js >>-->
+        <script src="assets/js/jquery.nice-select.min.js"></script>
+        <!--<< Waypoints Js >>-->
+        <script src="assets/js/jquery.waypoints.js"></script>
+        <!--<< Counterup Js >>-->
+        <script src="assets/js/jquery.counterup.min.js"></script>
+        <!--<< Swiper Slider Js >>-->
+        <script src="assets/js/swiper-bundle.min.js"></script>
+        <!--<< MeanMenu Js >>-->
+        <script src="assets/js/jquery.meanmenu.min.js"></script>
+        <!--<< Magnific Popup Js >>-->
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        
+        <!--<< Gsap Animation Js >>-->
+        <script src="assets/js/gsap.js"></script>
+        <script src="assets/js/gsap-scroll-to-plugin.js"></script>
+        <script src="assets/js/gsap-scroll-smoother.js"></script>
+        <script src="assets/js/gsap-scroll-trigger.js"></script>
+        <!--<< SplitText Js >>-->
+        <script src="assets/js/SplitText.min.js"></script>
+        <!--<< splitType Js >>-->
+        <script src="assets/js/splitType.js"></script>
+        <!--<< script-gsap Js >>-->
+        <script src="assets/js/script-gsap.js"></script>
+        
+        <!--<< Wow Animation Js >>-->
+        <script src="assets/js/wow.min.js"></script>
+        <!--<< Main.js >>-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>

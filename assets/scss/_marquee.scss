@@ -1,0 +1,111 @@
+.marquee-text-slider-3 {
+    background-color: $gt-bg-color;
+    padding: 20px 0;
+    
+
+   &.style-11 {
+        background-color: transparent;
+        padding: 0;
+        margin-top: -6px;
+        position: relative;
+        
+        // &::before {
+        //     @include before;
+        //     background: linear-gradient(90deg, #0B0E13 1.93%, rgba(11, 14, 19, 0.00) 53%, #0B0E13 96.84%);
+        // }
+
+        .marquee-text-3 {
+
+            .text-marquee {
+                font-size: 80px;
+                font-weight: 700;
+                color: $gt-white;
+                line-height: 1;
+                // background: linear-gradient(to right, #1e1e1e, #ffffff, #1e1e1e);
+                // -webkit-background-clip: text;
+                // -webkit-text-fill-color: transparent;
+
+                @include breakpoint (max-lg) {
+                    font-size: 70px;
+                }
+
+                @include breakpoint (max-md) {
+                    font-size: 60px;
+                }
+
+                @include breakpoint (max-sm) {
+                    font-size: 50px;
+                }
+            }
+        }
+   }
+
+   &.style-12 {
+    background-color: transparent;
+    padding-top: 30px;
+    padding-bottom: 110px;
+    margin-top: 0;
+
+    @include breakpoint (max-xl){
+        padding-bottom: 100px;
+    }
+
+    @include breakpoint (max-lg){
+        padding-bottom: 80px;
+    }
+
+    .marquee-text-3 {
+        
+        .text-marquee {
+            font-size: 80px;
+            font-weight: 700;
+            color: $gt-white;
+            line-height: 1;
+            z-index: 9;
+
+            @include breakpoint (max-lg) {
+                font-size: 70px;
+            }
+
+            @include breakpoint (max-md) {
+                font-size: 60px;
+            }
+
+            @include breakpoint (max-sm) {
+                font-size: 50px;
+            }
+        }
+    }
+}
+
+    .marquee-text-3 {
+        @include flex;
+        gap: 40px;
+        
+        .text-marquee {
+            font-size: 80px;
+            font-weight: 700;
+            color: $gt-white;
+            // background: linear-gradient(to right, #1e1e1e, #ffffff, #1e1e1e);
+            // -webkit-background-clip: text;
+            // -webkit-text-fill-color: transparent;
+        }
+    }
+}
+
+.gt-marque-section {
+    position: relative;
+
+    .overlay-shape {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 9;
+
+        img {
+            @include imgw;
+        }
+    }
+}

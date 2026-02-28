@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--<< Header Area >>-->
+    <head>
+       <!-- ========== Meta Tags ========== -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Gramentheme">
+        <meta name="description" content="Xriders - Riders & Sports Club HTML Template">
+        <!-- ======== Page title ============ -->
+        <title>URL - Players</title>
+        <!--<< Favcion >>-->
+        <link rel="shortcut icon" href="assets/img/favicon.svg">
+        <!--<< Bootstrap min.css >>-->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <!--<< All Min Css >>-->
+        <link rel="stylesheet" href="assets/css/all.min.css">
+        <!--<< Animate.css >>-->
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <!--<< Magnific Popup.css >>-->
+        <link rel="stylesheet" href="assets/css/magnific-popup.css">
+        <!--<< MeanMenu.css >>-->
+        <link rel="stylesheet" href="assets/css/meanmenu.css">
+        <!--<< Swiper Bundle.css >>-->
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+        <!--<< Nice Select.css >>-->
+        <link rel="stylesheet" href="assets/css/nice-select.css">
+        <!--<< Main.css >>-->
+        <link rel="stylesheet" href="assets/css/main.css">
+        
+        <!-- URL Player Cards Styles -->
+        <style>
+            /* ===== URL CARD CSS VARIABLES ===== */
+            :root {
+                /* Common (Blue) - Rating 1-39 */
+                --common-primary: #4A90D9;
+                --common-secondary: #2E5B8A;
+                --common-accent: #87CEEB;
+                --common-bg-start: #1A2A3A;
+                --common-bg-end: #2A4A6A;
+                --common-border-start: #4A90D9;
+                --common-border-end: #2E5B8A;
+                --common-text: #E0F0FF;
+                
+                /* Elite (Purple) - Rating 40-59 */
+                --elite-primary: #9B59B6;
+                --elite-secondary: #8E44AD;
+                --elite-accent: #D5A6E6;
+                --elite-bg-start: #2D1A3D;
+                --elite-bg-end: #4A2A5A;
+                --elite-border-start: #9B59B6;
+                --elite-border-end: #6C3483;
+                --elite-text: #F0E0FF;
+                --elite-glow: 0 0 20px rgba(155, 89, 182, 0.5);
+                
+                /* Rare (Red) - Rating 60-79 */
+                --rare-primary: #FF0040;
+                --rare-secondary: #FF4444;
+                --rare-accent: #FF6B6B;
+                --rare-bg-start: #1A0A0A;
+                --rare-bg-end: #2D0A0A;
+                --rare-border-start: #FF0040;
+                --rare-border-end: #880020;
+                --rare-text: #FFFFFF;
+                
+                /* Legend (Gold) - Rating 80-99 */
+                --legend-primary: #FFD700;
+                --legend-secondary: #FFA500;
+                --legend-accent: #FFFACD;
+                --legend-bg-start: #3D2A0A;
+                --legend-bg-end: #5A4A1A;
+                --legend-border-start: #FFD700;
+                --legend-border-end: #B8860B;
+                --legend-text: #FFFEF0;
+                
+                /* Card Dimensions */
+                --url-card-width: 250px;
+                --url-card-ratio: 1.4;
+                --url-border-radius: 18px;
+                --url-transition-speed: 0.3s;
+            }
+            
+            /* ===== FILTER CONTROLS ===== */
+            .url-filter-controls {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-bottom: 40px;
+                flex-wrap: wrap;
+            }
+            
+            .url-filter-controls label {
+                font-size: 0.9rem;
+                color: #aaa;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .url-filter-controls select {
+                padding: 10px 20px;
+                font-size: 1rem;
+                border: 2px solid var(--gt-theme-color, #ff4d00);
+                border-radius: 8px;
+                background: #1a1a2e;
+                color: #fff;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .url-filter-controls select:hover,
+            .url-filter-controls select:focus {
+                border-color: #FFD700;
+                outline: none;
+                box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            }
+            
+            /* ===== URL CARDS GRID ===== */
+            .url-cards-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+                align-items: flex-start;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+            
+            /* ===== URL PLAYER CARD ===== */
+            .url-card {
+                --primary: var(--common-primary);
+                --secondary: var(--common-secondary);
+                --accent: var(--common-accent);
+                --bg-start: var(--common-bg-start);
+                --bg-end: var(--common-bg-end);
+                --border-start: var(--common-border-start);
+                --border-end: var(--common-border-end);
+                --text-color: var(--common-text);
+                
+                position: relative;
+                width: var(--url-card-width);
+                height: calc(var(--url-card-width) * var(--url-card-ratio));
+                border-radius: var(--url-border-radius);
+                overflow: hidden;
+                cursor: pointer;
+                transition: transform var(--url-transition-speed) ease,
+                            box-shadow var(--url-transition-speed) ease;
+                transform-style: preserve-3d;
+                perspective: 1000px;
+            }
+            
+            /* Rarity Variants */
+            .url-card.rare {
+                --primary: var(--rare-primary);
+                --secondary: var(--rare-secondary);
+                --accent: var(--rare-accent);
+                --bg-start: var(--rare-bg-start);
+                --bg-end: var(--rare-bg-end);
+                --border-start: var(--rare-border-start);
+                --border-end: var(--rare-border-end);
+                --text-color: var(--rare-text);
+            }
+            
+            .url-card.elite {
+                --primary: var(--elite-primary);
+                --secondary: var(--elite-secondary);
+                --accent: var(--elite-accent);
+                --bg-start: var(--elite-bg-start);
+                --bg-end: var(--elite-bg-end);
+                --border-start: var(--elite-border-start);
+                --border-end: var(--elite-border-end);
+                --text-color: var(--elite-text);
+            }
+            
+            .url-card.legend {
+                --primary: var(--legend-primary);
+                --secondary: var(--legend-secondary);
+                --accent: var(--legend-accent);
+                --bg-start: var(--legend-bg-start);
+                --bg-end: var(--legend-bg-end);
+                --border-start: var(--legend-border-start);
+                --border-end: var(--legend-border-end);
+                --text-color: var(--legend-text);
+            }
+            
+            /* Card Border (Metallic Gradient) */
+            .url-card::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                padding: 2px;
+                border-radius: var(--url-border-radius);
+                background: linear-gradient(135deg, var(--border-start), var(--border-end), var(--border-start));
+                -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+                pointer-events: none;
+                z-index: 10;
+            }
+            
+            /* Card Inner Container */
+            .url-card-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(165deg, var(--bg-start) 0%, var(--bg-end) 100%);
+                border-radius: calc(var(--url-border-radius) - 2px);
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            /* Noise Texture Overlay */
+            .url-card-inner::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+                opacity: 0.03;
+                pointer-events: none;
+                z-index: 1;
+            }
+            
+            /* Glossy Highlight Sweep */
+            .url-card-inner::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(
+                    to bottom right,
+                    rgba(255, 255, 255, 0.15) 0%,
+                    rgba(255, 255, 255, 0.05) 40%,
+                    transparent 50%
+                );
+                pointer-events: none;
+                z-index: 2;
+            }
+            
+            /* Shadows */
+            .url-card {
+                box-shadow: 
+                    0 10px 40px rgba(0, 0, 0, 0.5),
+                    0 0 0 1px rgba(255, 255, 255, 0.1),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+            
+            .url-card.elite {
+                box-shadow: 
+                    0 10px 40px rgba(0, 0, 0, 0.5),
+                    0 0 30px rgba(255, 0, 64, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+            
+            .url-card.legend {
+                box-shadow: 
+                    0 10px 40px rgba(0, 0, 0, 0.5),
+                    0 0 30px rgba(255, 215, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+            
+            /* Hover Effects */
+            .url-card:hover {
+                transform: translateY(-10px) rotateX(5deg) rotateY(-5deg) scale(1.02);
+                box-shadow: 
+                    0 20px 60px rgba(0, 0, 0, 0.6),
+                    0 0 0 1px rgba(255, 255, 255, 0.2);
+            }
+            
+            .url-card.elite:hover {
+                box-shadow: 
+                    0 20px 60px rgba(0, 0, 0, 0.6),
+                    0 0 50px rgba(255, 0, 64, 0.5);
+            }
+            
+            .url-card.legend:hover {
+                box-shadow: 
+                    0 20px 60px rgba(0, 0, 0, 0.6),
+                    0 0 50px rgba(255, 215, 0, 0.5);
+            }
+            
+            /* ===== FOIL EFFECT (Rare+) ===== */
+            .url-foil-overlay {
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                    105deg,
+                    transparent 20%,
+                    rgba(255, 255, 255, 0.1) 35%,
+                    rgba(255, 255, 255, 0.3) 40%,
+                    rgba(255, 255, 255, 0.1) 45%,
+                    transparent 60%
+                );
+                transform: translateX(-100%);
+                z-index: 20;
+                pointer-events: none;
+            }
+            
+            .url-card.rare .url-foil-overlay,
+            .url-card.elite .url-foil-overlay,
+            .url-card.legend .url-foil-overlay {
+                animation: urlFoilSweep 3s ease-in-out infinite;
+            }
+            
+            @keyframes urlFoilSweep {
+                0%, 100% { transform: translateX(-100%); }
+                50% { transform: translateX(100%); }
+            }
+            
+            /* Respect reduced motion */
+            @media (prefers-reduced-motion: reduce) {
+                .url-card:hover {
+                    transform: translateY(-5px);
+                }
+                .url-foil-overlay {
+                    animation: none;
+                    transform: translateX(0);
+                    opacity: 0.1;
+                }
+                .url-legend-sparkles {
+                    display: none;
+                }
+            }
+            
+            /* ===== LEGEND SPARKLES ===== */
+            .url-legend-sparkles {
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                z-index: 15;
+                overflow: hidden;
+            }
+            
+            .url-sparkle {
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: #FFD700;
+                border-radius: 50%;
+                animation: urlSparkle 2s ease-in-out infinite;
+                box-shadow: 0 0 6px #FFD700, 0 0 10px #FFF;
+            }
+            
+            .url-sparkle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+            .url-sparkle:nth-child(2) { top: 40%; left: 85%; animation-delay: 0.3s; }
+            .url-sparkle:nth-child(3) { top: 70%; left: 20%; animation-delay: 0.6s; }
+            .url-sparkle:nth-child(4) { top: 85%; left: 75%; animation-delay: 0.9s; }
+            .url-sparkle:nth-child(5) { top: 15%; left: 60%; animation-delay: 1.2s; }
+            
+            @keyframes urlSparkle {
+                0%, 100% { opacity: 0; transform: scale(0); }
+                50% { opacity: 1; transform: scale(1); }
+            }
+            
+            /* ===== CARD HEADER ===== */
+            .url-card-header {
+                position: relative;
+                height: 18%;
+                padding: 10px 12px 5px;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                z-index: 5;
+                background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 100%);
+            }
+            
+            .url-rating-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .url-rating-label {
+                font-size: 0.55rem;
+                font-weight: 700;
+                letter-spacing: 2px;
+                color: var(--accent);
+                text-transform: uppercase;
+                margin-bottom: 2px;
+            }
+            
+            .url-rating-value {
+                font-size: 2rem;
+                font-weight: 900;
+                line-height: 1;
+                color: var(--primary);
+                text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            }
+            
+            .url-team-name {
+                font-size: 0.5rem;
+                font-weight: 600;
+                color: var(--text-color);
+                opacity: 0.8;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-top: 4px;
+            }
+            
+            .url-role-badge {
+                background: linear-gradient(135deg, var(--primary), var(--secondary));
+                color: var(--bg-start);
+                font-size: 0.55rem;
+                font-weight: 800;
+                padding: 4px 10px;
+                border-radius: 20px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            }
+            
+            /* ===== PORTRAIT ZONE ===== */
+            .url-portrait-zone {
+                position: relative;
+                height: 42%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                z-index: 3;
+            }
+            
+            .url-portrait-image {
+                position: absolute;
+                inset: 0;
+                background-size: cover;
+                background-position: center top;
+                background-repeat: no-repeat;
+            }
+            
+            .url-portrait-placeholder {
+                width: 70%;
+                height: 90%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .url-portrait-placeholder svg {
+                width: 100%;
+                height: 100%;
+                fill: var(--primary);
+                opacity: 0.3;
+                filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+            }
+            
+            .url-portrait-shine {
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                    135deg,
+                    transparent 30%,
+                    rgba(255, 255, 255, 0.08) 50%,
+                    transparent 70%
+                );
+                pointer-events: none;
+            }
+            
+            .url-portrait-vignette {
+                position: absolute;
+                inset: 0;
+                box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+                pointer-events: none;
+            }
+            
+            .url-flag-badge {
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                width: 24px;
+                height: 16px;
+                border-radius: 2px;
+                overflow: hidden;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            }
+            
+            .url-flag-badge::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                /* South African Flag */
+                background: 
+                    linear-gradient(90deg, #000 0 40%, transparent 40%),
+                    linear-gradient(180deg, 
+                        #DE3831 0% 33.33%,
+                        #FFFFFF 33.33% 36%,
+                        #007A4D 36% 64%,
+                        #FFFFFF 64% 66.66%,
+                        #002395 66.66% 100%
+                    );
+            }
+            
+            .url-flag-badge::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 0;
+                height: 0;
+                border-top: 8px solid transparent;
+                border-bottom: 8px solid transparent;
+                border-left: 10px solid #FFB612;
+            }
+            
+            /* ===== IDENTITY ROW ===== */
+            .url-identity-row {
+                height: 10%;
+                padding: 0 12px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 5;
+                background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.2) 100%);
+            }
+            
+            .url-player-ign {
+                font-size: 1.1rem;
+                font-weight: 900;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                color: var(--text-color);
+                text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+                line-height: 1.2;
+            }
+            
+            .url-season-text {
+                font-size: 0.45rem;
+                font-weight: 600;
+                color: var(--accent);
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                opacity: 0.9;
+            }
+            
+            /* ===== STATS GRID ===== */
+            .url-stats-grid {
+                height: 30%;
+                padding: 8px 12px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(3, 1fr);
+                gap: 4px 15px;
+                z-index: 5;
+                background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
+            }
+            
+            .url-stat-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .url-stat-value {
+                font-size: 1rem;
+                font-weight: 800;
+                color: var(--text-color);
+                font-family: 'Courier New', monospace;
+                font-variant-numeric: tabular-nums;
+                line-height: 1;
+            }
+            
+            .url-stat-label {
+                font-size: 0.45rem;
+                font-weight: 700;
+                color: var(--accent);
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                opacity: 0.9;
+            }
+            
+            /* Value stat highlight */
+            .url-value-stat .url-stat-value {
+                color: #00ff88;
+                text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            }
+            
+            .url-value-stat .url-stat-label {
+                color: #00ff88;
+            }
+            
+            /* ===== META BADGES ===== */
+            .url-meta-badges {
+                position: absolute;
+                bottom: 8px;
+                left: 12px;
+                right: 12px;
+                display: flex;
+                justify-content: space-between;
+                z-index: 10;
+            }
+            
+            .url-rarity-badge {
+                font-size: 0.5rem;
+                font-weight: 800;
+                padding: 3px 8px;
+                border-radius: 4px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                background: rgba(0,0,0,0.5);
+                color: var(--primary);
+                border: 1px solid var(--primary);
+            }
+            
+            .url-serial-badge {
+                font-size: 0.5rem;
+                font-weight: 600;
+                padding: 3px 8px;
+                border-radius: 4px;
+                background: rgba(0,0,0,0.5);
+                color: var(--text-color);
+                opacity: 0.7;
+                font-family: 'Courier New', monospace;
+            }
+            
+            /* ===== HIDDEN STATE ===== */
+            .url-card.hidden {
+                display: none;
+            }
+            
+            /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+            
+            /* Extra Large Screens */
+            @media (min-width: 1400px) {
+                :root {
+                    --url-card-width: 260px;
+                }
+            }
+            
+            /* Large Screens */
+            @media (min-width: 1200px) and (max-width: 1399px) {
+                :root {
+                    --url-card-width: 240px;
+                }
+            }
+            
+            /* Medium Screens - Tablets */
+            @media (max-width: 1199px) {
+                :root {
+                    --url-card-width: 220px;
+                }
+                
+                .url-cards-grid {
+                    gap: 15px;
+                }
+            }
+            
+            /* Small Tablets */
+            @media (max-width: 991px) {
+                :root {
+                    --url-card-width: 200px;
+                }
+                
+                .gt-section-title-2 h2 {
+                    font-size: 28px !important;
+                }
+                
+                .url-cards-grid {
+                    gap: 12px;
+                    padding: 0 10px;
+                }
+                
+                .url-card-header {
+                    padding: 0 8px;
+                }
+                
+                .url-rating-value {
+                    font-size: 1.8rem;
+                }
+                
+                .url-player-ign {
+                    font-size: 0.9rem;
+                }
+            }
+            
+            /* Large Mobile */
+            @media (max-width: 767px) {
+                :root {
+                    --url-card-width: 160px;
+                }
+                
+                .gt-section-title-2 h2 {
+                    font-size: 24px !important;
+                }
+                
+                .gt-section-title-2 h6 {
+                    font-size: 12px !important;
+                }
+                
+                .url-cards-grid {
+                    gap: 10px;
+                    padding: 0 5px;
+                }
+                
+                .url-card-header {
+                    height: 18%;
+                    padding: 0 6px;
+                }
+                
+                .url-rating-label {
+                    font-size: 0.4rem;
+                }
+                
+                .url-rating-value {
+                    font-size: 1.5rem;
+                }
+                
+                .url-team-name {
+                    font-size: 0.35rem;
+                }
+                
+                .url-role-badge {
+                    font-size: 0.4rem;
+                    padding: 2px 6px;
+                }
+                
+                .url-player-ign {
+                    font-size: 0.75rem;
+                }
+                
+                .url-season-text {
+                    font-size: 0.35rem;
+                }
+                
+                .url-stats-grid {
+                    gap: 3px;
+                    padding: 0 6px;
+                }
+                
+                .url-stat-value {
+                    font-size: 0.7rem;
+                }
+                
+                .url-stat-label {
+                    font-size: 0.35rem;
+                }
+                
+                .url-rarity-badge,
+                .url-serial-badge {
+                    font-size: 0.4rem;
+                    padding: 2px 5px;
+                }
+                
+                .url-flag-badge {
+                    width: 18px;
+                    height: 12px;
+                    bottom: 6px;
+                    left: 6px;
+                }
+                
+                /* Leaderboard cards mobile */
+                .gt-leaderboard-card {
+                    padding: 15px !important;
+                }
+                
+                .gt-leaderboard-header h5 {
+                    font-size: 16px !important;
+                }
+                
+                .gt-leaderboard-list li {
+                    padding: 8px 0 !important;
+                    font-size: 13px !important;
+                }
+            }
+            
+            /* Small Mobile */
+            @media (max-width: 575px) {
+                :root {
+                    --url-card-width: 145px;
+                }
+                
+                .section-padding {
+                    padding: 60px 0 !important;
+                }
+                
+                .gt-section-title-2 h2 {
+                    font-size: 20px !important;
+                    line-height: 1.3 !important;
+                }
+                
+                .url-cards-grid {
+                    gap: 8px;
+                }
+                
+                .url-card {
+                    border-radius: 12px;
+                }
+                
+                .url-card-inner {
+                    border-radius: 10px;
+                }
+                
+                .url-rating-value {
+                    font-size: 1.3rem;
+                }
+                
+                .url-portrait-zone {
+                    height: 42%;
+                }
+                
+                .url-player-ign {
+                    font-size: 0.65rem;
+                }
+                
+                .url-meta-badges {
+                    gap: 4px;
+                }
+            }
+            
+            /* Extra Small Mobile */
+            @media (max-width: 400px) {
+                :root {
+                    --url-card-width: 130px;
+                }
+                
+                .url-cards-grid {
+                    gap: 6px;
+                }
+                
+                .url-rating-value {
+                    font-size: 1.1rem;
+                }
+                
+                .url-player-ign {
+                    font-size: 0.6rem;
+                }
+                
+                .url-stats-grid {
+                    gap: 2px;
+                    padding: 0 4px;
+                }
+                
+                .url-stat-value {
+                    font-size: 0.6rem;
+                }
+                
+                .url-stat-label {
+                    font-size: 0.3rem;
+                }
+            }
+            
+            /* Touch-friendly improvements */
+            @media (hover: none) and (pointer: coarse) {
+                .url-card:hover {
+                    transform: none;
+                }
+                
+                .url-card:active {
+                    transform: scale(0.98);
+                }
+                
+                .url-foil-overlay {
+                    animation: none;
+                }
+            }
+            
+            /* Reduce motion for accessibility */
+            @media (prefers-reduced-motion: reduce) {
+                .url-card,
+                .url-foil-overlay,
+                .url-sparkle {
+                    animation: none !important;
+                    transition: none !important;
+                }
+            }
+            
+            /* ===== SEARCH INPUT ===== */
+            .url-search-container {
+                display: flex;
+                justify-content: center;
+                margin: 30px 0;
+                padding: 0 15px;
+            }
+            
+            .url-search-wrapper {
+                position: relative;
+                width: 100%;
+                max-width: 500px;
+            }
+            
+            .url-search-input {
+                width: 100%;
+                padding: 15px 50px 15px 20px;
+                font-size: 1rem;
+                border: 2px solid rgba(255, 215, 0, 0.3);
+                border-radius: 50px;
+                background: rgba(26, 26, 46, 0.9);
+                color: #fff;
+                transition: all 0.3s ease;
+                outline: none;
+            }
+            
+            .url-search-input::placeholder {
+                color: rgba(255, 255, 255, 0.5);
+            }
+            
+            .url-search-input:focus {
+                border-color: #FFD700;
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            }
+            
+            .url-search-icon {
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #FFD700;
+                font-size: 1.2rem;
+                pointer-events: none;
+            }
+            
+            .url-search-clear {
+                position: absolute;
+                right: 50px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: none;
+                border: none;
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 1rem;
+                cursor: pointer;
+                display: none;
+                padding: 5px;
+            }
+            
+            .url-search-clear.visible {
+                display: block;
+            }
+            
+            .url-search-clear:hover {
+                color: #ff4444;
+            }
+            
+            .url-no-results {
+                text-align: center;
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 1.2rem;
+                padding: 40px;
+                display: none;
+            }
+            
+            .url-no-results.visible {
+                display: block;
+            }
+            
+            /* ===== EXPANDED CARD MODAL ===== */
+            .url-card-modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(10px);
+                z-index: 9999;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+            
+            .url-card-modal-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .url-card-modal-content {
+                position: relative;
+                max-width: 90vw;
+                max-height: 90vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                transform: scale(0.8);
+                transition: transform 0.3s ease;
+            }
+            
+            .url-card-modal-overlay.active .url-card-modal-content {
+                transform: scale(1);
+            }
+            
+            .url-card-modal-content .url-card-expanded {
+                --url-card-width: 350px;
+                transform: none !important;
+                box-shadow: 0 0 60px rgba(255, 215, 0, 0.4);
+            }
+            
+            .url-card-modal-close {
+                position: absolute;
+                top: -50px;
+                right: -10px;
+                background: rgba(255, 255, 255, 0.1);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                color: #fff;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                font-size: 1.5rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .url-card-modal-close:hover {
+                background: #ff4444;
+                border-color: #ff4444;
+                transform: rotate(90deg);
+            }
+            
+            .url-modal-player-details {
+                background: rgba(26, 26, 46, 0.95);
+                border: 1px solid rgba(255, 215, 0, 0.3);
+                border-radius: 15px;
+                padding: 25px;
+                max-width: 350px;
+                text-align: center;
+            }
+            
+            .url-modal-player-details h3 {
+                color: #FFD700;
+                margin-bottom: 15px;
+                font-size: 1.5rem;
+            }
+            
+            .url-modal-stats-row {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                margin-top: 15px;
+            }
+            
+            .url-modal-stat {
+                text-align: center;
+            }
+            
+            .url-modal-stat-value {
+                display: block;
+                font-size: 1.8rem;
+                font-weight: bold;
+                color: #fff;
+            }
+            
+            .url-modal-stat-label {
+                font-size: 0.85rem;
+                color: rgba(255, 255, 255, 0.6);
+                text-transform: uppercase;
+            }
+            
+            .url-modal-team-info {
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                color: rgba(255, 255, 255, 0.8);
+            }
+            
+            /* Mobile Responsiveness */
+            @media (max-width: 768px) {
+                .url-card-modal-content .url-card-expanded {
+                    --url-card-width: 280px;
+                }
+                
+                .url-card-modal-content {
+                    gap: 15px;
+                }
+                
+                .url-modal-player-details {
+                    padding: 20px;
+                    max-width: 280px;
+                }
+                
+                .url-modal-player-details h3 {
+                    font-size: 1.2rem;
+                }
+                
+                .url-modal-stat-value {
+                    font-size: 1.4rem;
+                }
+                
+                .url-card-modal-close {
+                    top: -45px;
+                    right: 0;
+                    width: 35px;
+                    height: 35px;
+                    font-size: 1.2rem;
+                }
+            }
+            
+            @media (max-width: 480px) {
+                .url-card-modal-content .url-card-expanded {
+                    --url-card-width: 240px;
+                }
+                
+                .url-modal-player-details {
+                    max-width: 240px;
+                    padding: 15px;
+                }
+                
+                .url-modal-stats-row {
+                    gap: 10px;
+                }
+                
+                .url-search-input {
+                    padding: 12px 45px 12px 15px;
+                    font-size: 0.9rem;
+                }
+            }
+            
+            /* Card hidden state for search */
+            .url-card.search-hidden {
+                display: none;
+            }
+        </style>
+                            
+    </head>
+    <body>
+
+        <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="spinner">                
+                </div>
+                <div class="txt-loading">
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="l" class="letters-loading">l</span>
+                    <span data-text-preloader="t" class="letters-loading">t</span>
+                    <span data-text-preloader="i" class="letters-loading">i</span>
+                    <span data-text-preloader="m" class="letters-loading">m</span>
+                    <span data-text-preloader="a" class="letters-loading">a</span>
+                    <span data-text-preloader="t" class="letters-loading">t</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader=" " class="letters-loading">&nbsp;</span>
+                    <span data-text-preloader="R" class="letters-loading">R</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader="s" class="letters-loading">s</span>
+                    <span data-text-preloader="i" class="letters-loading">i</span>
+                    <span data-text-preloader="l" class="letters-loading">l</span>
+                    <span data-text-preloader="i" class="letters-loading">i</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader="n" class="letters-loading">n</span>
+                    <span data-text-preloader="t" class="letters-loading">t</span>
+                    <span data-text-preloader=" " class="letters-loading">&nbsp;</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader="a" class="letters-loading">a</span>
+                    <span data-text-preloader="g" class="letters-loading">g</span>
+                    <span data-text-preloader="u" class="letters-loading">u</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                </div>
+                <p class="text-center">Loading</p>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+
+        <!-- GT Back To Top Start -->
+        <button id="gt-back-top" class="gt-back-to-top show">
+            <i class="fa-regular fa-arrow-up"></i>
+        </button>
+
+        <!-- GT MouseCursor Start -->
+        <div class="mouseCursor cursor-outer"></div>
+        <div class="mouseCursor cursor-inner"></div>
+
+        <!-- Offcanvas Area Start -->
+        <div class="fix-area">
+            <div class="offcanvas__info">
+                <div class="offcanvas__wrapper">
+                    <div class="offcanvas__content">
+                        <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                            <div class="offcanvas__logo">
+                                <a href="index.html">
+                                    <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="logo-img" style="max-height: 100px; width: auto;">
+                                </a>
+                            </div>
+                            <div class="offcanvas__close">
+                                <button>
+                                <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mobile-menu fix mb-3"></div>
+                            <div class="social-icon d-flex align-items-center">
+                                <a href="#"><i class="fab fa-discord"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas__overlay"></div>
+
+        <!-- Header Section Start -->
+        <header id="header-sticky" class="header-1 header-2 header-3">
+            <div class="container-fluid">
+                <div class="mega-menu-wrapper">
+                    <div class="header-main">
+                        <div class="logo">
+                            <a href="index.html" class="header-logo">
+                                <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="logo-img" style="max-height: 100px; width: auto;">
+                            </a>
+                        </div>
+                        <div class="header-right d-flex justify-content-end align-items-center mt-0">
+                            <div class="mean__menu-wrapper">
+                                <div class="main-menu">
+                                    <nav id="mobile-menu">
+                                        <ul>
+                                            <li class="active"><a href="index.html">Home</a></li>
+                                            <li>
+                                                <a href="league.html">
+                                                    League
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="players.html">
+                                                    Players
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="game.html">
+                                                    Teams
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="market.html">
+                                                    Market
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="match-details.html">Wagers</a>
+                                                <ul class="submenu">
+                                                    <li><a href="match.html">Team Wagers</a></li>
+                                                    <li><a href="match-details.html">Player Wagers</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="header-right-icon">
+                                <a href="#" class="main-header__search search-toggler">
+                                    <i class="fa-regular fa-magnifying-glass"></i>
+                                </a>
+                            </div>
+                           <div class="header-button">
+                                <a href="sponsor.html" class="gt-theme-btn">become a sponsor
+                                </a>
+                            </div>
+                            <div class="header__hamburger d-xl-block my-auto">
+                                <div class="sidebar__toggle">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- GT Search Start -->
+        <div class="search-popup">
+            <div class="search-popup__overlay search-toggler"></div>
+            <div class="search-popup__content">
+                <form role="search" method="get" class="search-popup__form" action="#">
+                    <input type="text" id="search" name="search" placeholder="Search Here...">
+                    <button type="submit" aria-label="search submit" class="search-btn">
+                        <span><i class="fa-regular fa-magnifying-glass"></i></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="smooth-wrapper">
+            <div id="smooth-content">
+                <!-- GT Breadcrunb Section Start -->
+        <div class="gt-breadcrumb-wrapper bg-cover" style="background-image: url('assets/img/breadcrumb.png');">
+            <div class="gt-left-shape">
+                <img loading="lazy" src="assets/img/shape-1.png" alt="img">
+            </div>
+            <div class="gt-right-shape">
+                <img loading="lazy" src="assets/img/shape-2.png" alt="img">
+            </div>
+            <div class="gt-blur-shape">
+                
+            </div>
+            <div class="container">
+                <div class="gt-page-heading">
+                    <div class="gt-breadcrumb-sub-title">
+                        <h1 class="wow fadeInUp" data-wow-delay=".3s">Players</h1>
+                    </div>
+                    <ul class="gt-breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
+                        <li>
+                            <i class="fa-solid fa-house"></i>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                home :
+                            </a>
+                        </li>
+                        <li class="color">
+                            Players
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- GT Players Section Start -->
+        <section class="gt-players-section section-padding fix">
+            <div class="container">
+                <div class="gt-section-title-area text-center">
+                    <div class="gt-section-title-2 text-center mb-0">
+                        <h6 class="subtitle tz-sub-tilte tz-sub-anim text-uppercase tx-subTitle">pro gamers</h6>
+                        <h2 class="tx-title sec_title tz-itm-title tz-itm-anim">
+                            OUR STAR PLAYERS
+                        </h2>
+                    </div>
+                </div>
+                
+                <!-- Search Input -->
+                <div class="url-search-container">
+                    <div class="url-search-wrapper">
+                        <input type="text" id="playerSearch" class="url-search-input" placeholder="Search by name, team, or role..." autocomplete="off">
+                        <button type="button" id="searchClear" class="url-search-clear">&times;</button>
+                        <i class="fa-solid fa-magnifying-glass url-search-icon"></i>
+                    </div>
+                </div>
+                
+                <div id="noResults" class="url-no-results">No players found matching your search.</div>
+                
+                <!-- URL Player Cards Grid -->
+                <div class="url-cards-grid" id="urlCardsContainer" role="list">
+                    <!-- Cards rendered by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- GT Footer Section Start -->
+        <footer class="gt-footer-section section-bg">
+            <div class="container">
+                <div class="gt-footer-widget-wrapper">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-4 col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="gt-footer-widget-items">
+                                <div class="gt-widget-head">
+                                    <a href="index.html" class="gt-footer-logo">
+                                        <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="img" style="max-height: 100px; width: auto;">
+                                    </a>
+                                </div>
+                                <div class="gt-footer-content">
+                                    <div class="gt-social-icon d-flex align-items-center">
+                                        <a href="#"><i class="fab fa-discord"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom wow fadeInUp" data-wow-delay=".3s">
+                    <div class="footer-wrapper">
+                        <p>Ã‚Â© 2025 Ultimate Resilient League. All Rights Reserved.</p>
+                        <ul class="gt-footer-list wow fadeInUp" data-wow-delay=".3s">
+                            <li>
+                                <a href="index.html">Cookies</a>
+                            </li>
+                            <li>
+                                <a href="index.html">Privacy</a>
+                            </li>
+                            <li>
+                                <a href="index.html">Terms</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+            </div>
+        </div>
+        
+        <!-- Player Card Modal Overlay (outside smooth-wrapper for position:fixed to work) -->
+        <div id="playerCardModal" class="url-card-modal-overlay">
+            <div class="url-card-modal-content">
+                <button type="button" class="url-card-modal-close" aria-label="Close">&times;</button>
+                <div id="modalCardContainer"></div>
+                <div id="modalPlayerDetails" class="url-modal-player-details"></div>
+            </div>
+        </div>
+
+        <!--<< All JS Plugins >>-->
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <!--<< Viewport Js >>-->
+        <script src="assets/js/viewport.jquery.js"></script>
+        <!--<< Bootstrap Js >>-->
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <!--<< nice-selec Js >>-->
+        <script src="assets/js/jquery.nice-select.min.js"></script>
+        <!--<< Waypoints Js >>-->
+        <script src="assets/js/jquery.waypoints.js"></script>
+        <!--<< Counterup Js >>-->
+        <script src="assets/js/jquery.counterup.min.js"></script>
+        <!--<< Swiper Slider Js >>-->
+        <script src="assets/js/swiper-bundle.min.js"></script>
+        <!--<< MeanMenu Js >>-->
+        <script src="assets/js/jquery.meanmenu.min.js"></script>
+        <!--<< Magnific Popup Js >>-->
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        
+        <!--<< Gsap Animation Js >>-->
+        <script src="assets/js/gsap.js"></script>
+        <script src="assets/js/gsap-scroll-to-plugin.js"></script>
+        <script src="assets/js/gsap-scroll-smoother.js"></script>
+        <script src="assets/js/gsap-scroll-trigger.js"></script>
+        <!--<< SplitText Js >>-->
+        <script src="assets/js/SplitText.min.js"></script>
+        <!--<< splitType Js >>-->
+        <script src="assets/js/splitType.js"></script>
+        <!--<< script-gsap Js >>-->
+        <script src="assets/js/script-gsap.js"></script>
+        
+        <!--<< Wow Animation Js >>-->
+        <script src="assets/js/wow.min.js"></script>
+        <!--<< Main.js >>-->
+        <script src="assets/js/main.js"></script>
+        
+        <!--<< URL Player Cards Script >>-->
+        <script>
+            // ===== PLAYER DATA - 48 URL League Players =====
+            // Rarity: Legend (80-99 Gold), Rare (60-79 Red), Elite (40-59 Purple), Common (1-39 Blue)
+            const playersData = [
+                { ign: "pink.etc", team: "FREE AGENT", role: "AWP", rarity: "legend", urlRating: 88, kills: 123, appearances: 13, value: 600, serial: "URL-00001", season: "Season 1", imageUrl: "" },
+                { ign: "AG | Mausメ", team: "FREE AGENT", role: "FRAGGER", rarity: "legend", urlRating: 84, kills: 112, appearances: 12, value: 575, serial: "URL-00003", season: "Season 1", imageUrl: "" },
+                { ign: "Rи • Waven", team: "FREE AGENT", role: "SNIPER", rarity: "rare", urlRating: 74, kills: 89, appearances: 10, value: 516, serial: "URL-00002", season: "Season 1", imageUrl: "" },
+                { ign: "Σи | zaza", team: "FREE AGENT", role: "CAPTAIN", rarity: "rare", urlRating: 69, kills: 95, appearances: 10, value: 496, serial: "URL-00010", season: "Season 1", imageUrl: "" },
+                { ign: "ryze0", team: "FREE AGENT", role: "SUPPORT", rarity: "elite", urlRating: 58, kills: 76, appearances: 13, value: 427, serial: "URL-00005", season: "Season 1", imageUrl: "" },
+                { ign: "Rи • Tariq", team: "FREE AGENT", role: "IGL", rarity: "elite", urlRating: 51, kills: 51, appearances: 8, value: 396, serial: "URL-00006", season: "Season 1", imageUrl: "" },
+                { ign: "ZИ Σи | Pooki", team: "FREE AGENT", role: "SUPPORT", rarity: "elite", urlRating: 50, kills: 53, appearances: 7, value: 395, serial: "URL-00011", season: "Season 1", imageUrl: "" },
+                { ign: "ZŁ.BuZz ;)", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 50, kills: 63, appearances: 13, value: 388, serial: "URL-00007", season: "Season 1", imageUrl: "" },
+                { ign: "ZŁ.SID ;)", team: "FREE AGENT", role: "ENTRY", rarity: "elite", urlRating: 50, kills: 37, appearances: 5, value: 383, serial: "URL-00008", season: "Season 1", imageUrl: "" },
+                { ign: "LGN • Mvement", team: "FREE AGENT", role: "FRAGGER", rarity: "elite", urlRating: 46, kills: 74, appearances: 12, value: 374, serial: "URL-00016", season: "Season 1", imageUrl: "" },
+                { ign: "Rи • ayanda<3", team: "FREE AGENT", role: "SUPPORT", rarity: "elite", urlRating: 46, kills: 42, appearances: 5, value: 371, serial: "URL-00013", season: "Season 1", imageUrl: "" },
+                { ign: "INS • Yolanda", team: "FREE AGENT", role: "FRAGGER", rarity: "elite", urlRating: 43, kills: 61, appearances: 5, value: 370, serial: "URL-00019", season: "Season 1", imageUrl: "" },
+                { ign: "Rи • Aim", team: "FREE AGENT", role: "IGL", rarity: "elite", urlRating: 42, kills: 49, appearances: 12, value: 345, serial: "URL-00014", season: "Season 1", imageUrl: "" },
+                { ign: "juuzou", team: "FREE AGENT", role: "ENTRY", rarity: "elite", urlRating: 42, kills: 35, appearances: 9, value: 335, serial: "URL-00012", season: "Season 1", imageUrl: "" },
+                { ign: "44 • Ban0", team: "FREE AGENT", role: "CAPTAIN", rarity: "elite", urlRating: 42, kills: 31, appearances: 13, value: 332, serial: "URL-00009", season: "Season 1", imageUrl: "" },
+                { ign: "Rи • Auradebt", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 41, kills: 45, appearances: 10, value: 338, serial: "URL-00015", season: "Season 1", imageUrl: "" },
+                { ign: "Monkey.etc", team: "FREE AGENT", role: "SCOUT", rarity: "common", urlRating: 38, kills: 59, appearances: 5, value: 339, serial: "URL-00026", season: "Season 1", imageUrl: "" },
+                { ign: "NF | LIAM", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 38, kills: 49, appearances: 10, value: 316, serial: "URL-00049", season: "Season 1", imageUrl: "" },
+                { ign: "sYm✪Allfather", team: "FREE AGENT", role: "ENTRY", rarity: "common", urlRating: 35, kills: 37, appearances: 10, value: 301, serial: "URL-00018", season: "Season 1", imageUrl: "" },
+                { ign: "patrick.etc", team: "FREE AGENT", role: "LURKER", rarity: "common", urlRating: 35, kills: 12, appearances: 2, value: 290, serial: "URL-00017", season: "Season 1", imageUrl: "" },
+                { ign: "C1N", team: "FREE AGENT", role: "LURKER", rarity: "common", urlRating: 33, kills: 42, appearances: 13, value: 270, serial: "URL-00024", season: "Season 1", imageUrl: "" },
+                { ign: "Σи | Malik", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 33, kills: 26, appearances: 2, value: 260, serial: "URL-00041", season: "Season 1", imageUrl: "" },
+                { ign: "Tyzllah.etc", team: "FREE AGENT", role: "CAPTAIN", rarity: "common", urlRating: 32, kills: 35, appearances: 13, value: 255, serial: "URL-00021", season: "Season 1", imageUrl: "" },
+                { ign: "BEYONDER • яe", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 32, kills: 35, appearances: 13, value: 255, serial: "URL-00020", season: "Season 1", imageUrl: "" },
+                { ign: "Rи • Domino", team: "FREE AGENT", role: "SCOUT", rarity: "common", urlRating: 32, kills: 32, appearances: 10, value: 255, serial: "URL-00022", season: "Season 1", imageUrl: "" },
+                { ign: "39Intro.etc", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 32, kills: 30, appearances: 8, value: 261, serial: "URL-00023", season: "Season 1", imageUrl: "" },
+                { ign: "MC | Mo", team: "FREE AGENT", role: "LURKER", rarity: "common", urlRating: 31, kills: 48, appearances: 11, value: 251, serial: "URL-00027", season: "Season 1", imageUrl: "" },
+                { ign: "Member", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 30, kills: 53, appearances: 13, value: 233, serial: "URL-00050", season: "Season 1", imageUrl: "" },
+                { ign: "SpongeBo.zën", team: "FREE AGENT", role: "LURKER", rarity: "common", urlRating: 29, kills: 29, appearances: 10, value: 233, serial: "URL-00025", season: "Season 1", imageUrl: "" },
+                { ign: "Ghost", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 27, kills: 46, appearances: 8, value: 222, serial: "URL-00051", season: "Season 1", imageUrl: "" },
+                { ign: "makio*", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 24, kills: 11, appearances: 3, value: 202, serial: "URL-00028", season: "Season 1", imageUrl: "" },
+                { ign: "DADDY.BISHOP", team: "FREE AGENT", role: "AWP", rarity: "common", urlRating: 22, kills: 10, appearances: 3, value: 196, serial: "URL-00029", season: "Season 1", imageUrl: "" },
+                { ign: "sYm✪Himothy", team: "FREE AGENT", role: "LURKER", rarity: "common", urlRating: 21, kills: 18, appearances: 10, value: 186, serial: "URL-00030", season: "Season 1", imageUrl: "" },
+                { ign: "soraʕλn", team: "FREE AGENT", role: "CAPTAIN", rarity: "common", urlRating: 21, kills: 14, appearances: 5, value: 197, serial: "URL-00031", season: "Season 1", imageUrl: "" },
+                { ign: "FΣ | dazing", team: "FREE AGENT", role: "SCOUT", rarity: "common", urlRating: 21, kills: 12, appearances: 4, value: 197, serial: "URL-00032", season: "Season 1", imageUrl: "" },
+                { ign: "B²M | Avo • λη", team: "FREE AGENT", role: "ENTRY", rarity: "common", urlRating: 20, kills: 18, appearances: 3, value: 192, serial: "URL-00034", season: "Season 1", imageUrl: "" },
+                { ign: "¹Seeyah²¹", team: "FREE AGENT", role: "CONTROLLER", rarity: "common", urlRating: 19, kills: 21, appearances: 9, value: 176, serial: "URL-00036", season: "Season 1", imageUrl: "" },
+                { ign: "sYm✪Holiday", team: "FREE AGENT", role: "RIFLER", rarity: "common", urlRating: 19, kills: 21, appearances: 2, value: 187, serial: "URL-00040", season: "Season 1", imageUrl: "" },
+                { ign: "BeerusT", team: "FREE AGENT", role: "SCOUT", rarity: "common", urlRating: 19, kills: 13, appearances: 1, value: 193, serial: "URL-00039", season: "Season 1", imageUrl: "" },
+                { ign: "blue.etc", team: "FREE AGENT", role: "ENTRY", rarity: "common", urlRating: 18, kills: 13, appearances: 13, value: 161, serial: "URL-00033", season: "Season 1", imageUrl: "" },
+                { ign: "ØPŠ • ZAM", team: "FREE AGENT", role: "AWP", rarity: "common", urlRating: 18, kills: 6, appearances: 2, value: 174, serial: "URL-00035", season: "Season 1", imageUrl: "" },
+                { ign: "H®unter~sung", team: "FREE AGENT", role: "AWP", rarity: "common", urlRating: 17, kills: 13, appearances: 10, value: 160, serial: "URL-00037", season: "Season 1", imageUrl: "" },
+                { ign: "R • Yang", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 17, kills: 12, appearances: 7, value: 160, serial: "URL-00038", season: "Season 1", imageUrl: "" },
+                { ign: "DO1LAR • ixt", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 13, kills: 7, appearances: 5, value: 142, serial: "URL-00043", season: "Season 1", imageUrl: "" },
+                { ign: "sYm✪Leo", team: "FREE AGENT", role: "LURKER", rarity: "common", urlRating: 13, kills: 4, appearances: 2, value: 149, serial: "URL-00042", season: "Season 1", imageUrl: "" },
+                { ign: "Vortex • ixt", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 6, kills: 1, appearances: 1, value: 148, serial: "URL-00046", season: "Season 1", imageUrl: "" },
+                { ign: "ColdG2000", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 2, kills: 0, appearances: 3, value: 125, serial: "URL-00047", season: "Season 1", imageUrl: "" },
+                { ign: "blunt(isdaddy)", team: "FREE AGENT", role: "ENTRY", rarity: "common", urlRating: 1, kills: 0, appearances: 1, value: 123, serial: "URL-00048", season: "Season 1", imageUrl: "" }
+            ];
+
+            // ===== CARD RENDERER =====
+            function createURLPlayerCard(player) {
+                const card = document.createElement('article');
+                card.className = `url-card ${player.rarity}`;
+                card.setAttribute('role', 'listitem');
+                card.setAttribute('aria-label', `${player.ign} - ${player.rarity} ${player.role} from ${player.team}, Rating: ${player.urlRating}`);
+                card.dataset.rarity = player.rarity;
+                
+                // Build portrait content
+                const portraitContent = player.imageUrl 
+                    ? `<div class="url-portrait-image" style="background-image: url('${player.imageUrl}')" role="img" aria-label="${player.ign} portrait"></div>`
+                    : `<div class="url-portrait-placeholder">
+                        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <circle cx="50" cy="30" r="25"/>
+                            <path d="M50 60 C20 60 10 85 10 110 L10 120 L90 120 L90 110 C90 85 80 60 50 60"/>
+                        </svg>
+                       </div>`;
+                
+                // Legend sparkles
+                const sparkles = player.rarity === 'legend' 
+                    ? `<div class="url-legend-sparkles" aria-hidden="true">
+                        <span class="url-sparkle"></span>
+                        <span class="url-sparkle"></span>
+                        <span class="url-sparkle"></span>
+                        <span class="url-sparkle"></span>
+                        <span class="url-sparkle"></span>
+                       </div>`
+                    : '';
+                
+                // Foil overlay for rare+
+                const foilOverlay = ['rare', 'elite', 'legend'].includes(player.rarity)
+                    ? '<div class="url-foil-overlay" aria-hidden="true"></div>'
+                    : '';
+                
+                card.innerHTML = `
+                    <div class="url-card-inner">
+                        <!-- Header Strip -->
+                        <div class="url-card-header">
+                            <div class="url-rating-section">
+                                <span class="url-rating-label">URL</span>
+                                <span class="url-rating-value">${player.urlRating}</span>
+                                <span class="url-team-name">${player.team}</span>
+                            </div>
+                            <span class="url-role-badge">${player.role}</span>
+                        </div>
+                        
+                        <!-- Portrait Zone -->
+                        <div class="url-portrait-zone">
+                            ${portraitContent}
+                            <div class="url-portrait-shine" aria-hidden="true"></div>
+                            <div class="url-portrait-vignette" aria-hidden="true"></div>
+                            <div class="url-flag-badge" aria-hidden="true"></div>
+                        </div>
+                        
+                        <!-- Identity Row -->
+                        <div class="url-identity-row">
+                            <span class="url-player-ign">${player.ign}</span>
+                            <span class="url-season-text">${player.season} Ã¢â‚¬Â¢ Ultimate Resilient League</span>
+                        </div>
+                        
+                        <!-- Stats Grid -->
+                        <div class="url-stats-grid">
+                            <div class="url-stat-item">
+                                <span class="url-stat-value">${player.kills}</span>
+                                <span class="url-stat-label">Kills</span>
+                            </div>
+                            <div class="url-stat-item">
+                                <span class="url-stat-value">${player.appearances}</span>
+                                <span class="url-stat-label">Apps</span>
+                            </div>
+                            <div class="url-stat-item">
+                                <span class="url-stat-value">${(player.kills / Math.max(1, player.appearances)).toFixed(2)}</span>
+                                <span class="url-stat-label">Avg</span>
+                            </div>
+                            <div class="url-stat-item url-value-stat">
+                                <span class="url-stat-value">${player.value || 0}</span>
+                                <span class="url-stat-label">URL</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Meta Badges -->
+                        <div class="url-meta-badges">
+                            <span class="url-rarity-badge">${player.rarity}</span>
+                            <span class="url-serial-badge">#${player.serial}</span>
+                        </div>
+                        
+                        ${sparkles}
+                    </div>
+                    ${foilOverlay}
+                `;
+                
+                return card;
+            }
+
+            // ===== RENDER ALL CARDS =====
+            function renderURLCards(players) {
+                const container = document.getElementById('urlCardsContainer');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                players.forEach(player => {
+                    const card = createURLPlayerCard(player);
+                    container.appendChild(card);
+                });
+            }
+
+            // ===== FILTER FUNCTIONALITY =====
+            function filterURLCards(rarity) {
+                const cards = document.querySelectorAll('.url-card');
+                
+                cards.forEach(card => {
+                    if (rarity === 'all' || card.dataset.rarity === rarity) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            }
+            
+            // ===== SEARCH FUNCTIONALITY =====
+            function searchPlayers(query) {
+                const cards = document.querySelectorAll('.url-card');
+                const noResults = document.getElementById('noResults');
+                const searchClear = document.getElementById('searchClear');
+                const normalizedQuery = query.toLowerCase().trim();
+                let visibleCount = 0;
+                
+                // Show/hide clear button
+                if (normalizedQuery) {
+                    searchClear.classList.add('visible');
+                } else {
+                    searchClear.classList.remove('visible');
+                }
+                
+                cards.forEach(card => {
+                    const playerData = card.getAttribute('aria-label').toLowerCase();
+                    const playerName = card.querySelector('.url-player-ign')?.textContent.toLowerCase() || '';
+                    const teamName = card.querySelector('.url-team-name')?.textContent.toLowerCase() || '';
+                    const role = card.querySelector('.url-role-badge')?.textContent.toLowerCase() || '';
+                    
+                    const matchesSearch = !normalizedQuery || 
+                        playerName.includes(normalizedQuery) || 
+                        teamName.includes(normalizedQuery) || 
+                        role.includes(normalizedQuery) ||
+                        playerData.includes(normalizedQuery);
+                    
+                    if (matchesSearch) {
+                        card.classList.remove('search-hidden');
+                        visibleCount++;
+                    } else {
+                        card.classList.add('search-hidden');
+                    }
+                });
+                
+                // Show/hide no results message
+                if (visibleCount === 0 && normalizedQuery) {
+                    noResults.classList.add('visible');
+                } else {
+                    noResults.classList.remove('visible');
+                }
+            }
+            
+            // ===== EXPANDED CARD MODAL =====
+            function openPlayerModal(player) {
+                const modal = document.getElementById('playerCardModal');
+                const cardContainer = document.getElementById('modalCardContainer');
+                const detailsContainer = document.getElementById('modalPlayerDetails');
+                
+                // Create expanded card
+                const expandedCard = createURLPlayerCard(player);
+                expandedCard.classList.add('url-card-expanded');
+                expandedCard.style.pointerEvents = 'none';
+                
+                cardContainer.innerHTML = '';
+                cardContainer.appendChild(expandedCard);
+                
+                // Create details panel
+                detailsContainer.innerHTML = `
+                    <h3>${player.ign}</h3>
+                    <div class="url-modal-team-info">
+                        <strong>Team:</strong> ${player.team}<br>
+                        <strong>Role:</strong> ${player.role}<br>
+                        <strong>Rarity:</strong> ${player.rarity.charAt(0).toUpperCase() + player.rarity.slice(1)}
+                    </div>
+                    <div class="url-modal-stats-row">
+                        <div class="url-modal-stat">
+                            <span class="url-modal-stat-value">${player.urlRating}</span>
+                            <span class="url-modal-stat-label">URL Rating</span>
+                        </div>
+                        <div class="url-modal-stat">
+                            <span class="url-modal-stat-value">${player.kills}</span>
+                            <span class="url-modal-stat-label">Kills</span>
+                        </div>
+                        <div class="url-modal-stat">
+                            <span class="url-modal-stat-value">${player.appearances}</span>
+                            <span class="url-modal-stat-label">Appearances</span>
+                        </div>
+                        <div class="url-modal-stat">
+                            <span class="url-modal-stat-value">${player.serial}</span>
+                            <span class="url-modal-stat-label">Serial</span>
+                        </div>
+                    </div>
+                `;
+                
+                // Show modal
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closePlayerModal() {
+                const modal = document.getElementById('playerCardModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // ===== INITIALIZE =====
+            document.addEventListener('DOMContentLoaded', () => {
+                // Render all cards
+                renderURLCards(playersData);
+                
+                // Search functionality
+                const searchInput = document.getElementById('playerSearch');
+                const searchClear = document.getElementById('searchClear');
+                
+                searchInput.addEventListener('input', (e) => {
+                    searchPlayers(e.target.value);
+                });
+                
+                searchClear.addEventListener('click', () => {
+                    searchInput.value = '';
+                    searchPlayers('');
+                    searchInput.focus();
+                });
+                
+                // Card click to expand
+                document.getElementById('urlCardsContainer').addEventListener('click', (e) => {
+                    const card = e.target.closest('.url-card');
+                    if (card) {
+                        const playerName = card.querySelector('.url-player-ign')?.textContent;
+                        const player = playersData.find(p => p.ign === playerName);
+                        if (player) {
+                            openPlayerModal(player);
+                        }
+                    }
+                });
+                
+                // Modal close handlers
+                const modal = document.getElementById('playerCardModal');
+                const closeBtn = modal.querySelector('.url-card-modal-close');
+                
+                closeBtn.addEventListener('click', closePlayerModal);
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closePlayerModal();
+                    }
+                });
+                
+                // Close on Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && modal.classList.contains('active')) {
+                        closePlayerModal();
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
+

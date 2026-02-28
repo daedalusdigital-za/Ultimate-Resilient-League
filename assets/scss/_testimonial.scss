@@ -1,0 +1,298 @@
+.gt-testimonial-wrapper {
+    margin-top: 30px;
+
+    .gt-testimonial-card-item {
+        padding: 50px 40px;
+        background-color: $gt-bg-color-2;
+        clip-path: polygon(9% 0, 100% 0, 100% 100%, 75% 100%, 0 100%, 0 15%);
+        max-width: 620px;
+        border: 1px solid rgba(102, 102, 102, 0.2);
+
+        @include breakpoint (max-xxs) {
+           padding: 50px 30px
+         }
+        
+        .gt-client-info {
+            @include flex;
+            gap: 15px;
+            margin-bottom: 30px;
+    
+            .text {
+                h6 {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    
+        .gt-testi-content {
+           display: flex;
+           gap: 24px;
+
+           @include breakpoint (max-xl) {
+            flex-wrap: wrap;
+            gap: 20px;
+         }
+    
+           p {
+             font-style: italic;
+             font-size: 18px;
+             font-weight: 600;
+             color: $gt-white;
+             max-width: 489px;
+
+             @include breakpoint (max-xl) {
+                font-size: 16px;
+             }
+
+           }
+        }
+    }
+
+    .text-image {
+        position: relative;
+        display: inline-block;
+        max-width: 564px;
+      
+        img {
+           @include imgw;
+        }
+      
+        .sparkle {
+          position: absolute;
+          width: 6px;
+          height: 6px;
+          background: $gt-theme-color;
+          border-radius: 50%;
+          opacity: 0;
+          box-shadow: 0 0 8px 3px rgba(255, 255, 255, 0.6);
+          animation: sparkle 2s infinite ease-in-out;
+        }
+     }
+
+    .swiper-dot {
+        position: absolute;
+        left: 50%;
+        transform: rotate(90deg);
+        top: 60%;
+
+        @include breakpoint (max-xl) {
+            display: none;
+         }
+    }
+}
+
+.gt-testimonial-section {
+    position: relative;
+
+    .right-shape {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+
+        @include breakpoint (max-xl) {
+           display: none;
+         }
+    }
+}
+
+.gt-testimonial-wraper-2 {
+    margin-right: -40%;
+
+    @include breakpoint (max-lg){
+       margin-right: 0;
+    }
+
+    &.gt-style-2 {
+        margin-right: 0;
+    }
+
+    .gt-testimonial-card-items-2 {
+        margin-top: 30px;
+        background-color: #1C1D20;
+        padding: 45px 35px;
+        position: relative;
+
+        @include breakpoint (max-md) {
+            padding: 35px;
+        }
+
+        @include breakpoint (max-sm) {
+            padding: 30px;
+        }
+
+        @include breakpoint (max-xxs) {
+            padding: 25px;
+        }
+
+        .gt-client-info {
+            @include flex;
+            gap: 16px;
+
+            .gt-content {
+                h6 {
+                    font-size: 18px;
+                    margin-bottom: 2px;
+                }
+            }
+        }
+
+        .gt-text {
+            display: flex;
+            gap: 24px;
+            margin-top: 30px;
+
+            p {
+                font-size: 18px;
+                font-weight: 600;
+
+                @include breakpoint (max-xl) {
+                   font-size: 16px;
+                }
+
+                @include breakpoint (max-xxs) {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .star {
+            color: #FCD554;
+            position: absolute;
+            right: 35px;
+            top: 60px;
+
+            @include breakpoint (max-xxs) {
+             display: none;
+            }
+        }
+    }
+}
+
+.gt-testimonial-section-2 {
+    position: relative;
+
+    .gt-testimonial-image {
+        position: absolute;
+        bottom: 80px;
+        left: 0;
+
+        @include breakpoint (max-xxl){
+            display: none;
+        }
+    }
+}
+
+.gt-testimonial-wrapper-3 {
+
+    .testimonial-content {
+
+        .gt-testimonial-card-item {
+            padding: 50px 40px;
+            background-color: $gt-bg-color-2;
+            clip-path: polygon(9% 0, 100% 0, 100% 100%, 75% 100%, 0 100%, 0 15%);
+            max-width: 620px;
+            border: 1px solid rgba(102, 102, 102, 0.2);
+           
+            @include breakpoint (max-xl) {
+                margin-top: 30px;
+            }
+    
+            @include breakpoint (max-xxs) {
+               padding: 50px 30px
+             }
+            
+            .gt-client-info {
+                @include flex;
+                gap: 15px;
+                margin-bottom: 30px;
+        
+                .text {
+                    h6 {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+        
+            .gt-testi-content {
+               display: flex;
+               gap: 24px;
+    
+               @include breakpoint (max-xl) {
+                flex-wrap: wrap;
+                gap: 20px;
+             }
+        
+               p {
+                 font-style: italic;
+                 font-size: 18px;
+                 font-weight: 600;
+                 color: $gt-white;
+                 max-width: 489px;
+    
+                 @include breakpoint (max-xl) {
+                    font-size: 16px;
+                 }
+    
+               }
+            }
+        }
+    }
+    
+
+    .gt-testimonial-image {
+        position: relative;
+
+        img {
+            @include imgw;
+        }
+
+        .video-btn {
+            width: 74px;
+            height: 74px;
+            line-height: 74px;
+            display: inline-block;
+            background-color: $gt-white;
+            color: $gt-theme-color;
+            text-align: center;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .gt-ratting-content {
+            position: absolute;
+            top: 54%;
+            transform: translateY(-50%);
+            right: 0;
+
+            @include breakpoint (max-xl) {
+                right: 0;
+                left: 32%;
+                top: 115%;
+            }
+
+            @include breakpoint (max-lg) {
+                top: 56%;
+                transform: translateY(-50%);
+                left: 70%;
+            }
+
+            @include breakpoint (max-sm) {
+                display: none;
+            }
+
+            p {
+                color: #888888;
+            }
+            .gt-star {
+                color: $gt-theme-color;
+            }
+        }
+    }
+}
+
+
+

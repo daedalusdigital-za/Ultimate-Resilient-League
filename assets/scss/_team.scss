@@ -1,0 +1,865 @@
+.gt-team-wrapper {
+    margin-left: -32%;
+
+    @include breakpoint (max-xl) {
+        margin-left: 0;
+    }
+
+    &.gt-style-2 {
+        margin-left: 0;
+    }
+
+    .gt-team-card-item {
+        clip-path: polygon(9% 0, 100% 0, 100% 100%, 75% 100%, 0 100%, 0 15%);
+
+        .gt-team-image {
+            position: relative;
+            overflow: hidden;
+
+            img {
+                @include imgw;
+                // transform: scale(1.02);
+                // transition: all 1.5s ease-out;
+            }
+    
+            &::before {
+                @include before;
+                background: linear-gradient(180deg, rgba(11, 14, 19, 0.00) 20.5%, #FF0808 100%);
+                transform: scale(1, 0);
+                transition: transform 500ms ease;
+                transform-origin: bottom center;
+            }
+
+            .gt-team-content {
+                position: absolute;
+                left: 50%;
+                bottom: -30px;
+                transform: translateX(-50%);
+                text-align: center;
+                opacity: 0;
+                visibility: hidden;
+                @include transition;
+                z-index: 1;
+
+                .gt-social-icon {
+                    gap: 35px;
+                    justify-content: center;
+                    margin-bottom: 30px;
+                    position: relative;
+                    padding: 8px;
+
+                    &::before {
+                        position: absolute;
+                        content: "";
+                        width: 370px;
+                        height: 1px;
+                        border: 1px solid rgba(255, 255, 255, 0.20);
+                        left: -72%;
+                        top: 0;
+                    }
+
+                    &::after {
+                        position: absolute;
+                        content: "";
+                        width: 370px;
+                        height: 1px;
+                        border: 1px solid rgba(255, 255, 255, 0.20);
+                        right: -72%;
+                        bottom: 0;
+                    }
+            
+                    a {
+                        display: inline-block;
+                        color: $gt-white;
+                        @include transition;
+            
+                        &:hover {
+                           color: $gt-theme-color;
+                        }
+                    }
+                }
+
+                h3 {
+                    font-size: 30px;
+    
+                    @include breakpoint (max-xl) {
+                        font-size: 20px;
+                    }
+    
+                    a {
+                        color: $gt-white;
+                        background-position: 0 95%;
+                        background-repeat: no-repeat;
+                        background-size: 0% 2px;
+                        display: inline;
+    
+                        &:hover {
+                            color: $gt-white;
+                            background-size: 100% 2px;
+                            background-image: linear-gradient(180deg, $gt-white 0%, $gt-white 100%);
+                        }
+                    }
+                }
+
+                p {
+                    color: $gt-white;
+                }
+            }
+        }
+
+        &:hover {
+
+            .gt-team-image {
+               
+                // img {
+                //     -webkit-transform: scale3d(1.1, 1.1, 1);
+                //     transform: scale3d(1.1, 1.1, 1);
+                // }
+    
+                &::before {
+                    transform: scale(1, 1);
+                    transform-origin: bottom center;
+                    z-index: 1;
+                }
+        
+                .gt-team-content {
+                    opacity: 1;
+                    visibility: visible;
+                    bottom: 30px;
+
+                    
+                }
+            }
+        }
+    }
+
+    .gt-team-cont {
+
+        .gt-text {
+            margin-top: 20px;
+            max-width: 450px;
+        }
+
+        .array-buttons {
+            margin-top: 50px;
+
+            @include breakpoint (max-xl) {
+               margin-top: 30px;
+            }
+        }
+    }
+}
+
+
+.gt-team-section {
+    position: relative;
+
+    .right-shape {
+        position: absolute;
+        right: 40px;
+        bottom: 0;
+        transform: translateX(100%);
+        animation: slideInRight 1.5s ease-out forwards;
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+}
+
+.gt-team-wrapper-2 {
+    margin-top: 60px;
+
+    @include breakpoint (max-md){
+        margin-top: 30px;
+    }
+
+    .gt-team-area {
+        position: relative;
+        z-index: 9;
+
+        &::before {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            content: "";
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover;
+            background: url("../../assets/img/home-2/team/team-bg.jpg");
+            @include transition;
+            z-index: -1;
+
+            @include breakpoint(max-lg){
+                display: none;
+            }
+        }
+
+        .gt-team-box-items-2 {
+            @include flex;
+            justify-content: space-between;
+            padding: 40px 0;
+
+            @include breakpoint (max-lg){
+                flex-wrap: wrap;
+                gap: 30px;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .gt-team-content {
+               flex-basis: 45%;
+
+               @include breakpoint(max-lg){
+                    flex-basis: 100%;
+                }
+
+                span {
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: $gt-theme-color;
+                    display: inline-block;
+                    margin-bottom: 10px;
+                }
+
+                h3 {
+                    font-size: 80px;
+                    font-weight: 700;
+                    letter-spacing: -1.6px;
+                    line-height: 1;
+
+                    @include breakpoint(max-xxl){
+                        font-size: 60px;
+                    }
+
+                    @include breakpoint(max-xl){
+                        font-size: 55px;
+                    }
+
+                    @include breakpoint(max-lg){
+                        font-size: 65px;
+                    }
+                
+                    @include breakpoint(max-md){
+                        font-size: 55px;
+                    }
+                
+                    @include breakpoint(max-sm){
+                        font-size: 43px;
+                    }
+                
+                    @include breakpoint(max-xxs){
+                        font-size: 32px;
+                    }
+
+                    a {
+                        color: transparent;
+                        -webkit-text-stroke: 1px $gt-white;
+
+                        &:hover {
+                            color: $gt-theme-color;
+                        }
+                    }
+                }
+            }
+
+            .gt-social-icon {
+                gap: 15px;
+                
+                @include breakpoint(max-lg){
+                    flex-basis: 100%;
+                    justify-content: center;
+                }
+            
+                a {
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    background-color: #0B0E13;
+                    color: $gt-white;
+                    @include transition;
+                    border-radius: 50%;
+        
+                    &:hover {
+                        background-color: $gt-theme-color;
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            &::before {
+                width: 100%;
+            }
+
+            .gt-team-content {
+                h3 {
+                    a {
+                        color: $gt-white;
+                        -webkit-text-stroke: 0px $gt-white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.gt-team-section-2 {
+    background: #1C1D20;
+    margin: 0 60px;
+
+    @include breakpoint (max-xxxl){
+        margin: 0 50px;
+    }
+
+    @include breakpoint (max-xxl){
+        margin: 0 0;
+    }
+
+}
+
+.gt-team-image-3 {
+    margin-top: 30px;
+    position: relative;
+    overflow: hidden;
+
+    @include breakpoint (max-xxs){
+       height: 400px;
+
+       img {
+        object-fit: cover
+       }
+    }
+
+    img {
+        @include imgw;
+    }
+
+    &::before {
+        @include before;
+        background: linear-gradient(180deg, rgba(255, 8, 8, 0.00) 0%, #FF0808 100%);
+        opacity: 0;
+        visibility: hidden;
+        @include transition;
+    }
+
+    .gt-content {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        display: grid;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0;
+        z-index: 9;
+        position: absolute;
+        bottom: 30px;
+        left: -80px;
+        border-right: 4px solid $gt-white;
+        opacity: 0;
+        visibility: hidden;
+        @include transition;
+
+        h3 {
+            font-size: 30px;
+            font-weight: bold;
+
+            a {
+                color: $gt-white;
+            }
+        }
+
+        p {
+            color: $gt-white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+    }
+
+    .gt-social-icon {
+        gap: 20px;
+        position: absolute;
+        right: 30px;
+        bottom: -50px;
+        opacity: 0;
+        visibility: hidden;
+        @include transition;
+
+        a {
+            color: $gt-white;
+        }
+    }
+
+    &:hover {
+        &::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .gt-content {
+            opacity: 1;
+            visibility: visible;
+            left: 30px;
+        }
+
+        .gt-social-icon {
+            bottom: 28px;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.gt-team-section-3 {
+    position: relative;
+    z-index: 9;
+
+    .gt-team-slider-3 {
+        margin: 0 -7%;
+
+        @include breakpoint (max-xl){
+            margin: 0;
+        }
+    }
+
+    .ellipse-bg-shape {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        z-index: -1;
+
+        @include breakpoint (max-xl4){
+            display: none
+        }
+    }
+
+    .dot-number {
+        @include flex;
+        gap: 20px;
+        justify-content: end;
+        position: relative;
+        padding-left: 50px;
+        padding-right: 70px;
+
+        @include breakpoint (max-xxl){
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        @include breakpoint (max-md){
+            display: none;
+        }
+
+        &::before {
+            position: absolute;
+            top: 12px;
+            left: 0;
+            content: "";
+            width: 35px;
+            height: 1px;
+            background: linear-gradient(90deg, #FF0808 0%, #00130B 100%);
+
+            @include breakpoint (max-xxl){
+               display: none;
+            }
+        }
+
+        &::after {
+            position: absolute;
+            top: 12px;
+            right: 0;
+            content: "";
+            width: 35px;
+            height: 1px;
+            background: linear-gradient(90deg, #FF0808 0%, #00130B 100%);
+
+            @include breakpoint (max-xxl){
+                display: none;
+            }
+        }
+
+        .swiper-pagination-bullet-active {
+            .dot-num {
+                span {
+                    color: $gt-theme-color;
+                }
+           }
+        }
+
+        .dot-num {
+            span {
+                font-size: 16px;
+                font-weight: 700;
+                color: #fff;
+            }
+       }
+    }
+
+    .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+        width: initial;
+        left: 0;
+        bottom: 0;
+    }
+
+    .swiper-pagination-bullet {
+       width: 0;
+       border-radius: 0;
+       height: 0;
+    //    margin-right: 0 !important0;
+        &:not(:last-child){
+            margin-right: 20px !important;
+        }
+    }
+}
+
+.gt-team-details-wrapper {
+
+    .gt-team-details-item {
+
+        .gt-details-iamge {
+            max-width: 690px;
+
+            img {
+                @include imgw;
+            }
+        }
+
+        .gt-social-icon {
+            gap: 15px;
+            margin-top: 30px;
+
+            @include breakpoint (max-xl) {
+                flex-wrap: wrap;
+            }
+
+            span {
+                display: inline-block;
+                margin-right: 10px;
+                color: $gt-white;
+            }
+    
+            a {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                background-color: $gt-white;
+                border: 1px solid rgba(255, 255, 255, 0.20);
+                background: $gt-bg-color-2;
+                color: $gt-white;
+                @include transition;
+    
+                &:hover {
+                   border: 1px solid $gt-theme-color;
+                  color: $gt-theme-color;
+                }
+            }
+        }
+
+        .gt-ride-image {
+            margin-top: 300px;
+            max-width: 593px;
+            position: relative;
+            z-index: 9;
+            transform: translateX(-100%);
+            animation: slideInRight 1.5s ease-out forwards;
+
+            @include breakpoint (max-xl) {
+                margin-top: 50px;
+            }
+
+
+            img {
+                @include imgw;
+            }
+
+            .gt-shape {
+                position: absolute;
+                left: -40%;
+                top: -25%;
+                z-index: -1;
+
+                @include breakpoint (max-xl) {
+                    display: none;
+                }
+
+                img {
+                    width: initial;
+                    height: initial;
+                }
+            }
+        }
+    }
+
+    .gt-team-details-content {
+
+        .text {
+            color: $gt-theme-color;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 48px;
+            margin-bottom: 10px;
+
+            @include breakpoint (max-lg) {
+                font-size: 40px;
+            }
+
+            @include breakpoint (max-sm) {
+                font-size: 30px;
+            }
+        }
+
+        h6 {
+        
+            span {
+                color: $gt-white;
+            }
+        }
+
+        p {
+            border-top: 1px solid rgba(255, 255, 255, 0.20);
+            padding-top: 0px;
+            margin-top: 20px;
+        }
+
+        .gt-progress-wrapper {
+            border-top: 1px solid rgba(255, 255, 255, 0.20);
+            padding-top: 20px;
+            margin-top: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+
+            h4 {
+                margin-bottom: 20px;
+            }
+        
+            .gt-progress-wrap {
+            
+                .pro-items {
+                    width: 100%;
+            
+                    &:not(:last-child){
+                        margin-bottom: 25px;
+                    }
+                    .pro-head {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-bottom: 15px;
+                        
+                        .point {
+                            font-size: 16px;
+                            font-weight: 700;
+                            color: $gt-white;
+                        }
+                    }
+            
+                    .progress {
+                        background: $gt-white;
+                        justify-content: flex-start;
+                        align-items: center;
+                        position: relative;
+                        display: flex;
+                        height: 5px;
+                        width: 100%;
+                    }
+                    
+                    .progress-value {
+                        animation: load 3s normal forwards;
+                        border-radius: 0;
+                        background: rgba(255, 8, 8, 1);
+                        height: 5px;
+                        width: 0;
+                    }
+            
+                    .style-two{
+                        animation: load2 3s normal forwards;
+                    }
+            
+                    .style-three{
+                        animation: load3 3s normal forwards;
+                    }
+            
+                    @keyframes load {
+                        0% { width: 0; }
+                        100% { width: 90%; }
+                    }
+                    @keyframes load2 {
+                        0% { width: 0; }
+                        100% { width: 70%; }
+                    }
+                    @keyframes load3 {
+                        0% { width: 0; }
+                        100% { width: 55%; }
+                    }
+                }
+            }
+        }
+
+        .gt-text {
+            border-top: none;
+            padding-top: 0;
+            margin-top: 10px;
+        }
+
+        .gt-week-list-item {
+            margin-top: 30px;
+            @include flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+            padding-bottom: 40px;
+            margin-bottom: 40px;
+
+            @include breakpoint (max-xl) {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+
+            .gt-week-list {
+              
+                li {
+                    @include flex;
+                    gap: 50px;
+                    color: $gt-white;
+
+                    span {
+                        color: rgba(171, 171, 171, 1);
+                        font-weight: 500;
+                    }
+
+                    &:not(:last-child) {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+
+        .gt-details-card-item-4 {
+            clip-path: polygon(7% 0, 100% 0, 100% 100%, 75% 100%, 0 100%, 0 17%);
+            margin-top: 30px;
+
+            .gt-details-image {
+                position: relative;
+
+                &::before {
+                    @include before;
+                    background: rgba(28, 29, 32, 0.60);
+                }
+
+                img {
+                    @include imgw;
+                }
+
+                .gt-content {
+                    position: absolute;
+                    left: 30px;
+                    bottom: 30px;
+
+                    h6 {
+                        font-size: 14px;
+                        margin-bottom: 20px;
+                    }
+
+                    .gt-social-item {
+                        @include flex;
+                        gap: 10px;
+                        margin-bottom: 20px;
+        
+                        @include breakpoint (max-xxxl) {
+                            flex-wrap: wrap;
+                        }
+                        
+                        li {
+                            padding: 10px;
+                            line-height: 1;
+                            border-radius: 4px;
+                            border: 1px solid rgba(255, 255, 255, 0.20);
+                            font-size: 14px;
+                            font-weight: 700;
+                            color: $gt-white;
+                            background-color: rgba(28, 29, 32, 1);
+                            @include transition;
+        
+                            &:hover {
+                                border: 1px solid rgba(255, 255, 255, 0.20);
+                                background: linear-gradient(90deg, #FF0808 0%, #1C1D20 100%);
+                            }
+        
+                            i {
+                                margin-right: 10px;
+                                color: $gt-white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .gt-team-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.20);
+            padding-top: 30px;
+            margin-top: 40px;
+
+            h4 {
+                margin-bottom: 15px;
+            }
+
+            p {
+                border-top: none;
+            }
+
+            .gt-image-item {
+                @include flex;
+                justify-content: space-between;
+                margin-top: 40px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+                padding-bottom: 40px;
+                margin-bottom: 40px;
+
+                @include breakpoint (max-xl) {
+                    flex-wrap: wrap;
+                    gap: 30px;
+                }
+
+                .icon-image {
+
+                    img {
+                        @include transition;
+                        transition: transform 0.6s ease-in-out;
+                        transform-origin: center center;
+                    }
+
+                    &:hover {
+                        
+                        img {
+                            filter: sepia(1) saturate(5000%) hue-rotate(-10deg) brightness(0.9);
+                             transform: scale(1.15);
+                        }
+                    }
+                }
+            }
+
+            .gt-theme-btn {
+
+                &.gt-style-border {
+                    clip-path: polygon(24% 0, 88% 0, 100% 0, 100% 77%, 100% 100%, 0 100%, 0 80%, 0 23%, 5% 0) !important;
+                }
+               
+            }
+        }
+    }
+}
+

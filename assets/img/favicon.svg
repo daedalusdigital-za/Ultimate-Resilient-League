@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="URL favicon">
+  <defs>
+    <radialGradient id="bg" cx="32" cy="24" r="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1B1B26"/>
+      <stop offset="1" stop-color="#0B0B10"/>
+    </radialGradient>
+
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.7" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Circular badge -->
+  <circle cx="32" cy="32" r="30" fill="url(#bg)"/>
+  <circle cx="32" cy="32" r="30" fill="none" stroke="#2A2A3A" stroke-width="2"/>
+
+  <!-- URL letters -->
+  <g font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif"
+     font-weight="900"
+     font-size="26"
+     text-anchor="middle"
+     dominant-baseline="middle"
+     filter="url(#softGlow)">
+    <text x="22" y="34" fill="#FFD700">U</text>
+    <text x="32" y="34" fill="#FF2A3D">R</text>
+    <text x="42" y="34" fill="#8A2BE2">L</text>
+  </g>
+</svg>

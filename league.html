@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--<< Header Area >>-->
+    <head>
+       <!-- ========== Meta Tags ========== -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Gramentheme">
+        <meta name="description" content="Xriders - Riders & Sports Club HTML Template">
+        <!-- ======== Page title ============ -->
+        <title>URL - League</title>
+        <!--<< Favcion >>-->
+        <link rel="shortcut icon" href="assets/img/favicon.svg">
+        <!--<< Bootstrap min.css >>-->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <!--<< All Min Css >>-->
+        <link rel="stylesheet" href="assets/css/all.min.css">
+        <!--<< Animate.css >>-->
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <!--<< Magnific Popup.css >>-->
+        <link rel="stylesheet" href="assets/css/magnific-popup.css">
+        <!--<< MeanMenu.css >>-->
+        <link rel="stylesheet" href="assets/css/meanmenu.css">
+        <!--<< Swiper Bundle.css >>-->
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+        <!--<< Nice Select.css >>-->
+        <link rel="stylesheet" href="assets/css/nice-select.css">
+        <!--<< Main.css >>-->
+        <link rel="stylesheet" href="assets/css/main.css">
+        
+        <!-- Modern League Table Styles -->
+        <style>
+            /* ===== MODERN LEAGUE TABLE ===== */
+            .gt-league-table-wrapper {
+                background: linear-gradient(145deg, #0a0a0a, #000000);
+                border-radius: 20px;
+                padding: 30px;
+                box-shadow: 
+                    0 25px 50px rgba(0, 0, 0, 0.8),
+                    0 0 100px rgba(255, 215, 0, 0.05),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 215, 0, 0.15);
+                overflow: hidden;
+                position: relative;
+            }
+            
+            .table-responsive {
+                background: #000000;
+            }
+            
+            .gt-league-table-wrapper::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, 
+                    transparent, 
+                    #FFD700, 
+                    #FF6B00, 
+                    #FFD700, 
+                    transparent
+                );
+            }
+            
+            .gt-league-table {
+                background: #000000 !important;
+                border-collapse: separate;
+                border-spacing: 0 8px;
+                margin: 0;
+            }
+            
+            .gt-league-table thead tr {
+                background: linear-gradient(90deg, rgba(255, 215, 0, 0.15), rgba(255, 107, 0, 0.1)) !important;
+            }
+            
+            .gt-league-table thead th {
+                background: transparent !important;
+                color: #FFD700;
+                font-weight: 700;
+                text-transform: uppercase;
+                font-size: 12px;
+                letter-spacing: 2px;
+                padding: 18px 20px;
+                border: none;
+                position: relative;
+            }
+            
+            .gt-league-table thead th::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            }
+            
+            .gt-league-table tbody {
+                background: #000000 !important;
+            }
+            
+            .gt-league-table tbody tr {
+                background: linear-gradient(90deg, 
+                    rgba(30, 30, 30, 1), 
+                    rgba(40, 40, 40, 1), 
+                    rgba(30, 30, 30, 1)
+                ) !important;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                border-radius: 12px;
+            }
+            
+            .gt-league-table tbody tr:hover {
+                background: linear-gradient(90deg, 
+                    rgba(255, 215, 0, 0.15), 
+                    rgba(255, 107, 0, 0.2), 
+                    rgba(255, 215, 0, 0.15)
+                ) !important;
+                transform: scale(1.02) translateX(5px);
+                box-shadow: 
+                    0 10px 30px rgba(0, 0, 0, 0.3),
+                    0 0 20px rgba(255, 215, 0, 0.1);
+            }
+            
+            .gt-league-table tbody td {
+                background: transparent !important;
+            }
+            
+            /* Top 3 positions special styling */
+            .gt-league-table tbody tr:nth-child(1) {
+                background: linear-gradient(90deg, 
+                    rgba(255, 215, 0, 0.2), 
+                    rgba(50, 50, 30, 1), 
+                    rgba(255, 215, 0, 0.2)
+                ) !important;
+                border-left: 3px solid #FFD700;
+            }
+            
+            .gt-league-table tbody tr:nth-child(2) {
+                background: linear-gradient(90deg, 
+                    rgba(192, 192, 192, 0.15), 
+                    rgba(45, 45, 45, 1), 
+                    rgba(192, 192, 192, 0.15)
+                ) !important;
+                border-left: 3px solid #C0C0C0;
+            }
+            
+            .gt-league-table tbody tr:nth-child(3) {
+                background: linear-gradient(90deg, 
+                    rgba(205, 127, 50, 0.15), 
+                    rgba(45, 40, 35, 1), 
+                    rgba(205, 127, 50, 0.15)
+                ) !important;
+                border-left: 3px solid #CD7F32;
+            }
+            
+            .gt-league-table tbody td {
+                padding: 16px 20px;
+                border: none;
+                color: #E0E0E0;
+                font-size: 15px;
+                vertical-align: middle;
+                background: transparent !important;
+            }
+            
+            .gt-league-table tbody td:first-child {
+                border-radius: 12px 0 0 12px;
+                font-weight: 800;
+                font-size: 18px;
+                color: #FFD700;
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            }
+            
+            .gt-league-table tbody td:last-child {
+                border-radius: 0 12px 12px 0;
+                color: #4ADE80;
+                font-weight: 700;
+            }
+            
+            /* Team info styling */
+            .gt-team-info {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .gt-team-logo {
+                width: 50px !important;
+                height: 50px !important;
+                border-radius: 12px !important;
+                border: 2px solid rgba(255, 215, 0, 0.3);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                transition: all 0.3s ease;
+            }
+            
+            .gt-league-table tbody tr:hover .gt-team-logo {
+                border-color: #FFD700;
+                transform: rotate(5deg) scale(1.1);
+            }
+            
+            .gt-team-info span {
+                font-weight: 600;
+                font-size: 16px;
+                color: #FFFFFF;
+                letter-spacing: 0.5px;
+            }
+            
+            /* Stats columns */
+            .gt-league-table tbody td:nth-child(3),
+            .gt-league-table tbody td:nth-child(4) {
+                font-weight: 700;
+                font-family: 'Courier New', monospace;
+                font-size: 16px;
+            }
+            
+            .gt-league-table tbody td:nth-child(3) {
+                color: #F87171;
+            }
+            
+            .gt-league-table tbody td:nth-child(4) {
+                color: #60A5FA;
+            }
+            
+            /* Top Fragger column */
+            .gt-league-table tbody td:nth-child(5) {
+                color: #A78BFA;
+                font-weight: 600;
+                font-style: italic;
+            }
+            
+            /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
+            
+            /* Tablets */
+            @media (max-width: 991px) {
+                .gt-league-table-wrapper {
+                    padding: 20px;
+                    border-radius: 15px;
+                    margin: 0 -15px;
+                }
+                
+                .gt-league-table thead th {
+                    padding: 14px 12px;
+                    font-size: 10px;
+                    letter-spacing: 1px;
+                }
+                
+                .gt-league-table tbody td {
+                    padding: 14px 12px;
+                    font-size: 14px;
+                }
+                
+                .gt-team-logo {
+                    width: 40px !important;
+                    height: 40px !important;
+                    border-radius: 8px !important;
+                }
+                
+                .gt-team-info span {
+                    font-size: 14px;
+                }
+                
+                .gt-team-info {
+                    gap: 10px;
+                }
+            }
+            
+            /* Large Mobile */
+            @media (max-width: 768px) {
+                .gt-league-table-wrapper {
+                    padding: 15px;
+                    border-radius: 12px;
+                    overflow-x: auto;
+                }
+                
+                .gt-league-table {
+                    min-width: 600px;
+                }
+                
+                .gt-league-table thead th {
+                    padding: 12px 10px;
+                    font-size: 9px;
+                    letter-spacing: 0.5px;
+                    white-space: nowrap;
+                }
+                
+                .gt-league-table tbody td {
+                    padding: 12px 10px;
+                    font-size: 13px;
+                }
+                
+                .gt-team-logo {
+                    width: 35px !important;
+                    height: 35px !important;
+                }
+                
+                .gt-team-info span {
+                    font-size: 13px;
+                    white-space: nowrap;
+                }
+                
+                .gt-section-title-2 h2 {
+                    font-size: 26px !important;
+                }
+                
+                .gt-section-title-2 h6 {
+                    font-size: 12px !important;
+                }
+            }
+            
+            /* Small Mobile */
+            @media (max-width: 575px) {
+                .section-padding {
+                    padding: 60px 0 !important;
+                }
+                
+                .gt-league-table-wrapper {
+                    padding: 12px;
+                    border-radius: 10px;
+                    margin: 0 -10px;
+                }
+                
+                .gt-league-table {
+                    min-width: 550px;
+                    border-spacing: 0 6px;
+                }
+                
+                .gt-league-table thead th {
+                    padding: 10px 8px;
+                    font-size: 8px;
+                }
+                
+                .gt-league-table tbody td {
+                    padding: 10px 8px;
+                    font-size: 12px;
+                }
+                
+                .gt-league-table tbody td:first-child {
+                    font-size: 14px;
+                }
+                
+                .gt-team-logo {
+                    width: 30px !important;
+                    height: 30px !important;
+                    border-radius: 6px !important;
+                }
+                
+                .gt-team-info {
+                    gap: 8px;
+                }
+                
+                .gt-team-info span {
+                    font-size: 12px;
+                }
+                
+                .gt-section-title-2 h2 {
+                    font-size: 22px !important;
+                    line-height: 1.3 !important;
+                }
+                
+                /* Scroll indicator for table */
+                .table-responsive {
+                    position: relative;
+                }
+                
+                .table-responsive::after {
+                    content: 'Ã¢â€ Â Scroll Ã¢â€ â€™';
+                    position: absolute;
+                    bottom: -25px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    font-size: 11px;
+                    color: #666;
+                    background: rgba(0,0,0,0.5);
+                    padding: 4px 12px;
+                    border-radius: 12px;
+                }
+            }
+            
+            /* Extra Small Mobile */
+            @media (max-width: 400px) {
+                .gt-league-table-wrapper {
+                    padding: 10px;
+                }
+                
+                .gt-league-table {
+                    min-width: 500px;
+                }
+                
+                .gt-league-table thead th {
+                    padding: 8px 6px;
+                    font-size: 7px;
+                }
+                
+                .gt-league-table tbody td {
+                    padding: 8px 6px;
+                    font-size: 11px;
+                }
+                
+                .gt-team-logo {
+                    width: 25px !important;
+                    height: 25px !important;
+                }
+                
+                .gt-team-info span {
+                    font-size: 11px;
+                }
+                
+                .gt-section-title-2 h2 {
+                    font-size: 18px !important;
+                }
+            }
+            
+            /* Touch-friendly hover states */
+            @media (hover: none) and (pointer: coarse) {
+                .gt-league-table tbody tr:hover {
+                    transform: none;
+                    box-shadow: none;
+                }
+                
+                .gt-league-table tbody tr:hover .gt-team-logo {
+                    transform: none;
+                }
+                
+                .gt-league-table tbody tr:active {
+                    background: linear-gradient(90deg, 
+                        rgba(255, 215, 0, 0.2), 
+                        rgba(255, 107, 0, 0.25), 
+                        rgba(255, 215, 0, 0.2)
+                    ) !important;
+                }
+            }
+            
+            /* Reduce motion for accessibility */
+            @media (prefers-reduced-motion: reduce) {
+                .gt-league-table tbody tr,
+                .gt-team-logo {
+                    transition: none !important;
+                }
+            }
+        </style>
+                            
+    </head>
+    <body>
+
+        <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="spinner">                
+                </div>
+                <div class="txt-loading">
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="l" class="letters-loading">l</span>
+                    <span data-text-preloader="t" class="letters-loading">t</span>
+                    <span data-text-preloader="i" class="letters-loading">i</span>
+                    <span data-text-preloader="m" class="letters-loading">m</span>
+                    <span data-text-preloader="a" class="letters-loading">a</span>
+                    <span data-text-preloader="t" class="letters-loading">t</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader=" " class="letters-loading">&nbsp;</span>
+                    <span data-text-preloader="R" class="letters-loading">R</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader="s" class="letters-loading">s</span>
+                    <span data-text-preloader="i" class="letters-loading">i</span>
+                    <span data-text-preloader="l" class="letters-loading">l</span>
+                    <span data-text-preloader="i" class="letters-loading">i</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader="n" class="letters-loading">n</span>
+                    <span data-text-preloader="t" class="letters-loading">t</span>
+                    <span data-text-preloader=" " class="letters-loading">&nbsp;</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                    <span data-text-preloader="a" class="letters-loading">a</span>
+                    <span data-text-preloader="g" class="letters-loading">g</span>
+                    <span data-text-preloader="u" class="letters-loading">u</span>
+                    <span data-text-preloader="e" class="letters-loading">e</span>
+                </div>
+                <p class="text-center">Loading</p>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+
+        <!-- GT Back To Top Start -->
+        <button id="gt-back-top" class="gt-back-to-top show">
+            <i class="fa-regular fa-arrow-up"></i>
+        </button>
+
+        <!-- GT MouseCursor Start -->
+        <div class="mouseCursor cursor-outer"></div>
+        <div class="mouseCursor cursor-inner"></div>
+
+        <!-- Offcanvas Area Start -->
+        <div class="fix-area">
+            <div class="offcanvas__info">
+                <div class="offcanvas__wrapper">
+                    <div class="offcanvas__content">
+                        <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                            <div class="offcanvas__logo">
+                                <a href="index.html">
+                                    <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="logo-img" style="max-height: 100px; width: auto;">
+                                </a>
+                            </div>
+                            <div class="offcanvas__close">
+                                <button>
+                                <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mobile-menu fix mb-3"></div>
+                            <div class="social-icon d-flex align-items-center">
+                                <a href="#"><i class="fab fa-discord"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas__overlay"></div>
+
+        <!-- Header Section Start -->
+        <header id="header-sticky" class="header-1 header-2 header-3">
+            <div class="container-fluid">
+                <div class="mega-menu-wrapper">
+                    <div class="header-main">
+                        <div class="logo">
+                            <a href="index.html" class="header-logo">
+                                <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="logo-img" style="max-height: 100px; width: auto;">
+                            </a>
+                        </div>
+                        <div class="header-right d-flex justify-content-end align-items-center mt-0">
+                            <div class="mean__menu-wrapper">
+                                <div class="main-menu">
+                                    <nav id="mobile-menu">
+                                        <ul>
+                                            <li class="active"><a href="index.html">Home</a></li>
+                                            <li>
+                                                <a href="league.html">
+                                                    League
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="players.html">
+                                                    Players
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="game.html">
+                                                    Teams
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="market.html">
+                                                    Market
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="match-details.html">Wagers</a>
+                                                <ul class="submenu">
+                                                    <li><a href="match.html">Team Wagers</a></li>
+                                                    <li><a href="match-details.html">Player Wagers</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="header-right-icon">
+                                <a href="#" class="main-header__search search-toggler">
+                                    <i class="fa-regular fa-magnifying-glass"></i>
+                                </a>
+                            </div>
+                           <div class="header-button">
+                                <a href="sponsor.html" class="gt-theme-btn">become a sponsor
+                                </a>
+                            </div>
+                            <div class="header__hamburger d-xl-block my-auto">
+                                <div class="sidebar__toggle">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- GT Search Start -->
+        <div class="search-popup">
+            <div class="search-popup__overlay search-toggler"></div>
+            <div class="search-popup__content">
+                <form role="search" method="get" class="search-popup__form" action="#">
+                    <input type="text" id="search" name="search" placeholder="Search Here...">
+                    <button type="submit" aria-label="search submit" class="search-btn">
+                        <span><i class="fa-regular fa-magnifying-glass"></i></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="smooth-wrapper">
+            <div id="smooth-content">
+                <!-- GT Breadcrunb Section Start -->
+        <div class="gt-breadcrumb-wrapper bg-cover" style="background-image: url('assets/img/breadcrumb.png');">
+            <div class="gt-left-shape">
+                <img loading="lazy" src="assets/img/shape-1.png" alt="img">
+            </div>
+            <div class="gt-right-shape">
+                <img loading="lazy" src="assets/img/shape-2.png" alt="img">
+            </div>
+            <div class="gt-blur-shape">
+                
+            </div>
+            <div class="container">
+                <div class="gt-page-heading">
+                    <div class="gt-breadcrumb-sub-title">
+                        <h1 class="wow fadeInUp" data-wow-delay=".3s">League</h1>
+                    </div>
+                    <ul class="gt-breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
+                        <li>
+                            <i class="fa-solid fa-house"></i>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                home :
+                            </a>
+                        </li>
+                        <li class="color">
+                            League
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- GT League Section Start -->
+        <section class="gt-league-section section-padding fix">
+            <div class="container">
+                <div class="gt-section-title-area text-center">
+                    <div class="gt-section-title-2 mb-0">
+                        <h6 class="subtitle tz-sub-tilte tz-sub-anim text-uppercase tx-subTitle">competitive gaming</h6>
+                        <h2 class="tx-title sec_title tz-itm-title tz-itm-anim">
+                            LEAGUE STANDINGS
+                        </h2>
+                    </div>
+                </div>
+                
+                <!-- League Table -->
+                <div class="gt-league-table-wrapper wow fadeInUp" data-wow-delay=".3s">
+                    <div class="table-responsive">
+                        <table class="table gt-league-table">
+                            <thead>
+                                <tr>
+                                    <th>Position</th>
+                                    <th>Team</th>
+                                    <th>Kills</th>
+                                    <th>Points</th>
+                                    <th>Top Fragger</th>
+                                    <th>Valued</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <div class="gt-team-info d-flex align-items-center">
+                                            <span>Dream Team</span>
+                                        </div>
+                                    </td>
+                                    <td>166</td>
+                                    <td>368</td>
+                                    <td>TBA</td>
+                                    <td>TBA</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <div class="gt-team-info d-flex align-items-center">
+                                            <span>Viltrum</span>
+                                        </div>
+                                    </td>
+                                    <td>119</td>
+                                    <td>349</td>
+                                    <td>TBA</td>
+                                    <td>TBA</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <div class="gt-team-info d-flex align-items-center">
+                                            <span>Epstein Files</span>
+                                        </div>
+                                    </td>
+                                    <td>121</td>
+                                    <td>295</td>
+                                    <td>TBA</td>
+                                    <td>TBA</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        <div class="gt-team-info d-flex align-items-center">
+                                            <span>Dark Veil</span>
+                                        </div>
+                                    </td>
+                                    <td>45</td>
+                                    <td>251</td>
+                                    <td>TBA</td>
+                                    <td>TBA</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        <div class="gt-team-info d-flex align-items-center">
+                                            <span>Only Fans</span>
+                                        </div>
+                                    </td>
+                                    <td>56</td>
+                                    <td>222</td>
+                                    <td>TBA</td>
+                                    <td>TBA</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>
+                                        <div class="gt-team-info d-flex align-items-center">
+                                            <span>Tier 0 Elites</span>
+                                        </div>
+                                    </td>
+                                    <td>80</td>
+                                    <td>202</td>
+                                    <td>TBA</td>
+                                    <td>TBA</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>
+                                        <div class="gt-team-info d-flex align-items-center">
+                                            <span>Valhala</span>
+                                        </div>
+                                    </td>
+                                    <td>72</td>
+                                    <td>201</td>
+                                    <td>TBA</td>
+                                    <td>TBA</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>
+                                        <div class="gt-team-info d-flex align-items-center">
+                                            <span>Mamos Pink Cartel</span>
+                                        </div>
+                                    </td>
+                                    <td>60</td>
+                                    <td>186</td>
+                                    <td>TBA</td>
+                                    <td>TBA</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>
+                                        <div class="gt-team-info d-flex align-items-center">
+                                            <span>Big Baddies Of SA</span>
+                                        </div>
+                                    </td>
+                                    <td>66</td>
+                                    <td>146</td>
+                                    <td>TBA</td>
+                                    <td>TBA</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>
+                                        <div class="gt-team-info d-flex align-items-center">
+                                            <span>Rouge Legion</span>
+                                        </div>
+                                    </td>
+                                    <td>23</td>
+                                    <td>85</td>
+                                    <td>TBA</td>
+                                    <td>TBA</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GT Footer Section Start -->
+        <footer class="gt-footer-section section-bg">
+            <div class="container">
+                <div class="gt-footer-widget-wrapper">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-4 col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="gt-footer-widget-items">
+                                <div class="gt-widget-head">
+                                    <a href="index.html" class="gt-footer-logo">
+                                        <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="img" style="max-height: 100px; width: auto;">
+                                    </a>
+                                </div>
+                                <div class="gt-footer-content">
+                                    <div class="gt-social-icon d-flex align-items-center">
+                                        <a href="#"><i class="fab fa-discord"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom wow fadeInUp" data-wow-delay=".3s">
+                    <div class="footer-wrapper">
+                        <p>Ã‚Â© 2025 Ultimate Resilient League. All Rights Reserved.</p>
+                        <ul class="gt-footer-list wow fadeInUp" data-wow-delay=".3s">
+                            <li>
+                                <a href="index.html">Cookies</a>
+                            </li>
+                            <li>
+                                <a href="index.html">Privacy</a>
+                            </li>
+                            <li>
+                                <a href="index.html">Terms</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+            </div>
+        </div>
+
+        <!--<< All JS Plugins >>-->
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <!--<< Viewport Js >>-->
+        <script src="assets/js/viewport.jquery.js"></script>
+        <!--<< Bootstrap Js >>-->
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <!--<< nice-selec Js >>-->
+        <script src="assets/js/jquery.nice-select.min.js"></script>
+        <!--<< Waypoints Js >>-->
+        <script src="assets/js/jquery.waypoints.js"></script>
+        <!--<< Counterup Js >>-->
+        <script src="assets/js/jquery.counterup.min.js"></script>
+        <!--<< Swiper Slider Js >>-->
+        <script src="assets/js/swiper-bundle.min.js"></script>
+        <!--<< MeanMenu Js >>-->
+        <script src="assets/js/jquery.meanmenu.min.js"></script>
+        <!--<< Magnific Popup Js >>-->
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        
+        <!--<< Gsap Animation Js >>-->
+        <script src="assets/js/gsap.js"></script>
+        <script src="assets/js/gsap-scroll-to-plugin.js"></script>
+        <script src="assets/js/gsap-scroll-smoother.js"></script>
+        <script src="assets/js/gsap-scroll-trigger.js"></script>
+        <!--<< SplitText Js >>-->
+        <script src="assets/js/SplitText.min.js"></script>
+        <!--<< splitType Js >>-->
+        <script src="assets/js/splitType.js"></script>
+        <!--<< script-gsap Js >>-->
+        <script src="assets/js/script-gsap.js"></script>
+        
+        <!--<< Wow Animation Js >>-->
+        <script src="assets/js/wow.min.js"></script>
+        <!--<< Main.js >>-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
+

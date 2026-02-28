@@ -1,0 +1,58 @@
+.gt-brand-box {
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: $gt-bg-color;
+    padding: 25px 60px;
+
+    @include breakpoint (max-xl) {
+        padding: 25px 30px;
+    }
+
+    .gt-brand-image {
+        img {
+            transform: scale(1.1);
+            @include transition;
+
+            @include breakpoint (max-xxs) {
+                width: 70px;
+                height: 70px;
+            }
+        }
+    }
+
+    &:hover {
+
+        .gt-brand-image {
+
+            img {
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+
+.gt-brand-wrapper-4 {
+    margin-left: -100px;
+    margin-right: -100px;
+
+    .gt-brand-image {
+
+        img {
+            border-radius: 20px;
+        }
+    }
+}
+
+.gt-brand-section-4 {
+    position: relative;
+
+    .gt-blur-shape {
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        transform: translate(-50%, -50%);
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+}

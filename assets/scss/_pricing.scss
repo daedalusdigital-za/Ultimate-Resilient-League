@@ -1,0 +1,225 @@
+.gt-pricing-box-items-2 {
+    padding: 40px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    position: relative;
+    z-index: 9;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+    @include breakpoint (max-sm){
+        padding: 30px;
+    }
+
+    @include breakpoint (max-xxs){
+        padding: 25px;
+    }
+
+    .gt-pricing-header {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+        padding-bottom: 28px;
+
+        .gt-icon {
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        p {
+            @include breakpoint (max-xxs){
+               font-size: 14px;
+            }
+        }
+    }
+
+    .gt-pricing-list {
+        margin-top: 30px;
+
+        li {
+            font-size: 16px;
+            font-weight: 500;
+            color: $gt-white;
+            @include flex;
+            gap: 15px;
+
+            &:not(:last-child){
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .gt-pricing-btn {
+        text-align: center;
+        margin-top: 70px;
+        z-index: 9;
+        position: relative;
+
+        .gt-bg-shape {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+
+        .gt-pricing-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: $gt-white;
+
+            i {
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    .gt-price-tag {
+        padding: 2px 4px;
+        display: inline-block;
+        background-color: $gt-theme-color;
+        font-size: 13px;
+        text-align: center;
+        color: $gt-white;
+        position: absolute;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-family: $gt-heading-font;
+        top: 24px;
+        right: -40px;
+        transform: rotate(40.012deg);
+        width: 172px;
+
+        @include breakpoint (max-xxs){
+            font-size: 10px;
+            top: 13px;
+            right: -43px;
+        }
+
+        &.gt-bg-white {
+            background-color: $gt-white;
+            color: $gt-theme-color;
+        }
+    }
+
+    .gt-pricing-text {
+        &.color-2 {
+            color: $gt-theme-color;
+        }
+    } 
+
+    &.gt-style-new {
+        margin-top: 60px;
+
+        @include breakpoint (max-xl) {
+            margin-top: 30px;
+        }
+
+        .gt-price-tag {
+
+            &.gt-bg-black {
+                background-color: #0B0E13;
+            }
+        }
+    }
+}
+
+.gt-pricing-wrapper {
+    .gt-pricing-content {
+        .gt-pricing-text {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 40px;
+
+            @include breakpoint (max-md){
+                margin-bottom: 30px;
+                font-size: 16px;
+            }
+
+            @include breakpoint (max-xxs){
+                margin-bottom: 20px;
+                font-size: 14px;
+            }
+        }
+
+        .nav {
+            border: none;
+        
+            .nav-tabs {
+                border-bottom: 0;
+                display: flex;
+                justify-content: center;
+            }
+        
+            .nav-link {
+                font-size: 17px;
+                font-weight: 700;
+                text-transform: uppercase;
+                border: 0;
+                border-radius: 0;
+                padding: 7px 56px;
+                position: relative;
+                background: transparent;
+                z-index: 2;
+                color: #ABABAB;
+                margin-bottom: 0;
+                transition: color 0.3s ease;
+        
+                &::before {
+                    position: absolute;
+                    content: "";
+                    right: 0px;
+                    top: 50%;
+                    transform: translateY(-50%) translateX(50%);
+                    background: $gt-theme-color;
+                    width: 75px;
+                    height: 32px;
+                    border-radius: 20px;
+                    border: 1px solid $gt-theme-color;
+                    transition: transform 0.3s ease, opacity 0.3s ease;
+                }
+        
+                &::after {
+                    position: absolute;
+                    content: "";
+                    right: -33px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+                    background: $gt-white;
+                    z-index: 1;
+                    transition: right 0.3s ease;
+                }
+        
+                &:first-child {
+                    padding-left: 0;
+                }
+        
+                &:last-child {
+                    padding-right: 0;
+        
+                    &::after {
+                        display: none;
+                    }
+                    &::before {
+                        display: none;
+                    }
+                }
+        
+                &.active {
+                    color: $gt-theme-color;
+        
+                    &::after {
+                        right: 8px; // This will animate smoothly now
+                    }
+                }
+            }
+        }
+    }
+}

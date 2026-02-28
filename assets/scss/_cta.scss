@@ -1,0 +1,254 @@
+.gt-cta-bg-wrapper {
+    padding: 80px 0 0px 440px;
+    position: relative;
+
+    @include breakpoint (max-xl) {
+        padding: 80px 0 0px 0;
+    }
+
+    .shape {
+        position: absolute;
+        left: 49%;
+        top: 43%;
+
+        @include breakpoint (max-xxxl) {
+            display: none;
+        }
+    }
+
+    .gt-cta-content {
+
+        @include breakpoint (max-md) {
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 40px;
+            color: $gt-white;
+
+            @include breakpoint (max-lg) {
+                font-size: 35px;
+             }
+
+            @include breakpoint (max-md) {
+                font-size: 30px;
+             }
+
+            @include breakpoint (max-sm) {
+               font-size: 25px;
+            }
+        }
+    }
+
+   .gt-right-image {
+
+    .gt-theme-btn {
+        margin-top: 40px;
+        display: inline-block;
+        color: $gt-theme-color;
+        position: absolute;
+        bottom: 80px;
+        right: 23%;
+        background-color: $gt-white;
+        background-image: none;
+
+        @include breakpoint (max-lg) {
+            display: none;
+        }
+
+        &:hover {
+            background-image: linear-gradient(to right, #FF0808 0%, #7A0202 50%, #FF0808 100%);
+            color: $gt-white;
+        }
+    }
+
+    .gt-cta-image {
+        margin-right: -200px;
+        transform: translateX(100%);
+        animation: slideInRight 1.5s ease-out forwards;
+
+        @include breakpoint (max-xxxl) {
+           margin-right: 0;
+        }
+
+        img {
+            @include imgw;
+        }
+     }
+   }
+}
+
+.gt-cta-download-app-section {
+    position: relative;
+    z-index: 9;
+
+    &::before {
+        @include before;
+        background: linear-gradient(90deg, #FF0808 10%, rgba(255, 8, 8, 0.00) 100%);
+        z-index: -1;
+    }
+
+    .gt-x-shape {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        top: 0;
+        z-index: -1;
+
+        @include breakpoint (max-xl){
+            display: none;
+        }
+
+        img {
+            height: 100%;
+        }
+    }
+}
+
+.gt-cta-download-app-wrapper {
+    @include breakpoint (max-xxl){
+       padding-bottom: 120px;
+    }
+
+    @include breakpoint (max-lg){
+        padding: 0;
+    }
+
+    .gt-cta-image {
+       
+        @include breakpoint (max-lg){
+            text-align: center;
+        }
+
+        img {
+            @include imgw;
+        }
+    }
+
+    .gt-cta-content {
+        @include breakpoint (max-lg){
+            text-align: center;
+        }
+
+        .gt-section-title-2 {
+            h6 {
+                padding: 0;
+
+                &::before,&::after {
+                    display: none;
+                }
+            }
+        }
+
+        .gt-cta-text {
+            font-size: 18px;
+            color: $gt-white;
+            margin-top: 30px;
+
+            @include breakpoint (max-xl){
+                font-size: 16px;
+            }
+
+            @include breakpoint (max-xxs){
+                font-size: 14px;
+            }
+        }
+
+        .gt-app-button {
+            margin-top: 45px;
+            @include flex;
+            gap: 30px;
+
+            @include breakpoint (max-lg){
+               flex-wrap: wrap;
+               gap: 20px;
+               margin-top: 30px;
+               justify-content: center;
+            }
+        }
+    }
+}
+
+.gt-instagram-section-3 {
+    .gt-instagram-slider {
+        margin-left: -5%;
+        margin-right: -5%;
+
+        @include breakpoint (max-xl){
+            margin: 0;
+        }
+    }
+}
+
+.gt-instagram-image {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        top: 0;
+        bottom: 0px;
+        right: 0;
+        background: rgba(28, 29, 32, 0.80);
+        transition: -webkit-transform 0.4s ease;
+        transition: transform 0.4s ease;
+        transition: transform 0.4s ease, -webkit-transform 0.4s ease;
+        transform-origin: top right;
+        -webkit-transform: scale(1, 0);
+        transform: scale(1, 0);
+        z-index: 9;
+    }
+
+    img {
+        @include imgw;
+        transform: scale(1.02);
+        transition: all 1.5s ease-out;
+    }
+
+    .gt-icon {
+        display: inline-block;
+        position: absolute;
+        top: -100px;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 18px;
+        color: $gt-white;
+        @include transition;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 99;
+        width: 46px;
+        height: 46px;
+        line-height: 46px;
+        text-align: center;
+        border-radius: 50%;
+        background-color: #0B0E13;
+
+        &:hover {
+            background-color: $gt-theme-color;
+            color: $gt-white;
+        }
+    }
+
+    &:hover {
+        .gt-icon {
+            top: 50%;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        img {
+            -webkit-transform: scale3d(1.1, 1.1, 1);
+            transform: scale3d(1.1, 1.1, 1);
+        }
+
+        &::before {
+            -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+            transform-origin: bottom center;
+        }
+    }
+}
