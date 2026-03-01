@@ -682,11 +682,6 @@
                                         <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="img" style="max-height: 100px; width: auto;">
                                     </a>
                                 </div>
-                                <div class="gt-footer-content">
-                                    <div class="gt-social-icon d-flex align-items-center">
-                                        <a href="#"><i class="fab fa-discord"></i></a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         
@@ -697,7 +692,7 @@
                 </div>
                 <div class="footer-bottom wow fadeInUp" data-wow-delay=".3s">
                     <div class="footer-wrapper">
-                        <p>© 2025 Ultimate Resilient League. All Rights Reserved.</p>
+                        <p>2025 Ultimate Resilient League. All Rights Reserved.</p>
                         <ul class="gt-footer-list wow fadeInUp" data-wow-delay=".3s">
                             <li>
                                 <a href="index.html">Cookies</a>
@@ -759,63 +754,83 @@
         
         <!--<< Player Wager Script >>-->
         <script>
-            // Player Data - 48 Real URL League Players
+            // Player Data - 48 Real URL League Players (stats from players.html)
             const players = [
-                { id: 1, n: "pink.etc", t: "FREE AGENT", r: "legend", avg: 9.5 },
-                { id: 2, n: "Rи • Waven", t: "FREE AGENT", r: "rare", avg: 8.9 },
-                { id: 3, n: "AG | Mausメ", t: "FREE AGENT", r: "rare", avg: 11.7 },
-                { id: 4, n: "Maus??メ", t: "FREE AGENT", r: "rare", avg: 8.6 },
-                { id: 5, n: "ryze0", t: "FREE AGENT", r: "elite", avg: 5.8 },
-                { id: 6, n: "Rи • Tariq", t: "FREE AGENT", r: "elite", avg: 6.4 },
-                { id: 7, n: "ZŁ.BuZz ;)", t: "FREE AGENT", r: "elite", avg: 4.8 },
-                { id: 8, n: "ZŁ.SID ;)", t: "FREE AGENT", r: "elite", avg: 7.4 },
-                { id: 9, n: "44 • Ban0", t: "FREE AGENT", r: "elite", avg: 4.8 },
-                { id: 10, n: "Σи | zaza", t: "FREE AGENT", r: "elite", avg: 7.5 },
-                { id: 11, n: "ZИ Σи | Pooki", t: "FREE AGENT", r: "elite", avg: 6.3 },
-                { id: 12, n: "juuzou", t: "FREE AGENT", r: "elite", avg: 5.2 },
-                { id: 13, n: "Rи • ayanda<3", t: "FREE AGENT", r: "elite", avg: 6.2 },
-                { id: 14, n: "Rи • Aim", t: "FREE AGENT", r: "elite", avg: 4.1 },
-                { id: 15, n: "Rи • Auradebt", t: "FREE AGENT", r: "elite", avg: 4.5 },
-                { id: 16, n: "LGN • Mvement", t: "FREE AGENT", r: "common", avg: 3.8 },
-                { id: 17, n: "patrick.etc", t: "FREE AGENT", r: "common", avg: 6.0 },
-                { id: 18, n: "sYm✪Allfather", t: "FREE AGENT", r: "common", avg: 3.7 },
-                { id: 19, n: "INS • Yolanda", t: "FREE AGENT", r: "common", avg: 4.8 },
-                { id: 20, n: "BEYONDER • яe", t: "FREE AGENT", r: "common", avg: 2.7 },
-                { id: 21, n: "Tyzllah.etc", t: "FREE AGENT", r: "common", avg: 2.7 },
-                { id: 22, n: "Rи • Domino", t: "FREE AGENT", r: "common", avg: 3.2 },
-                { id: 23, n: "39Intro.etc", t: "FREE AGENT", r: "common", avg: 3.8 },
-                { id: 24, n: "C1N", t: "FREE AGENT", r: "common", avg: 2.5 },
-                { id: 25, n: "SpongeBo.zên", t: "FREE AGENT", r: "common", avg: 2.9 },
-                { id: 26, n: "Monkey.etc", t: "FREE AGENT", r: "common", avg: 4.0 },
-                { id: 27, n: "MC | Mo", t: "FREE AGENT", r: "common", avg: 2.1 },
-                { id: 28, n: "makio*", t: "FREE AGENT", r: "common", avg: 3.7 },
-                { id: 29, n: "DADDY.BISHOP", t: "FREE AGENT", r: "common", avg: 3.3 },
-                { id: 30, n: "sYm✪Himothy", t: "FREE AGENT", r: "common", avg: 1.8 },
-                { id: 31, n: "soraʕϵn", t: "FREE AGENT", r: "common", avg: 2.8 },
-                { id: 32, n: "FΣ | dazing", t: "FREE AGENT", r: "common", avg: 3.0 },
-                { id: 33, n: "blue.etc", t: "FREE AGENT", r: "common", avg: 1.0 },
-                { id: 34, n: "B²M | Avo • λη", t: "FREE AGENT", r: "common", avg: 2.7 },
-                { id: 35, n: "ØPŠ • ZAM", t: "FREE AGENT", r: "common", avg: 3.0 },
-                { id: 36, n: "¹Seeyah²¹", t: "FREE AGENT", r: "common", avg: 1.4 },
-                { id: 37, n: "H®unter~sung", t: "FREE AGENT", r: "common", avg: 1.3 },
-                { id: 38, n: "R • Yang", t: "FREE AGENT", r: "common", avg: 1.7 },
-                { id: 39, n: "BeerusT", t: "FREE AGENT", r: "common", avg: 3.0 },
-                { id: 40, n: "sYm✪Holiday", t: "FREE AGENT", r: "common", avg: 2.5 },
-                { id: 41, n: "Σи | Malik", t: "FREE AGENT", r: "common", avg: 2.0 },
-                { id: 42, n: "sYm✪Leo", t: "FREE AGENT", r: "common", avg: 2.0 },
-                { id: 43, n: "DO1LAR • ixt", t: "FREE AGENT", r: "common", avg: 1.4 },
-                { id: 44, n: "HRC_BrennyyyyK", t: "FREE AGENT", r: "common", avg: 2.0 },
-                { id: 45, n: "Mumu×Angel D", t: "FREE AGENT", r: "common", avg: 1.5 },
-                { id: 46, n: "Vortex • ixt", t: "FREE AGENT", r: "common", avg: 1.0 },
-                { id: 47, n: "ColdG2000", t: "FREE AGENT", r: "common", avg: 0.0 },
-                { id: 48, n: "blunt(isdaddy)", t: "FREE AGENT", r: "common", avg: 0.0 }
+                { id: 1, n: "pink.etc", t: "FREE AGENT", r: "legend", rating: 88, avg: 9.5, kills: 123, apps: 13 },
+                { id: 2, n: "AG | Mausメ", t: "FREE AGENT", r: "legend", rating: 84, avg: 9.3, kills: 112, apps: 12 },
+                { id: 3, n: "Rи • Waven", t: "FREE AGENT", r: "rare", rating: 74, avg: 8.9, kills: 89, apps: 10 },
+                { id: 4, n: "Σи | zaza", t: "FREE AGENT", r: "rare", rating: 69, avg: 9.5, kills: 95, apps: 10 },
+                { id: 5, n: "ryze0", t: "FREE AGENT", r: "elite", rating: 58, avg: 5.8, kills: 76, apps: 13 },
+                { id: 6, n: "Rи • Tariq", t: "FREE AGENT", r: "elite", rating: 51, avg: 6.4, kills: 51, apps: 8 },
+                { id: 7, n: "ZИ Σи | Pooki", t: "FREE AGENT", r: "elite", rating: 50, avg: 7.6, kills: 53, apps: 7 },
+                { id: 8, n: "ZŁ.BuZz ;)", t: "FREE AGENT", r: "elite", rating: 50, avg: 4.8, kills: 63, apps: 13 },
+                { id: 9, n: "ZŁ.SID ;)", t: "FREE AGENT", r: "elite", rating: 50, avg: 7.4, kills: 37, apps: 5 },
+                { id: 10, n: "LGN • Mvement", t: "FREE AGENT", r: "elite", rating: 46, avg: 6.2, kills: 74, apps: 12 },
+                { id: 11, n: "Rи • ayanda<3", t: "FREE AGENT", r: "elite", rating: 46, avg: 8.4, kills: 42, apps: 5 },
+                { id: 12, n: "INS • Yolanda", t: "FREE AGENT", r: "elite", rating: 43, avg: 12.2, kills: 61, apps: 5 },
+                { id: 13, n: "Rи • Aim", t: "FREE AGENT", r: "elite", rating: 42, avg: 4.1, kills: 49, apps: 12 },
+                { id: 14, n: "juuzou", t: "FREE AGENT", r: "elite", rating: 42, avg: 3.9, kills: 35, apps: 9 },
+                { id: 15, n: "44 • Ban0", t: "FREE AGENT", r: "elite", rating: 42, avg: 2.4, kills: 31, apps: 13 },
+                { id: 16, n: "Rи • Auradebt", t: "FREE AGENT", r: "elite", rating: 41, avg: 4.5, kills: 45, apps: 10 },
+                { id: 17, n: "Monkey.etc", t: "FREE AGENT", r: "common", rating: 38, avg: 11.8, kills: 59, apps: 5 },
+                { id: 18, n: "NF | LIAM", t: "FREE AGENT", r: "common", rating: 38, avg: 4.9, kills: 49, apps: 10 },
+                { id: 19, n: "sYm✪Allfather", t: "FREE AGENT", r: "common", rating: 35, avg: 3.7, kills: 37, apps: 10 },
+                { id: 20, n: "patrick.etc", t: "FREE AGENT", r: "common", rating: 35, avg: 6.0, kills: 12, apps: 2 },
+                { id: 21, n: "C1N", t: "FREE AGENT", r: "common", rating: 33, avg: 3.2, kills: 42, apps: 13 },
+                { id: 22, n: "Σи | Malik", t: "FREE AGENT", r: "common", rating: 33, avg: 13.0, kills: 26, apps: 2 },
+                { id: 23, n: "Tyzllah.etc", t: "FREE AGENT", r: "common", rating: 32, avg: 2.7, kills: 35, apps: 13 },
+                { id: 24, n: "BEYONDER • яe", t: "FREE AGENT", r: "common", rating: 32, avg: 2.7, kills: 35, apps: 13 },
+                { id: 25, n: "Rи • Domino", t: "FREE AGENT", r: "common", rating: 32, avg: 3.2, kills: 32, apps: 10 },
+                { id: 26, n: "39Intro.etc", t: "FREE AGENT", r: "common", rating: 32, avg: 3.8, kills: 30, apps: 8 },
+                { id: 27, n: "MC | Mo", t: "FREE AGENT", r: "common", rating: 31, avg: 4.4, kills: 48, apps: 11 },
+                { id: 28, n: "Member", t: "FREE AGENT", r: "common", rating: 30, avg: 4.1, kills: 53, apps: 13 },
+                { id: 29, n: "SpongeBo.zên", t: "FREE AGENT", r: "common", rating: 29, avg: 2.9, kills: 29, apps: 10 },
+                { id: 30, n: "Ghost", t: "FREE AGENT", r: "common", rating: 27, avg: 5.8, kills: 46, apps: 8 },
+                { id: 31, n: "makio*", t: "FREE AGENT", r: "common", rating: 24, avg: 3.7, kills: 11, apps: 3 },
+                { id: 32, n: "DADDY.BISHOP", t: "FREE AGENT", r: "common", rating: 22, avg: 3.3, kills: 10, apps: 3 },
+                { id: 33, n: "sYm✪Himothy", t: "FREE AGENT", r: "common", rating: 21, avg: 1.8, kills: 18, apps: 10 },
+                { id: 34, n: "soraʕϵn", t: "FREE AGENT", r: "common", rating: 21, avg: 2.8, kills: 14, apps: 5 },
+                { id: 35, n: "FΣ | dazing", t: "FREE AGENT", r: "common", rating: 21, avg: 3.0, kills: 12, apps: 4 },
+                { id: 36, n: "B²M | Avo • λη", t: "FREE AGENT", r: "common", rating: 20, avg: 6.0, kills: 18, apps: 3 },
+                { id: 37, n: "¹Seeyah²¹", t: "FREE AGENT", r: "common", rating: 19, avg: 2.3, kills: 21, apps: 9 },
+                { id: 38, n: "sYm✪Holiday", t: "FREE AGENT", r: "common", rating: 19, avg: 10.5, kills: 21, apps: 2 },
+                { id: 39, n: "BeerusT", t: "FREE AGENT", r: "common", rating: 19, avg: 13.0, kills: 13, apps: 1 },
+                { id: 40, n: "blue.etc", t: "FREE AGENT", r: "common", rating: 18, avg: 1.0, kills: 13, apps: 13 },
+                { id: 41, n: "ØPŠ • ZAM", t: "FREE AGENT", r: "common", rating: 18, avg: 3.0, kills: 6, apps: 2 },
+                { id: 42, n: "H®unter~sung", t: "FREE AGENT", r: "common", rating: 17, avg: 1.3, kills: 13, apps: 10 },
+                { id: 43, n: "R • Yang", t: "FREE AGENT", r: "common", rating: 17, avg: 1.7, kills: 12, apps: 7 },
+                { id: 44, n: "DO1LAR • ixt", t: "FREE AGENT", r: "common", rating: 13, avg: 1.4, kills: 7, apps: 5 },
+                { id: 45, n: "sYm✪Leo", t: "FREE AGENT", r: "common", rating: 13, avg: 2.0, kills: 4, apps: 2 },
+                { id: 46, n: "Vortex • ixt", t: "FREE AGENT", r: "common", rating: 6, avg: 1.0, kills: 1, apps: 1 },
+                { id: 47, n: "ColdG2000", t: "FREE AGENT", r: "common", rating: 2, avg: 0.0, kills: 0, apps: 3 },
+                { id: 48, n: "blunt(isdaddy)", t: "FREE AGENT", r: "common", rating: 1, avg: 0.0, kills: 0, apps: 1 }
             ];
             
-            // Calculate odds
+            // Calculate realistic odds based on URL Rating + kill average + appearances
+            // Higher rating & more kills = lower odds (more likely to perform)
+            // Fewer appearances = higher variance = slightly higher odds
             function getOdds(player) {
-                const mod = { legend: 0.7, elite: 0.85, rare: 1.0, common: 1.2 };
-                let o = ((60 / player.avg) + 1) * mod[player.r];
-                return Math.max(1.5, Math.min(12, o)).toFixed(2);
+                // Base odds from rating (88 rating → ~1.50x, 1 rating → ~15x)
+                let baseOdds = 15 - (player.rating / 88) * 13.5;
+                
+                // Kill average modifier: high avg lowers odds
+                if (player.avg >= 8) baseOdds *= 0.75;
+                else if (player.avg >= 5) baseOdds *= 0.88;
+                else if (player.avg >= 3) baseOdds *= 1.0;
+                else if (player.avg >= 1) baseOdds *= 1.15;
+                else baseOdds *= 1.4;
+                
+                // Consistency bonus: more appearances = more reliable
+                if (player.apps >= 10) baseOdds *= 0.92;
+                else if (player.apps >= 5) baseOdds *= 1.0;
+                else baseOdds *= 1.12; // fewer games = less predictable
+                
+                // Rarity tier adjustment (slight)
+                const rarityMod = { legend: 0.85, rare: 0.92, elite: 1.0, common: 1.08 };
+                baseOdds *= rarityMod[player.r] || 1.0;
+                
+                // Clamp between 1.25 and 25.00
+                return Math.max(1.25, Math.min(25.00, baseOdds)).toFixed(2);
             }
             
             let selectedPlayer = null;
@@ -855,7 +870,7 @@
                             <div class="pw-result" data-id="${p.id}" tabindex="0">
                                 <div>
                                     <div class="name">${p.n}</div>
-                                    <div class="team">${p.t}</div>
+                                    <div class="team">${p.t} · Rating: ${p.rating} · ${p.avg} kills/game</div>
                                 </div>
                                 <div class="odds">${getOdds(p)}x</div>
                             </div>
@@ -897,7 +912,7 @@
                     selectedPlayer = player;
                     
                     selName.textContent = player.n;
-                    selTeam.textContent = player.t;
+                    selTeam.textContent = player.t + ' · Rating: ' + player.rating + ' · ' + player.avg + ' kills/game';
                     selOdds.textContent = getOdds(player) + 'x';
                     
                     searchInput.value = '';

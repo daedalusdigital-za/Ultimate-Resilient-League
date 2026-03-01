@@ -522,17 +522,7 @@
     backdrop-filter: blur(4px);
 }
 
-.url-serial-badge {
-    font-size: 0.46rem;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 6px;
-    background: rgba(0, 0, 0, 0.55);
-    color: var(--text-color);
-    opacity: 0.6;
-    font-family: 'Courier New', monospace;
-    backdrop-filter: blur(4px);
-}
+
 
 /* ============================================================
    FOIL SWEEP  (Rare+)
@@ -764,8 +754,7 @@
     .url-season-text { font-size: 0.32rem; }
     .url-stats-grid { gap: 3px 8px; padding: 4px 8px; }
     .url-stat-label { font-size: 0.34rem; }
-    .url-rarity-badge,
-    .url-serial-badge { font-size: 0.38rem; padding: 2px 5px; }
+    .url-rarity-badge { font-size: 0.38rem; padding: 2px 5px; }
     .url-flag-badge { width: 18px; height: 12px; bottom: 6px; left: 6px; }
 }
 

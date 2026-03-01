@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
     <!--<< Header Area >>-->
     <head>
@@ -284,6 +284,219 @@
                 .url-modal-stats-row { gap: 10px; }
                 .url-search-input { padding: 12px 45px 12px 15px; font-size: 0.9rem; }
             }
+
+            /* ===== VIEW TOGGLE TABS ===== */
+            .url-view-tabs {
+                display: flex;
+                justify-content: center;
+                gap: 0;
+                margin: 25px auto 30px;
+                max-width: 320px;
+                border-radius: 12px;
+                overflow: hidden;
+                border: 2px solid rgba(255, 215, 0, 0.3);
+                background: rgba(26, 26, 46, 0.6);
+            }
+
+            .url-view-tab {
+                flex: 1;
+                padding: 12px 24px;
+                background: transparent;
+                border: none;
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.95rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            .url-view-tab:hover {
+                color: rgba(255, 255, 255, 0.8);
+                background: rgba(255, 215, 0, 0.05);
+            }
+
+            .url-view-tab.active {
+                background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+                color: #FFD700;
+            }
+
+            .url-view-tab i {
+                margin-right: 8px;
+            }
+
+            /* ===== LIST VIEW TABLE ===== */
+            .url-list-view {
+                display: none;
+            }
+
+            .url-list-view.active {
+                display: block;
+            }
+
+            .url-cards-grid.hidden-view {
+                display: none !important;
+            }
+
+            .url-list-table {
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 0 6px;
+            }
+
+            .url-list-table thead th {
+                background: rgba(255, 215, 0, 0.1);
+                color: #FFD700;
+                font-size: 0.8rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                padding: 14px 16px;
+                text-align: left;
+                border: none;
+                position: sticky;
+                top: 0;
+                z-index: 10;
+            }
+
+            .url-list-table thead th:first-child { border-radius: 10px 0 0 10px; }
+            .url-list-table thead th:last-child { border-radius: 0 10px 10px 0; }
+
+            .url-list-table tbody tr {
+                background: rgba(26, 26, 46, 0.6);
+                cursor: pointer;
+                transition: all 0.25s ease;
+            }
+
+            .url-list-table tbody tr:hover {
+                background: rgba(255, 215, 0, 0.08);
+                transform: translateX(4px);
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+            }
+
+            .url-list-table tbody td {
+                padding: 12px 16px;
+                color: rgba(255, 255, 255, 0.85);
+                font-size: 0.95rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.04);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+                vertical-align: middle;
+            }
+
+            .url-list-table tbody td:first-child {
+                border-left: 1px solid rgba(255, 255, 255, 0.04);
+                border-radius: 8px 0 0 8px;
+            }
+
+            .url-list-table tbody td:last-child {
+                border-right: 1px solid rgba(255, 255, 255, 0.04);
+                border-radius: 0 8px 8px 0;
+            }
+
+            .url-list-player-name {
+                font-weight: 700;
+                color: #fff;
+                font-size: 1rem;
+            }
+
+            .url-list-rarity-dot {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                margin-right: 8px;
+                vertical-align: middle;
+            }
+
+            .url-list-rarity-dot.legend { background: #FFD700; box-shadow: 0 0 8px rgba(255, 215, 0, 0.6); }
+            .url-list-rarity-dot.rare { background: #FF0040; box-shadow: 0 0 8px rgba(255, 0, 64, 0.6); }
+            .url-list-rarity-dot.elite { background: #9B59B6; box-shadow: 0 0 8px rgba(155, 89, 182, 0.6); }
+            .url-list-rarity-dot.common { background: #4A90D9; box-shadow: 0 0 8px rgba(74, 144, 217, 0.6); }
+
+            .url-list-rarity-text {
+                text-transform: capitalize;
+                font-size: 0.85rem;
+            }
+
+            .url-list-rating {
+                font-weight: 700;
+                font-size: 1.1rem;
+            }
+
+            .url-list-rating.legend-clr { color: #FFD700; }
+            .url-list-rating.rare-clr { color: #FF0040; }
+            .url-list-rating.elite-clr { color: #9B59B6; }
+            .url-list-rating.common-clr { color: #4A90D9; }
+
+            .url-list-role-badge {
+                display: inline-block;
+                padding: 3px 10px;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                background: rgba(255, 255, 255, 0.08);
+                color: rgba(255, 255, 255, 0.7);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .url-list-click-hint {
+                color: rgba(255, 215, 0, 0.4);
+                font-size: 0.8rem;
+                transition: color 0.25s ease;
+            }
+
+            .url-list-table tbody tr:hover .url-list-click-hint {
+                color: #FFD700;
+            }
+
+            .url-list-no-results {
+                text-align: center;
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 1.2rem;
+                padding: 40px;
+                display: none;
+            }
+
+            .url-list-no-results.visible {
+                display: block;
+            }
+
+            @media (max-width: 768px) {
+                .url-list-table thead { display: none; }
+                .url-list-table, .url-list-table tbody, .url-list-table tr, .url-list-table td {
+                    display: block;
+                    width: 100%;
+                }
+                .url-list-table tbody tr {
+                    margin-bottom: 10px;
+                    padding: 14px;
+                    border-radius: 10px;
+                    border: 1px solid rgba(255, 255, 255, 0.06);
+                }
+                .url-list-table tbody td {
+                    padding: 4px 0;
+                    border: none;
+                    border-radius: 0 !important;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                .url-list-table tbody td::before {
+                    content: attr(data-label);
+                    font-size: 0.75rem;
+                    color: rgba(255, 215, 0, 0.6);
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    font-weight: 600;
+                }
+                .url-list-table tbody td:last-child { display: none; }
+                .url-view-tabs { max-width: 260px; }
+                .url-view-tab { padding: 10px 16px; font-size: 0.8rem; }
+            }
         </style>
                             
     </head>
@@ -505,6 +718,16 @@
                     </div>
                 </div>
                 
+                <!-- View Toggle Tabs -->
+                <div class="url-view-tabs">
+                    <button class="url-view-tab active" data-view="cards" type="button">
+                        <i class="fa-solid fa-grip"></i>Cards
+                    </button>
+                    <button class="url-view-tab" data-view="list" type="button">
+                        <i class="fa-solid fa-list"></i>List
+                    </button>
+                </div>
+
                 <!-- Search Input -->
                 <div class="url-search-container">
                     <div class="url-search-wrapper">
@@ -519,6 +742,29 @@
                 <!-- URL Player Cards Grid -->
                 <div class="url-cards-grid" id="urlCardsContainer" role="list">
                     <!-- Cards rendered by JavaScript -->
+                </div>
+
+                <!-- URL Player List View -->
+                <div class="url-list-view" id="urlListContainer">
+                    <table class="url-list-table">
+                        <thead>
+                            <tr>
+                                <th>Rating</th>
+                                <th>Player</th>
+                                <th>Team</th>
+                                <th>Role</th>
+                                <th>Rarity</th>
+                                <th>Kills</th>
+                                <th>Apps</th>
+                                <th>Value</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="urlListBody">
+                            <!-- Rows rendered by JavaScript -->
+                        </tbody>
+                    </table>
+                    <div id="listNoResults" class="url-list-no-results">No players found matching your search.</div>
                 </div>
             </div>
         </section>
@@ -535,11 +781,6 @@
                                         <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="img" style="max-height: 100px; width: auto;">
                                     </a>
                                 </div>
-                                <div class="gt-footer-content">
-                                    <div class="gt-social-icon d-flex align-items-center">
-                                        <a href="#"><i class="fab fa-discord"></i></a>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         
@@ -550,7 +791,7 @@
                 </div>
                 <div class="footer-bottom wow fadeInUp" data-wow-delay=".3s">
                     <div class="footer-wrapper">
-                        <p>Ã‚Â© 2025 Ultimate Resilient League. All Rights Reserved.</p>
+                        <p>2025 Ultimate Resilient League. All Rights Reserved.</p>
                         <ul class="gt-footer-list wow fadeInUp" data-wow-delay=".3s">
                             <li>
                                 <a href="index.html">Cookies</a>
@@ -619,54 +860,54 @@
             // ===== PLAYER DATA - 48 URL League Players =====
             // Rarity: Legend (80-99 Gold), Rare (60-79 Red), Elite (40-59 Purple), Common (1-39 Blue)
             const playersData = [
-                { ign: "pink.etc", team: "FREE AGENT", role: "FRAGGER", rarity: "legend", urlRating: 88, kills: 123, appearances: 13, value: 600, serial: "URL-00001", season: "Season 1", imageUrl: "" },
-                { ign: "AG | Mausメ", team: "FREE AGENT", role: "FRAGGER", rarity: "legend", urlRating: 84, kills: 112, appearances: 12, value: 575, serial: "URL-00003", season: "Season 1", imageUrl: "" },
-                { ign: "Rи • Waven", team: "FREE AGENT", role: "FRAGGER", rarity: "rare", urlRating: 74, kills: 89, appearances: 10, value: 516, serial: "URL-00002", season: "Season 1", imageUrl: "" },
-                { ign: "Σи | zaza", team: "FREE AGENT", role: "IGL", rarity: "rare", urlRating: 69, kills: 95, appearances: 10, value: 496, serial: "URL-00010", season: "Season 1", imageUrl: "" },
-                { ign: "ryze0", team: "FREE AGENT", role: "SUPPORT", rarity: "elite", urlRating: 58, kills: 76, appearances: 13, value: 427, serial: "URL-00005", season: "Season 1", imageUrl: "" },
-                { ign: "Rи • Tariq", team: "FREE AGENT", role: "IGL", rarity: "elite", urlRating: 51, kills: 51, appearances: 8, value: 396, serial: "URL-00006", season: "Season 1", imageUrl: "" },
-                { ign: "ZИ Σи | Pooki", team: "FREE AGENT", role: "SUPPORT", rarity: "elite", urlRating: 50, kills: 53, appearances: 7, value: 395, serial: "URL-00011", season: "Season 1", imageUrl: "" },
-                { ign: "ZŁ.BuZz ;)", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 50, kills: 63, appearances: 13, value: 388, serial: "URL-00007", season: "Season 1", imageUrl: "" },
-                { ign: "ZŁ.SID ;)", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 50, kills: 37, appearances: 5, value: 383, serial: "URL-00008", season: "Season 1", imageUrl: "" },
-                { ign: "LGN • Mvement", team: "FREE AGENT", role: "FRAGGER", rarity: "elite", urlRating: 46, kills: 74, appearances: 12, value: 374, serial: "URL-00016", season: "Season 1", imageUrl: "" },
-                { ign: "Rи • ayanda<3", team: "FREE AGENT", role: "SUPPORT", rarity: "elite", urlRating: 46, kills: 42, appearances: 5, value: 371, serial: "URL-00013", season: "Season 1", imageUrl: "" },
-                { ign: "INS • Yolanda", team: "FREE AGENT", role: "FRAGGER", rarity: "elite", urlRating: 43, kills: 61, appearances: 5, value: 370, serial: "URL-00019", season: "Season 1", imageUrl: "" },
-                { ign: "Rи • Aim", team: "FREE AGENT", role: "IGL", rarity: "elite", urlRating: 42, kills: 49, appearances: 12, value: 345, serial: "URL-00014", season: "Season 1", imageUrl: "" },
-                { ign: "juuzou", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 42, kills: 35, appearances: 9, value: 335, serial: "URL-00012", season: "Season 1", imageUrl: "" },
-                { ign: "44 • Ban0", team: "FREE AGENT", role: "IGL", rarity: "elite", urlRating: 42, kills: 31, appearances: 13, value: 332, serial: "URL-00009", season: "Season 1", imageUrl: "" },
-                { ign: "Rи • Auradebt", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 41, kills: 45, appearances: 10, value: 338, serial: "URL-00015", season: "Season 1", imageUrl: "" },
-                { ign: "Monkey.etc", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 38, kills: 59, appearances: 5, value: 339, serial: "URL-00026", season: "Season 1", imageUrl: "" },
-                { ign: "NF | LIAM", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 38, kills: 49, appearances: 10, value: 316, serial: "URL-00049", season: "Season 1", imageUrl: "" },
-                { ign: "sYm✪Allfather", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 35, kills: 37, appearances: 10, value: 301, serial: "URL-00018", season: "Season 1", imageUrl: "" },
-                { ign: "patrick.etc", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 35, kills: 12, appearances: 2, value: 290, serial: "URL-00017", season: "Season 1", imageUrl: "" },
-                { ign: "C1N", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 33, kills: 42, appearances: 13, value: 270, serial: "URL-00024", season: "Season 1", imageUrl: "" },
-                { ign: "Σи | Malik", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 33, kills: 26, appearances: 2, value: 260, serial: "URL-00041", season: "Season 1", imageUrl: "" },
-                { ign: "Tyzllah.etc", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 32, kills: 35, appearances: 13, value: 255, serial: "URL-00021", season: "Season 1", imageUrl: "" },
-                { ign: "BEYONDER • яe", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 32, kills: 35, appearances: 13, value: 255, serial: "URL-00020", season: "Season 1", imageUrl: "" },
-                { ign: "Rи • Domino", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 32, kills: 32, appearances: 10, value: 255, serial: "URL-00022", season: "Season 1", imageUrl: "" },
-                { ign: "39Intro.etc", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 32, kills: 30, appearances: 8, value: 261, serial: "URL-00023", season: "Season 1", imageUrl: "" },
-                { ign: "MC | Mo", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 31, kills: 48, appearances: 11, value: 251, serial: "URL-00027", season: "Season 1", imageUrl: "" },
-                { ign: "Member", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 30, kills: 53, appearances: 13, value: 233, serial: "URL-00050", season: "Season 1", imageUrl: "" },
-                { ign: "SpongeBo.zën", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 29, kills: 29, appearances: 10, value: 233, serial: "URL-00025", season: "Season 1", imageUrl: "" },
-                { ign: "Ghost", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 27, kills: 46, appearances: 8, value: 222, serial: "URL-00051", season: "Season 1", imageUrl: "" },
-                { ign: "makio*", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 24, kills: 11, appearances: 3, value: 202, serial: "URL-00028", season: "Season 1", imageUrl: "" },
-                { ign: "DADDY.BISHOP", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 22, kills: 10, appearances: 3, value: 196, serial: "URL-00029", season: "Season 1", imageUrl: "" },
-                { ign: "sYm✪Himothy", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 21, kills: 18, appearances: 10, value: 186, serial: "URL-00030", season: "Season 1", imageUrl: "" },
-                { ign: "soraʕλn", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 21, kills: 14, appearances: 5, value: 197, serial: "URL-00031", season: "Season 1", imageUrl: "" },
-                { ign: "FΣ | dazing", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 21, kills: 12, appearances: 4, value: 197, serial: "URL-00032", season: "Season 1", imageUrl: "" },
-                { ign: "B²M | Avo • λη", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 20, kills: 18, appearances: 3, value: 192, serial: "URL-00034", season: "Season 1", imageUrl: "" },
-                { ign: "¹Seeyah²¹", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 19, kills: 21, appearances: 9, value: 176, serial: "URL-00036", season: "Season 1", imageUrl: "" },
-                { ign: "sYm✪Holiday", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 19, kills: 21, appearances: 2, value: 187, serial: "URL-00040", season: "Season 1", imageUrl: "" },
-                { ign: "BeerusT", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 19, kills: 13, appearances: 1, value: 193, serial: "URL-00039", season: "Season 1", imageUrl: "" },
-                { ign: "blue.etc", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 18, kills: 13, appearances: 13, value: 161, serial: "URL-00033", season: "Season 1", imageUrl: "" },
-                { ign: "ØPŠ • ZAM", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 18, kills: 6, appearances: 2, value: 174, serial: "URL-00035", season: "Season 1", imageUrl: "" },
-                { ign: "H®unter~sung", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 17, kills: 13, appearances: 10, value: 160, serial: "URL-00037", season: "Season 1", imageUrl: "" },
-                { ign: "R • Yang", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 17, kills: 12, appearances: 7, value: 160, serial: "URL-00038", season: "Season 1", imageUrl: "" },
-                { ign: "DO1LAR • ixt", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 13, kills: 7, appearances: 5, value: 142, serial: "URL-00043", season: "Season 1", imageUrl: "" },
-                { ign: "sYm✪Leo", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 13, kills: 4, appearances: 2, value: 149, serial: "URL-00042", season: "Season 1", imageUrl: "" },
-                { ign: "Vortex • ixt", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 6, kills: 1, appearances: 1, value: 148, serial: "URL-00046", season: "Season 1", imageUrl: "" },
-                { ign: "ColdG2000", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 2, kills: 0, appearances: 3, value: 125, serial: "URL-00047", season: "Season 1", imageUrl: "" },
-                { ign: "blunt(isdaddy)", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 1, kills: 0, appearances: 1, value: 123, serial: "URL-00048", season: "Season 1", imageUrl: "" }
+                { ign: "pink.etc", team: "FREE AGENT", role: "FRAGGER", rarity: "legend", urlRating: 88, kills: 123, appearances: 13, value: 600, imageUrl: "" },
+                { ign: "AG | Mausãƒ¡", team: "FREE AGENT", role: "FRAGGER", rarity: "legend", urlRating: 84, kills: 112, appearances: 12, value: 575, imageUrl: "" },
+                { ign: "RÐ¸ â€¢ Waven", team: "FREE AGENT", role: "FRAGGER", rarity: "rare", urlRating: 74, kills: 89, appearances: 10, value: 516, imageUrl: "" },
+                { ign: "Î£Ð¸ | zaza", team: "FREE AGENT", role: "IGL", rarity: "rare", urlRating: 69, kills: 95, appearances: 10, value: 496, imageUrl: "" },
+                { ign: "ryze0", team: "FREE AGENT", role: "SUPPORT", rarity: "elite", urlRating: 58, kills: 76, appearances: 13, value: 427, imageUrl: "" },
+                { ign: "RÐ¸ â€¢ Tariq", team: "FREE AGENT", role: "IGL", rarity: "elite", urlRating: 51, kills: 51, appearances: 8, value: 396, imageUrl: "" },
+                { ign: "ZÐ˜ Î£Ð¸ | Pooki", team: "FREE AGENT", role: "SUPPORT", rarity: "elite", urlRating: 50, kills: 53, appearances: 7, value: 395, imageUrl: "" },
+                { ign: "ZÅ.BuZz ;)", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 50, kills: 63, appearances: 13, value: 388, imageUrl: "" },
+                { ign: "ZÅ.SID ;)", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 50, kills: 37, appearances: 5, value: 383, imageUrl: "" },
+                { ign: "LGN â€¢ Mvement", team: "FREE AGENT", role: "FRAGGER", rarity: "elite", urlRating: 46, kills: 74, appearances: 12, value: 374, imageUrl: "" },
+                { ign: "RÐ¸ â€¢ ayanda<3", team: "FREE AGENT", role: "SUPPORT", rarity: "elite", urlRating: 46, kills: 42, appearances: 5, value: 371, imageUrl: "" },
+                { ign: "INS â€¢ Yolanda", team: "FREE AGENT", role: "FRAGGER", rarity: "elite", urlRating: 43, kills: 61, appearances: 5, value: 370, imageUrl: "" },
+                { ign: "RÐ¸ â€¢ Aim", team: "FREE AGENT", role: "IGL", rarity: "elite", urlRating: 42, kills: 49, appearances: 12, value: 345, imageUrl: "" },
+                { ign: "juuzou", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 42, kills: 35, appearances: 9, value: 335, imageUrl: "" },
+                { ign: "44 â€¢ Ban0", team: "FREE AGENT", role: "IGL", rarity: "elite", urlRating: 42, kills: 31, appearances: 13, value: 332, imageUrl: "" },
+                { ign: "RÐ¸ â€¢ Auradebt", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 41, kills: 45, appearances: 10, value: 338, imageUrl: "" },
+                { ign: "Monkey.etc", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 38, kills: 59, appearances: 5, value: 339, imageUrl: "" },
+                { ign: "NF | LIAM", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 38, kills: 49, appearances: 10, value: 316, imageUrl: "" },
+                { ign: "sYmâœªAllfather", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 35, kills: 37, appearances: 10, value: 301, imageUrl: "" },
+                { ign: "patrick.etc", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 35, kills: 12, appearances: 2, value: 290, imageUrl: "" },
+                { ign: "C1N", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 33, kills: 42, appearances: 13, value: 270, imageUrl: "" },
+                { ign: "Î£Ð¸ | Malik", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 33, kills: 26, appearances: 2, value: 260, imageUrl: "" },
+                { ign: "Tyzllah.etc", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 32, kills: 35, appearances: 13, value: 255, imageUrl: "" },
+                { ign: "BEYONDER â€¢ Ñe", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 32, kills: 35, appearances: 13, value: 255, imageUrl: "" },
+                { ign: "RÐ¸ â€¢ Domino", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 32, kills: 32, appearances: 10, value: 255, imageUrl: "" },
+                { ign: "39Intro.etc", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 32, kills: 30, appearances: 8, value: 261, imageUrl: "" },
+                { ign: "MC | Mo", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 31, kills: 48, appearances: 11, value: 251, imageUrl: "" },
+                { ign: "Member", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 30, kills: 53, appearances: 13, value: 233, imageUrl: "" },
+                { ign: "SpongeBo.zÃ«n", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 29, kills: 29, appearances: 10, value: 233, imageUrl: "" },
+                { ign: "Ghost", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 27, kills: 46, appearances: 8, value: 222, imageUrl: "" },
+                { ign: "makio*", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 24, kills: 11, appearances: 3, value: 202, imageUrl: "" },
+                { ign: "DADDY.BISHOP", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 22, kills: 10, appearances: 3, value: 196, imageUrl: "" },
+                { ign: "sYmâœªHimothy", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 21, kills: 18, appearances: 10, value: 186, imageUrl: "" },
+                { ign: "soraÊ•Î»n", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 21, kills: 14, appearances: 5, value: 197, imageUrl: "" },
+                { ign: "FÎ£ | dazing", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 21, kills: 12, appearances: 4, value: 197, imageUrl: "" },
+                { ign: "BÂ²M | Avo â€¢ Î»Î·", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 20, kills: 18, appearances: 3, value: 192, imageUrl: "" },
+                { ign: "Â¹SeeyahÂ²Â¹", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 19, kills: 21, appearances: 9, value: 176, imageUrl: "" },
+                { ign: "sYmâœªHoliday", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 19, kills: 21, appearances: 2, value: 187, imageUrl: "" },
+                { ign: "BeerusT", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 19, kills: 13, appearances: 1, value: 193, imageUrl: "" },
+                { ign: "blue.etc", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 18, kills: 13, appearances: 13, value: 161, imageUrl: "" },
+                { ign: "Ã˜PÅ  â€¢ ZAM", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 18, kills: 6, appearances: 2, value: 174, imageUrl: "" },
+                { ign: "HÂ®unter~sung", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 17, kills: 13, appearances: 10, value: 160, imageUrl: "" },
+                { ign: "R â€¢ Yang", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 17, kills: 12, appearances: 7, value: 160, imageUrl: "" },
+                { ign: "DO1LAR â€¢ ixt", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 13, kills: 7, appearances: 5, value: 142, imageUrl: "" },
+                { ign: "sYmâœªLeo", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 13, kills: 4, appearances: 2, value: 149, imageUrl: "" },
+                { ign: "Vortex â€¢ ixt", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 6, kills: 1, appearances: 1, value: 148, imageUrl: "" },
+                { ign: "ColdG2000", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 2, kills: 0, appearances: 3, value: 125, imageUrl: "" },
+                { ign: "blunt(isdaddy)", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 1, kills: 0, appearances: 1, value: 123, imageUrl: "" }
             ];
 
             // ===== CARD RENDERER =====
@@ -749,7 +990,6 @@
                         <!-- Meta Badges -->
                         <div class="url-meta-badges">
                             <span class="url-rarity-badge">${player.rarity}</span>
-                            <span class="url-serial-badge">#${player.serial}</span>
                         </div>
                         
                         ${sparkles}
@@ -864,10 +1104,6 @@
                             <span class="url-modal-stat-value">${player.appearances}</span>
                             <span class="url-modal-stat-label">Appearances</span>
                         </div>
-                        <div class="url-modal-stat">
-                            <span class="url-modal-stat-value">${player.serial}</span>
-                            <span class="url-modal-stat-label">Serial</span>
-                        </div>
                     </div>
                 `;
                 
@@ -882,22 +1118,151 @@
                 document.body.style.overflow = '';
             }
 
+            // ===== RENDER LIST VIEW =====
+            function renderURLList(players) {
+                const tbody = document.getElementById('urlListBody');
+                if (!tbody) return;
+                
+                tbody.innerHTML = '';
+                
+                players.forEach((player, index) => {
+                    const tr = document.createElement('tr');
+                    tr.dataset.playerIndex = index;
+                    tr.dataset.ign = player.ign.toLowerCase();
+                    tr.dataset.team = player.team.toLowerCase();
+                    tr.dataset.role = player.role.toLowerCase();
+                    tr.dataset.rarity = player.rarity.toLowerCase();
+                    
+                    tr.innerHTML = `
+                        <td data-label="Rating">
+                            <span class="url-list-rating ${player.rarity}-clr">${player.urlRating}</span>
+                        </td>
+                        <td data-label="Player">
+                            <span class="url-list-player-name">${player.ign}</span>
+                        </td>
+                        <td data-label="Team">${player.team}</td>
+                        <td data-label="Role">
+                            <span class="url-list-role-badge">${player.role}</span>
+                        </td>
+                        <td data-label="Rarity">
+                            <span class="url-list-rarity-dot ${player.rarity}"></span>
+                            <span class="url-list-rarity-text">${player.rarity}</span>
+                        </td>
+                        <td data-label="Kills">${player.kills}</td>
+                        <td data-label="Apps">${player.appearances}</td>
+                        <td data-label="Value">${player.value}</td>
+                        <td><span class="url-list-click-hint"><i class="fa-solid fa-eye"></i></span></td>
+                    `;
+                    
+                    tr.addEventListener('click', () => {
+                        openPlayerModal(player);
+                    });
+                    
+                    tbody.appendChild(tr);
+                });
+            }
+
+            // ===== SEARCH LIST VIEW =====
+            function searchListPlayers(query) {
+                const rows = document.querySelectorAll('#urlListBody tr');
+                const listNoResults = document.getElementById('listNoResults');
+                const normalizedQuery = query.toLowerCase().trim();
+                let visibleCount = 0;
+                
+                rows.forEach(row => {
+                    const matchesSearch = !normalizedQuery ||
+                        row.dataset.ign.includes(normalizedQuery) ||
+                        row.dataset.team.includes(normalizedQuery) ||
+                        row.dataset.role.includes(normalizedQuery) ||
+                        row.dataset.rarity.includes(normalizedQuery);
+                    
+                    if (matchesSearch) {
+                        row.style.display = '';
+                        visibleCount++;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+                
+                if (visibleCount === 0 && normalizedQuery) {
+                    listNoResults.classList.add('visible');
+                } else {
+                    listNoResults.classList.remove('visible');
+                }
+            }
+
+            // ===== CURRENT VIEW STATE =====
+            let currentView = 'cards';
+
             // ===== INITIALIZE =====
             document.addEventListener('DOMContentLoaded', () => {
                 // Render all cards
                 renderURLCards(playersData);
+                // Render list view
+                renderURLList(playersData);
+                
+                // View toggle tabs
+                const viewTabs = document.querySelectorAll('.url-view-tab');
+                const cardsContainer = document.getElementById('urlCardsContainer');
+                const listContainer = document.getElementById('urlListContainer');
+                const noResults = document.getElementById('noResults');
+                const listNoResults = document.getElementById('listNoResults');
+                
+                viewTabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const view = tab.dataset.view;
+                        currentView = view;
+                        
+                        // Update active tab
+                        viewTabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                        
+                        // Toggle views
+                        if (view === 'cards') {
+                            cardsContainer.classList.remove('hidden-view');
+                            listContainer.classList.remove('active');
+                            noResults.style.display = '';
+                            listNoResults.classList.remove('visible');
+                        } else {
+                            cardsContainer.classList.add('hidden-view');
+                            listContainer.classList.add('active');
+                            noResults.classList.remove('visible');
+                        }
+                        
+                        // Re-apply search for the current view
+                        const searchInput = document.getElementById('playerSearch');
+                        if (searchInput.value) {
+                            if (view === 'cards') {
+                                searchPlayers(searchInput.value);
+                            } else {
+                                searchListPlayers(searchInput.value);
+                            }
+                        }
+                    });
+                });
                 
                 // Search functionality
                 const searchInput = document.getElementById('playerSearch');
                 const searchClear = document.getElementById('searchClear');
                 
                 searchInput.addEventListener('input', (e) => {
-                    searchPlayers(e.target.value);
+                    if (currentView === 'cards') {
+                        searchPlayers(e.target.value);
+                    } else {
+                        searchListPlayers(e.target.value);
+                    }
+                    // Show/hide clear button
+                    if (e.target.value.trim()) {
+                        searchClear.classList.add('visible');
+                    } else {
+                        searchClear.classList.remove('visible');
+                    }
                 });
                 
                 searchClear.addEventListener('click', () => {
                     searchInput.value = '';
                     searchPlayers('');
+                    searchListPlayers('');
                     searchInput.focus();
                 });
                 

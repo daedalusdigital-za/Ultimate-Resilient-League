@@ -1,42 +1,151 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-    <!--<< Header Area >>-->
     <head>
-       <!-- ========== Meta Tags ========== -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Gramentheme">
-        <meta name="description" content="Xriders - Riders & Sports Club HTML Template">
-        <!-- ======== Page title ============ -->
-        <title>Ultimate Resilient League</title>
-        <!--<< Favcion >>-->
+        <meta name="author" content="Ultimate Resilient League">
+        <meta name="description" content="URL Teams - League Rosters, Values & Stats">
+        <title>URL - Teams</title>
         <link rel="shortcut icon" href="assets/img/favicon.svg">
-        <!--<< Bootstrap min.css >>-->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <!--<< All Min Css >>-->
         <link rel="stylesheet" href="assets/css/all.min.css">
-        <!--<< Animate.css >>-->
         <link rel="stylesheet" href="assets/css/animate.css">
-        <!--<< Magnific Popup.css >>-->
         <link rel="stylesheet" href="assets/css/magnific-popup.css">
-        <!--<< MeanMenu.css >>-->
         <link rel="stylesheet" href="assets/css/meanmenu.css">
-        <!--<< Swiper Bundle.css >>-->
         <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
-        <!--<< Nice Select.css >>-->
         <link rel="stylesheet" href="assets/css/nice-select.css">
-        <!--<< Main.css >>-->
         <link rel="stylesheet" href="assets/css/main.css">
-                            
+        <link rel="stylesheet" href="assets/css/premium-cards.css">
+
+        <style>
+            /* ===== TEAMS PAGE STYLES ===== */
+            .teams-section { background: linear-gradient(180deg, #0a0a0f 0%, #12121a 100%); }
+
+            /* League Overview Stats */
+            .league-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-bottom: 50px; }
+            .league-stat-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,215,0,0.15); border-radius: 15px; padding: 25px 20px; text-align: center; transition: all 0.3s ease; }
+            .league-stat-card:hover { border-color: #FFD700; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,215,0,0.1); }
+            .league-stat-value { display: block; font-size: 2.2rem; font-weight: 800; color: #FFD700; font-family: 'Rajdhani', sans-serif; }
+            .league-stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
+
+            /* Team Cards Grid */
+            .teams-grid { display: flex; flex-direction: column; gap: 30px; }
+
+            /* Individual Team Panel */
+            .team-panel { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden; transition: all 0.3s ease; }
+            .team-panel:hover { border-color: rgba(255,215,0,0.3); box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+            .team-panel.expanded { border-color: rgba(255,215,0,0.4); }
+
+            /* Team Header (always visible) */
+            .team-header { display: flex; align-items: center; gap: 20px; padding: 25px 30px; cursor: pointer; transition: background 0.2s; position: relative; }
+            .team-header:hover { background: rgba(255,255,255,0.03); }
+
+            /* Team Rank Badge */
+            .team-rank { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: #fff; flex-shrink: 0; font-family: 'Rajdhani', sans-serif; }
+            .team-rank.rank-1 { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
+            .team-rank.rank-2 { background: linear-gradient(135deg, #C0C0C0, #8A8A8A); color: #000; }
+            .team-rank.rank-3 { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
+            .team-rank.rank-default { background: rgba(255,255,255,0.1); }
+
+            /* Team Logo */
+            .team-logo { width: 70px; height: 70px; border-radius: 15px; overflow: hidden; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; }
+            .team-logo img, .team-logo svg { width: 100%; height: 100%; object-fit: cover; }
+
+            /* Team Info */
+            .team-info { flex: 1; min-width: 0; }
+            .team-name-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+            .team-name { font-size: 1.5rem; font-weight: 700; color: #fff; margin: 0; }
+            .team-tag { font-size: 0.8rem; font-weight: 600; padding: 3px 10px; border-radius: 6px; background: rgba(255,215,0,0.15); color: #FFD700; text-transform: uppercase; letter-spacing: 1px; }
+            .team-meta { display: flex; gap: 20px; margin-top: 6px; flex-wrap: wrap; }
+            .team-meta-item { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+            .team-meta-item span { color: #fff; font-weight: 600; }
+
+            /* Team Stats (right side of header) */
+            .team-header-stats { display: flex; gap: 25px; align-items: center; flex-shrink: 0; }
+            .team-stat { text-align: center; }
+            .team-stat-value { display: block; font-size: 1.4rem; font-weight: 700; color: #fff; }
+            .team-stat-label { font-size: 0.7rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
+            .team-value-stat .team-stat-value { color: #FFD700; }
+
+            /* Expand Arrow */
+            .team-expand-arrow { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; color: rgba(255,255,255,0.4); font-size: 0.9rem; }
+            .team-panel.expanded .team-expand-arrow { transform: rotate(180deg); background: rgba(255,215,0,0.15); color: #FFD700; }
+
+            /* Team Roster (expandable) */
+            .team-roster { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+            .team-panel.expanded .team-roster { max-height: 2000px; }
+            .team-roster-inner { padding: 0 30px 30px; border-top: 1px solid rgba(255,255,255,0.06); }
+
+            /* Roster Stats Bar */
+            .roster-stats-bar { display: flex; gap: 20px; padding: 20px 0; flex-wrap: wrap; }
+            .roster-stat-chip { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 10px 18px; text-align: center; }
+            .roster-stat-chip .chip-value { display: block; font-size: 1.3rem; font-weight: 700; color: #FFD700; }
+            .roster-stat-chip .chip-label { font-size: 0.7rem; color: rgba(255,255,255,0.5); text-transform: uppercase; }
+
+            /* Player Rows */
+            .roster-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; }
+            .roster-table th { font-size: 0.75rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; padding: 8px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
+            .roster-table td { padding: 12px; background: rgba(255,255,255,0.02); color: #fff; font-size: 0.95rem; vertical-align: middle; }
+            .roster-table tr td:first-child { border-radius: 10px 0 0 10px; }
+            .roster-table tr td:last-child { border-radius: 0 10px 10px 0; }
+            .roster-table tbody tr:hover td { background: rgba(255,215,0,0.05); }
+
+            /* Player portrait in roster */
+            .roster-player-info { display: flex; align-items: center; gap: 12px; }
+            .roster-player-avatar { width: 40px; height: 40px; border-radius: 8px; overflow: hidden; background: rgba(255,255,255,0.05); flex-shrink: 0; }
+            .roster-player-avatar img { width: 100%; height: 100%; object-fit: cover; }
+            .roster-player-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
+
+            /* Role Badge in Roster */
+            .roster-role-badge { font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+            .roster-role-badge.role-igl { background: rgba(255,215,0,0.15); color: #FFD700; }
+            .roster-role-badge.role-fragger { background: rgba(255,0,64,0.15); color: #FF0040; }
+            .roster-role-badge.role-support { background: rgba(155,89,182,0.15); color: #9B59B6; }
+            .roster-role-badge.role-tank { background: rgba(0,206,209,0.15); color: #00CED1; }
+
+            /* Rarity indicator */
+            .roster-rarity { font-size: 0.75rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; text-transform: capitalize; }
+            .roster-rarity.rarity-legend { background: rgba(255,215,0,0.12); color: #FFD700; }
+            .roster-rarity.rarity-rare { background: rgba(255,0,64,0.12); color: #FF0040; }
+            .roster-rarity.rarity-elite { background: rgba(155,89,182,0.12); color: #9B59B6; }
+            .roster-rarity.rarity-common { background: rgba(74,144,217,0.12); color: #4A90D9; }
+
+            /* Value display */
+            .roster-value { color: #FFD700; font-weight: 700; }
+
+            /* Rating bar */
+            .roster-rating { display: flex; align-items: center; gap: 8px; }
+            .rating-bar { width: 60px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+            .rating-bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+            .rating-number { font-weight: 700; min-width: 24px; }
+
+            /* Mobile Responsive */
+            @media (max-width: 992px) {
+                .team-header { flex-wrap: wrap; padding: 20px; gap: 15px; }
+                .team-header-stats { width: 100%; justify-content: space-around; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.06); }
+                .team-logo { width: 55px; height: 55px; }
+                .team-name { font-size: 1.2rem; }
+                .roster-table { display: block; overflow-x: auto; }
+                .team-roster-inner { padding: 0 15px 20px; }
+            }
+            @media (max-width: 576px) {
+                .team-header-stats { gap: 10px; }
+                .team-stat-value { font-size: 1.1rem; }
+                .team-rank { width: 40px; height: 40px; font-size: 1.2rem; }
+                .team-logo { width: 45px; height: 45px; }
+                .roster-stats-bar { gap: 10px; }
+                .roster-stat-chip { padding: 8px 12px; }
+                .roster-player-name { max-width: 120px; }
+            }
+        </style>
     </head>
     <body>
 
         <!-- Preloader Start -->
         <div id="preloader" class="preloader">
             <div class="animation-preloader">
-                <div class="spinner">                
-                </div>
+                <div class="spinner"></div>
                 <div class="txt-loading">
                     <span data-text-preloader="U" class="letters-loading">U</span>
                     <span data-text-preloader="l" class="letters-loading">l</span>
@@ -68,31 +177,18 @@
             </div>
             <div class="loader">
                 <div class="row">
-                    <div class="col-3 loader-section section-left">
-                        <div class="bg"></div>
-                    </div>
-                    <div class="col-3 loader-section section-left">
-                        <div class="bg"></div>
-                    </div>
-                    <div class="col-3 loader-section section-right">
-                        <div class="bg"></div>
-                    </div>
-                    <div class="col-3 loader-section section-right">
-                        <div class="bg"></div>
-                    </div>
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
                 </div>
             </div>
-        </div>  
+        </div>
 
-        <!-- GT Back To Top Start -->
-        <button id="gt-back-top" class="gt-back-to-top show">
-            <i class="fa-regular fa-arrow-up"></i>
-        </button>
-
-        <!-- GT MouseCursor Start -->
+        <button id="gt-back-top" class="gt-back-to-top show"><i class="fa-regular fa-arrow-up"></i></button>
         <div class="mouseCursor cursor-outer"></div>
         <div class="mouseCursor cursor-inner"></div>
-        
+
         <!-- Offcanvas Area Start -->
         <div class="fix-area">
             <div class="offcanvas__info">
@@ -104,17 +200,10 @@
                                     <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="logo-img" style="max-height: 100px; width: auto;">
                                 </a>
                             </div>
-                            <div class="offcanvas__close">
-                                <button>
-                                <i class="fas fa-times"></i>
-                                </button>
-                            </div>
+                            <div class="offcanvas__close"><button><i class="fas fa-times"></i></button></div>
                         </div>
                         <div class="mobile-menu fix mb-3"></div>
-                            <div class="social-icon d-flex align-items-center">
-                                <a href="#"><i class="fab fa-discord"></i></a>
-                            </div>
-                        </div>
+                        <div class="social-icon d-flex align-items-center"><a href="#"><i class="fab fa-discord"></i></a></div>
                     </div>
                 </div>
             </div>
@@ -136,27 +225,11 @@
                                 <div class="main-menu">
                                     <nav id="mobile-menu">
                                         <ul>
-                                            <li class="active"><a href="index.html">Home</a></li>
-                                            <li>
-                                                <a href="league.html">
-                                                    League
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="players.html">
-                                                    Players
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="game.html">
-                                                    Teams
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="market.html">
-                                                    Market
-                                                </a>
-                                            </li>
+                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="league.html">League</a></li>
+                                            <li><a href="players.html">Players</a></li>
+                                            <li class="active"><a href="game.html">Teams</a></li>
+                                            <li><a href="market.html">Market</a></li>
                                             <li>
                                                 <a href="match-details.html">Wagers</a>
                                                 <ul class="submenu">
@@ -169,18 +242,13 @@
                                 </div>
                             </div>
                             <div class="header-right-icon">
-                                <a href="#" class="main-header__search search-toggler">
-                                    <i class="fa-regular fa-magnifying-glass"></i>
-                                </a>
+                                <a href="#" class="main-header__search search-toggler"><i class="fa-regular fa-magnifying-glass"></i></a>
                             </div>
-                           <div class="header-button">
-                                <a href="sponsor.html" class="gt-theme-btn">become a sponsor
-                                </a>
+                            <div class="header-button">
+                                <a href="sponsor.html" class="gt-theme-btn">become a sponsor</a>
                             </div>
                             <div class="header__hamburger d-xl-block my-auto">
-                                <div class="sidebar__toggle">
-                                    <i class="fas fa-bars"></i>
-                                </div>
+                                <div class="sidebar__toggle"><i class="fas fa-bars"></i></div>
                             </div>
                         </div>
                     </div>
@@ -188,7 +256,7 @@
             </div>
         </header>
 
-        <!-- GT Search Start -->
+        <!-- Search Popup -->
         <div class="search-popup">
             <div class="search-popup__overlay search-toggler"></div>
             <div class="search-popup__content">
@@ -203,562 +271,429 @@
 
         <div id="smooth-wrapper">
             <div id="smooth-content">
-                <!-- GT Breadcrunb Section Start -->
-        <div class="gt-breadcrumb-wrapper bg-cover" style="background-image: url('assets/img/breadcrumb.png');">
-            <div class="gt-left-shape">
-                <img loading="lazy" src="assets/img/shape-1.png" alt="img">
-            </div>
-            <div class="gt-right-shape">
-                <img loading="lazy" src="assets/img/shape-2.png" alt="img">
-            </div>
-            <div class="gt-blur-shape">
-                
-            </div>
-            <div class="container">
-                <div class="gt-page-heading">
-                    <div class="gt-breadcrumb-sub-title">
-                        <h1 class="wow fadeInUp" data-wow-delay=".3s">our Teams</h1>
+                <!-- Breadcrumb -->
+                <div class="gt-breadcrumb-wrapper bg-cover" style="background-image: url('assets/img/breadcrumb.png');">
+                    <div class="gt-left-shape"><img loading="lazy" src="assets/img/shape-1.png" alt="img"></div>
+                    <div class="gt-right-shape"><img loading="lazy" src="assets/img/shape-2.png" alt="img"></div>
+                    <div class="gt-blur-shape"></div>
+                    <div class="container">
+                        <div class="gt-page-heading">
+                            <div class="gt-breadcrumb-sub-title">
+                                <h1 class="wow fadeInUp" data-wow-delay=".3s">Teams</h1>
+                            </div>
+                            <ul class="gt-breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
+                                <li><i class="fa-solid fa-house"></i></li>
+                                <li><a href="index.html">home :</a></li>
+                                <li class="color">Teams</li>
+                            </ul>
+                        </div>
                     </div>
-                    <ul class="gt-breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
-                        <li>
-                            <i class="fa-solid fa-house"></i>
-                        </li>
-                        <li>
-                            <a href="index.html">
-                                home :
-                            </a>
-                        </li>
-                        <li class="color">
-                            our Teams
-                        </li>
-                    </ul>
                 </div>
-            </div>
-        </div>
 
-        <!-- GT Game Section Start -->
-       <section class="gt-game-section section-padding fix">
-        <div class="container-fluid">
-            <div class="row g-4">
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-                    <div class="gt-gaming-card-item mt-0">
-                        <div class="gt-gaming-image">
-                            <img loading="lazy" src="assets/img/home-1/game/game-1.png" alt="img">
-                            <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
-                            <div class="gt-gaming-content">
-                                <h6>metaverse</h6>
-                                <h3>
-                                    <a href="game-details.html">Sweet revenge gameplay</a>
-                                </h3>
+                <!-- Teams Section -->
+                <section class="teams-section section-padding fix">
+                    <div class="container">
+                        <div class="gt-section-title-area text-center">
+                            <div class="gt-section-title-2 text-center mb-0">
+                                <h6 class="subtitle tz-sub-tilte tz-sub-anim text-uppercase tx-subTitle">season 1</h6>
+                                <h2 class="tx-title sec_title tz-itm-title tz-itm-anim">URL LEAGUE TEAMS</h2>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                    <div class="gt-gaming-card-item mt-0">
-                        <div class="gt-gaming-image">
-                            <img loading="lazy" src="assets/img/home-1/game/game-2.png" alt="img">
-                            <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
-                            <div class="gt-gaming-content">
-                                <h6>metaverse</h6>
-                                <h3>
-                                    <a href="game-details.html">Sweet revenge gameplay</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                    <div class="gt-gaming-card-item mt-0">
-                        <div class="gt-gaming-image">
-                            <img loading="lazy" src="assets/img/home-1/game/game-3.png" alt="img">
-                            <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
-                            <div class="gt-gaming-content">
-                                <h6>metaverse</h6>
-                                <h3>
-                                    <a href="game-details.html">Sweet revenge gameplay</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
-                    <div class="gt-gaming-card-item mt-0">
-                        <div class="gt-gaming-image">
-                            <img loading="lazy" src="assets/img/home-1/game/game-4.png" alt="img">
-                            <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
-                            <div class="gt-gaming-content">
-                                <h6>metaverse</h6>
-                                <h3>
-                                    <a href="game-details.html">Sweet revenge gameplay</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="gt-gaming-card-item mt-0">
-                        <div class="gt-gaming-image">
-                            <img loading="lazy" src="assets/img/home-1/game/game-5.png" alt="img">
-                            <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
-                            <div class="gt-gaming-content">
-                                <h6>metaverse</h6>
-                                <h3>
-                                    <a href="game-details.html">Sweet revenge gameplay</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                    <div class="gt-gaming-card-item mt-0">
-                        <div class="gt-gaming-image">
-                            <img loading="lazy" src="assets/img/home-1/game/game-6.png" alt="img">
-                            <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
-                            <div class="gt-gaming-content">
-                                <h6>metaverse</h6>
-                                <h3>
-                                    <a href="game-details.html">Sweet revenge gameplay</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                    <div class="gt-gaming-card-item mt-0">
-                        <div class="gt-gaming-image">
-                            <img loading="lazy" src="assets/img/home-1/game/game-7.png" alt="img">
-                            <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
-                            <div class="gt-gaming-content">
-                                <h6>metaverse</h6>
-                                <h3>
-                                    <a href="game-details.html">Sweet revenge gameplay</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
-                    <div class="gt-gaming-card-item mt-0">
-                        <div class="gt-gaming-image">
-                            <img loading="lazy" src="assets/img/home-1/game/game-8.png" alt="img">
-                            <a href="game-details.html" class="icon"><i class="fa-solid fa-arrow-right"></i></a>
-                            <div class="gt-gaming-content">
-                                <h6>metaverse</h6>
-                                <h3>
-                                    <a href="game-details.html">Sweet revenge gameplay</a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-       </section>
 
-       <!-- GT About Section Start -->
-       <section class="gt-about-section fix section-padding pt-0">
-        <div class="container">
-            <div class="gt-about-wrapper style-2">
-                <div class="row g-4 align-items-center">
-                    <div class="col-lg-5">
-                        <div class="gt-about-image-2">
-                            <img loading="lazy" src="assets/img/home-3/about/about-01.png" alt="img">
-                            <div class="gt-bg-shape">
-                                <img loading="lazy" src="assets/img/home-3/about/bg-shape.png" alt="img">
-                            </div>
-                            <div class="gt-ellipse-shape-2">
-                                <img loading="lazy" src="assets/img/home-3/about/blur-shape.png" alt="img">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-7">
-                        <div class="gt-about-content">
-                            <div class="gt-section-title mb-0">
-                                <h6 class="subtitle tz-sub-tilte tz-sub-anim  text-uppercase tx-subTitle">about Ultimate Resilient League</h6>
-                                <h2 class="tx-title sec_title  tz-itm-title tz-itm-anim">
-                                    We focus on creating
-                                    beautiful games
-                                </h2>
-                            </div>
-                            <p class="gt-about-text wow fadeInUp" data-wow-delay=".5s">
-                                A game studio crafting exciting, high-quality video games, prioritizing immersive gameplay and mechanics.
-                            </p>
-                           <div class="gt-about-box-wrapper wow fadeInUp" data-wow-delay=".3s">
-                            <div class="gt-about-box-item">
-                                <div class="gt-about-box bg-color">
-                                    <div class="icon">
-                                        <img loading="lazy" src="assets/img/home-1/icon/icon-1.svg" alt="img">
-                                    </div>
-                                    <div class="content">
-                                        <h5>VR Supported</h5>
-                                        <p>
-                                            A game studio crafting exciting, video games
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="gt-about-box border-none">
-                                    <div class="icon">
-                                        <img loading="lazy" src="assets/img/home-1/icon/icon-2.svg" alt="img">
-                                    </div>
-                                    <div class="content">
-                                        <h5>Location Tagging</h5>
-                                        <p>
-                                            A game studio crafting exciting, video games
-                                        </p>
-                                    </div>
-                                </div>
-                               </div>
-                               <div class="gt-about-box-item">
-                                <div class="gt-about-box">
-                                    <div class="icon">
-                                        <img loading="lazy" src="assets/img/home-1/icon/icon-3.svg" alt="img">
-                                    </div>
-                                    <div class="content">
-                                        <h5>Multi dimension</h5>
-                                        <p>
-                                            A game studio crafting exciting, video games
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="gt-about-box border-none bg-color">
-                                    <div class="icon">
-                                        <img loading="lazy" src="assets/img/home-1/icon/icon-4.svg" alt="img">
-                                    </div>
-                                    <div class="content">
-                                        <h5>Console System</h5>
-                                        <p>
-                                            A game studio crafting exciting, video games
-                                        </p>
-                                    </div>
-                                </div>
-                               </div>
-                           </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-       </section>
+                        <!-- League Overview Stats -->
+                        <div class="league-overview" id="leagueOverview"></div>
 
-       <!-- GT Pricing Section Start -->
-       <section class="gt-pricing-section-2 section-padding fix bg-cover" style="background-image: url('assets/img/home-2/pricing-bg.jpg');">
-        <div class="container">
-            <div class="gt-pricing-wrapper">
-                <div class="row g-4 align-items-center">
-                    <div class="col-xl-4 col-lg-12 col-md-12">
-                        <div class="gt-pricing-content">
-                            <div class="gt-section-title-2 mb-0">
-                                <h6 class="subtitle tz-sub-tilte tz-sub-anim  text-uppercase tx-subTitle">best plan</h6>
-                                <h2 class="tx-title sec_title  tz-itm-title tz-itm-anim">
-                                    best pricing
-                                    plan for you!
-                                </h2>
-                            </div>
-                            <p class="gt-pricing-text wow fadeInUp" data-wow-delay=".5s">
-                                A game studio crafting exciting, high-quality video games, prioritizing immersive gameplay and mechanics.
-                            </p>
-                            <div class="d-flex">
-                                <div class="pricing-two__tab">
-                                    <nav>
-                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                            <button class="nav-link active" id="pt-1-tab" data-bs-toggle="tab"
-                                                data-bs-target="#pt-1" type="button" role="tab" aria-controls="pt-1"
-                                                aria-selected="true">Monthly</button>
-                                            <button class="nav-link" id="pt-2-tab" data-bs-toggle="tab" data-bs-target="#pt-2"
-                                                type="button" role="tab" aria-controls="pt-2"
-                                                aria-selected="false">Yearly</button>
-            
-                                        </div>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Teams Grid -->
+                        <div class="teams-grid" id="teamsGrid"></div>
                     </div>
-                    <div class="col-xl-8">
-                        <div class="pricing__tab-content">
-                            <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="pt-1" role="tabpanel" aria-labelledby="pt-1-tab">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-lg-6 col-md-6">
-                                            <div class="gt-pricing-box-items-2" style="background-image: url('assets/img/home-2/pricing-item-bg.png');">
-                                                <span class="gt-price-tag">basic pack</span>
-                                                <div class="gt-pricing-header">
-                                                    <div class="gt-icon">
-                                                        <img loading="lazy" src="assets/img/home-2/diamond.svg" alt="img">
-                                                    </div>
-                                                    <h2>$19.99</h2>
-                                                    <p>
-                                                        Proin gravida nibh vel velit auctor
-                                                        aliquet. Aenean sollicitudin
-                                                    </p>
-                                                </div>
-                                                <ul class="gt-pricing-list">
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Unlimited access to core features
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Restricted usage limits on storage
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        nhanced security features included
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Complete Ad-free gaming
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Multiple user accounts at discount
-                                                    </li>
-                                                </ul>
-                                                <div class="gt-pricing-btn">
-                                                    <div class="gt-bg-shape">
-                                                        <img loading="lazy" src="assets/img/home-2/pricing-btn-shape.png" alt="img">
-                                                    </div>
-                                                    <a href="pricing.html" class="gt-pricing-text">
-                                                        choose plan <i class="fa-solid fa-arrow-right"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6">
-                                            <div class="gt-pricing-box-items-2" style="background-image: url('assets/img/home-2/pricing-item-bg.png');">
-                                                <span class="gt-price-tag gt-bg-white">pro pack</span>
-                                                <div class="gt-pricing-header">
-                                                    <div class="gt-icon">
-                                                        <img loading="lazy" src="assets/img/home-2/diamond.svg" alt="img">
-                                                    </div>
-                                                    <h2>$39.99</h2>
-                                                    <p>
-                                                        Proin gravida nibh vel velit auctor
-                                                        aliquet. Aenean sollicitudin
-                                                    </p>
-                                                </div>
-                                                <ul class="gt-pricing-list">
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Unlimited access to core features
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Restricted usage limits on storage
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        nhanced security features included
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Complete Ad-free gaming
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Multiple user accounts at discount
-                                                    </li>
-                                                </ul>
-                                                <div class="gt-pricing-btn">
-                                                    <div class="gt-bg-shape">
-                                                        <img loading="lazy" src="assets/img/home-2/pricing-btn-shape-2.png" alt="img">
-                                                    </div>
-                                                    <a href="pricing.html" class="gt-pricing-text color-2">
-                                                        choose plan <i class="fa-solid fa-arrow-right"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="pt-2" role="tabpanel" aria-labelledby="pt-2-tab">
-                                    <div class="row">
-                                        <div class="col-xl-6 col-lg-6 col-md-6">
-                                            <div class="gt-pricing-box-items-2" style="background-image: url('assets/img/home-2/pricing-item-bg.png');">
-                                                <span class="gt-price-tag">basic pack</span>
-                                                <div class="gt-pricing-header">
-                                                    <div class="gt-icon">
-                                                        <img loading="lazy" src="assets/img/home-2/diamond.svg" alt="img">
-                                                    </div>
-                                                    <h2>$19.99</h2>
-                                                    <p>
-                                                        Proin gravida nibh vel velit auctor
-                                                        aliquet. Aenean sollicitudin
-                                                    </p>
-                                                </div>
-                                                <ul class="gt-pricing-list">
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Unlimited access to core features
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Restricted usage limits on storage
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        nhanced security features included
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Complete Ad-free gaming
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Multiple user accounts at discount
-                                                    </li>
-                                                </ul>
-                                                <div class="gt-pricing-btn">
-                                                    <div class="gt-bg-shape">
-                                                        <img loading="lazy" src="assets/img/home-2/pricing-btn-shape.png" alt="img">
-                                                    </div>
-                                                    <a href="pricing.html" class="gt-pricing-text">
-                                                        choose plan <i class="fa-solid fa-arrow-right"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6">
-                                            <div class="gt-pricing-box-items-2" style="background-image: url('assets/img/home-2/pricing-item-bg.png');">
-                                                <span class="gt-price-tag gt-bg-white">pro pack</span>
-                                                <div class="gt-pricing-header">
-                                                    <div class="gt-icon">
-                                                        <img loading="lazy" src="assets/img/home-2/diamond.svg" alt="img">
-                                                    </div>
-                                                    <h2>$39.99</h2>
-                                                    <p>
-                                                        Proin gravida nibh vel velit auctor
-                                                        aliquet. Aenean sollicitudin
-                                                    </p>
-                                                </div>
-                                                <ul class="gt-pricing-list">
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Unlimited access to core features
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Restricted usage limits on storage
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        nhanced security features included
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Complete Ad-free gaming
-                                                    </li>
-                                                    <li>
-                                                        <img loading="lazy" src="assets/img/home-2/check.svg" alt="img">
-                                                        Multiple user accounts at discount
-                                                    </li>
-                                                </ul>
-                                                <div class="gt-pricing-btn">
-                                                    <div class="gt-bg-shape">
-                                                        <img loading="lazy" src="assets/img/home-2/pricing-btn-shape-2.png" alt="img">
-                                                    </div>
-                                                    <a href="pricing.html" class="gt-pricing-text color-2">
-                                                        choose plan <i class="fa-solid fa-arrow-right"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
+                </section>
+
+                <!-- Footer -->
+                <footer class="gt-footer-section section-bg">
+                    <div class="container">
+                        <div class="gt-footer-widget-wrapper">
+                            <div class="row justify-content-between">
+                                <div class="col-xl-4 col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".2s">
+                                    <div class="gt-footer-widget-items">
+                                        <div class="gt-widget-head">
+                                            <a href="index.html" class="gt-footer-logo">
+                                                <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="img" style="max-height: 100px; width: auto;">
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </section>
-
-        <!-- GT Footer Section Start -->
-        <footer class="gt-footer-section section-bg">
-            <div class="container">
-                <div class="gt-footer-widget-wrapper">
-                    <div class="row justify-content-between">
-                        <div class="col-xl-4 col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".2s">
-                            <div class="gt-footer-widget-items">
-                                <div class="gt-widget-head">
-                                    <a href="index.html" class="gt-footer-logo">
-                                        <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="img" style="max-height: 100px; width: auto;">
-                                    </a>
-                                </div>
-                                <div class="gt-footer-content">
-                                    <div class="gt-social-icon d-flex align-items-center">
-                                        <a href="#"><i class="fab fa-discord"></i></a>
-                                    </div>
-                                </div>
+                        <div class="footer-bottom wow fadeInUp" data-wow-delay=".3s">
+                            <div class="footer-wrapper">
+                                <p>2025 Ultimate Resilient League. All Rights Reserved.</p>
+                                <ul class="gt-footer-list wow fadeInUp" data-wow-delay=".3s">
+                                    <li><a href="index.html">Cookies</a></li>
+                                    <li><a href="index.html">Privacy</a></li>
+                                    <li><a href="index.html">Terms</a></li>
+                                </ul>
                             </div>
                         </div>
-                        
-                        
-                        
-                        </div>
                     </div>
-                </div>
-                <div class="footer-bottom wow fadeInUp" data-wow-delay=".3s">
-                    <div class="footer-wrapper">
-                        <p>Ã‚Â© 2025Ã‚Â Ultimate Resilient League. All Rights Reserved.</p>
-                        <ul class="gt-footer-list wow fadeInUp" data-wow-delay=".3s">
-                            <li>
-                                <a href="index.html">Cookies</a>
-                            </li>
-                            <li>
-                                <a href="index.html">Privacy</a>
-                            </li>
-                            <li>
-                                <a href="index.html">Terms</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
+                </footer>
             </div>
         </div>
-        
-        
 
-         
-        
-        
-        <!--<< All JS Plugins >>-->
+        <!-- JS Plugins -->
         <script src="assets/js/jquery-3.7.1.min.js"></script>
-        <!--<< Viewport Js >>-->
         <script src="assets/js/viewport.jquery.js"></script>
-        <!--<< Bootstrap Js >>-->
         <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <!--<< nice-selec Js >>-->
         <script src="assets/js/jquery.nice-select.min.js"></script>
-        <!--<< Waypoints Js >>-->
         <script src="assets/js/jquery.waypoints.js"></script>
-        <!--<< Counterup Js >>-->
         <script src="assets/js/jquery.counterup.min.js"></script>
-        <!--<< Swiper Slider Js >>-->
         <script src="assets/js/swiper-bundle.min.js"></script>
-        <!--<< MeanMenu Js >>-->
         <script src="assets/js/jquery.meanmenu.min.js"></script>
-        <!--<< Magnific Popup Js >>-->
         <script src="assets/js/jquery.magnific-popup.min.js"></script>
-        
-        <!--<< Gsap Animation Js >>-->
         <script src="assets/js/gsap.js"></script>
         <script src="assets/js/gsap-scroll-to-plugin.js"></script>
         <script src="assets/js/gsap-scroll-smoother.js"></script>
         <script src="assets/js/gsap-scroll-trigger.js"></script>
-        <!--<< SplitText Js >>-->
         <script src="assets/js/SplitText.min.js"></script>
-        <!--<< splitType Js >>-->
         <script src="assets/js/splitType.js"></script>
-        <!--<< script-gsap Js >>-->
         <script src="assets/js/script-gsap.js"></script>
-        
-        <!--<< Wow Animation Js >>-->
         <script src="assets/js/wow.min.js"></script>
-        <!--<< Main.js >>-->
         <script src="assets/js/main.js"></script>
+
+        <script>
+        // ===== TEAM DATA WITH ROSTERS =====
+        const teamsData = [
+            {
+                name: "Dream Team", tag: "DT", kills: 166, points: 368, value: 10000,
+                color: "#FFD700", accent: "#FFA500",
+                image: "https://wallpapercave.com/wp/wp6795025.jpg",
+                roster: [
+                    { ign: "AG | Maus\u30E1", role: "FRAGGER", rarity: "legend", urlRating: 84, kills: 112, appearances: 12, value: 575, imageUrl: "" },
+                    { ign: "R\u0438 \u2022 Waven", role: "FRAGGER", rarity: "rare", urlRating: 74, kills: 89, appearances: 10, value: 516, imageUrl: "" },
+                    { ign: "\u03A3\u0438 | zaza", role: "IGL", rarity: "rare", urlRating: 69, kills: 95, appearances: 10, value: 496, imageUrl: "" },
+                    { ign: "ryze0", role: "SUPPORT", rarity: "elite", urlRating: 58, kills: 76, appearances: 13, value: 427, imageUrl: "" }
+                ]
+            },
+            {
+                name: "Viltrum", tag: "VLT", kills: 119, points: 349, value: 9182,
+                color: "#FF0040", accent: "#FF4060",
+                image: "https://wallpapercave.com/wp/wp6795025.jpg",
+                roster: [
+                    { ign: "pink.etc", role: "FRAGGER", rarity: "legend", urlRating: 88, kills: 123, appearances: 13, value: 600, imageUrl: "" },
+                    { ign: "R\u0438 \u2022 Tariq", role: "IGL", rarity: "elite", urlRating: 51, kills: 51, appearances: 8, value: 396, imageUrl: "" },
+                    { ign: "R\u0438 \u2022 ayanda<3", role: "SUPPORT", rarity: "elite", urlRating: 46, kills: 42, appearances: 5, value: 371, imageUrl: "" },
+                    { ign: "R\u0438 \u2022 Auradebt", role: "TANK", rarity: "elite", urlRating: 41, kills: 45, appearances: 10, value: 338, imageUrl: "" },
+                    { ign: "blue.etc", role: "TANK", rarity: "common", urlRating: 18, kills: 13, appearances: 13, value: 161, imageUrl: "" }
+                ]
+            },
+            {
+                name: "Epstein Files", tag: "EF", kills: 121, points: 295, value: 8568,
+                color: "#9B59B6", accent: "#8E44AD",
+                image: "https://wallpapercave.com/wp/wp6795025.jpg",
+                roster: [
+                    { ign: "NF | LIAM", role: "FRAGGER", rarity: "common", urlRating: 38, kills: 49, appearances: 10, value: 316, imageUrl: "" },
+                    { ign: "sYm\u272AAllfather", role: "TANK", rarity: "common", urlRating: 35, kills: 37, appearances: 10, value: 301, imageUrl: "" },
+                    { ign: "Tyzllah.etc", role: "IGL", rarity: "common", urlRating: 32, kills: 35, appearances: 13, value: 255, imageUrl: "" },
+                    { ign: "sYm\u272AHoliday", role: "FRAGGER", rarity: "common", urlRating: 19, kills: 21, appearances: 2, value: 187, imageUrl: "" },
+                    { ign: "R \u2022 Yang", role: "SUPPORT", rarity: "common", urlRating: 17, kills: 12, appearances: 7, value: 160, imageUrl: "" }
+                ]
+            },
+            {
+                name: "Dark Veil", tag: "DV", kills: 45, points: 251, value: 7144,
+                color: "#00CED1", accent: "#008B8B",
+                image: "https://wallpapercave.com/wp/wp6795025.jpg",
+                roster: [
+                    { ign: "Monkey.etc", role: "SUPPORT", rarity: "common", urlRating: 38, kills: 59, appearances: 5, value: 339, imageUrl: "" },
+                    { ign: "\u03A3\u0438 | Malik", role: "TANK", rarity: "common", urlRating: 33, kills: 26, appearances: 2, value: 260, imageUrl: "" },
+                    { ign: "BEYONDER \u2022 \u044Fe", role: "IGL", rarity: "common", urlRating: 32, kills: 35, appearances: 13, value: 255, imageUrl: "" },
+                    { ign: "\u00B9Seeyah\u00B2\u00B9", role: "IGL", rarity: "common", urlRating: 19, kills: 21, appearances: 9, value: 176, imageUrl: "" },
+                    { ign: "DO1LAR \u2022 ixt", role: "IGL", rarity: "common", urlRating: 13, kills: 7, appearances: 5, value: 142, imageUrl: "" }
+                ]
+            },
+            {
+                name: "Only Fans", tag: "OF", kills: 56, points: 222, value: 6901,
+                color: "#E91E63", accent: "#C2185B",
+                image: "https://wallpapercave.com/wp/wp6795025.jpg",
+                roster: [
+                    { ign: "patrick.etc", role: "SUPPORT", rarity: "common", urlRating: 35, kills: 12, appearances: 2, value: 290, imageUrl: "" },
+                    { ign: "R\u0438 \u2022 Domino", role: "SUPPORT", rarity: "common", urlRating: 32, kills: 32, appearances: 10, value: 255, imageUrl: "" },
+                    { ign: "B\u00B2M | Avo \u2022 \u03BB\u03B7", role: "TANK", rarity: "common", urlRating: 20, kills: 18, appearances: 3, value: 192, imageUrl: "" },
+                    { ign: "BeerusT", role: "SUPPORT", rarity: "common", urlRating: 19, kills: 13, appearances: 1, value: 193, imageUrl: "" },
+                    { ign: "sYm\u272ALeo", role: "SUPPORT", rarity: "common", urlRating: 13, kills: 4, appearances: 2, value: 149, imageUrl: "" }
+                ]
+            },
+            {
+                name: "Tier 0 Elites", tag: "T0E", kills: 80, points: 202, value: 6906,
+                color: "#4A90D9", accent: "#2C6FAC",
+                image: "https://wallpapercave.com/wp/wp6795025.jpg",
+                roster: [
+                    { ign: "44 \u2022 Ban0", role: "IGL", rarity: "elite", urlRating: 42, kills: 31, appearances: 13, value: 332, imageUrl: "" },
+                    { ign: "C1N", role: "SUPPORT", rarity: "common", urlRating: 33, kills: 42, appearances: 13, value: 270, imageUrl: "" },
+                    { ign: "39Intro.etc", role: "SUPPORT", rarity: "common", urlRating: 32, kills: 30, appearances: 8, value: 261, imageUrl: "" },
+                    { ign: "F\u03A3 | dazing", role: "SUPPORT", rarity: "common", urlRating: 21, kills: 12, appearances: 4, value: 197, imageUrl: "" },
+                    { ign: "Vortex \u2022 ixt", role: "TANK", rarity: "common", urlRating: 6, kills: 1, appearances: 1, value: 148, imageUrl: "" }
+                ]
+            },
+            {
+                name: "Valhala", tag: "VH", kills: 72, points: 201, value: 6736,
+                color: "#2ECC71", accent: "#27AE60",
+                image: "https://wallpapercave.com/wp/wp6795025.jpg",
+                roster: [
+                    { ign: "Z\u0418 \u03A3\u0438 | Pooki", role: "SUPPORT", rarity: "elite", urlRating: 50, kills: 53, appearances: 7, value: 395, imageUrl: "" },
+                    { ign: "juuzou", role: "TANK", rarity: "elite", urlRating: 42, kills: 35, appearances: 9, value: 335, imageUrl: "" },
+                    { ign: "MC | Mo", role: "SUPPORT", rarity: "common", urlRating: 31, kills: 48, appearances: 11, value: 251, imageUrl: "" },
+                    { ign: "sora\u0295\u03BBn", role: "IGL", rarity: "common", urlRating: 21, kills: 14, appearances: 5, value: 197, imageUrl: "" },
+                    { ign: "ColdG2000", role: "SUPPORT", rarity: "common", urlRating: 2, kills: 0, appearances: 3, value: 125, imageUrl: "" }
+                ]
+            },
+            {
+                name: "Mamos Pink Cartel", tag: "MPC", kills: 60, points: 186, value: 5821,
+                color: "#FF69B4", accent: "#FF1493",
+                image: "https://wallpapercave.com/wp/wp6795025.jpg",
+                roster: [
+                    { ign: "Z\u0141.BuZz ;)", role: "TANK", rarity: "elite", urlRating: 50, kills: 63, appearances: 13, value: 388, imageUrl: "" },
+                    { ign: "R\u0438 \u2022 Aim", role: "IGL", rarity: "elite", urlRating: 42, kills: 49, appearances: 12, value: 345, imageUrl: "" },
+                    { ign: "Member", role: "SUPPORT", rarity: "common", urlRating: 30, kills: 53, appearances: 13, value: 233, imageUrl: "" },
+                    { ign: "sYm\u272AHimothy", role: "SUPPORT", rarity: "common", urlRating: 21, kills: 18, appearances: 10, value: 186, imageUrl: "" },
+                    { ign: "blunt(isdaddy)", role: "TANK", rarity: "common", urlRating: 1, kills: 0, appearances: 1, value: 123, imageUrl: "" }
+                ]
+            },
+            {
+                name: "Big Baddies Of SA", tag: "BBSA", kills: 66, points: 146, value: 5453,
+                color: "#F39C12", accent: "#E67E22",
+                image: "https://wallpapercave.com/wp/wp6795025.jpg",
+                roster: [
+                    { ign: "Z\u0141.SID ;)", role: "TANK", rarity: "elite", urlRating: 50, kills: 37, appearances: 5, value: 383, imageUrl: "" },
+                    { ign: "INS \u2022 Yolanda", role: "FRAGGER", rarity: "elite", urlRating: 43, kills: 61, appearances: 5, value: 370, imageUrl: "" },
+                    { ign: "SpongeBo.z\u00EBn", role: "SUPPORT", rarity: "common", urlRating: 29, kills: 29, appearances: 10, value: 233, imageUrl: "" },
+                    { ign: "DADDY.BISHOP", role: "FRAGGER", rarity: "common", urlRating: 22, kills: 10, appearances: 3, value: 196, imageUrl: "" }
+                ]
+            },
+            {
+                name: "Rouge Legion", tag: "RL", kills: 23, points: 85, value: 3000,
+                color: "#E74C3C", accent: "#C0392B",
+                image: "https://wallpapercave.com/wp/wp6795025.jpg",
+                roster: [
+                    { ign: "LGN \u2022 Mvement", role: "FRAGGER", rarity: "elite", urlRating: 46, kills: 74, appearances: 12, value: 374, imageUrl: "" },
+                    { ign: "Ghost", role: "FRAGGER", rarity: "common", urlRating: 27, kills: 46, appearances: 8, value: 222, imageUrl: "" },
+                    { ign: "makio*", role: "IGL", rarity: "common", urlRating: 24, kills: 11, appearances: 3, value: 202, imageUrl: "" },
+                    { ign: "\u00D8P\u0160 \u2022 ZAM", role: "FRAGGER", rarity: "common", urlRating: 18, kills: 6, appearances: 2, value: 174, imageUrl: "" },
+                    { ign: "H\u00AEunter~sung", role: "FRAGGER", rarity: "common", urlRating: 17, kills: 13, appearances: 10, value: 160, imageUrl: "" }
+                ]
+            }
+        ];
+
+        const DEFAULT_PORTRAIT = 'https://preview.redd.it/1jc1uhvavtt41.png?width=1080&crop=smart&auto=webp&s=cdd44f66cd046eef938476d3e035c88bb5750b7b';
+
+        // ===== GENERATE TEAM SVG LOGO =====
+        function generateTeamLogo(team) {
+            return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="grad-${team.tag}" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:${team.color};stop-opacity:1"/>
+                        <stop offset="100%" style="stop-color:${team.accent};stop-opacity:1"/>
+                    </linearGradient>
+                </defs>
+                <polygon points="50,5 95,25 95,65 50,95 5,65 5,25" fill="url(#grad-${team.tag})" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                <polygon points="50,15 85,30 85,60 50,85 15,60 15,30" fill="rgba(0,0,0,0.3)" stroke="none"/>
+                <text x="50" y="${team.tag.length > 3 ? '55' : '58'}" font-family="Rajdhani, sans-serif" font-size="${team.tag.length > 3 ? '18' : '22'}" font-weight="800" fill="#fff" text-anchor="middle" dominant-baseline="middle">${team.tag}</text>
+            </svg>`;
+        }
+
+        // ===== FORMAT CURRENCY =====
+        function formatCurrency(val) {
+            if (val >= 1000000) return (val / 1000000).toFixed(2) + 'M';
+            if (val >= 1000) return (val / 1000).toFixed(1) + 'K';
+            return val.toLocaleString();
+        }
+
+        // ===== RATING COLOR =====
+        function getRatingColor(rating) {
+            if (rating >= 80) return '#FFD700';
+            if (rating >= 60) return '#FF0040';
+            if (rating >= 40) return '#9B59B6';
+            return '#4A90D9';
+        }
+
+        // ===== RENDER LEAGUE OVERVIEW =====
+        function renderLeagueOverview() {
+            const container = document.getElementById('leagueOverview');
+            const totalPlayers = teamsData.reduce((sum, t) => sum + t.roster.length, 0);
+            const totalValue = teamsData.reduce((sum, t) => sum + t.value, 0);
+            const totalKills = teamsData.reduce((sum, t) => sum + t.kills, 0);
+            const totalPoints = teamsData.reduce((sum, t) => sum + t.points, 0);
+
+            container.innerHTML = `
+                <div class="league-stat-card">
+                    <span class="league-stat-value">${teamsData.length}</span>
+                    <span class="league-stat-label">Teams</span>
+                </div>
+                <div class="league-stat-card">
+                    <span class="league-stat-value">${totalPlayers}</span>
+                    <span class="league-stat-label">Players</span>
+                </div>
+                <div class="league-stat-card">
+                    <span class="league-stat-value">${formatCurrency(totalValue)}</span>
+                    <span class="league-stat-label">Total Value</span>
+                </div>
+                <div class="league-stat-card">
+                    <span class="league-stat-value">${totalKills.toLocaleString()}</span>
+                    <span class="league-stat-label">Total Kills</span>
+                </div>
+                <div class="league-stat-card">
+                    <span class="league-stat-value">${totalPoints.toLocaleString()}</span>
+                    <span class="league-stat-label">Total Points</span>
+                </div>
+            `;
+        }
+
+        // ===== RENDER TEAMS =====
+        function renderTeams() {
+            const grid = document.getElementById('teamsGrid');
+            grid.innerHTML = '';
+
+            teamsData.forEach((team, index) => {
+                const rank = index + 1;
+                const rankClass = rank <= 3 ? `rank-${rank}` : 'rank-default';
+                const avgRating = team.roster.length > 0
+                    ? Math.round(team.roster.reduce((s, p) => s + p.urlRating, 0) / team.roster.length) : 0;
+                const totalRosterKills = team.roster.reduce((s, p) => s + p.kills, 0);
+                const rosterValue = team.roster.reduce((s, p) => s + p.value, 0);
+
+                const panel = document.createElement('div');
+                panel.className = 'team-panel wow fadeInUp';
+                panel.setAttribute('data-wow-delay', `${0.1 + index * 0.05}s`);
+
+                // Build roster rows
+                let rosterRows = '';
+                const sortedRoster = [...team.roster].sort((a, b) => b.urlRating - a.urlRating);
+                sortedRoster.forEach(player => {
+                    const portraitUrl = player.imageUrl || DEFAULT_PORTRAIT;
+                    const kpa = player.appearances > 0 ? (player.kills / player.appearances).toFixed(1) : '0.0';
+                    const ratingColor = getRatingColor(player.urlRating);
+                    const ratingPct = Math.min(100, player.urlRating);
+
+                    rosterRows += `
+                        <tr>
+                            <td>
+                                <div class="roster-player-info">
+                                    <div class="roster-player-avatar">
+                                        <img src="${portraitUrl}" alt="${player.ign}" loading="lazy">
+                                    </div>
+                                    <span class="roster-player-name">${player.ign}</span>
+                                </div>
+                            </td>
+                            <td><span class="roster-role-badge role-${player.role.toLowerCase()}">${player.role}</span></td>
+                            <td><span class="roster-rarity rarity-${player.rarity}">${player.rarity}</span></td>
+                            <td>
+                                <div class="roster-rating">
+                                    <span class="rating-number" style="color:${ratingColor}">${player.urlRating}</span>
+                                    <div class="rating-bar">
+                                        <div class="rating-bar-fill" style="width:${ratingPct}%;background:${ratingColor}"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>${player.kills}</td>
+                            <td>${player.appearances}</td>
+                            <td>${kpa}</td>
+                            <td><span class="roster-value">${player.value}</span></td>
+                        </tr>
+                    `;
+                });
+
+                panel.innerHTML = `
+                    <div class="team-header" onclick="toggleTeam(this)">
+                        <div class="team-rank ${rankClass}">${rank}</div>
+                        <div class="team-logo">
+                            <img src="${team.image}" alt="${team.name} logo" loading="lazy">
+                        </div>
+                        <div class="team-info">
+                            <div class="team-name-row">
+                                <h3 class="team-name">${team.name}</h3>
+                                <span class="team-tag">${team.tag}</span>
+                            </div>
+                            <div class="team-meta">
+                                <span class="team-meta-item"><span>${team.roster.length}</span> Players</span>
+                                <span class="team-meta-item">Avg Rating: <span>${avgRating}</span></span>
+                            </div>
+                        </div>
+                        <div class="team-header-stats">
+                            <div class="team-stat">
+                                <span class="team-stat-value">${team.kills}</span>
+                                <span class="team-stat-label">Kills</span>
+                            </div>
+                            <div class="team-stat">
+                                <span class="team-stat-value">${team.points}</span>
+                                <span class="team-stat-label">Points</span>
+                            </div>
+                            <div class="team-stat team-value-stat">
+                                <span class="team-stat-value">${formatCurrency(team.value)}</span>
+                                <span class="team-stat-label">Value</span>
+                            </div>
+                        </div>
+                        <div class="team-expand-arrow">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="team-roster">
+                        <div class="team-roster-inner">
+                            <div class="roster-stats-bar">
+                                <div class="roster-stat-chip">
+                                    <span class="chip-value">${totalRosterKills}</span>
+                                    <span class="chip-label">Roster Kills</span>
+                                </div>
+                                <div class="roster-stat-chip">
+                                    <span class="chip-value">${avgRating}</span>
+                                    <span class="chip-label">Avg Rating</span>
+                                </div>
+                                <div class="roster-stat-chip">
+                                    <span class="chip-value">${rosterValue}</span>
+                                    <span class="chip-label">Roster URL</span>
+                                </div>
+                                <div class="roster-stat-chip">
+                                    <span class="chip-value" style="color:${team.color}">${formatCurrency(team.value)}</span>
+                                    <span class="chip-label">Team Value</span>
+                                </div>
+                            </div>
+                            <div style="overflow-x:auto;">
+                                <table class="roster-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Player</th>
+                                            <th>Role</th>
+                                            <th>Rarity</th>
+                                            <th>Rating</th>
+                                            <th>Kills</th>
+                                            <th>Apps</th>
+                                            <th>K/A</th>
+                                            <th>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>${rosterRows}</tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(panel);
+            });
+        }
+
+        // ===== TOGGLE TEAM EXPAND =====
+        function toggleTeam(header) {
+            const panel = header.closest('.team-panel');
+            panel.classList.toggle('expanded');
+        }
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLeagueOverview();
+            renderTeams();
+
+            // Auto-expand first team
+            const firstPanel = document.querySelector('.team-panel');
+            if (firstPanel) firstPanel.classList.add('expanded');
+        });
+        </script>
     </body>
 </html>
