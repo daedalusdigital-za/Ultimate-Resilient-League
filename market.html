@@ -28,29 +28,13 @@
         <link rel="stylesheet" href="assets/css/nice-select.css">
         <!--<< Main.css >>-->
         <link rel="stylesheet" href="assets/css/main.css">
+        <!--<< Premium Player Cards >>-->
+        <link rel="stylesheet" href="assets/css/premium-cards.css">
         
         <style>
             /* ===== MARKET PAGE STYLES ===== */
             .market-section {
-                padding: 100px 0;
                 background: linear-gradient(180deg, #0a0a0f 0%, #12121a 100%);
-            }
-            
-            .market-header {
-                text-align: center;
-                margin-bottom: 60px;
-            }
-            
-            .market-header h1 {
-                font-size: 3rem;
-                color: #FFD700;
-                text-transform: uppercase;
-                margin-bottom: 15px;
-            }
-            
-            .market-header p {
-                color: rgba(255,255,255,0.7);
-                font-size: 1.1rem;
             }
             
             /* Market Stats Overview */
@@ -186,95 +170,198 @@
                 color: #888;
             }
             
-            /* Player Values Grid */
-            .player-values-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 20px;
+            /* Player Values Table */
+            .player-values-table {
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 0 6px;
                 margin-bottom: 50px;
             }
-            
-            .player-value-card {
-                background: rgba(255,255,255,0.03);
-                border: 2px solid rgba(255,255,255,0.1);
-                border-radius: 15px;
-                padding: 20px;
+
+            .player-values-table thead th {
+                padding: 12px 16px;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: rgba(255,255,255,0.45);
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                text-align: left;
+            }
+
+            .player-values-table thead th:last-child,
+            .player-values-table thead th:nth-child(4),
+            .player-values-table thead th:nth-child(5) {
+                text-align: right;
+            }
+
+            .player-values-table tbody tr {
+                background: rgba(255,255,255,0.025);
+                cursor: pointer;
+                transition: all 0.25s ease;
+            }
+
+            .player-values-table tbody tr:hover {
+                background: rgba(255,215,0,0.06);
+                transform: translateX(4px);
+            }
+
+            .player-values-table tbody tr.legend-row { border-left: 3px solid #FFD700; }
+            .player-values-table tbody tr.rare-row   { border-left: 3px solid #FF0040; }
+            .player-values-table tbody tr.elite-row  { border-left: 3px solid #9B59B6; }
+            .player-values-table tbody tr.common-row { border-left: 3px solid #4A90D9; }
+
+            .player-values-table td {
+                padding: 14px 16px;
+                vertical-align: middle;
+                font-size: 0.95rem;
+                color: #fff;
+            }
+
+            .player-values-table td:last-child,
+            .player-values-table td:nth-child(4),
+            .player-values-table td:nth-child(5) {
+                text-align: right;
+            }
+
+            .pv-rank {
+                font-weight: 800;
+                color: rgba(255,255,255,0.35);
+                font-size: 0.85rem;
+                width: 40px;
+            }
+
+            .pv-player-cell {
                 display: flex;
                 align-items: center;
-                gap: 15px;
-                transition: all 0.3s ease;
+                gap: 12px;
             }
-            
-            .player-value-card:hover {
-                border-color: rgba(255,215,0,0.5);
-                transform: translateY(-3px);
-            }
-            
-            .player-value-card.legend {
-                border-color: rgba(255,215,0,0.5);
-                background: linear-gradient(135deg, rgba(61,42,10,0.5), rgba(90,74,26,0.5));
-            }
-            
-            .player-value-card.rare {
-                border-color: rgba(255,0,64,0.5);
-                background: linear-gradient(135deg, rgba(26,10,10,0.5), rgba(45,10,10,0.5));
-            }
-            
-            .player-value-card.elite {
-                border-color: rgba(155,89,182,0.5);
-                background: linear-gradient(135deg, rgba(45,26,61,0.5), rgba(74,42,90,0.5));
-            }
-            
-            .player-avatar {
-                width: 60px;
-                height: 60px;
+
+            .pv-avatar {
+                width: 36px;
+                height: 36px;
                 border-radius: 50%;
-                background: rgba(255,215,0,0.2);
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 1.5rem;
-                color: #FFD700;
+                font-size: 0.85rem;
                 flex-shrink: 0;
             }
-            
-            .player-info {
-                flex: 1;
-                min-width: 0;
-            }
-            
-            .player-info h4 {
-                color: #fff;
-                font-size: 1rem;
-                margin: 0 0 5px 0;
+            .pv-avatar.legend { background: rgba(255,215,0,0.2); color: #FFD700; }
+            .pv-avatar.rare   { background: rgba(255,0,64,0.2);  color: #FF0040; }
+            .pv-avatar.elite  { background: rgba(155,89,182,0.2); color: #9B59B6; }
+            .pv-avatar.common { background: rgba(74,144,217,0.2); color: #4A90D9; }
+
+            .pv-name {
+                font-weight: 700;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
-            
-            .player-info .player-meta {
-                font-size: 0.85rem;
-                color: rgba(255,255,255,0.6);
+
+            .pv-rarity-pill {
+                display: inline-block;
+                padding: 2px 8px;
+                border-radius: 10px;
+                font-size: 0.65rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
             }
-            
-            .player-info .player-meta span {
-                margin-right: 10px;
+            .pv-rarity-pill.legend { background: rgba(255,215,0,0.18); color: #FFD700; }
+            .pv-rarity-pill.rare   { background: rgba(255,0,64,0.18);  color: #FF0040; }
+            .pv-rarity-pill.elite  { background: rgba(155,89,182,0.18); color: #9B59B6; }
+            .pv-rarity-pill.common { background: rgba(74,144,217,0.18); color: #4A90D9; }
+
+            .pv-role {
+                color: rgba(255,255,255,0.55);
+                font-size: 0.8rem;
             }
-            
-            .player-value {
-                text-align: right;
+
+            .pv-rating {
+                font-weight: 800;
+                font-size: 1.05rem;
             }
-            
-            .player-value .value {
-                font-size: 1.3rem;
-                font-weight: bold;
+
+            .pv-value {
+                font-weight: 800;
                 color: #FFD700;
-                display: block;
+                font-size: 1.05rem;
             }
-            
-            .player-value .rating {
-                font-size: 0.85rem;
-                color: rgba(255,255,255,0.6);
+
+            .pv-view-hint {
+                color: rgba(255,255,255,0.2);
+                font-size: 0.8rem;
+                transition: color 0.25s ease;
+            }
+            .player-values-table tbody tr:hover .pv-view-hint {
+                color: #FFD700;
+            }
+
+            /* Card popup modal */
+            .market-card-modal {
+                position: fixed;
+                inset: 0;
+                z-index: 10000;
+                background: rgba(0,0,0,0.88);
+                backdrop-filter: blur(10px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+            .market-card-modal.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            .market-card-modal .modal-card-wrap {
+                transform: scale(0.85);
+                transition: transform 0.3s ease;
+            }
+            .market-card-modal.active .modal-card-wrap {
+                transform: scale(1);
+            }
+            .market-card-modal .modal-card-wrap .url-card {
+                --url-card-width: 300px;
+            }
+            .market-card-close {
+                position: absolute;
+                top: 30px;
+                right: 30px;
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                border: 2px solid rgba(255,255,255,0.3);
+                background: rgba(0,0,0,0.4);
+                color: #fff;
+                font-size: 1.5rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                z-index: 10001;
+            }
+            .market-card-close:hover {
+                background: #ff4444;
+                border-color: #ff4444;
+                transform: rotate(90deg);
+            }
+
+            @media (max-width: 768px) {
+                .player-values-table thead { display: none; }
+                .player-values-table tbody tr {
+                    display: flex;
+                    flex-wrap: wrap;
+                    padding: 12px;
+                    gap: 6px;
+                    border-radius: 10px;
+                    margin-bottom: 6px;
+                }
+                .player-values-table td { padding: 4px 8px; border: none; }
+                .pv-rank { width: auto; }
+                .market-card-modal .modal-card-wrap .url-card { --url-card-width: 260px; }
             }
             
             /* Transfers Section */
@@ -375,7 +462,44 @@
                 background: rgba(255,255,255,0.1);
                 color: rgba(255,255,255,0.6);
             }
-            
+
+            .transfer-type.pending {
+                background: rgba(255,165,0,0.25);
+                color: #ffa500;
+                animation: pendingPulse 2s ease-in-out infinite;
+            }
+
+            @keyframes pendingPulse {
+                0%, 100% { opacity: 1; box-shadow: 0 0 6px rgba(255,165,0,0.2); }
+                50% { opacity: 0.7; box-shadow: 0 0 14px rgba(255,165,0,0.5); }
+            }
+
+            .transfer-status {
+                padding: 4px 10px;
+                border-radius: 20px;
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+            }
+
+            .transfer-status.status-pending {
+                background: rgba(255,165,0,0.15);
+                color: #ffa500;
+                border: 1px solid rgba(255,165,0,0.35);
+            }
+
+            .transfer-status.status-completed {
+                background: rgba(0,255,136,0.1);
+                color: #00ff88;
+                border: 1px solid rgba(0,255,136,0.2);
+            }
+
+            .transfer-item.is-pending {
+                border-left: 3px solid #ffa500;
+                background: rgba(255,165,0,0.04);
+            }
+
             /* Search and Filter */
             .market-controls {
                 display: flex;
@@ -454,14 +578,7 @@
                     align-items: flex-start;
                 }
                 
-                .transfer-teams {
-                    width: 100%;
-                }
-                
-                .player-values-grid {
-                    grid-template-columns: 1fr;
-                }
-            }
+                .transfer-teams {\n                    width: 100%;\n                }\n            }
             
             /* Rarity badges */
             .rarity-badge {
@@ -602,16 +719,24 @@
                                         <ul>
                                             <li><a href="index.html">Home</a></li>
                                             <li>
-                                                <a href="league.html">League</a>
+                                                <a href="league.html">
+                                                    League
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="players.html">Players</a>
+                                                <a href="players.html">
+                                                    Players
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="game.html">Teams</a>
+                                                <a href="game.html">
+                                                    Teams
+                                                </a>
                                             </li>
                                             <li class="active">
-                                                <a href="market.html">Market</a>
+                                                <a href="market.html">
+                                                    Market
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="match-details.html">Wagers</a>
@@ -625,7 +750,13 @@
                                 </div>
                             </div>
                             <div class="header-right-icon">
-                                <a href="sponsor.html" class="game-icon"><i class=""></i> become a sponsor</a>
+                                <a href="#" class="main-header__search search-toggler">
+                                    <i class="fa-regular fa-magnifying-glass"></i>
+                                </a>
+                            </div>
+                           <div class="header-button">
+                                <a href="sponsor.html" class="gt-theme-btn">become a sponsor
+                                </a>
                             </div>
                             <div class="header__hamburger d-xl-block my-auto">
                                 <div class="sidebar__toggle">
@@ -638,34 +769,64 @@
             </div>
         </header>
 
+        <!-- GT Search Start -->
+        <div class="search-popup">
+            <div class="search-popup__overlay search-toggler"></div>
+            <div class="search-popup__content">
+                <form role="search" method="get" class="search-popup__form" action="#">
+                    <input type="text" id="search" name="search" placeholder="Search Here...">
+                    <button type="submit" aria-label="search submit" class="search-btn">
+                        <span><i class="fa-regular fa-magnifying-glass"></i></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
         <div id="smooth-wrapper">
             <div id="smooth-content">
+                <!-- GT Breadcrunb Section Start -->
+        <div class="gt-breadcrumb-wrapper bg-cover" style="background-image: url('assets/img/breadcrumb.png');">
+            <div class="gt-left-shape">
+                <img loading="lazy" src="assets/img/shape-1.png" alt="img">
+            </div>
+            <div class="gt-right-shape">
+                <img loading="lazy" src="assets/img/shape-2.png" alt="img">
+            </div>
+            <div class="gt-blur-shape">
                 
-                <!-- Breadcrumb Section -->
-                <div class="gt-breadcrumb_section fix bg-cover" style="background-image: url('assets/img/home-1/game/b1.jpg');">
-                    <div class="container">
-                        <div class="gt-breadcrumb_wrapper">
-                            <h1 class="wow animated-image">URL Market</h1>
-                            <ul class="gt-breadcrumb_list wow animated-image">
-                                <li>
-                                    <a href="index.html">Home</a>
-                                </li>
-                                <li>
-                                    Market
-                                </li>
-                            </ul>
-                        </div>
+            </div>
+            <div class="container">
+                <div class="gt-page-heading">
+                    <div class="gt-breadcrumb-sub-title">
+                        <h1 class="wow fadeInUp" data-wow-delay=".3s">Market</h1>
                     </div>
+                    <ul class="gt-breadcrumb-items wow fadeInUp" data-wow-delay=".5s">
+                        <li>
+                            <i class="fa-solid fa-house"></i>
+                        </li>
+                        <li>
+                            <a href="index.html">
+                                home :
+                            </a>
+                        </li>
+                        <li class="color">
+                            Market
+                        </li>
+                    </ul>
                 </div>
+            </div>
+        </div>
 
                 <!-- Market Section Start -->
-                <section class="market-section">
+                <section class="market-section section-padding fix">
                     <div class="container">
-                        
-                        <!-- Market Header -->
-                        <div class="market-header wow fadeInUp">
-                            <h1><i class="fa-solid fa-chart-line"></i> Transfer Market</h1>
-                            <p>Track player values, team valuations, and transfer activity in the Ultimate Resilient League</p>
+                        <div class="gt-section-title-area text-center">
+                            <div class="gt-section-title-2 text-center mb-0">
+                                <h6 class="subtitle tz-sub-tilte tz-sub-anim text-uppercase tx-subTitle">transfer market</h6>
+                                <h2 class="tx-title sec_title tz-itm-title tz-itm-anim">
+                                    TRANSFER MARKET
+                                </h2>
+                            </div>
                         </div>
                         
                         <!-- Market Stats Overview -->
@@ -734,14 +895,26 @@
                             </div>
                         </div>
                         
-                        <div class="player-values-grid" id="playerValuesGrid">
-                            <!-- Populated by JavaScript -->
-                        </div>
+                        <table class="player-values-table" id="playerValuesTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Player</th>
+                                    <th>Role</th>
+                                    <th>Rating</th>
+                                    <th>Value</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="playerValuesBody">
+                                <!-- Populated by JavaScript -->
+                            </tbody>
+                        </table>
                         
                         <!-- Recent Transfers Section -->
                         <div class="section-title wow fadeInUp" data-wow-delay=".3s">
                             <span class="icon"><i class="fa-solid fa-right-left"></i></span>
-                            <h2>Recent Transfers</h2>
+                            <h2>Recent Transfers <span id="pendingCount" style="font-size: 0.6em; color: #ffa500; vertical-align: middle; margin-left: 8px; animation: pendingPulse 2s ease-in-out infinite;"></span></h2>
                         </div>
                         
                         <div class="transfers-list" id="transfersList">
@@ -782,6 +955,12 @@
             </div>
         </div>
         
+        <!-- Card Popup Modal (outside smooth-wrapper for position:fixed to work) -->
+        <div id="marketCardModal" class="market-card-modal">
+            <button class="market-card-close" id="marketCardClose">&times;</button>
+            <div class="modal-card-wrap" id="marketCardWrap"></div>
+        </div>
+
         <!--<< All JS Plugins >>-->
         <script src="assets/js/jquery-3.7.1.min.js"></script>
         <script src="assets/js/viewport.jquery.js"></script>
@@ -805,54 +984,54 @@
         <script>
             // ===== PLAYER DATA (from actual URL players) =====
             const playersData = [
-                { ign: "pink.etc", team: "FREE AGENT", role: "AWP", rarity: "legend", urlRating: 88, kills: 123, appearances: 13, value: 600 },
+                { ign: "pink.etc", team: "FREE AGENT", role: "FRAGGER", rarity: "legend", urlRating: 88, kills: 123, appearances: 13, value: 600 },
                 { ign: "AG | Mausメ", team: "FREE AGENT", role: "FRAGGER", rarity: "legend", urlRating: 84, kills: 112, appearances: 12, value: 575 },
-                { ign: "Rи • Waven", team: "FREE AGENT", role: "SNIPER", rarity: "rare", urlRating: 74, kills: 89, appearances: 10, value: 516 },
-                { ign: "Σи | zaza", team: "FREE AGENT", role: "CAPTAIN", rarity: "rare", urlRating: 69, kills: 95, appearances: 10, value: 496 },
+                { ign: "Rи • Waven", team: "FREE AGENT", role: "FRAGGER", rarity: "rare", urlRating: 74, kills: 89, appearances: 10, value: 516 },
+                { ign: "Σи | zaza", team: "FREE AGENT", role: "IGL", rarity: "rare", urlRating: 69, kills: 95, appearances: 10, value: 496 },
                 { ign: "ryze0", team: "FREE AGENT", role: "SUPPORT", rarity: "elite", urlRating: 58, kills: 76, appearances: 13, value: 427 },
                 { ign: "Rи • Tariq", team: "FREE AGENT", role: "IGL", rarity: "elite", urlRating: 51, kills: 51, appearances: 8, value: 396 },
                 { ign: "ZИ Σи | Pooki", team: "FREE AGENT", role: "SUPPORT", rarity: "elite", urlRating: 50, kills: 53, appearances: 7, value: 395 },
                 { ign: "ZŁ.BuZz ;)", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 50, kills: 63, appearances: 13, value: 388 },
-                { ign: "ZŁ.SID ;)", team: "FREE AGENT", role: "ENTRY", rarity: "elite", urlRating: 50, kills: 37, appearances: 5, value: 383 },
+                { ign: "ZŁ.SID ;)", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 50, kills: 37, appearances: 5, value: 383 },
                 { ign: "LGN • Mvement", team: "FREE AGENT", role: "FRAGGER", rarity: "elite", urlRating: 46, kills: 74, appearances: 12, value: 374 },
                 { ign: "Rи • ayanda<3", team: "FREE AGENT", role: "SUPPORT", rarity: "elite", urlRating: 46, kills: 42, appearances: 5, value: 371 },
                 { ign: "INS • Yolanda", team: "FREE AGENT", role: "FRAGGER", rarity: "elite", urlRating: 43, kills: 61, appearances: 5, value: 370 },
                 { ign: "Rи • Aim", team: "FREE AGENT", role: "IGL", rarity: "elite", urlRating: 42, kills: 49, appearances: 12, value: 345 },
-                { ign: "juuzou", team: "FREE AGENT", role: "ENTRY", rarity: "elite", urlRating: 42, kills: 35, appearances: 9, value: 335 },
-                { ign: "44 • Ban0", team: "FREE AGENT", role: "CAPTAIN", rarity: "elite", urlRating: 42, kills: 31, appearances: 13, value: 332 },
+                { ign: "juuzou", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 42, kills: 35, appearances: 9, value: 335 },
+                { ign: "44 • Ban0", team: "FREE AGENT", role: "IGL", rarity: "elite", urlRating: 42, kills: 31, appearances: 13, value: 332 },
                 { ign: "Rи • Auradebt", team: "FREE AGENT", role: "TANK", rarity: "elite", urlRating: 41, kills: 45, appearances: 10, value: 338 },
-                { ign: "Monkey.etc", team: "FREE AGENT", role: "SCOUT", rarity: "common", urlRating: 38, kills: 59, appearances: 5, value: 339 },
+                { ign: "Monkey.etc", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 38, kills: 59, appearances: 5, value: 339 },
                 { ign: "NF | LIAM", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 38, kills: 49, appearances: 10, value: 316 },
-                { ign: "sYm✪Allfather", team: "FREE AGENT", role: "ENTRY", rarity: "common", urlRating: 35, kills: 37, appearances: 10, value: 301 },
-                { ign: "patrick.etc", team: "FREE AGENT", role: "LURKER", rarity: "common", urlRating: 35, kills: 12, appearances: 2, value: 290 },
-                { ign: "C1N", team: "FREE AGENT", role: "LURKER", rarity: "common", urlRating: 33, kills: 42, appearances: 13, value: 270 },
+                { ign: "sYm✪Allfather", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 35, kills: 37, appearances: 10, value: 301 },
+                { ign: "patrick.etc", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 35, kills: 12, appearances: 2, value: 290 },
+                { ign: "C1N", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 33, kills: 42, appearances: 13, value: 270 },
                 { ign: "Σи | Malik", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 33, kills: 26, appearances: 2, value: 260 },
-                { ign: "Tyzllah.etc", team: "FREE AGENT", role: "CAPTAIN", rarity: "common", urlRating: 32, kills: 35, appearances: 13, value: 255 },
+                { ign: "Tyzllah.etc", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 32, kills: 35, appearances: 13, value: 255 },
                 { ign: "BEYONDER • яe", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 32, kills: 35, appearances: 13, value: 255 },
-                { ign: "Rи • Domino", team: "FREE AGENT", role: "SCOUT", rarity: "common", urlRating: 32, kills: 32, appearances: 10, value: 255 },
+                { ign: "Rи • Domino", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 32, kills: 32, appearances: 10, value: 255 },
                 { ign: "39Intro.etc", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 32, kills: 30, appearances: 8, value: 261 },
-                { ign: "MC | Mo", team: "FREE AGENT", role: "LURKER", rarity: "common", urlRating: 31, kills: 48, appearances: 11, value: 251 },
+                { ign: "MC | Mo", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 31, kills: 48, appearances: 11, value: 251 },
                 { ign: "Member", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 30, kills: 53, appearances: 13, value: 233 },
-                { ign: "SpongeBo.zën", team: "FREE AGENT", role: "LURKER", rarity: "common", urlRating: 29, kills: 29, appearances: 10, value: 233 },
+                { ign: "SpongeBo.zën", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 29, kills: 29, appearances: 10, value: 233 },
                 { ign: "Ghost", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 27, kills: 46, appearances: 8, value: 222 },
                 { ign: "makio*", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 24, kills: 11, appearances: 3, value: 202 },
-                { ign: "DADDY.BISHOP", team: "FREE AGENT", role: "AWP", rarity: "common", urlRating: 22, kills: 10, appearances: 3, value: 196 },
-                { ign: "sYm✪Himothy", team: "FREE AGENT", role: "LURKER", rarity: "common", urlRating: 21, kills: 18, appearances: 10, value: 186 },
-                { ign: "soraʕλn", team: "FREE AGENT", role: "CAPTAIN", rarity: "common", urlRating: 21, kills: 14, appearances: 5, value: 197 },
-                { ign: "FΣ | dazing", team: "FREE AGENT", role: "SCOUT", rarity: "common", urlRating: 21, kills: 12, appearances: 4, value: 197 },
-                { ign: "B²M | Avo • λη", team: "FREE AGENT", role: "ENTRY", rarity: "common", urlRating: 20, kills: 18, appearances: 3, value: 192 },
-                { ign: "¹Seeyah²¹", team: "FREE AGENT", role: "CONTROLLER", rarity: "common", urlRating: 19, kills: 21, appearances: 9, value: 176 },
-                { ign: "sYm✪Holiday", team: "FREE AGENT", role: "RIFLER", rarity: "common", urlRating: 19, kills: 21, appearances: 2, value: 187 },
-                { ign: "BeerusT", team: "FREE AGENT", role: "SCOUT", rarity: "common", urlRating: 19, kills: 13, appearances: 1, value: 193 },
-                { ign: "blue.etc", team: "FREE AGENT", role: "ENTRY", rarity: "common", urlRating: 18, kills: 13, appearances: 13, value: 161 },
-                { ign: "ØPŠ • ZAM", team: "FREE AGENT", role: "AWP", rarity: "common", urlRating: 18, kills: 6, appearances: 2, value: 174 },
-                { ign: "H®unter~sung", team: "FREE AGENT", role: "AWP", rarity: "common", urlRating: 17, kills: 13, appearances: 10, value: 160 },
+                { ign: "DADDY.BISHOP", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 22, kills: 10, appearances: 3, value: 196 },
+                { ign: "sYm✪Himothy", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 21, kills: 18, appearances: 10, value: 186 },
+                { ign: "soraʕλn", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 21, kills: 14, appearances: 5, value: 197 },
+                { ign: "FΣ | dazing", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 21, kills: 12, appearances: 4, value: 197 },
+                { ign: "B²M | Avo • λη", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 20, kills: 18, appearances: 3, value: 192 },
+                { ign: "¹Seeyah²¹", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 19, kills: 21, appearances: 9, value: 176 },
+                { ign: "sYm✪Holiday", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 19, kills: 21, appearances: 2, value: 187 },
+                { ign: "BeerusT", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 19, kills: 13, appearances: 1, value: 193 },
+                { ign: "blue.etc", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 18, kills: 13, appearances: 13, value: 161 },
+                { ign: "ØPŠ • ZAM", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 18, kills: 6, appearances: 2, value: 174 },
+                { ign: "H®unter~sung", team: "FREE AGENT", role: "FRAGGER", rarity: "common", urlRating: 17, kills: 13, appearances: 10, value: 160 },
                 { ign: "R • Yang", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 17, kills: 12, appearances: 7, value: 160 },
                 { ign: "DO1LAR • ixt", team: "FREE AGENT", role: "IGL", rarity: "common", urlRating: 13, kills: 7, appearances: 5, value: 142 },
-                { ign: "sYm✪Leo", team: "FREE AGENT", role: "LURKER", rarity: "common", urlRating: 13, kills: 4, appearances: 2, value: 149 },
+                { ign: "sYm✪Leo", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 13, kills: 4, appearances: 2, value: 149 },
                 { ign: "Vortex • ixt", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 6, kills: 1, appearances: 1, value: 148 },
                 { ign: "ColdG2000", team: "FREE AGENT", role: "SUPPORT", rarity: "common", urlRating: 2, kills: 0, appearances: 3, value: 125 },
-                { ign: "blunt(isdaddy)", team: "FREE AGENT", role: "ENTRY", rarity: "common", urlRating: 1, kills: 0, appearances: 1, value: 123 }
+                { ign: "blunt(isdaddy)", team: "FREE AGENT", role: "TANK", rarity: "common", urlRating: 1, kills: 0, appearances: 1, value: 123 }
             ];
             
             // ===== TEAM DATA (from league leaderboard) =====
@@ -870,20 +1049,8 @@
             ];
             
             // ===== TRANSFERS DATA =====
-            const transfersData = [
-                { date: "2026-02-25", player: "pink.etc", from: "FREE AGENT", to: "ETC Gaming", fee: "R 250,000", type: "permanent", role: "AWP" },
-                { date: "2026-02-20", player: "Rи • Waven", from: "FREE AGENT", to: "Renegades", fee: "R 180,000", type: "permanent", role: "SNIPER" },
-                { date: "2026-02-18", player: "ZŁ.BuZz ;)", from: "Sigma", to: "Zero Limits", fee: "R 120,000", type: "permanent", role: "TANK" },
-                { date: "2026-02-15", player: "ryze0", from: "FREE AGENT", to: "FREE AGENT", fee: "Free", type: "free", role: "SUPPORT" },
-                { date: "2026-02-12", player: "44 • Ban0", from: "FREE AGENT", to: "44 Esports", fee: "R 95,000", type: "permanent", role: "CAPTAIN" },
-                { date: "2026-02-10", player: "Rи • Tariq", from: "FREE AGENT", to: "Renegades", fee: "R 85,000", type: "permanent", role: "IGL" },
-                { date: "2026-02-08", player: "juuzou", from: "Symmetry", to: "FREE AGENT", fee: "Free", type: "free", role: "ENTRY" },
-                { date: "2026-02-05", player: "AG | Mausメ", from: "FREE AGENT", to: "AG Esports", fee: "R 150,000", type: "loan", role: "FRAGGER" },
-                { date: "2026-02-01", player: "Σи | zaza", from: "FREE AGENT", to: "Sigma", fee: "R 90,000", type: "permanent", role: "CAPTAIN" },
-                { date: "2026-01-28", player: "sYm✪Allfather", from: "FREE AGENT", to: "Symmetry", fee: "R 60,000", type: "permanent", role: "ENTRY" },
-                { date: "2026-01-25", player: "LGN • Mvement", from: "FREE AGENT", to: "Legends", fee: "R 55,000", type: "permanent", role: "FRAGGER" },
-                { date: "2026-01-20", player: "INS • Yolanda", from: "FREE AGENT", to: "Inspire", fee: "R 50,000", type: "permanent", role: "FRAGGER" }
-            ];
+            // status: "pending" = awaiting approval, "completed" = finalized
+            const transfersData = [];
             
             // ===== CALCULATE PLAYER VALUE =====
             function calculatePlayerValue(player) {
@@ -964,48 +1131,110 @@
                 }
             }
             
-            // ===== RENDER PLAYER VALUES =====
-            function renderPlayerValues(filter = 'all', search = '') {
-                const grid = document.getElementById('playerValuesGrid');
+            // ===== CARD RENDERER (for popup) =====
+            function createURLPlayerCard(player) {
+                const card = document.createElement('article');
+                card.className = `url-card ${player.rarity}`;
+                card.dataset.rarity = player.rarity;
+                card.dataset.role = player.role;
                 
-                let filteredPlayers = playersData
+                const DEFAULT_PORTRAIT = 'https://preview.redd.it/1jc1uhvavtt41.png?width=1080&crop=smart&auto=webp&s=cdd44f66cd046eef938476d3e035c88bb5750b7b';
+                const portraitUrl = player.imageUrl || DEFAULT_PORTRAIT;
+                const portraitContent = `<div class="url-portrait-image" style="background-image: url('${portraitUrl}')" role="img"></div>`;
+                
+                const sparkles = player.rarity === 'legend'
+                    ? `<div class="url-legend-sparkles" aria-hidden="true">${'<span class="url-sparkle"></span>'.repeat(5)}</div>` : '';
+                const foilOverlay = ['rare','elite','legend'].includes(player.rarity)
+                    ? '<div class="url-foil-overlay" aria-hidden="true"></div>' : '';
+                
+                card.innerHTML = `
+                    <div class="url-card-inner">
+                        <div class="url-card-header">
+                            <div class="url-rating-section">
+                                <span class="url-rating-label">URL</span>
+                                <span class="url-rating-value">${player.urlRating}</span>
+                                <span class="url-team-name">${player.team}</span>
+                            </div>
+                            <span class="url-role-badge">${player.role}</span>
+                        </div>
+                        <div class="url-portrait-zone">
+                            ${portraitContent}
+                            <div class="url-portrait-shine" aria-hidden="true"></div>
+                            <div class="url-portrait-vignette" aria-hidden="true"></div>
+                            <div class="url-flag-badge" aria-hidden="true"></div>
+                        </div>
+                        <div class="url-identity-row">
+                            <span class="url-player-ign">${player.ign}</span>
+                            <span class="url-season-text">Ultimate Resilient League</span>
+                        </div>
+                        <div class="url-stats-grid">
+                            <div class="url-stat-item"><span class="url-stat-value">${player.kills}</span><span class="url-stat-label">Kills</span></div>
+                            <div class="url-stat-item"><span class="url-stat-value">${player.appearances}</span><span class="url-stat-label">Apps</span></div>
+                            <div class="url-stat-item"><span class="url-stat-value">${(player.kills / Math.max(1, player.appearances)).toFixed(2)}</span><span class="url-stat-label">Avg</span></div>
+                            <div class="url-stat-item url-value-stat"><span class="url-stat-value">${player.value || 0}</span><span class="url-stat-label">URL</span></div>
+                        </div>
+                        <div class="url-meta-badges">
+                            <span class="url-rarity-badge">${player.rarity}</span>
+                            <span class="url-serial-badge">#${player.serial || 'N/A'}</span>
+                        </div>
+                        ${sparkles}${foilOverlay}
+                    </div>`;
+                return card;
+            }
+
+            // ===== CARD POPUP =====
+            function openCardPopup(player) {
+                const modal = document.getElementById('marketCardModal');
+                const wrap = document.getElementById('marketCardWrap');
+                wrap.innerHTML = '';
+                wrap.appendChild(createURLPlayerCard(player));
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeCardPopup() {
+                const modal = document.getElementById('marketCardModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // ===== RENDER PLAYER VALUES (List) =====
+            function renderPlayerValues(filter = 'all', search = '') {
+                const tbody = document.getElementById('playerValuesBody');
+                
+                let filteredPlayers = [...playersData]
                     .sort((a, b) => b.value - a.value);
                 
-                // Apply rarity filter
                 if (filter !== 'all') {
                     filteredPlayers = filteredPlayers.filter(p => p.rarity === filter);
                 }
-                
-                // Apply search filter
                 if (search) {
-                    const searchLower = search.toLowerCase();
-                    filteredPlayers = filteredPlayers.filter(p => 
-                        p.ign.toLowerCase().includes(searchLower) ||
-                        p.role.toLowerCase().includes(searchLower) ||
-                        p.team.toLowerCase().includes(searchLower)
+                    const s = search.toLowerCase();
+                    filteredPlayers = filteredPlayers.filter(p =>
+                        p.ign.toLowerCase().includes(s) ||
+                        p.role.toLowerCase().includes(s) ||
+                        p.team.toLowerCase().includes(s)
                     );
                 }
                 
-                // Take top 20
-                filteredPlayers = filteredPlayers.slice(0, 20);
+                filteredPlayers = filteredPlayers.slice(0, 30);
                 
-                grid.innerHTML = filteredPlayers.map(player => `
-                    <div class="player-value-card ${player.rarity}">
-                        <div class="player-avatar">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="player-info">
-                            <h4>${player.ign}</h4>
-                            <div class="player-meta">
-                                <span><i class="fa-solid fa-crosshairs"></i> ${player.role}</span>
-                                <span class="rarity-badge ${player.rarity}">${player.rarity}</span>
+                tbody.innerHTML = filteredPlayers.map((player, i) => `
+                    <tr class="${player.rarity}-row" data-idx="${playersData.indexOf(player)}">
+                        <td class="pv-rank">${i + 1}</td>
+                        <td>
+                            <div class="pv-player-cell">
+                                <div class="pv-avatar ${player.rarity}"><i class="fa-solid fa-user"></i></div>
+                                <div>
+                                    <div class="pv-name">${player.ign}</div>
+                                    <span class="pv-rarity-pill ${player.rarity}">${player.rarity}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="player-value">
-                            <span class="value">${player.value} URL</span>
-                            <span class="rating">Avg: ${(player.kills / Math.max(1, player.appearances)).toFixed(2)}</span>
-                        </div>
-                    </div>
+                        </td>
+                        <td class="pv-role">${player.role}</td>
+                        <td class="pv-rating">${player.urlRating}</td>
+                        <td class="pv-value">${player.value} URL</td>
+                        <td class="pv-view-hint"><i class="fa-solid fa-eye"></i></td>
+                    </tr>
                 `).join('');
             }
             
@@ -1013,8 +1242,21 @@
             function renderTransfers() {
                 const list = document.getElementById('transfersList');
                 
-                list.innerHTML = transfersData.map(transfer => `
-                    <div class="transfer-item wow fadeInUp">
+                if (transfersData.length === 0) {
+                    list.innerHTML = `
+                        <div class="transfer-item" style="justify-content: center; padding: 40px; opacity: 0.5;">
+                            <i class="fa-solid fa-ban" style="font-size: 1.5rem; margin-right: 12px; color: #FFD700;"></i>
+                            <span style="font-size: 1.1rem; color: rgba(255,255,255,0.6);">No transfers recorded yet — transfer window opens soon</span>
+                        </div>`;
+                    const pendingEl = document.getElementById('pendingCount');
+                    if (pendingEl) pendingEl.textContent = '';
+                    return;
+                }
+                
+                list.innerHTML = transfersData.map(transfer => {
+                    const isPending = transfer.status === 'pending';
+                    return `
+                    <div class="transfer-item wow fadeInUp${isPending ? ' is-pending' : ''}">
                         <div class="transfer-date">
                             <i class="fa-regular fa-calendar"></i> ${transfer.date}
                         </div>
@@ -1027,10 +1269,20 @@
                             <span class="transfer-arrow"><i class="fa-solid fa-arrow-right"></i></span>
                             <span class="transfer-to">${transfer.to}</span>
                         </div>
-                        <span class="transfer-type ${transfer.type}">${transfer.type}</span>
+                        <span class="transfer-type ${isPending ? 'pending' : transfer.type}">${isPending ? 'pending' : transfer.type}</span>
+                        <span class="transfer-status status-${transfer.status}">
+                            <i class="fa-solid fa-${isPending ? 'clock' : 'circle-check'}"></i> ${transfer.status}
+                        </span>
                         <span class="transfer-fee">${transfer.fee}</span>
-                    </div>
-                `).join('');
+                    </div>`;
+                }).join('');
+                
+                // Update pending count badge
+                const pendingCount = transfersData.filter(t => t.status === 'pending').length;
+                const pendingEl = document.getElementById('pendingCount');
+                if (pendingEl) {
+                    pendingEl.textContent = pendingCount > 0 ? `(${pendingCount} pending)` : '';
+                }
             }
             
             // ===== INITIALIZE =====
@@ -1053,6 +1305,23 @@
                         const search = document.getElementById('playerSearchInput').value;
                         renderPlayerValues(btn.dataset.filter, search);
                     });
+                });
+                
+                // Row click → open card popup
+                document.getElementById('playerValuesBody').addEventListener('click', (e) => {
+                    const row = e.target.closest('tr[data-idx]');
+                    if (!row) return;
+                    const idx = parseInt(row.dataset.idx);
+                    openCardPopup(playersData[idx]);
+                });
+                
+                // Close card popup
+                document.getElementById('marketCardClose').addEventListener('click', closeCardPopup);
+                document.getElementById('marketCardModal').addEventListener('click', (e) => {
+                    if (e.target === e.currentTarget) closeCardPopup();
+                });
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') closeCardPopup();
                 });
             });
         </script>

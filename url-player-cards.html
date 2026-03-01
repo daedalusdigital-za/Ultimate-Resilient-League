@@ -4,64 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Player Cards - Ultimate Resilient League</title>
+    <link rel="stylesheet" href="assets/css/premium-cards.css">
     <style>
-        /* ===== CSS VARIABLES ===== */
-        :root {
-            /* Common (Bronze) */
-            --common-primary: #8B5A2B;
-            --common-secondary: #CD853F;
-            --common-accent: #DEB887;
-            --common-bg-start: #5D3A1A;
-            --common-bg-end: #8B5A2B;
-            --common-border-start: #CD853F;
-            --common-border-end: #8B4513;
-            --common-text: #FFF8DC;
-            
-            /* Rare (Gold) */
-            --rare-primary: #FFD700;
-            --rare-secondary: #FFA500;
-            --rare-accent: #FFFACD;
-            --rare-bg-start: #B8860B;
-            --rare-bg-end: #DAA520;
-            --rare-border-start: #FFD700;
-            --rare-border-end: #B8860B;
-            --rare-text: #FFFEF0;
-            
-            /* Elite (Black/Red Neon) */
-            --elite-primary: #FF0040;
-            --elite-secondary: #FF4444;
-            --elite-accent: #FF6B6B;
-            --elite-bg-start: #1A0A0A;
-            --elite-bg-end: #2D0A0A;
-            --elite-border-start: #FF0040;
-            --elite-border-end: #880020;
-            --elite-text: #FFFFFF;
-            --elite-glow: 0 0 20px rgba(255, 0, 64, 0.5);
-            
-            /* Legend (White/Gold) */
-            --legend-primary: #FFFFFF;
-            --legend-secondary: #FFD700;
-            --legend-accent: #FFFACD;
-            --legend-bg-start: #1A1A2E;
-            --legend-bg-end: #16213E;
-            --legend-border-start: #FFFFFF;
-            --legend-border-end: #FFD700;
-            --legend-text: #FFFFFF;
-            
-            /* General */
-            --card-width: 250px;
-            --card-ratio: 1.4; /* 3.5/2.5 */
-            --border-radius: 18px;
-            --transition-speed: 0.3s;
-        }
-        
         /* ===== RESET & BASE ===== */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        
+
         body {
             font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #0f0f23 100%);
@@ -69,13 +20,13 @@
             padding: 40px 20px;
             color: #fff;
         }
-        
+
         /* ===== PAGE LAYOUT ===== */
         .page-header {
             text-align: center;
             margin-bottom: 40px;
         }
-        
+
         .page-header h1 {
             font-size: 2.5rem;
             font-weight: 800;
@@ -87,12 +38,12 @@
             letter-spacing: 4px;
             margin-bottom: 10px;
         }
-        
+
         .page-header p {
             color: #888;
             font-size: 1rem;
         }
-        
+
         /* ===== FILTER CONTROLS ===== */
         .filter-controls {
             display: flex;
@@ -101,7 +52,7 @@
             margin-bottom: 40px;
             flex-wrap: wrap;
         }
-        
+
         .filter-controls label {
             font-size: 0.9rem;
             color: #aaa;
@@ -109,7 +60,7 @@
             align-items: center;
             gap: 8px;
         }
-        
+
         .filter-controls select {
             padding: 10px 20px;
             font-size: 1rem;
@@ -120,519 +71,32 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .filter-controls select:hover,
         .filter-controls select:focus {
             border-color: #FFD700;
             outline: none;
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
         }
-        
+
         /* ===== CARDS GRID ===== */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(var(--card-width), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 30px;
             max-width: 1400px;
             margin: 0 auto;
             justify-items: center;
         }
-        
-        /* ===== URL PLAYER CARD ===== */
-        .url-card {
-            --primary: var(--common-primary);
-            --secondary: var(--common-secondary);
-            --accent: var(--common-accent);
-            --bg-start: var(--common-bg-start);
-            --bg-end: var(--common-bg-end);
-            --border-start: var(--common-border-start);
-            --border-end: var(--common-border-end);
-            --text-color: var(--common-text);
-            
-            position: relative;
-            width: var(--card-width);
-            height: calc(var(--card-width) * var(--card-ratio));
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform var(--transition-speed) ease,
-                        box-shadow var(--transition-speed) ease;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-        
-        /* Rarity Variants */
-        .url-card.rare {
-            --primary: var(--rare-primary);
-            --secondary: var(--rare-secondary);
-            --accent: var(--rare-accent);
-            --bg-start: var(--rare-bg-start);
-            --bg-end: var(--rare-bg-end);
-            --border-start: var(--rare-border-start);
-            --border-end: var(--rare-border-end);
-            --text-color: var(--rare-text);
-        }
-        
-        .url-card.elite {
-            --primary: var(--elite-primary);
-            --secondary: var(--elite-secondary);
-            --accent: var(--elite-accent);
-            --bg-start: var(--elite-bg-start);
-            --bg-end: var(--elite-bg-end);
-            --border-start: var(--elite-border-start);
-            --border-end: var(--elite-border-end);
-            --text-color: var(--elite-text);
-        }
-        
-        .url-card.legend {
-            --primary: var(--legend-primary);
-            --secondary: var(--legend-secondary);
-            --accent: var(--legend-accent);
-            --bg-start: var(--legend-bg-start);
-            --bg-end: var(--legend-bg-end);
-            --border-start: var(--legend-border-start);
-            --border-end: var(--legend-border-end);
-            --text-color: var(--legend-text);
-        }
-        
-        /* Card Border (Metallic Gradient) */
-        .url-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            padding: 2px;
-            border-radius: var(--border-radius);
-            background: linear-gradient(135deg, var(--border-start), var(--border-end), var(--border-start));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-            z-index: 10;
-        }
-        
-        /* Card Inner Container */
-        .card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(165deg, var(--bg-start) 0%, var(--bg-end) 100%);
-            border-radius: calc(var(--border-radius) - 2px);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* Noise Texture Overlay */
-        .card-inner::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        /* Glossy Highlight Sweep */
-        .card-inner::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255, 255, 255, 0.15) 0%,
-                rgba(255, 255, 255, 0.05) 40%,
-                transparent 50%
-            );
-            pointer-events: none;
-            z-index: 2;
-        }
-        
-        /* Shadows */
-        .url-card {
-            box-shadow: 
-                0 10px 40px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255, 255, 255, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-        
-        .url-card.elite {
-            box-shadow: 
-                0 10px 40px rgba(0, 0, 0, 0.5),
-                0 0 30px rgba(255, 0, 64, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-        
-        .url-card.legend {
-            box-shadow: 
-                0 10px 40px rgba(0, 0, 0, 0.5),
-                0 0 30px rgba(255, 215, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        }
-        
-        /* Hover Effects */
-        .url-card:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(-5deg) scale(1.02);
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.6),
-                0 0 0 1px rgba(255, 255, 255, 0.2);
-        }
-        
-        .url-card.elite:hover {
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.6),
-                0 0 50px rgba(255, 0, 64, 0.5);
-        }
-        
-        .url-card.legend:hover {
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.6),
-                0 0 50px rgba(255, 215, 0, 0.5);
-        }
-        
-        /* ===== FOIL EFFECT (Rare+) ===== */
-        .foil-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                105deg,
-                transparent 20%,
-                rgba(255, 255, 255, 0.1) 35%,
-                rgba(255, 255, 255, 0.3) 40%,
-                rgba(255, 255, 255, 0.1) 45%,
-                transparent 60%
-            );
-            transform: translateX(-100%);
-            z-index: 20;
-            pointer-events: none;
-        }
-        
-        .url-card.rare .foil-overlay,
-        .url-card.elite .foil-overlay,
-        .url-card.legend .foil-overlay {
-            animation: foilSweep 3s ease-in-out infinite;
-        }
-        
-        @keyframes foilSweep {
-            0%, 100% { transform: translateX(-100%); }
-            50% { transform: translateX(100%); }
-        }
-        
-        /* Respect reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            .url-card {
-                transition: none;
-            }
-            .url-card:hover {
-                transform: none;
-            }
-            .foil-overlay {
-                animation: none;
-                transform: translateX(0);
-                opacity: 0.1;
-            }
-            .legend-sparkles {
-                display: none;
-            }
-        }
-        
-        /* ===== LEGEND SPARKLES ===== */
-        .legend-sparkles {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 15;
-            overflow: hidden;
-        }
-        
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #FFD700;
-            border-radius: 50%;
-            animation: sparkle 2s ease-in-out infinite;
-            box-shadow: 0 0 6px #FFD700, 0 0 10px #FFF;
-        }
-        
-        .sparkle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .sparkle:nth-child(2) { top: 40%; left: 85%; animation-delay: 0.3s; }
-        .sparkle:nth-child(3) { top: 70%; left: 20%; animation-delay: 0.6s; }
-        .sparkle:nth-child(4) { top: 85%; left: 75%; animation-delay: 0.9s; }
-        .sparkle:nth-child(5) { top: 15%; left: 60%; animation-delay: 1.2s; }
-        
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
-        }
-        
-        /* ===== A) HEADER STRIP (18%) ===== */
-        .card-header {
-            position: relative;
-            height: 18%;
-            padding: 10px 12px 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            z-index: 5;
-            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 100%);
-        }
-        
-        .rating-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .rating-label {
-            font-size: 0.55rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--accent);
-            text-transform: uppercase;
-            margin-bottom: 2px;
-        }
-        
-        .rating-value {
-            font-size: 2rem;
-            font-weight: 900;
-            line-height: 1;
-            color: var(--primary);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .team-name {
-            font-size: 0.5rem;
-            font-weight: 600;
-            color: var(--text-color);
-            opacity: 0.8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 4px;
-        }
-        
-        .role-badge {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--bg-start);
-            font-size: 0.55rem;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-        
-        /* ===== B) PORTRAIT ZONE (42%) ===== */
-        .portrait-zone {
-            position: relative;
-            height: 42%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            z-index: 3;
-        }
-        
-        .portrait-image {
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center top;
-            background-repeat: no-repeat;
-        }
-        
-        /* SVG Placeholder Silhouette */
-        .portrait-placeholder {
-            width: 70%;
-            height: 90%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .portrait-placeholder svg {
-            width: 100%;
-            height: 100%;
-            fill: var(--primary);
-            opacity: 0.3;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-        }
-        
-        /* Diagonal Shine Overlay */
-        .portrait-shine {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                135deg,
-                transparent 30%,
-                rgba(255, 255, 255, 0.08) 50%,
-                transparent 70%
-            );
-            pointer-events: none;
-        }
-        
-        /* Vignette */
-        .portrait-vignette {
-            position: absolute;
-            inset: 0;
-            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
-            pointer-events: none;
-        }
-        
-        /* Flag Badge */
-        .flag-badge {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            width: 24px;
-            height: 16px;
-            border-radius: 2px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-        }
-        
-        .flag-badge::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, 
-                var(--primary) 0%, var(--primary) 33%,
-                var(--secondary) 33%, var(--secondary) 66%,
-                var(--accent) 66%, var(--accent) 100%
-            );
-        }
-        
-        /* ===== C) IDENTITY ROW (10%) ===== */
-        .identity-row {
-            height: 10%;
-            padding: 0 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 5;
-            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.2) 100%);
-        }
-        
-        .player-ign {
-            font-size: 1.1rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--text-color);
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            line-height: 1.2;
-        }
-        
-        .season-text {
-            font-size: 0.45rem;
-            font-weight: 600;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            opacity: 0.9;
-        }
-        
-        /* ===== D) STATS GRID (30%) ===== */
-        .stats-grid {
-            height: 30%;
-            padding: 8px 12px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(3, 1fr);
-            gap: 4px 15px;
-            z-index: 5;
-            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
-        }
-        
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .stat-value {
-            font-size: 1rem;
-            font-weight: 800;
-            color: var(--text-color);
-            font-family: 'Courier New', monospace;
-            font-variant-numeric: tabular-nums;
-            line-height: 1;
-        }
-        
-        .stat-label {
-            font-size: 0.45rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.9;
-        }
-        
-        /* ===== META BADGES ===== */
-        .meta-badges {
-            position: absolute;
-            bottom: 8px;
-            left: 12px;
-            right: 12px;
-            display: flex;
-            justify-content: space-between;
-            z-index: 10;
-        }
-        
-        .rarity-badge {
-            font-size: 0.5rem;
-            font-weight: 800;
-            padding: 3px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: rgba(0,0,0,0.5);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-        }
-        
-        .serial-badge {
-            font-size: 0.5rem;
-            font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 4px;
-            background: rgba(0,0,0,0.5);
-            color: var(--text-color);
-            opacity: 0.7;
-            font-family: 'Courier New', monospace;
-        }
-        
-        /* ===== HIDDEN STATE ===== */
-        .url-card.hidden {
-            display: none;
-        }
-        
-        /* ===== RESPONSIVE ===== */
+
+        /* ===== RESPONSIVE (page-level only) ===== */
         @media (max-width: 600px) {
-            :root {
-                --card-width: 200px;
-            }
-            
             .page-header h1 {
                 font-size: 1.5rem;
                 letter-spacing: 2px;
             }
-            
             .cards-grid {
                 gap: 20px;
-            }
-        }
-        
-        @media (min-width: 1200px) {
-            :root {
-                --card-width: 280px;
             }
         }
     </style>
@@ -640,7 +104,7 @@
 <body>
     <header class="page-header">
         <h1>URL Player Cards</h1>
-        <p>Ultimate Resilient League Ã¢â‚¬Â¢ Season 1</p>
+        <p>Ultimate Resilient League</p>
     </header>
     
     <div class="filter-controls">
@@ -714,7 +178,7 @@
             {
                 ign: "BLITZ",
                 team: "THUNDER SQUAD",
-                role: "ENTRY",
+                role: "TANK",
                 rarity: "common",
                 urlRating: 72,
                 kills: 186,
@@ -730,7 +194,7 @@
             {
                 ign: "NOVA",
                 team: "PHOENIX RISING",
-                role: "SNIPER",
+                role: "FRAGGER",
                 rarity: "elite",
                 urlRating: 89,
                 kills: 356,
@@ -746,7 +210,7 @@
             {
                 ign: "FROST",
                 team: "ARCTIC STORM",
-                role: "LURKER",
+                role: "SUPPORT",
                 rarity: "rare",
                 urlRating: 83,
                 kills: 274,
@@ -767,97 +231,94 @@
             card.className = `url-card ${player.rarity}`;
             card.setAttribute('role', 'listitem');
             card.setAttribute('aria-label', `${player.ign} - ${player.rarity} ${player.role} from ${player.team}, Rating: ${player.urlRating}`);
+            card.setAttribute('tabindex', '0');
             card.dataset.rarity = player.rarity;
+            card.dataset.role = player.role;
             
             // Build portrait content
-            const portraitContent = player.imageUrl 
-                ? `<div class="portrait-image" style="background-image: url('${player.imageUrl}')" role="img" aria-label="${player.ign} portrait"></div>`
-                : `<div class="portrait-placeholder">
-                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <circle cx="50" cy="30" r="25"/>
-                        <path d="M50 60 C20 60 10 85 10 110 L10 120 L90 120 L90 110 C90 85 80 60 50 60"/>
-                    </svg>
-                   </div>`;
+            const DEFAULT_PORTRAIT = 'https://preview.redd.it/1jc1uhvavtt41.png?width=1080&crop=smart&auto=webp&s=cdd44f66cd046eef938476d3e035c88bb5750b7b';
+            const portraitUrl = player.imageUrl || DEFAULT_PORTRAIT;
+            const portraitContent = `<div class="url-portrait-image" style="background-image: url('${portraitUrl}')" role="img" aria-label="${player.ign} portrait"></div>`;
             
             // Legend sparkles
             const sparkles = player.rarity === 'legend' 
-                ? `<div class="legend-sparkles" aria-hidden="true">
-                    <span class="sparkle"></span>
-                    <span class="sparkle"></span>
-                    <span class="sparkle"></span>
-                    <span class="sparkle"></span>
-                    <span class="sparkle"></span>
+                ? `<div class="url-legend-sparkles" aria-hidden="true">
+                    <span class="url-sparkle"></span>
+                    <span class="url-sparkle"></span>
+                    <span class="url-sparkle"></span>
+                    <span class="url-sparkle"></span>
+                    <span class="url-sparkle"></span>
                    </div>`
                 : '';
             
             // Foil overlay for rare+
             const foilOverlay = ['rare', 'elite', 'legend'].includes(player.rarity)
-                ? '<div class="foil-overlay" aria-hidden="true"></div>'
+                ? '<div class="url-foil-overlay" aria-hidden="true"></div>'
                 : '';
             
             card.innerHTML = `
-                <div class="card-inner">
+                <div class="url-card-inner">
                     <!-- Header Strip -->
-                    <div class="card-header">
-                        <div class="rating-section">
-                            <span class="rating-label">URL</span>
-                            <span class="rating-value">${player.urlRating}</span>
-                            <span class="team-name">${player.team}</span>
+                    <div class="url-card-header">
+                        <div class="url-rating-section">
+                            <span class="url-rating-label">URL</span>
+                            <span class="url-rating-value">${player.urlRating}</span>
+                            <span class="url-team-name">${player.team}</span>
                         </div>
-                        <span class="role-badge">${player.role}</span>
+                        <span class="url-role-badge" aria-label="Role: ${player.role}">${player.role}</span>
                     </div>
                     
                     <!-- Portrait Zone -->
-                    <div class="portrait-zone">
+                    <div class="url-portrait-zone">
                         ${portraitContent}
-                        <div class="portrait-shine" aria-hidden="true"></div>
-                        <div class="portrait-vignette" aria-hidden="true"></div>
-                        <div class="flag-badge" aria-hidden="true"></div>
+                        <div class="url-portrait-shine" aria-hidden="true"></div>
+                        <div class="url-portrait-vignette" aria-hidden="true"></div>
+                        <div class="url-flag-badge" aria-hidden="true"></div>
                     </div>
                     
                     <!-- Identity Row -->
-                    <div class="identity-row">
-                        <span class="player-ign">${player.ign}</span>
-                        <span class="season-text">${player.season} Ã¢â‚¬Â¢ Ultimate Resilient League</span>
+                    <div class="url-identity-row">
+                        <span class="url-player-ign">${player.ign}</span>
+                        <span class="url-season-text">Ultimate Resilient League</span>
                     </div>
                     
                     <!-- Stats Grid -->
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <span class="stat-value">${player.kills}</span>
-                            <span class="stat-label">Kills</span>
+                    <div class="url-stats-grid">
+                        <div class="url-stat-item">
+                            <span class="url-stat-value">${player.kills}</span>
+                            <span class="url-stat-label">Kills</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-value">${player.appearances}</span>
-                            <span class="stat-label">Apps</span>
+                        <div class="url-stat-item">
+                            <span class="url-stat-value">${player.appearances}</span>
+                            <span class="url-stat-label">Apps</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-value">${player.kd.toFixed(1)}</span>
-                            <span class="stat-label">K/D</span>
+                        <div class="url-stat-item">
+                            <span class="url-stat-value">${player.kd.toFixed(1)}</span>
+                            <span class="url-stat-label">K/D</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-value">${player.wins}</span>
-                            <span class="stat-label">Wins</span>
+                        <div class="url-stat-item">
+                            <span class="url-stat-value">${player.wins}</span>
+                            <span class="url-stat-label">Wins</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-value">${player.avgKills.toFixed(1)}</span>
-                            <span class="stat-label">Avg K</span>
+                        <div class="url-stat-item">
+                            <span class="url-stat-value">${player.avgKills.toFixed(1)}</span>
+                            <span class="url-stat-label">Avg K</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-value">${player.urlScore}</span>
-                            <span class="stat-label">Score</span>
+                        <div class="url-stat-item url-value-stat">
+                            <span class="url-stat-value">${player.urlScore}</span>
+                            <span class="url-stat-label">Score</span>
                         </div>
                     </div>
                     
                     <!-- Meta Badges -->
-                    <div class="meta-badges">
-                        <span class="rarity-badge">${player.rarity}</span>
-                        <span class="serial-badge">#${player.serial}</span>
+                    <div class="url-meta-badges">
+                        <span class="url-rarity-badge">${player.rarity}</span>
+                        <span class="url-serial-badge">#${player.serial}</span>
                     </div>
                     
                     ${sparkles}
+                    ${foilOverlay}
                 </div>
-                ${foilOverlay}
             `;
             
             return card;
