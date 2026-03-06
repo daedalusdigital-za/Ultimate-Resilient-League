@@ -1,7 +1,9 @@
 {
   "league": {
     "name": "Ultimate Resilient League",
-    "season": 1,
+    "season": 0,
+    "nextSeason": 1,
+    "maxTeams": 20,
     "buyInPrice": 5000,
     "totalTeams": 10,
     "totalPlayers": 47,
