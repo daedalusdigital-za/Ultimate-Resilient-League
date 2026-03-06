@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
         <link rel="stylesheet" href="assets/css/nice-select.css">
         <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="assets/css/auth.css">
         <link rel="stylesheet" href="assets/css/premium-cards.css">
 
         <style>
@@ -204,6 +205,8 @@
                         </div>
                         <div class="mobile-menu fix mb-3"></div>
                         <div class="social-icon d-flex align-items-center"><a href="#"><i class="fab fa-discord"></i></a></div>
+                            <div class="url-mobile-auth"></div>
+                            <a href="rulebook.html" class="rulebook-shine-btn" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px 20px;margin-top:20px;background:linear-gradient(135deg,#9B59B6,#8E44AD);border:1px solid rgba(155,89,182,0.5);border-radius:12px;color:#fff;font-size:0.95rem;font-weight:700;font-family:'Chakra Petch',sans-serif;text-transform:uppercase;letter-spacing:2px;text-decoration:none;box-shadow:0 4px 15px rgba(155,89,182,0.3);transition:all 0.3s ease;"><i class="fa-solid fa-book-open"></i> Official Rulebook</a>
                     </div>
                 </div>
             </div>
@@ -308,6 +311,36 @@
                     </div>
                 </section>
 
+               <!-- GT Brand Section Start -->
+               <div class="gt-brand-section section-padding fix">
+                    <style>
+                        .gt-brand-section .gt-brand-box { border: none; background: none; padding: 10px 25px; }
+                        .gt-brand-section .swiper-slide { width: auto !important; margin-right: 20px; }
+                        .gt-brand-text { font-size: clamp(1rem, 2.5vw, 1.8rem); font-weight: 800; text-transform: uppercase; letter-spacing: 3px; white-space: nowrap; text-align: center; transition: all 0.4s ease; padding: 10px 0; user-select: none; background: linear-gradient(90deg, #FFD700, #FF0040, #9B59B6, #FFD700); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.3; }
+                        .gt-brand-section .swiper-slide:nth-child(3n+1) .gt-brand-text { background: linear-gradient(90deg, #FFD700, #FF0040, #9B59B6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+                        .gt-brand-section .swiper-slide:nth-child(3n+2) .gt-brand-text { background: linear-gradient(90deg, #FF0040, #9B59B6, #FFD700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+                        .gt-brand-section .swiper-slide:nth-child(3n+3) .gt-brand-text { background: linear-gradient(90deg, #9B59B6, #FFD700, #FF0040); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+                        .swiper-slide:hover .gt-brand-text, .swiper-slide-active .gt-brand-text { opacity: 1; text-shadow: none; }
+                    </style>
+                    <div class="container">
+                        <div class="swiper gt-brand-slider">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Maus</div></div></div>
+                                <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Welcome</div></div></div>
+                                <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Shumba</div></div></div>
+                                <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Kabal</div></div></div>
+                                <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Batsie</div></div></div>
+                                <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Beyonder</div></div></div>
+                                <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Nagi</div></div></div>
+                                <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Mamo</div></div></div>
+                                <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">SpongeBob</div></div></div>
+                                <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Double G</div></div></div>
+                                <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Evil Jeff</div></div></div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+
                 <!-- Footer -->
                 <footer class="gt-footer-section section-bg">
                     <div class="container">
@@ -363,7 +396,7 @@
         // ===== TEAM DATA WITH ROSTERS =====
         const teamsData = [
             {
-                name: "Dream Team", tag: "DT", kills: 166, points: 368, value: 10000,
+                name: "Dream Team", tag: "DT", kills: 238, points: 734, value: 10000,
                 color: "#FFD700", accent: "#FFA500",
                 image: "https://wallpapercave.com/wp/wp6795025.jpg",
                 roster: [
@@ -374,31 +407,7 @@
                 ]
             },
             {
-                name: "Viltrum", tag: "VLT", kills: 119, points: 349, value: 9182,
-                color: "#FF0040", accent: "#FF4060",
-                image: "https://wallpapercave.com/wp/wp6795025.jpg",
-                roster: [
-                    { ign: "pink.etc", role: "FRAGGER", rarity: "legend", urlRating: 88, kills: 123, appearances: 13, value: 600, imageUrl: "" },
-                    { ign: "R\u0438 \u2022 Tariq", role: "IGL", rarity: "elite", urlRating: 51, kills: 51, appearances: 8, value: 396, imageUrl: "" },
-                    { ign: "R\u0438 \u2022 ayanda<3", role: "SUPPORT", rarity: "elite", urlRating: 46, kills: 42, appearances: 5, value: 371, imageUrl: "" },
-                    { ign: "R\u0438 \u2022 Auradebt", role: "TANK", rarity: "elite", urlRating: 41, kills: 45, appearances: 10, value: 338, imageUrl: "" },
-                    { ign: "blue.etc", role: "TANK", rarity: "common", urlRating: 18, kills: 13, appearances: 13, value: 161, imageUrl: "" }
-                ]
-            },
-            {
-                name: "Epstein Files", tag: "EF", kills: 121, points: 295, value: 8568,
-                color: "#9B59B6", accent: "#8E44AD",
-                image: "https://wallpapercave.com/wp/wp6795025.jpg",
-                roster: [
-                    { ign: "NF | LIAM", role: "FRAGGER", rarity: "common", urlRating: 38, kills: 49, appearances: 10, value: 316, imageUrl: "" },
-                    { ign: "sYm\u272AAllfather", role: "TANK", rarity: "common", urlRating: 35, kills: 37, appearances: 10, value: 301, imageUrl: "" },
-                    { ign: "Tyzllah.etc", role: "IGL", rarity: "common", urlRating: 32, kills: 35, appearances: 13, value: 255, imageUrl: "" },
-                    { ign: "sYm\u272AHoliday", role: "FRAGGER", rarity: "common", urlRating: 19, kills: 21, appearances: 2, value: 187, imageUrl: "" },
-                    { ign: "R \u2022 Yang", role: "SUPPORT", rarity: "common", urlRating: 17, kills: 12, appearances: 7, value: 160, imageUrl: "" }
-                ]
-            },
-            {
-                name: "Dark Veil", tag: "DV", kills: 45, points: 251, value: 7144,
+                name: "Dark Triad", tag: "DV", kills: 182, points: 659, value: 7144,
                 color: "#00CED1", accent: "#008B8B",
                 image: "https://wallpapercave.com/wp/wp6795025.jpg",
                 roster: [
@@ -410,7 +419,31 @@
                 ]
             },
             {
-                name: "Only Fans", tag: "OF", kills: 56, points: 222, value: 6901,
+                name: "Viltrum", tag: "VLT", kills: 190, points: 567, value: 9182,
+                color: "#FF0040", accent: "#FF4060",
+                image: "https://wallpapercave.com/wp/wp6795025.jpg",
+                roster: [
+                    { ign: "pink.etc", role: "IGL", rarity: "legend", urlRating: 88, kills: 123, appearances: 13, value: 600, imageUrl: "https://preview.redd.it/motoko-kusanagi-bp-character-wallpapers-v0-gm7g83f40he91.jpg?width=532&format=pjpg&auto=webp&s=d8e91e52fc582d7d43b4b39f4ee5435a58c720e0" },
+                    { ign: "R\u0438 \u2022 Tariq", role: "IGL", rarity: "elite", urlRating: 51, kills: 51, appearances: 8, value: 396, imageUrl: "" },
+                    { ign: "R\u0438 \u2022 ayanda<3", role: "SUPPORT", rarity: "elite", urlRating: 46, kills: 42, appearances: 5, value: 371, imageUrl: "" },
+                    { ign: "R\u0438 \u2022 Auradebt", role: "TANK", rarity: "elite", urlRating: 41, kills: 45, appearances: 10, value: 338, imageUrl: "" },
+                    { ign: "blue.etc", role: "SUPPORT", rarity: "common", urlRating: 18, kills: 13, appearances: 13, value: 161, imageUrl: "https://preview.redd.it/kestrel-dancer-of-discord-pp19-bizon-iconic-v0-yjqmsjaimnme1.png?width=1080&crop=smart&auto=webp&s=38469b90887f2b5bfab1bf08a67091ea05ee4a9a" }
+                ]
+            },
+            {
+                name: "Epstein Files", tag: "EF", kills: 186, points: 514, value: 8568,
+                color: "#9B59B6", accent: "#8E44AD",
+                image: "https://wallpapercave.com/wp/wp6795025.jpg",
+                roster: [
+                    { ign: "NF | LIAM", role: "FRAGGER", rarity: "common", urlRating: 38, kills: 49, appearances: 10, value: 316, imageUrl: "" },
+                    { ign: "sYm\u272AAllfather", role: "TANK", rarity: "common", urlRating: 35, kills: 37, appearances: 10, value: 301, imageUrl: "" },
+                    { ign: "Tyzllah.etc", role: "IGL", rarity: "common", urlRating: 32, kills: 35, appearances: 13, value: 255, imageUrl: "" },
+                    { ign: "sYm\u272AHoliday", role: "FRAGGER", rarity: "common", urlRating: 19, kills: 21, appearances: 2, value: 187, imageUrl: "" },
+                    { ign: "R \u2022 Yang", role: "SUPPORT", rarity: "common", urlRating: 17, kills: 12, appearances: 7, value: 160, imageUrl: "" }
+                ]
+            },
+            {
+                name: "Only Fans", tag: "OF", kills: 139, points: 463, value: 6901,
                 color: "#E91E63", accent: "#C2185B",
                 image: "https://wallpapercave.com/wp/wp6795025.jpg",
                 roster: [
@@ -422,19 +455,7 @@
                 ]
             },
             {
-                name: "Tier 0 Elites", tag: "T0E", kills: 80, points: 202, value: 6906,
-                color: "#4A90D9", accent: "#2C6FAC",
-                image: "https://wallpapercave.com/wp/wp6795025.jpg",
-                roster: [
-                    { ign: "44 \u2022 Ban0", role: "IGL", rarity: "elite", urlRating: 42, kills: 31, appearances: 13, value: 332, imageUrl: "" },
-                    { ign: "C1N", role: "SUPPORT", rarity: "common", urlRating: 33, kills: 42, appearances: 13, value: 270, imageUrl: "" },
-                    { ign: "39Intro.etc", role: "SUPPORT", rarity: "common", urlRating: 32, kills: 30, appearances: 8, value: 261, imageUrl: "" },
-                    { ign: "F\u03A3 | dazing", role: "SUPPORT", rarity: "common", urlRating: 21, kills: 12, appearances: 4, value: 197, imageUrl: "" },
-                    { ign: "Vortex \u2022 ixt", role: "TANK", rarity: "common", urlRating: 6, kills: 1, appearances: 1, value: 148, imageUrl: "" }
-                ]
-            },
-            {
-                name: "Valhala", tag: "VH", kills: 72, points: 201, value: 6736,
+                name: "Valhala", tag: "VH", kills: 128, points: 420, value: 6736,
                 color: "#2ECC71", accent: "#27AE60",
                 image: "https://wallpapercave.com/wp/wp6795025.jpg",
                 roster: [
@@ -446,7 +467,7 @@
                 ]
             },
             {
-                name: "Mamos Pink Cartel", tag: "MPC", kills: 60, points: 186, value: 5821,
+                name: "Mamos Pink Cartel", tag: "MPC", kills: 121, points: 408, value: 5821,
                 color: "#FF69B4", accent: "#FF1493",
                 image: "https://wallpapercave.com/wp/wp6795025.jpg",
                 roster: [
@@ -458,7 +479,19 @@
                 ]
             },
             {
-                name: "Big Baddies Of SA", tag: "BBSA", kills: 66, points: 146, value: 5453,
+                name: "Tier 0 Elites", tag: "T0E", kills: 141, points: 354, value: 6906,
+                color: "#4A90D9", accent: "#2C6FAC",
+                image: "https://wallpapercave.com/wp/wp6795025.jpg",
+                roster: [
+                    { ign: "44 \u2022 Ban0", role: "IGL", rarity: "elite", urlRating: 42, kills: 31, appearances: 13, value: 332, imageUrl: "" },
+                    { ign: "C1N", role: "SUPPORT", rarity: "common", urlRating: 33, kills: 42, appearances: 13, value: 270, imageUrl: "" },
+                    { ign: "39Intro.etc", role: "SUPPORT", rarity: "common", urlRating: 32, kills: 30, appearances: 8, value: 261, imageUrl: "" },
+                    { ign: "F\u03A3 | dazing", role: "SUPPORT", rarity: "common", urlRating: 21, kills: 12, appearances: 4, value: 197, imageUrl: "" },
+                    { ign: "Vortex \u2022 ixt", role: "TANK", rarity: "common", urlRating: 6, kills: 1, appearances: 1, value: 148, imageUrl: "" }
+                ]
+            },
+            {
+                name: "Big Baddies Of SA", tag: "BBSA", kills: 59, points: 297, value: 5453,
                 color: "#F39C12", accent: "#E67E22",
                 image: "https://wallpapercave.com/wp/wp6795025.jpg",
                 roster: [
@@ -469,7 +502,7 @@
                 ]
             },
             {
-                name: "Rouge Legion", tag: "RL", kills: 23, points: 85, value: 3000,
+                name: "Rouge Legion", tag: "RL", kills: 28, points: 88, value: 3000,
                 color: "#E74C3C", accent: "#C0392B",
                 image: "https://wallpapercave.com/wp/wp6795025.jpg",
                 roster: [
@@ -695,5 +728,7 @@
             if (firstPanel) firstPanel.classList.add('expanded');
         });
         </script>
+        <!--<< Auth.js >>-->
+        <script src="assets/js/auth.js"></script>
     </body>
 </html>

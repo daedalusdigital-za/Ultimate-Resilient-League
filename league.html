@@ -28,6 +28,8 @@
         <link rel="stylesheet" href="assets/css/nice-select.css">
         <!--<< Main.css >>-->
         <link rel="stylesheet" href="assets/css/main.css">
+        <!--<< Auth.css >>-->
+        <link rel="stylesheet" href="assets/css/auth.css">
         
         <!-- Modern League Table Styles -->
         <style>
@@ -155,6 +157,214 @@
                 ) !important;
                 border-left: 3px solid #CD7F32;
             }
+
+            /* Bottom 3 - Relegation Zone (class-based for reliability) */
+            .gt-league-table tbody tr.relegation-row {
+                background: linear-gradient(90deg, 
+                    rgba(231, 76, 60, 0.2), 
+                    rgba(50, 20, 20, 1), 
+                    rgba(231, 76, 60, 0.2)
+                ) !important;
+                border-left: 3px solid #E74C3C;
+            }
+
+            .gt-league-table tbody tr.relegation-row td:first-child {
+                color: #E74C3C !important;
+                text-shadow: 0 0 10px rgba(231, 76, 60, 0.4);
+            }
+
+            .relegation-badge {
+                display: inline-block;
+                background: linear-gradient(135deg, #E74C3C, #C0392B);
+                color: #fff;
+                font-size: 9px;
+                font-weight: 800;
+                padding: 3px 8px;
+                border-radius: 4px;
+                margin-left: 10px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                vertical-align: middle;
+                animation: pulse-red 2s infinite;
+            }
+
+            @keyframes pulse-red {
+                0%, 100% { box-shadow: 0 0 5px rgba(231, 76, 60, 0.4); }
+                50% { box-shadow: 0 0 15px rgba(231, 76, 60, 0.8); }
+            }
+
+            /* ===== TABLE LEGEND ===== */
+            .table-legend {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+                margin-top: 25px;
+                padding: 18px 25px;
+                background: rgba(20, 20, 20, 0.8);
+                border-radius: 12px;
+                border: 1px solid rgba(255, 255, 255, 0.06);
+            }
+
+            .legend-item {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 13px;
+                color: #aaa;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+
+            .legend-color {
+                width: 14px;
+                height: 14px;
+                border-radius: 3px;
+                flex-shrink: 0;
+            }
+
+            /* ===== RELEGATION ALERT SECTION ===== */
+            .relegation-section {
+                margin-top: 40px;
+                padding: 30px;
+                background: linear-gradient(145deg, rgba(231, 76, 60, 0.08), rgba(10, 10, 10, 0.95));
+                border: 1px solid rgba(231, 76, 60, 0.25);
+                border-radius: 16px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .relegation-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, transparent, #E74C3C, #ff6b6b, #E74C3C, transparent);
+            }
+
+            .relegation-header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+
+            .relegation-icon {
+                font-size: 28px;
+                animation: pulse-red 2s infinite;
+            }
+
+            .relegation-header h4 {
+                color: #E74C3C;
+                font-size: 18px;
+                font-weight: 800;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                margin: 0;
+            }
+
+            .relegation-header p {
+                color: #888;
+                font-size: 13px;
+                margin: 4px 0 0 0;
+                font-weight: 400;
+                letter-spacing: 0.5px;
+            }
+
+            .relegation-cards {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
+
+            .relegation-card {
+                background: linear-gradient(145deg, rgba(231, 76, 60, 0.12), rgba(20, 10, 10, 0.9));
+                border: 1px solid rgba(231, 76, 60, 0.2);
+                border-radius: 12px;
+                padding: 20px;
+                text-align: center;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .relegation-card::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, #E74C3C, transparent);
+            }
+
+            .relegation-card:hover {
+                border-color: rgba(231, 76, 60, 0.5);
+                transform: translateY(-3px);
+                box-shadow: 0 10px 30px rgba(231, 76, 60, 0.15);
+            }
+
+            .relegation-card .rel-position {
+                font-size: 32px;
+                font-weight: 900;
+                color: #E74C3C;
+                line-height: 1;
+                margin-bottom: 8px;
+                text-shadow: 0 0 20px rgba(231, 76, 60, 0.3);
+            }
+
+            .relegation-card .rel-team {
+                font-size: 16px;
+                font-weight: 700;
+                color: #fff;
+                margin-bottom: 12px;
+            }
+
+            .relegation-card .rel-stats {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                font-size: 12px;
+                color: #888;
+            }
+
+            .relegation-card .rel-stats span {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2px;
+            }
+
+            .relegation-card .rel-stats strong {
+                color: #E74C3C;
+                font-size: 16px;
+                font-weight: 800;
+            }
+
+            .relegation-card .rel-gap {
+                margin-top: 12px;
+                padding-top: 12px;
+                border-top: 1px solid rgba(231, 76, 60, 0.15);
+                font-size: 12px;
+                color: #ff6b6b;
+                font-weight: 600;
+            }
+
+            @media (max-width: 768px) {
+                .relegation-cards {
+                    grid-template-columns: 1fr;
+                }
+                .table-legend {
+                    gap: 12px;
+                }
+                .relegation-section {
+                    padding: 20px;
+                    margin-top: 25px;
+                }
+            }
+            
             
             .gt-league-table tbody td {
                 padding: 16px 20px;
@@ -223,12 +433,7 @@
                 color: #60A5FA;
             }
             
-            /* Top Fragger column */
-            .gt-league-table tbody td:nth-child(5) {
-                color: #A78BFA;
-                font-weight: 600;
-                font-style: italic;
-            }
+
             
             /* ===== MOBILE RESPONSIVE OPTIMIZATIONS ===== */
             
@@ -365,7 +570,7 @@
                 }
                 
                 .table-responsive::after {
-                    content: 'Ã¢â€ Â Scroll Ã¢â€ â€™';
+                    content: 'Scroll ';
                     position: absolute;
                     bottom: -25px;
                     left: 50%;
@@ -526,6 +731,8 @@
                             <div class="social-icon d-flex align-items-center">
                                 <a href="#"><i class="fab fa-discord"></i></a>
                             </div>
+                            <div class="url-mobile-auth"></div>
+                            <a href="rulebook.html" class="rulebook-shine-btn" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px 20px;margin-top:20px;background:linear-gradient(135deg,#9B59B6,#8E44AD);border:1px solid rgba(155,89,182,0.5);border-radius:12px;color:#fff;font-size:0.95rem;font-weight:700;font-family:'Chakra Petch',sans-serif;text-transform:uppercase;letter-spacing:2px;text-decoration:none;box-shadow:0 4px 15px rgba(155,89,182,0.3);transition:all 0.3s ease;"><i class="fa-solid fa-book-open"></i> Official Rulebook</a>
                         </div>
                     </div>
                 </div>
@@ -670,7 +877,6 @@
                                     <th>Team</th>
                                     <th>Kills</th>
                                     <th>Points</th>
-                                    <th>Top Fragger</th>
                                     <th>Valued</th>
                                 </tr>
                             </thead>
@@ -679,49 +885,45 @@
                                     <td>1</td>
                                     <td>
                                         <div class="gt-team-info d-flex align-items-center">
-                                            <span>Dream Team</span>
+                                            <span>Dream Team 🔥</span>
                                         </div>
                                     </td>
-                                    <td>166</td>
-                                    <td>368</td>
-                                    <td>TBA</td>
-                                    <td>TBA</td>
+                                    <td>238</td>
+                                    <td>734</td>
+                                    <td>10,000 URL</td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
                                     <td>
                                         <div class="gt-team-info d-flex align-items-center">
-                                            <span>Viltrum</span>
+                                            <span>Dark Triad</span>
                                         </div>
                                     </td>
-                                    <td>119</td>
-                                    <td>349</td>
-                                    <td>TBA</td>
-                                    <td>TBA</td>
+                                    <td>182</td>
+                                    <td>659</td>
+                                    <td>7,144 URL</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>
                                         <div class="gt-team-info d-flex align-items-center">
-                                            <span>Epstein Files</span>
+                                            <span>Viltrum</span>
                                         </div>
                                     </td>
-                                    <td>121</td>
-                                    <td>295</td>
-                                    <td>TBA</td>
-                                    <td>TBA</td>
+                                    <td>190</td>
+                                    <td>567</td>
+                                    <td>9,182 URL</td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
                                     <td>
                                         <div class="gt-team-info d-flex align-items-center">
-                                            <span>Dark Veil</span>
+                                            <span>Epstein Files</span>
                                         </div>
                                     </td>
-                                    <td>45</td>
-                                    <td>251</td>
-                                    <td>TBA</td>
-                                    <td>TBA</td>
+                                    <td>186</td>
+                                    <td>514</td>
+                                    <td>8,568 URL</td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
@@ -730,77 +932,180 @@
                                             <span>Only Fans</span>
                                         </div>
                                     </td>
-                                    <td>56</td>
-                                    <td>222</td>
-                                    <td>TBA</td>
-                                    <td>TBA</td>
+                                    <td>139</td>
+                                    <td>463</td>
+                                    <td>6,901 URL</td>
                                 </tr>
                                 <tr>
                                     <td>6</td>
                                     <td>
                                         <div class="gt-team-info d-flex align-items-center">
-                                            <span>Tier 0 Elites</span>
+                                            <span>Valhala</span>
                                         </div>
                                     </td>
-                                    <td>80</td>
-                                    <td>202</td>
-                                    <td>TBA</td>
-                                    <td>TBA</td>
+                                    <td>128</td>
+                                    <td>420</td>
+                                    <td>6,736 URL</td>
                                 </tr>
                                 <tr>
                                     <td>7</td>
                                     <td>
                                         <div class="gt-team-info d-flex align-items-center">
-                                            <span>Valhala</span>
-                                        </div>
-                                    </td>
-                                    <td>72</td>
-                                    <td>201</td>
-                                    <td>TBA</td>
-                                    <td>TBA</td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>
-                                        <div class="gt-team-info d-flex align-items-center">
                                             <span>Mamos Pink Cartel</span>
                                         </div>
                                     </td>
-                                    <td>60</td>
-                                    <td>186</td>
-                                    <td>TBA</td>
-                                    <td>TBA</td>
+                                    <td>121</td>
+                                    <td>408</td>
+                                    <td>5,821 URL</td>
                                 </tr>
-                                <tr>
+                                <tr class="relegation-row">
+                                    <td>8</td>
+                                    <td>
+                                        <div class="gt-team-info d-flex align-items-center">
+                                            <span>Tier 0 Elites <span class="relegation-badge">REL</span></span>
+                                        </div>
+                                    </td>
+                                    <td>141</td>
+                                    <td>354</td>
+                                    <td>6,906 URL</td>
+                                </tr>
+                                <tr class="relegation-row">
                                     <td>9</td>
                                     <td>
                                         <div class="gt-team-info d-flex align-items-center">
-                                            <span>Big Baddies Of SA</span>
+                                            <span>Big Baddies Of SA <span class="relegation-badge">REL</span></span>
                                         </div>
                                     </td>
-                                    <td>66</td>
-                                    <td>146</td>
-                                    <td>TBA</td>
-                                    <td>TBA</td>
+                                    <td>59</td>
+                                    <td>297</td>
+                                    <td>5,453 URL</td>
                                 </tr>
-                                <tr>
+                                <tr class="relegation-row">
                                     <td>10</td>
                                     <td>
                                         <div class="gt-team-info d-flex align-items-center">
-                                            <span>Rouge Legion</span>
+                                            <span>Rouge Legion <span class="relegation-badge">REL</span></span>
                                         </div>
                                     </td>
-                                    <td>23</td>
-                                    <td>85</td>
-                                    <td>TBA</td>
-                                    <td>TBA</td>
+                                    <td>28</td>
+                                    <td>88</td>
+                                    <td>3,000 URL</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- Table Legend -->
+                    <div class="table-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: linear-gradient(135deg, #FFD700, #FFA500); box-shadow: 0 0 8px rgba(255,215,0,0.4);"></div>
+                            <span>1st Place</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: linear-gradient(135deg, #C0C0C0, #A8A8A8); box-shadow: 0 0 8px rgba(192,192,192,0.4);"></div>
+                            <span>2nd Place</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: linear-gradient(135deg, #CD7F32, #A0522D); box-shadow: 0 0 8px rgba(205,127,50,0.4);"></div>
+                            <span>3rd Place</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: linear-gradient(135deg, #E74C3C, #C0392B); box-shadow: 0 0 8px rgba(231,76,60,0.4);"></div>
+                            <span>Relegation Zone</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Relegation Alert Section -->
+                <div class="relegation-section wow fadeInUp" data-wow-delay=".5s">
+                    <div class="relegation-header">
+                        <div>
+                            <span class="relegation-icon">⚠️</span>
+                        </div>
+                        <div>
+                            <h4>Relegation Zone</h4>
+                            <p>Bottom 3 teams face relegation at the end of the season</p>
+                        </div>
+                    </div>
+                    <div class="relegation-cards">
+                        <div class="relegation-card">
+                            <div class="rel-position">#8</div>
+                            <div class="rel-team">Tier 0 Elites</div>
+                            <div class="rel-stats">
+                                <span>
+                                    <strong>354</strong>
+                                    Points
+                                </span>
+                                <span>
+                                    <strong>141</strong>
+                                    Kills
+                                </span>
+                            </div>
+                            <div class="rel-gap">54 pts behind safety</div>
+                        </div>
+                        <div class="relegation-card">
+                            <div class="rel-position">#9</div>
+                            <div class="rel-team">Big Baddies Of SA</div>
+                            <div class="rel-stats">
+                                <span>
+                                    <strong>297</strong>
+                                    Points
+                                </span>
+                                <span>
+                                    <strong>59</strong>
+                                    Kills
+                                </span>
+                            </div>
+                            <div class="rel-gap">111 pts behind safety</div>
+                        </div>
+                        <div class="relegation-card">
+                            <div class="rel-position">#10</div>
+                            <div class="rel-team">Rouge Legion</div>
+                            <div class="rel-stats">
+                                <span>
+                                    <strong>88</strong>
+                                    Points
+                                </span>
+                                <span>
+                                    <strong>28</strong>
+                                    Kills
+                                </span>
+                            </div>
+                            <div class="rel-gap">320 pts behind safety</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
+       <!-- GT Brand Section Start -->
+       <div class="gt-brand-section section-padding fix">
+            <style>
+                .gt-brand-section .gt-brand-box { border: none; background: none; padding: 10px 25px; }
+                .gt-brand-section .swiper-slide { width: auto !important; margin-right: 20px; }
+                .gt-brand-text { font-size: clamp(1rem, 2.5vw, 1.8rem); font-weight: 800; text-transform: uppercase; letter-spacing: 3px; white-space: nowrap; text-align: center; transition: all 0.4s ease; padding: 10px 0; user-select: none; background: linear-gradient(90deg, #FFD700, #FF0040, #9B59B6, #FFD700); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.3; }
+                .gt-brand-section .swiper-slide:nth-child(3n+1) .gt-brand-text { background: linear-gradient(90deg, #FFD700, #FF0040, #9B59B6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+                .gt-brand-section .swiper-slide:nth-child(3n+2) .gt-brand-text { background: linear-gradient(90deg, #FF0040, #9B59B6, #FFD700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+                .gt-brand-section .swiper-slide:nth-child(3n+3) .gt-brand-text { background: linear-gradient(90deg, #9B59B6, #FFD700, #FF0040); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+                .swiper-slide:hover .gt-brand-text, .swiper-slide-active .gt-brand-text { opacity: 1; text-shadow: none; }
+            </style>
+            <div class="container">
+                <div class="swiper gt-brand-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Maus</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Welcome</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Shumba</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Kabal</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Batsie</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Beyonder</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Nagi</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Mamo</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">SpongeBob</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Double G</div></div></div>
+                    </div>
+                </div>
+            </div>
+       </div>
 
         <!-- GT Footer Section Start -->
         <footer class="gt-footer-section section-bg">
@@ -878,6 +1183,8 @@
         <script src="assets/js/wow.min.js"></script>
         <!--<< Main.js >>-->
         <script src="assets/js/main.js"></script>
+        <!--<< Auth.js >>-->
+        <script src="assets/js/auth.js"></script>
     </body>
 </html>
 

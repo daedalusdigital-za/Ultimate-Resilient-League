@@ -28,6 +28,8 @@
         <link rel="stylesheet" href="assets/css/nice-select.css">
         <!--<< Main.css >>-->
         <link rel="stylesheet" href="assets/css/main.css">
+        <!--<< Auth.css >>-->
+        <link rel="stylesheet" href="assets/css/auth.css">
         
         <!-- Team Wagers Custom Styles -->
         <style>
@@ -492,6 +494,45 @@
                     justify-content: center;
                 }
             }
+
+            /* ===== Primary Wager Type Tabs ===== */
+            .tw-tabs{display:flex;gap:0;margin-bottom:30px;border-radius:14px;overflow:hidden;border:2px solid rgba(255,215,0,.15);background:rgba(255,255,255,.02)}
+            .tw-tab{flex:1;padding:16px 10px;text-align:center;cursor:pointer;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.45);transition:all .25s;border-right:1px solid rgba(255,215,0,.1);position:relative;font-family:'Chakra Petch',sans-serif}
+            .tw-tab:last-child{border-right:none}
+            .tw-tab:hover{color:rgba(255,255,255,.7);background:rgba(255,215,0,.04)}
+            .tw-tab.active{color:#FFD700;background:rgba(255,215,0,.1)}
+            .tw-tab.active::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:3px;background:#FFD700;border-radius:3px 3px 0 0}
+            .tw-tab i{display:block;font-size:1.2rem;margin-bottom:4px}
+            .tw-tab-panel{display:none}
+            .tw-tab-panel.active{display:block}
+            @media(max-width:480px){.tw-tab{padding:12px 6px;font-size:.7rem;letter-spacing:0}.tw-tab i{font-size:1rem}}
+            @media(max-width:360px){.tw-tabs{border-radius:10px}.tw-tab{padding:10px 4px;font-size:.6rem}.tw-tab i{font-size:.9rem;margin-bottom:2px}}
+
+            /* ===== Fan Favourite Styles ===== */
+            .ff-header{text-align:center;margin-bottom:40px}
+            .ff-badge{display:inline-block;background:linear-gradient(135deg,#E91E63,#FF5252);color:#fff;font-weight:800;font-size:.7rem;padding:4px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+            .ff-header h2{font-size:2rem;color:#FF5252;margin-bottom:8px;font-family:'Chakra Petch',sans-serif}
+            .ff-header p{color:rgba(255,255,255,.5);font-size:.95rem}
+            .ff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;max-width:1000px;margin:0 auto}
+            .ff-card{background:rgba(20,20,30,.95);border:1px solid rgba(255,82,82,.1);border-radius:14px;padding:20px;display:flex;flex-direction:column;align-items:center;transition:all .3s;position:relative;overflow:hidden;text-align:center}
+            .ff-card:hover{border-color:rgba(255,82,82,.4);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+            .ff-card.top-voted{border-color:rgba(255,82,82,.3);background:linear-gradient(145deg,rgba(255,82,82,.05),rgba(20,20,30,.95))}
+            .ff-card.top-voted::before{content:'#1 FAN PICK';position:absolute;top:12px;right:-30px;background:linear-gradient(90deg,#FF5252,#E91E63);color:#fff;font-size:.55rem;font-weight:800;padding:2px 35px;transform:rotate(45deg);letter-spacing:1px}
+            .ff-rank{position:absolute;top:12px;left:14px;color:rgba(255,255,255,.15);font-size:2rem;font-weight:900;line-height:1}
+            .ff-team-logo{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#fff;margin-bottom:12px;border:3px solid rgba(255,255,255,.15);flex-shrink:0}
+            .ff-team-name{color:#fff;font-weight:700;font-size:1.1rem;margin-bottom:4px}
+            .ff-team-tag{color:rgba(255,255,255,.4);font-size:.75rem;margin-bottom:16px}
+            .ff-vote-count{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px;color:#FF5252;font-size:1.3rem;font-weight:800}
+            .ff-vote-count i{font-size:1rem}
+            .ff-vote-label{color:rgba(255,255,255,.35);font-size:.7rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px}
+            .ff-vote-bar{width:100%;height:4px;background:rgba(255,255,255,.05);border-radius:2px;margin-bottom:16px;overflow:hidden}
+            .ff-vote-fill{height:100%;background:linear-gradient(90deg,#FF5252,#E91E63);border-radius:2px;transition:width .5s}
+            .ff-vote-btn{width:100%;padding:12px;background:linear-gradient(135deg,#FF5252,#E91E63);border:none;border-radius:10px;color:#fff;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
+            .ff-vote-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,82,82,.25)}
+            .ff-vote-btn:active{transform:scale(.98)}
+            .ff-vote-btn.voted{background:linear-gradient(135deg,rgba(255,82,82,.15),rgba(233,30,99,.15));border:1px solid rgba(255,82,82,.3);color:#FF5252;cursor:default}
+            @media(max-width:480px){.ff-header h2{font-size:1.4rem}.ff-grid{grid-template-columns:1fr}.ff-card.top-voted::before{display:none}.ff-card{padding:16px}.ff-team-logo{width:50px;height:50px;font-size:.85rem}.ff-vote-count{font-size:1.1rem}.ff-vote-btn{padding:10px;font-size:.8rem}}
+            @media(max-width:360px){.ff-header h2{font-size:1.2rem}.ff-header p{font-size:.8rem}.ff-team-logo{width:44px;height:44px;font-size:.75rem}.ff-team-name{font-size:.95rem}}
         </style>
                             
     </head>
@@ -579,6 +620,8 @@
                             <div class="social-icon d-flex align-items-center">
                                 <a href="#"><i class="fab fa-discord"></i></a>
                             </div>
+                            <div class="url-mobile-auth"></div>
+                            <a href="rulebook.html" class="rulebook-shine-btn" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px 20px;margin-top:20px;background:linear-gradient(135deg,#9B59B6,#8E44AD);border:1px solid rgba(155,89,182,0.5);border-radius:12px;color:#fff;font-size:0.95rem;font-weight:700;font-family:'Chakra Petch',sans-serif;text-transform:uppercase;letter-spacing:2px;text-decoration:none;box-shadow:0 4px 15px rgba(155,89,182,0.3);transition:all 0.3s ease;"><i class="fa-solid fa-book-open"></i> Official Rulebook</a>
                         </div>
                     </div>
                 </div>
@@ -708,6 +751,18 @@
                             TRENDING WAGERS
                         </h2>
                     </div>
+                </div>
+
+                <!-- Primary Wager Type Tabs -->
+                <div class="tw-tabs">
+                    <div class="tw-tab active" data-tab="teamwagers"><i class="fa-solid fa-gamepad"></i>Team Wagers</div>
+                    <div class="tw-tab" data-tab="seasonwinner"><i class="fa-solid fa-trophy"></i>Season Winner</div>
+                    <div class="tw-tab" data-tab="fanfavourite"><i class="fa-solid fa-heart"></i>Fan Favourite</div>
+                </div>
+
+                <!-- Panel 1: Team Wagers -->
+                <div class="tw-tab-panel active" id="tw-panel-teamwagers">
+                <div class="gt-section-title-area" style="padding-top:0">
                     <ul class="nav">
                         <li class="nav-item wow fadeInUp" data-wow-delay=".2s">
                             <a href="#all" data-bs-toggle="tab" class="nav-link active">
@@ -795,7 +850,7 @@
                             <div class="gt-wager-odds">
                                 <div class="gt-odds-header">
                                     <span>Round Winner Odds</span>
-                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: 2,000 URL</span>
                                 </div>
                                 <div class="gt-odds-row">
                                     <div class="gt-odds-team">
@@ -830,7 +885,7 @@
                             <div class="gt-wager-odds">
                                 <div class="gt-odds-header">
                                     <span>Round Winner Odds</span>
-                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: 2,000 URL</span>
                                 </div>
                                 <div class="gt-odds-row">
                                     <div class="gt-odds-team">
@@ -865,7 +920,7 @@
                             <div class="gt-wager-odds">
                                 <div class="gt-odds-header">
                                     <span>Round Winner Odds</span>
-                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: 2,000 URL</span>
                                 </div>
                                 <div class="gt-odds-row">
                                     <div class="gt-odds-team">
@@ -901,7 +956,7 @@
                             <div class="gt-wager-odds">
                                 <div class="gt-odds-header">
                                     <span>Round Winner Odds</span>
-                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: 2,000 URL</span>
                                 </div>
                                 <div class="gt-odds-row">
                                     <div class="gt-odds-team">
@@ -936,7 +991,7 @@
                             <div class="gt-wager-odds">
                                 <div class="gt-odds-header">
                                     <span>Round Winner Odds</span>
-                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: 2,000 URL</span>
                                 </div>
                                 <div class="gt-odds-row">
                                     <div class="gt-odds-team">
@@ -971,7 +1026,7 @@
                             <div class="gt-wager-odds">
                                 <div class="gt-odds-header">
                                     <span>Round Winner Odds</span>
-                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: 2,000 URL</span>
                                 </div>
                                 <div class="gt-odds-row">
                                     <div class="gt-odds-team">
@@ -1006,7 +1061,7 @@
                             <div class="gt-wager-odds">
                                 <div class="gt-odds-header">
                                     <span>Round Winner Odds</span>
-                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: R2,000</span>
+                                    <span class="gt-pool-info"><i class="fa-solid fa-coins"></i> Pool: 2,000 URL</span>
                                 </div>
                                 <div class="gt-odds-row">
                                     <div class="gt-odds-team">
@@ -1162,101 +1217,134 @@
                                 <span class="gt-result-badge">Wagers Settled</span>
                             </div>
                         </div>
-                </div>
-            </div>
-        </section>
+                    </div><!-- /id=latest -->
+                </div><!-- /tab-content -->
+                </div><!-- /tw-panel-teamwagers -->
 
-        <!-- GT Tournament-gallery Section Start -->
-        <section class="gt-tournament-gallery-section section-padding fix pt-0">
-            <div class="container">
-                <div class="gt-section-title-2 text-center">
-                    <h6 class="text-white subtitle tz-sub-tilte tz-sub-anim  text-uppercase tx-subTitle">gallery</h6>
-                    <h2 class="text-white tx-title sec_title  tz-itm-title tz-itm-anim">
-                        tournament gallery 
-                    </h2>
-                </div>
-            </div>
-            <div class="swiper gt-gallery-slider">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="gt-epic-gallery-item gt-style-2">
-                            <div class="gt-gallery-iamge">
-                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-9.jpg" alt="img">
-                               <a href="#" class="icon">
-                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
-                               </a>
-                            </div>
-                        </div>
+                <!-- Panel 2: Season Winner -->
+                <div class="tw-tab-panel" id="tw-panel-seasonwinner">
+                    <style>
+                        .sw-header{text-align:center;margin-bottom:40px}
+                        .sw-badge{display:inline-block;background:linear-gradient(135deg,#FF6B00,#FFD700);color:#000;font-weight:800;font-size:.7rem;padding:4px 14px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+                        .sw-header h2{font-size:2rem;color:#FFD700;margin-bottom:8px;font-family:'Chakra Petch',sans-serif}
+                        .sw-header p{color:rgba(255,255,255,.5);font-size:.95rem}
+                        .sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;max-width:1000px;margin:0 auto}
+                        .sw-card{background:rgba(20,20,30,.95);border:1px solid rgba(255,215,0,.1);border-radius:14px;padding:20px;display:flex;flex-direction:column;transition:all .3s;position:relative;overflow:hidden}
+                        .sw-card:hover{border-color:rgba(255,215,0,.4);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+                        .sw-card.favorite{border-color:rgba(255,215,0,.3);background:linear-gradient(145deg,rgba(255,215,0,.05),rgba(20,20,30,.95))}
+                        .sw-card.favorite::before{content:'FAVORITE';position:absolute;top:12px;right:-25px;background:linear-gradient(90deg,#FFD700,#FF6B00);color:#000;font-size:.55rem;font-weight:800;padding:2px 30px;transform:rotate(45deg);letter-spacing:1px}
+                        .sw-rank{position:absolute;top:12px;left:14px;color:rgba(255,255,255,.15);font-size:2rem;font-weight:900;line-height:1}
+                        .sw-team-info{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-left:35px}
+                        .sw-team-logo{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;color:#fff;flex-shrink:0;border:2px solid rgba(255,255,255,.15)}
+                        .sw-team-name{color:#fff;font-weight:700;font-size:1.05rem}
+                        .sw-team-tag{color:rgba(255,255,255,.4);font-size:.75rem;margin-top:1px}
+                        .sw-stats{display:flex;gap:8px;margin-bottom:14px}
+                        .sw-stat{flex:1;text-align:center;background:rgba(255,255,255,.03);border-radius:8px;padding:8px 4px}
+                        .sw-stat-val{color:#fff;font-weight:700;font-size:.95rem;display:block}
+                        .sw-stat-lbl{color:rgba(255,255,255,.35);font-size:.6rem;text-transform:uppercase;letter-spacing:.5px}
+                        .sw-odds-row{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.03);border-radius:10px;padding:12px 16px;margin-bottom:12px}
+                        .sw-odds-label{color:rgba(255,255,255,.5);font-size:.75rem;text-transform:uppercase;letter-spacing:1px}
+                        .sw-odds-value{color:#4ADE80;font-weight:900;font-size:1.5rem}
+                        .sw-bet-btn{width:100%;padding:12px;background:linear-gradient(135deg,#FFD700,#B8860B);border:none;border-radius:10px;color:#000;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
+                        .sw-bet-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,215,0,.25)}
+                        .sw-bet-btn:active{transform:scale(.98)}
+                        .sw-implied{text-align:center;margin-top:4px;color:rgba(255,255,255,.25);font-size:.7rem}
+                        @media(max-width:480px){.sw-header h2{font-size:1.4rem}.sw-grid{grid-template-columns:1fr}.sw-card.favorite::before{display:none}.sw-card{padding:16px}.sw-team-info{padding-left:28px;gap:10px}.sw-team-logo{width:36px;height:36px;font-size:.7rem}.sw-team-name{font-size:.95rem}.sw-stats{gap:5px}.sw-stat{padding:6px 2px}.sw-stat-val{font-size:.85rem}.sw-stat-lbl{font-size:.55rem}.sw-odds-value{font-size:1.2rem}.sw-bet-btn{padding:10px;font-size:.8rem}}
+                        @media(max-width:360px){.sw-header h2{font-size:1.2rem}.sw-header p{font-size:.8rem}.sw-rank{font-size:1.5rem}.sw-team-info{padding-left:22px}.sw-team-logo{width:30px;height:30px;font-size:.6rem}.sw-team-name{font-size:.85rem}.sw-stats{flex-wrap:wrap}.sw-stat{min-width:calc(50% - 4px)}}
+                    </style>
+                    <div class="sw-header">
+                        <div class="sw-badge">Season Long Wager</div>
+                        <h2><i class="fa-solid fa-trophy" style="margin-right:10px;"></i>Season Winner</h2>
+                        <p>Predict which team will be crowned URL Season 1 Champions</p>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="gt-epic-gallery-item gt-style-2">
-                            <div class="gt-gallery-iamge">
-                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-10.jpg" alt="img">
-                               <a href="#" class="icon">
-                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
-                               </a>
-                            </div>
-                        </div>
+                    <div class="sw-grid" id="swGrid"></div>
+                </div><!-- /tw-panel-seasonwinner -->
+
+                <!-- Panel 3: Fan Favourite -->
+                <div class="tw-tab-panel" id="tw-panel-fanfavourite">
+                    <div class="ff-header">
+                        <div class="ff-badge"><i class="fa-solid fa-star" style="margin-right:4px"></i> Community Vote</div>
+                        <h2><i class="fa-solid fa-heart" style="margin-right:10px;"></i>Fan Favourite</h2>
+                        <p>Vote for your favourite URL Season 1 team — one vote per person!</p>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="gt-epic-gallery-item gt-style-2">
-                            <div class="gt-gallery-iamge">
-                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-11.jpg" alt="img">
-                               <a href="#" class="icon">
-                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
-                               </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="gt-epic-gallery-item gt-style-2">
-                            <div class="gt-gallery-iamge">
-                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-12.jpg" alt="img">
-                               <a href="#" class="icon">
-                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
-                               </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="gt-epic-gallery-item gt-style-2">
-                            <div class="gt-gallery-iamge">
-                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-13.jpg" alt="img">
-                               <a href="#" class="icon">
-                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
-                               </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row g-4">
-                    <div class="col-lg-6">
-                        <div class="gt-epic-gallery-item mb-0">
-                            <div class="gt-gallery-iamge">
-                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-14.jpg" alt="img">
-                               <a href="assets/img/inner-page/gallery/gallery-14.jpg" class="icon img-popup2">
-                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
-                              </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="gt-epic-gallery-item mb-0">
-                            <div class="gt-gallery-iamge">
-                               <img loading="lazy" src="assets/img/inner-page/gallery/gallery-15.jpg" alt="img">
-                               <a href="assets/img/inner-page/gallery/gallery-15.jpg" class="icon img-popup2">
-                                <i class="fa-regular fa-arrows-up-down-left-right"></i>
-                              </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <div class="ff-grid" id="ffGrid"></div>
+                </div><!-- /tw-panel-fanfavourite -->
+
+            </div><!-- /container -->
         </section>
 
         
+
+       <!-- GT Brand Section Start -->
+       <div class="gt-brand-section section-padding fix">
+            <style>
+                .gt-brand-section .gt-brand-box {
+                    border: none;
+                    background: none;
+                    padding: 10px 25px;
+                }
+                .gt-brand-section .swiper-slide {
+                    width: auto !important;
+                    margin-right: 20px;
+                }
+                .gt-brand-text {
+                    font-size: clamp(1rem, 2.5vw, 1.8rem);
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    letter-spacing: 3px;
+                    white-space: nowrap;
+                    text-align: center;
+                    transition: all 0.4s ease;
+                    padding: 10px 0;
+                    user-select: none;
+                    background: linear-gradient(90deg, #FFD700, #FF0040, #9B59B6, #FFD700);
+                    background-size: 200% 100%;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    opacity: 0.3;
+                }
+                .gt-brand-section .swiper-slide:nth-child(3n+1) .gt-brand-text {
+                    background: linear-gradient(90deg, #FFD700, #FF0040, #9B59B6);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+                .gt-brand-section .swiper-slide:nth-child(3n+2) .gt-brand-text {
+                    background: linear-gradient(90deg, #FF0040, #9B59B6, #FFD700);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+                .gt-brand-section .swiper-slide:nth-child(3n+3) .gt-brand-text {
+                    background: linear-gradient(90deg, #9B59B6, #FFD700, #FF0040);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                }
+                .swiper-slide:hover .gt-brand-text,
+                .swiper-slide-active .gt-brand-text {
+                    opacity: 1;
+                    text-shadow: none;
+                }
+            </style>
+            <div class="container">
+                <div class="swiper gt-brand-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Maus</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Welcome</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Shumba</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Kabal</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Batsie</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Beyonder</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Nagi</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Mamo</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">SpongeBob</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Double G</div></div></div>
+                    </div>
+                </div>
+            </div>
+       </div>
 
         <!-- GT Footer Section Start -->
         <footer class="gt-footer-section section-bg">
@@ -1339,5 +1427,203 @@
         <script src="assets/js/wow.min.js"></script>
         <!--<< Main.js >>-->
         <script src="assets/js/main.js"></script>
+        <!--<< Auth.js >>-->
+        <script src="assets/js/auth.js"></script>
+
+        <!-- Login Required Dialog -->
+        <div id="loginRequiredModal" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.75); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
+            <div style="background:linear-gradient(145deg,#1a1a2e,#16213e); border:1px solid rgba(255,215,0,0.2); border-radius:16px; padding:40px 35px; max-width:400px; width:90%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.6); position:relative; animation:modalPop 0.3s ease;">
+                <div style="width:70px;height:70px;border-radius:50%;background:rgba(255,8,8,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+                    <i class="fa-solid fa-lock" style="font-size:1.8rem;color:#FF0808;"></i>
+                </div>
+                <h3 style="color:#fff;font-family:'Chakra Petch',sans-serif;font-size:1.4rem;margin-bottom:10px;">Login Required</h3>
+                <p style="color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.5;margin-bottom:25px;">You need to be logged in to place a bet. Please login or create an account to continue.</p>
+                <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+                    <a href="login.html" style="display:inline-flex;align-items:center;gap:6px;padding:12px 28px;background:linear-gradient(135deg,#FF0808,#a50000);color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-family:'Chakra Petch',sans-serif;text-transform:uppercase;font-size:0.85rem;letter-spacing:0.5px;transition:all 0.3s ease;"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                    <a href="register.html" style="display:inline-flex;align-items:center;gap:6px;padding:12px 28px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-family:'Chakra Petch',sans-serif;text-transform:uppercase;font-size:0.85rem;letter-spacing:0.5px;transition:all 0.3s ease;"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                </div>
+                <button onclick="document.getElementById('loginRequiredModal').style.display='none'" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.08);border:none;color:rgba(255,255,255,0.5);width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;transition:all 0.3s ease;">&times;</button>
+            </div>
+        </div>
+        <style>@keyframes modalPop{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}</style>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('loginRequiredModal');
+
+            // Intercept all Place Bet buttons
+            document.querySelectorAll('.gt-place-bet-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (!URLAuth.isLoggedIn()) {
+                        modal.style.display = 'flex';
+                    }
+                });
+            });
+
+            // Intercept Create Wager button
+            document.querySelectorAll('.gt-create-wager-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (!URLAuth.isLoggedIn()) {
+                        modal.style.display = 'flex';
+                    }
+                });
+            });
+
+            // Close on overlay click
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) modal.style.display = 'none';
+            });
+
+            // Close on Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'flex') modal.style.display = 'none';
+            });
+        });
+        </script>
+
+        <!-- Season Winner + Fan Favourite + Tab Switching Script -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('loginRequiredModal');
+
+            // ===== PRIMARY TAB SWITCHING =====
+            const twTabs = document.querySelectorAll('.tw-tab');
+            const twPanels = document.querySelectorAll('.tw-tab-panel');
+            twTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    twTabs.forEach(t => t.classList.remove('active'));
+                    twPanels.forEach(p => p.classList.remove('active'));
+                    this.classList.add('active');
+                    const target = document.getElementById('tw-panel-' + this.dataset.tab);
+                    if (target) target.classList.add('active');
+                });
+            });
+
+            // ===== SEASON WINNER =====
+            const swTeams = [
+                { name: 'Dream Team', tag: 'DT', color: '#FFD700', pts: 368, kills: 166, value: 10000, odds: 2.50 },
+                { name: 'Viltrum', tag: 'VLT', color: '#FF0040', pts: 349, kills: 119, value: 9182, odds: 3.25 },
+                { name: 'Epstein Files', tag: 'EF', color: '#9B59B6', pts: 295, kills: 121, value: 8568, odds: 5.50 },
+                { name: 'Dark Triad', tag: 'DV', color: '#00CED1', pts: 251, kills: 45, value: 7144, odds: 8.00 },
+                { name: 'Only Fans', tag: 'OF', color: '#E91E63', pts: 222, kills: 56, value: 6901, odds: 12.00 },
+                { name: 'Tier 0 Elites', tag: 'T0E', color: '#4A90D9', pts: 202, kills: 80, value: 6906, odds: 15.00 },
+                { name: 'Valhala', tag: 'VH', color: '#2ECC71', pts: 201, kills: 72, value: 6736, odds: 15.50 },
+                { name: 'Mamos Pink Cartel', tag: 'MPC', color: '#FF69B4', pts: 186, kills: 60, value: 5821, odds: 18.00 },
+                { name: 'Big Baddies Of SA', tag: 'BBSA', color: '#F39C12', pts: 146, kills: 66, value: 5453, odds: 25.00 },
+                { name: 'Rouge Legion', tag: 'RL', color: '#E74C3C', pts: 85, kills: 23, value: 3000, odds: 35.00 }
+            ];
+
+            const swGrid = document.getElementById('swGrid');
+            swGrid.innerHTML = swTeams.map((t, i) => {
+                const implied = (100 / t.odds).toFixed(1);
+                return `
+                <div class="sw-card${i === 0 ? ' favorite' : ''}">
+                    <div class="sw-rank">#${i + 1}</div>
+                    <div class="sw-team-info">
+                        <div class="sw-team-logo" style="background:${t.color}20;border-color:${t.color}50;color:${t.color}">${t.tag}</div>
+                        <div>
+                            <div class="sw-team-name">${t.name}</div>
+                            <div class="sw-team-tag">${t.tag} · Season 1</div>
+                        </div>
+                    </div>
+                    <div class="sw-stats">
+                        <div class="sw-stat"><span class="sw-stat-val">${t.pts}</span><span class="sw-stat-lbl">Points</span></div>
+                        <div class="sw-stat"><span class="sw-stat-val">${t.kills}</span><span class="sw-stat-lbl">Kills</span></div>
+                        <div class="sw-stat"><span class="sw-stat-val">${(t.value/1000).toFixed(1)}K</span><span class="sw-stat-lbl">Value</span></div>
+                    </div>
+                    <div class="sw-odds-row">
+                        <span class="sw-odds-label">Outright Odds</span>
+                        <span class="sw-odds-value">${t.odds.toFixed(2)}x</span>
+                    </div>
+                    <button class="sw-bet-btn" data-idx="${i}"><i class="fa-solid fa-trophy"></i> Pick as Champion</button>
+                    <div class="sw-implied">Implied probability: ${implied}%</div>
+                </div>`;
+            }).join('');
+
+            swGrid.addEventListener('click', function(e) {
+                const btn = e.target.closest('.sw-bet-btn');
+                if (!btn) return;
+                if (!URLAuth.isLoggedIn()) { modal.style.display = 'flex'; return; }
+                const idx = parseInt(btn.dataset.idx);
+                const t = swTeams[idx];
+                const amt = prompt('Enter your wager amount (URL):', '100');
+                if (!amt || isNaN(amt) || amt <= 0) return;
+                const ret = Math.floor(parseFloat(amt) * t.odds);
+                alert('Season Winner Wager Placed!\n\nTeam: ' + t.name + ' (' + t.tag + ')\nOdds: ' + t.odds.toFixed(2) + 'x\nBet: ' + amt + ' URL\nPotential Return: ' + ret.toLocaleString() + ' URL\n\nGood luck!');
+            });
+
+            // ===== FAN FAVOURITE =====
+            const ffTeams = swTeams.map(t => ({ ...t }));
+
+            // Load votes from localStorage
+            let ffVotes = JSON.parse(localStorage.getItem('urlFanVotes') || '{}');
+            const ffVoted = localStorage.getItem('urlFanVotedTeam') || null;
+
+            function getVoteCount(tag) {
+                return ffVotes[tag] || Math.floor(Math.random() * 200 + 50);
+            }
+
+            // Initialize vote counts if first visit
+            if (!localStorage.getItem('urlFanVotes')) {
+                const initialVotes = {};
+                ffTeams.forEach(t => {
+                    initialVotes[t.tag] = Math.floor(Math.random() * 300 + 80);
+                });
+                ffVotes = initialVotes;
+                localStorage.setItem('urlFanVotes', JSON.stringify(ffVotes));
+            }
+
+            function renderFanFavourite() {
+                const maxVotes = Math.max(...ffTeams.map(t => ffVotes[t.tag] || 0));
+                // Sort by votes descending
+                const sorted = ffTeams.slice().sort((a, b) => (ffVotes[b.tag] || 0) - (ffVotes[a.tag] || 0));
+
+                const ffGrid = document.getElementById('ffGrid');
+                ffGrid.innerHTML = sorted.map((t, i) => {
+                    const votes = ffVotes[t.tag] || 0;
+                    const pct = maxVotes > 0 ? Math.round((votes / maxVotes) * 100) : 0;
+                    const isVoted = ffVoted === t.tag;
+                    return `
+                    <div class="ff-card${i === 0 ? ' top-voted' : ''}">
+                        <div class="ff-rank">#${i + 1}</div>
+                        <div class="ff-team-logo" style="background:${t.color}20;border-color:${t.color}50;color:${t.color}">${t.tag}</div>
+                        <div class="ff-team-name">${t.name}</div>
+                        <div class="ff-team-tag">${t.tag} · Season 1</div>
+                        <div class="ff-vote-count"><i class="fa-solid fa-heart"></i> ${votes.toLocaleString()}</div>
+                        <div class="ff-vote-label">fan votes</div>
+                        <div class="ff-vote-bar"><div class="ff-vote-fill" style="width:${pct}%"></div></div>
+                        <button class="ff-vote-btn${isVoted ? ' voted' : ''}" data-tag="${t.tag}">
+                            <i class="fa-solid fa-${isVoted ? 'check' : 'heart'}"></i>
+                            ${isVoted ? 'Voted!' : 'Vote for ' + t.name}
+                        </button>
+                    </div>`;
+                }).join('');
+            }
+
+            renderFanFavourite();
+
+            document.getElementById('ffGrid').addEventListener('click', function(e) {
+                const btn = e.target.closest('.ff-vote-btn');
+                if (!btn) return;
+                if (!URLAuth.isLoggedIn()) { modal.style.display = 'flex'; return; }
+                if (ffVoted) {
+                    alert('You have already voted for ' + ffVoted + '! One vote per person.');
+                    return;
+                }
+                const tag = btn.dataset.tag;
+                const team = ffTeams.find(t => t.tag === tag);
+                if (!team) return;
+
+                ffVotes[tag] = (ffVotes[tag] || 0) + 1;
+                localStorage.setItem('urlFanVotes', JSON.stringify(ffVotes));
+                localStorage.setItem('urlFanVotedTeam', tag);
+
+                renderFanFavourite();
+                alert('Thanks for voting!\n\nYou voted for ' + team.name + ' (' + tag + ') as Fan Favourite!\n\nTotal votes: ' + ffVotes[tag].toLocaleString());
+            });
+        });
+        </script>
     </body>
 </html>

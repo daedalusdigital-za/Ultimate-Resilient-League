@@ -28,6 +28,8 @@
         <link rel="stylesheet" href="assets/css/nice-select.css">
         <!--<< Main.css >>-->
         <link rel="stylesheet" href="assets/css/main.css">
+        <!--<< Auth.css >>-->
+        <link rel="stylesheet" href="assets/css/auth.css">
                             
     </head>
     <body>
@@ -114,6 +116,8 @@
                             <div class="social-icon d-flex align-items-center">
                                 <a href="#"><i class="fab fa-discord"></i></a>
                             </div>
+                            <div class="url-mobile-auth"></div>
+                            <a href="rulebook.html" class="rulebook-shine-btn" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px 20px;margin-top:20px;background:linear-gradient(135deg,#9B59B6,#8E44AD);border:1px solid rgba(155,89,182,0.5);border-radius:12px;color:#fff;font-size:0.95rem;font-weight:700;font-family:'Chakra Petch',sans-serif;text-transform:uppercase;letter-spacing:2px;text-decoration:none;box-shadow:0 4px 15px rgba(155,89,182,0.3);transition:all 0.3s ease;"><i class="fa-solid fa-book-open"></i> Official Rulebook</a>
                         </div>
                     </div>
                 </div>
@@ -203,398 +207,201 @@
 
         <div id="smooth-wrapper">
             <div id="smooth-content">
-                <!-- Player Wagers - Search Based -->
+                <!-- ========== PLAYER WAGERS — TABBED ========== -->
         <style>
-            :root {
-                --gold: #FFD700;
-                --green: #00FF88;
-                --dark: #0a0a0f;
-                --card: rgba(20,20,30,0.95);
+            :root{--gold:#FFD700;--green:#00FF88;--dark:#0a0a0f;--card:rgba(20,20,30,.95)}
+            *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+            /* === Page Shell === */
+            .pw-page{min-height:100vh;padding:90px 20px 40px;max-width:1100px;margin:0 auto}
+            .pw-title{text-align:center;margin-bottom:24px}
+            .pw-title h1{font-size:2rem;color:var(--gold);margin-bottom:6px;font-family:'Chakra Petch',sans-serif}
+            .pw-title p{color:rgba(255,255,255,.5);font-size:.95rem}
+
+            /* === Tabs === */
+            .pw-tabs{display:flex;gap:0;margin-bottom:30px;border-radius:14px;overflow:hidden;border:2px solid rgba(255,215,0,.15);background:rgba(255,255,255,.02)}
+            .pw-tab{flex:1;padding:16px 10px;text-align:center;cursor:pointer;font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.45);transition:all .25s;border-right:1px solid rgba(255,215,0,.1);position:relative;font-family:'Chakra Petch',sans-serif}
+            .pw-tab:last-child{border-right:none}
+            .pw-tab:hover{color:rgba(255,255,255,.7);background:rgba(255,215,0,.04)}
+            .pw-tab.active{color:#FFD700;background:rgba(255,215,0,.1)}
+            .pw-tab.active::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:3px;background:#FFD700;border-radius:3px 3px 0 0}
+            .pw-tab i{display:block;font-size:1.2rem;margin-bottom:4px}
+            .pw-tab-panel{display:none}
+            .pw-tab-panel.active{display:block}
+
+            /* === Match Selection === */
+            .pw-matches{display:flex;gap:10px;margin-bottom:24px}
+            .pw-match{flex:1;background:rgba(255,255,255,.03);border:2px solid rgba(255,215,0,.2);border-radius:12px;padding:14px 10px;text-align:center;cursor:pointer;transition:all .2s}
+            .pw-match:hover{border-color:rgba(255,215,0,.5)}
+            .pw-match.active{background:rgba(255,215,0,.1);border-color:var(--gold)}
+            .pw-match .num{display:block;font-weight:800;color:var(--gold);font-size:1.05rem}
+            .pw-match .time{color:rgba(255,255,255,.5);font-size:.75rem}
+
+            /* === Search + Dropdown (Most Kills) === */
+            .pw-search-wrap{position:relative;margin-bottom:24px}
+            .pw-search-wrap label{display:block;color:rgba(255,255,255,.6);font-size:.8rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+            .pw-search-input{width:100%;background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 48px 14px 18px;color:#fff;font-size:1rem;transition:border-color .2s}
+            .pw-search-input:focus{outline:none;border-color:var(--gold)}
+            .pw-search-input::placeholder{color:rgba(255,255,255,.3)}
+            .pw-search-icon{position:absolute;right:16px;bottom:14px;color:rgba(255,255,255,.3);font-size:1.1rem}
+            .pw-results{position:absolute;top:100%;left:0;right:0;background:var(--card);border:2px solid rgba(255,215,0,.3);border-radius:12px;max-height:300px;overflow-y:auto;z-index:100;display:none;margin-top:5px}
+            .pw-results.show{display:block}
+            .pw-result{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.05);transition:background .15s}
+            .pw-result:last-child{border-bottom:none}
+            .pw-result:hover,.pw-result:focus{background:rgba(255,215,0,.1)}
+            .pw-result .name{font-weight:700;color:#fff;font-size:.95rem}
+            .pw-result .team{color:rgba(255,255,255,.5);font-size:.75rem}
+            .pw-result .odds{color:var(--green);font-weight:800;font-size:.95rem}
+            .pw-no-results{padding:18px;text-align:center;color:rgba(255,255,255,.4)}
+
+            /* === Selected Player Card === */
+            .pw-selected{background:var(--card);border:2px solid var(--green);border-radius:16px;padding:22px;margin-bottom:24px;display:none}
+            .pw-selected.show{display:block}
+            .pw-selected-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+            .pw-selected-info h3{color:#fff;font-size:1.4rem;margin-bottom:4px}
+            .pw-selected-info span{color:var(--gold);font-size:.85rem}
+            .pw-selected-clear{background:rgba(255,50,50,.2);border:none;color:#ff5050;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:1rem;transition:background .2s}
+            .pw-selected-clear:hover{background:rgba(255,50,50,.4)}
+
+            /* === Bet Amount === */
+            .pw-bet-section{background:rgba(255,255,255,.03);border-radius:12px;padding:18px}
+            .pw-bet-row{display:flex;gap:12px;margin-bottom:12px}
+            .pw-bet-col{flex:1}
+            .pw-bet-col label{display:block;color:rgba(255,255,255,.5);font-size:.7rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+            .pw-amt-input{display:flex;align-items:center;background:rgba(255,255,255,.05);border:2px solid rgba(255,215,0,.3);border-radius:10px;overflow:hidden}
+            .pw-amt-input span{padding:10px 12px;background:rgba(255,215,0,.1);color:var(--gold);font-weight:700;font-size:1rem}
+            .pw-amt-input input{flex:1;background:transparent;border:none;padding:10px;color:#fff;font-size:1.1rem;font-weight:600;width:80px}
+            .pw-amt-input input:focus{outline:none}
+            .pw-odds-display{background:rgba(0,255,136,.1);border:2px solid rgba(0,255,136,.3);border-radius:10px;padding:10px;text-align:center}
+            .pw-odds-display .val{font-size:1.3rem;font-weight:800;color:var(--green)}
+            .pw-quick{display:flex;gap:6px;margin-bottom:16px}
+            .pw-quick button{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px;color:rgba(255,255,255,.7);font-size:.8rem;cursor:pointer;transition:all .15s}
+            .pw-quick button:hover{background:rgba(255,215,0,.1);border-color:var(--gold);color:var(--gold)}
+            .pw-return{background:linear-gradient(135deg,rgba(0,255,136,.1),rgba(255,215,0,.1));border:2px solid rgba(0,255,136,.3);border-radius:12px;padding:16px;text-align:center;margin-bottom:16px}
+            .pw-return label{display:block;color:rgba(255,255,255,.6);font-size:.75rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+            .pw-return .amount{font-size:1.8rem;font-weight:900;color:var(--green)}
+            .pw-place-btn{width:100%;background:linear-gradient(135deg,var(--gold),#B8860B);border:none;border-radius:12px;padding:16px;color:#000;font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:transform .15s,box-shadow .15s}
+            .pw-place-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,215,0,.3)}
+            .pw-place-btn:active{transform:scale(.98)}
+            .pw-empty-state{text-align:center;padding:50px 20px;color:rgba(255,255,255,.3)}
+            .pw-empty-state i{font-size:2.5rem;margin-bottom:16px;display:block;color:rgba(255,215,0,.3)}
+            .pw-empty-state p{font-size:.95rem}
+
+            /* === Shared Search for O/U and H2H === */
+            .wt-search{position:relative;margin-bottom:20px}
+            .wt-search input{width:100%;background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 48px 14px 18px;color:#fff;font-size:1rem;transition:border-color .2s}
+            .wt-search input:focus{outline:none;border-color:var(--gold)}
+            .wt-search input::placeholder{color:rgba(255,255,255,.3)}
+            .wt-search i{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.3);font-size:1.1rem}
+            .wt-count{text-align:center;color:rgba(255,255,255,.35);font-size:.75rem;margin-bottom:16px}
+            .wt-count strong{color:var(--gold)}
+
+            /* === O/U Cards === */
+            .ou-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+            .ou-card{background:var(--card);border:1px solid rgba(255,215,0,.12);border-radius:14px;padding:18px;transition:border-color .3s,transform .2s}
+            .ou-card:hover{border-color:rgba(255,215,0,.35);transform:translateY(-2px)}
+            .ou-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+            .ou-name{color:#fff;font-weight:700;font-size:.95rem}
+            .ou-team{color:rgba(255,255,255,.4);font-size:.7rem;margin-top:2px}
+            .ou-avg{background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.2);border-radius:8px;padding:5px 10px;text-align:center}
+            .ou-avg-val{color:#FFD700;font-weight:800;font-size:1rem;display:block}
+            .ou-avg-lbl{color:rgba(255,255,255,.4);font-size:.55rem;text-transform:uppercase;letter-spacing:.5px}
+            .ou-line-row{text-align:center;padding:8px;background:rgba(255,255,255,.03);border-radius:8px;margin-bottom:12px}
+            .ou-line-lbl{color:rgba(255,255,255,.4);font-size:.6rem;text-transform:uppercase;letter-spacing:1px}
+            .ou-line-num{color:#fff;font-size:1.6rem;font-weight:900}
+            .ou-line-kills{color:rgba(255,255,255,.3);font-size:.7rem}
+            .ou-btns{display:flex;gap:8px}
+            .ou-btn{flex:1;padding:10px 6px;border-radius:10px;text-align:center;cursor:pointer;transition:all .2s;border:2px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
+            .ou-btn:hover{transform:translateY(-1px)}
+            .ou-btn.over:hover,.ou-btn.over.sel{border-color:#4ADE80;background:rgba(74,222,128,.08)}
+            .ou-btn.under:hover,.ou-btn.under.sel{border-color:#F87171;background:rgba(248,113,113,.08)}
+            .ou-btn-lbl{display:block;font-size:.6rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+            .ou-btn.over .ou-btn-lbl{color:#4ADE80}.ou-btn.under .ou-btn-lbl{color:#F87171}
+            .ou-btn-odds{display:block;font-size:1.05rem;font-weight:800;color:#fff}
+            .ou-bet-row{display:none;margin-top:10px;gap:8px}
+            .ou-bet-row.show{display:flex}
+            .ou-bet-input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,215,0,.2);border-radius:8px;padding:10px;color:#fff;font-size:.85rem}
+            .ou-bet-input:focus{outline:none;border-color:#FFD700}
+            .ou-bet-btn{padding:10px 16px;background:linear-gradient(135deg,#FFD700,#B8860B);border:none;border-radius:8px;color:#000;font-weight:700;font-size:.75rem;cursor:pointer;white-space:nowrap;transition:transform .15s}
+            .ou-bet-btn:hover{transform:scale(1.05)}
+
+            /* === H2H Cards === */
+            .h2h-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+            .h2h-card{background:var(--card);border:1px solid rgba(255,215,0,.12);border-radius:14px;padding:18px;transition:border-color .3s}
+            .h2h-card:hover{border-color:rgba(255,215,0,.3)}
+            .h2h-matchup{display:flex;align-items:stretch;gap:10px;margin-bottom:12px}
+            .h2h-player{flex:1;text-align:center;padding:12px 6px;border:2px solid rgba(255,255,255,.08);border-radius:10px;cursor:pointer;transition:all .2s;background:rgba(255,255,255,.02)}
+            .h2h-player:hover{border-color:rgba(255,215,0,.3);transform:translateY(-2px)}
+            .h2h-player.sel{border-color:#4ADE80;background:rgba(74,222,128,.08)}
+            .h2h-pname{color:#fff;font-weight:700;font-size:.9rem}
+            .h2h-pteam{color:rgba(255,255,255,.4);font-size:.65rem;margin:3px 0}
+            .h2h-pstat{color:rgba(255,255,255,.6);font-size:.7rem}
+            .h2h-pstat strong{color:#FFD700}
+            .h2h-podds{display:block;margin-top:6px;color:#4ADE80;font-weight:800;font-size:1.1rem}
+            .h2h-vs{color:#FFD700;font-weight:800;font-size:1rem;display:flex;align-items:center;flex-shrink:0}
+            .h2h-bet-row{display:none;margin-top:10px;gap:8px}
+            .h2h-bet-row.show{display:flex}
+            .h2h-bet-input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,215,0,.2);border-radius:8px;padding:10px;color:#fff;font-size:.85rem}
+            .h2h-bet-input:focus{outline:none;border-color:#FFD700}
+            .h2h-bet-btn{padding:10px 16px;background:linear-gradient(135deg,#FFD700,#B8860B);border:none;border-radius:8px;color:#000;font-weight:700;font-size:.75rem;cursor:pointer;white-space:nowrap;transition:transform .15s}
+            .h2h-bet-btn:hover{transform:scale(1.05)}
+            .h2h-match-label{text-align:center;margin-bottom:6px;color:rgba(255,255,255,.3);font-size:.68rem;text-transform:uppercase;letter-spacing:1px}
+
+            /* === Responsive === */
+            @media(max-width:480px){
+                .pw-page{padding:80px 12px 30px}
+                .pw-title h1{font-size:1.4rem}
+                .pw-title p{font-size:.8rem}
+                .pw-tab{padding:12px 6px;font-size:.7rem;letter-spacing:0}
+                .pw-tab i{font-size:1rem}
+                .pw-match{padding:10px 6px;min-width:0}
+                .pw-match .num{font-size:.9rem}
+                .pw-match .time{font-size:.65rem}
+                .pw-bet-row{flex-direction:column;gap:10px}
+                .pw-return .amount{font-size:1.5rem}
+                .ou-grid{grid-template-columns:1fr}
+                .h2h-grid{grid-template-columns:1fr}
+                .h2h-matchup{flex-direction:column}
+                .h2h-vs{justify-content:center}
+                .pw-search-input,.wt-search input,.ou-bet-input,.h2h-bet-input,.pw-amt-input input{font-size:16px}
+                .pw-selected-info h3{font-size:1.1rem}
+                .pw-selected{padding:16px}
+                .pw-bet-section{padding:14px}
+                .pw-quick button{padding:8px 4px;font-size:.72rem}
+                .ou-card{padding:14px}
+                .h2h-card{padding:14px}
+                .h2h-pname{font-size:.8rem}
+                .h2h-pstat{font-size:.65rem}
             }
-            
-            * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-            
-            .pw-page {
-                min-height: 100vh;
-                padding: 90px 20px 40px;
-                max-width: 600px;
-                margin: 0 auto;
+            @media(max-width:360px){
+                .pw-page{padding:75px 8px 20px}
+                .pw-tabs{border-radius:10px}
+                .pw-tab{padding:10px 4px;font-size:.6rem}
+                .pw-tab i{font-size:.9rem;margin-bottom:2px}
+                .pw-matches{gap:6px}
+                .pw-match{padding:8px 4px;border-radius:8px}
+                .pw-match .num{font-size:.8rem}
+                .pw-match .time{font-size:.6rem}
+                .pw-quick{gap:4px}
+                .pw-quick button{font-size:.65rem;padding:7px 2px}
+                .ou-name{font-size:.85rem}
+                .h2h-pname{font-size:.75rem}
+                .h2h-podds{font-size:.95rem}
             }
-            
-            /* Title */
-            .pw-title {
-                text-align: center;
-                margin-bottom: 30px;
-            }
-            .pw-title h1 {
-                font-size: 1.8rem;
-                color: var(--gold);
-                margin-bottom: 8px;
-            }
-            .pw-title p {
-                color: rgba(255,255,255,0.5);
-                font-size: 0.95rem;
-            }
-            
-            /* Match Selection */
-            .pw-matches {
-                display: flex;
-                gap: 10px;
-                margin-bottom: 30px;
-            }
-            .pw-match {
-                flex: 1;
-                background: rgba(255,255,255,0.03);
-                border: 2px solid rgba(255,215,0,0.2);
-                border-radius: 12px;
-                padding: 15px 10px;
-                text-align: center;
-                cursor: pointer;
-                transition: all 0.2s;
-            }
-            .pw-match:hover {
-                border-color: rgba(255,215,0,0.5);
-            }
-            .pw-match.active {
-                background: rgba(255,215,0,0.1);
-                border-color: var(--gold);
-            }
-            .pw-match .num {
-                display: block;
-                font-weight: 800;
-                color: var(--gold);
-                font-size: 1.1rem;
-            }
-            .pw-match .time {
-                color: rgba(255,255,255,0.5);
-                font-size: 0.8rem;
-            }
-            
-            /* Search Container */
-            .pw-search-wrap {
-                position: relative;
-                margin-bottom: 30px;
-            }
-            .pw-search-wrap label {
-                display: block;
-                color: rgba(255,255,255,0.6);
-                font-size: 0.85rem;
-                margin-bottom: 10px;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-            }
-            .pw-search-input {
-                width: 100%;
-                background: rgba(255,255,255,0.05);
-                border: 2px solid rgba(255,255,255,0.1);
-                border-radius: 12px;
-                padding: 16px 50px 16px 20px;
-                color: #fff;
-                font-size: 1.1rem;
-                transition: border-color 0.2s;
-            }
-            .pw-search-input:focus {
-                outline: none;
-                border-color: var(--gold);
-            }
-            .pw-search-input::placeholder {
-                color: rgba(255,255,255,0.3);
-            }
-            .pw-search-icon {
-                position: absolute;
-                right: 18px;
-                bottom: 16px;
-                color: rgba(255,255,255,0.3);
-                font-size: 1.2rem;
-            }
-            
-            /* Search Results Dropdown */
-            .pw-results {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--card);
-                border: 2px solid rgba(255,215,0,0.3);
-                border-radius: 12px;
-                max-height: 300px;
-                overflow-y: auto;
-                z-index: 100;
-                display: none;
-                margin-top: 5px;
-            }
-            .pw-results.show {
-                display: block;
-            }
-            .pw-result {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 14px 18px;
-                cursor: pointer;
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-                transition: background 0.15s;
-            }
-            .pw-result:last-child {
-                border-bottom: none;
-            }
-            .pw-result:hover, .pw-result:focus {
-                background: rgba(255,215,0,0.1);
-            }
-            .pw-result .name {
-                font-weight: 700;
-                color: #fff;
-                font-size: 1rem;
-            }
-            .pw-result .team {
-                color: rgba(255,255,255,0.5);
-                font-size: 0.8rem;
-            }
-            .pw-result .odds {
-                color: var(--green);
-                font-weight: 800;
-                font-size: 1rem;
-            }
-            .pw-no-results {
-                padding: 20px;
-                text-align: center;
-                color: rgba(255,255,255,0.4);
-            }
-            
-            /* Selected Player Card */
-            .pw-selected {
-                background: var(--card);
-                border: 2px solid var(--green);
-                border-radius: 16px;
-                padding: 25px;
-                margin-bottom: 30px;
-                display: none;
-            }
-            .pw-selected.show {
-                display: block;
-            }
-            .pw-selected-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                margin-bottom: 20px;
-            }
-            .pw-selected-info h3 {
-                color: #fff;
-                font-size: 1.5rem;
-                margin-bottom: 5px;
-            }
-            .pw-selected-info span {
-                color: var(--gold);
-                font-size: 0.9rem;
-            }
-            .pw-selected-clear {
-                background: rgba(255,50,50,0.2);
-                border: none;
-                color: #ff5050;
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
-                cursor: pointer;
-                font-size: 1rem;
-                transition: background 0.2s;
-            }
-            .pw-selected-clear:hover {
-                background: rgba(255,50,50,0.4);
-            }
-            
-            /* Bet Amount Section */
-            .pw-bet-section {
-                background: rgba(255,255,255,0.03);
-                border-radius: 12px;
-                padding: 20px;
-            }
-            .pw-bet-row {
-                display: flex;
-                gap: 15px;
-                margin-bottom: 15px;
-            }
-            .pw-bet-col {
-                flex: 1;
-            }
-            .pw-bet-col label {
-                display: block;
-                color: rgba(255,255,255,0.5);
-                font-size: 0.75rem;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                margin-bottom: 8px;
-            }
-            .pw-amt-input {
-                display: flex;
-                align-items: center;
-                background: rgba(255,255,255,0.05);
-                border: 2px solid rgba(255,215,0,0.3);
-                border-radius: 10px;
-                overflow: hidden;
-            }
-            .pw-amt-input span {
-                padding: 12px 14px;
-                background: rgba(255,215,0,0.1);
-                color: var(--gold);
-                font-weight: 700;
-                font-size: 1.1rem;
-            }
-            .pw-amt-input input {
-                flex: 1;
-                background: transparent;
-                border: none;
-                padding: 12px;
-                color: #fff;
-                font-size: 1.2rem;
-                font-weight: 600;
-                width: 80px;
-            }
-            .pw-amt-input input:focus {
-                outline: none;
-            }
-            .pw-odds-display {
-                background: rgba(0,255,136,0.1);
-                border: 2px solid rgba(0,255,136,0.3);
-                border-radius: 10px;
-                padding: 12px;
-                text-align: center;
-            }
-            .pw-odds-display .val {
-                font-size: 1.4rem;
-                font-weight: 800;
-                color: var(--green);
-            }
-            
-            /* Quick Amounts */
-            .pw-quick {
-                display: flex;
-                gap: 8px;
-                margin-bottom: 20px;
-            }
-            .pw-quick button {
-                flex: 1;
-                background: rgba(255,255,255,0.05);
-                border: 1px solid rgba(255,255,255,0.1);
-                border-radius: 8px;
-                padding: 10px;
-                color: rgba(255,255,255,0.7);
-                font-size: 0.85rem;
-                cursor: pointer;
-                transition: all 0.15s;
-            }
-            .pw-quick button:hover {
-                background: rgba(255,215,0,0.1);
-                border-color: var(--gold);
-                color: var(--gold);
-            }
-            
-            /* Return Display */
-            .pw-return {
-                background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(255,215,0,0.1));
-                border: 2px solid rgba(0,255,136,0.3);
-                border-radius: 12px;
-                padding: 20px;
-                text-align: center;
-                margin-bottom: 20px;
-            }
-            .pw-return label {
-                display: block;
-                color: rgba(255,255,255,0.6);
-                font-size: 0.8rem;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                margin-bottom: 8px;
-            }
-            .pw-return .amount {
-                font-size: 2rem;
-                font-weight: 900;
-                color: var(--green);
-            }
-            
-            /* Place Bet Button */
-            .pw-place-btn {
-                width: 100%;
-                background: linear-gradient(135deg, var(--gold), #B8860B);
-                border: none;
-                border-radius: 12px;
-                padding: 18px;
-                color: #000;
-                font-size: 1.1rem;
-                font-weight: 800;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                cursor: pointer;
-                transition: transform 0.15s, box-shadow 0.15s;
-            }
-            .pw-place-btn:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 10px 30px rgba(255,215,0,0.3);
-            }
-            .pw-place-btn:active {
-                transform: scale(0.98);
-            }
-            
-            /* Empty State */
-            .pw-empty-state {
-                text-align: center;
-                padding: 60px 20px;
-                color: rgba(255,255,255,0.3);
-            }
-            .pw-empty-state i {
-                font-size: 3rem;
-                margin-bottom: 20px;
-                display: block;
-                color: rgba(255,215,0,0.3);
-            }
-            .pw-empty-state p {
-                font-size: 1rem;
-            }
-            
-            /* Responsive */
-            @media (max-width: 480px) {
-                .pw-page {
-                    padding: 80px 15px 30px;
-                }
-                .pw-title h1 {
-                    font-size: 1.5rem;
-                }
-                .pw-match {
-                    padding: 12px 8px;
-                }
-                .pw-match .num {
-                    font-size: 0.95rem;
-                }
-                .pw-bet-row {
-                    flex-direction: column;
-                    gap: 12px;
-                }
-                .pw-return .amount {
-                    font-size: 1.6rem;
-                }
-            }
-            
-            @media (min-width: 768px) {
-                .pw-page {
-                    padding: 100px 30px 50px;
-                }
-                .pw-title h1 {
-                    font-size: 2.2rem;
-                }
-                .pw-search-input {
-                    font-size: 1.2rem;
-                    padding: 18px 55px 18px 22px;
-                }
+            @media(min-width:768px){
+                .pw-page{padding:100px 30px 50px}
+                .pw-title h1{font-size:2.2rem}
+                .pw-search-input,.wt-search input{font-size:1.1rem;padding:16px 52px 16px 20px}
             }
         </style>
 
         <div class="pw-page">
             <div class="pw-title">
                 <h1>Player Wagers</h1>
-                <p>Bet on who gets the most kills</p>
+                <p>Choose your wager type and place your bets</p>
             </div>
-            
-            <!-- Match Selection -->
+
+            <!-- Match Selection (shared) -->
             <div class="pw-matches" id="matches">
                 <div class="pw-match active" data-match="1">
                     <span class="num">Match 1</span>
@@ -609,66 +416,110 @@
                     <span class="time">9:05 PM</span>
                 </div>
             </div>
-            
-            <!-- Search Player -->
-            <div class="pw-search-wrap">
-                <label>Search Player</label>
-                <input type="text" class="pw-search-input" id="searchInput" placeholder="Type a player name..." autocomplete="off">
-                <i class="fa-solid fa-search pw-search-icon"></i>
-                <div class="pw-results" id="results"></div>
+
+            <!-- Tabs -->
+            <div class="pw-tabs">
+                <div class="pw-tab active" data-tab="mostkills"><i class="fa-solid fa-crosshairs"></i>Most Kills</div>
+                <div class="pw-tab" data-tab="overunder"><i class="fa-solid fa-arrows-up-down"></i>Over / Under</div>
+                <div class="pw-tab" data-tab="headtohead"><i class="fa-solid fa-people-arrows"></i>Head-to-Head</div>
             </div>
-            
-            <!-- Empty State (shown when no player selected) -->
-            <div class="pw-empty-state" id="emptyState">
-                <i class="fa-solid fa-user-plus"></i>
-                <p>Search and select a player to place your wager</p>
-            </div>
-            
-            <!-- Selected Player Card (hidden until player selected) -->
-            <div class="pw-selected" id="selectedCard">
-                <div class="pw-selected-header">
-                    <div class="pw-selected-info">
-                        <h3 id="selName">SHADOW</h3>
-                        <span id="selTeam">Dark Veli</span>
-                    </div>
-                    <button class="pw-selected-clear" id="clearBtn">
-                        <i class="fa-solid fa-times"></i>
-                    </button>
+
+            <!-- ===== TAB 1: MOST KILLS ===== -->
+            <div class="pw-tab-panel active" id="panel-mostkills">
+                <div class="pw-search-wrap">
+                    <label>Search Player</label>
+                    <input type="text" class="pw-search-input" id="searchInput" placeholder="Type a player name..." autocomplete="off">
+                    <i class="fa-solid fa-search pw-search-icon"></i>
+                    <div class="pw-results" id="results"></div>
                 </div>
-                
-                <div class="pw-bet-section">
-                    <div class="pw-bet-row">
-                        <div class="pw-bet-col">
-                            <label>Your Bet</label>
-                            <div class="pw-amt-input">
-                                <span>R</span>
-                                <input type="number" id="betAmt" value="100" min="10">
+                <div class="pw-empty-state" id="emptyState">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <p>Search and select a player to place your wager</p>
+                </div>
+                <div class="pw-selected" id="selectedCard">
+                    <div class="pw-selected-header">
+                        <div class="pw-selected-info">
+                            <h3 id="selName"></h3>
+                            <span id="selTeam"></span>
+                        </div>
+                        <button class="pw-selected-clear" id="clearBtn"><i class="fa-solid fa-times"></i></button>
+                    </div>
+                    <div class="pw-bet-section">
+                        <div class="pw-bet-row">
+                            <div class="pw-bet-col">
+                                <label>Your Bet</label>
+                                <div class="pw-amt-input"><span>R</span><input type="number" id="betAmt" value="100" min="10"></div>
+                            </div>
+                            <div class="pw-bet-col">
+                                <label>Odds</label>
+                                <div class="pw-odds-display"><span class="val" id="selOdds">2.50x</span></div>
                             </div>
                         </div>
-                        <div class="pw-bet-col">
-                            <label>Odds</label>
-                            <div class="pw-odds-display">
-                                <span class="val" id="selOdds">2.50x</span>
-                            </div>
+                        <div class="pw-quick">
+                            <button data-amt="50">50 URL</button>
+                            <button data-amt="100">100 URL</button>
+                            <button data-amt="250">250 URL</button>
+                            <button data-amt="500">500 URL</button>
                         </div>
+                        <div class="pw-return">
+                            <label>Potential Return</label>
+                            <div class="amount" id="returnAmt">250 URL</div>
+                        </div>
+                        <button class="pw-place-btn" id="placeBtn">Place Wager</button>
                     </div>
-                    
-                    <div class="pw-quick">
-                        <button data-amt="50">R50</button>
-                        <button data-amt="100">R100</button>
-                        <button data-amt="250">R250</button>
-                        <button data-amt="500">R500</button>
-                    </div>
-                    
-                    <div class="pw-return">
-                        <label>Potential Return</label>
-                        <div class="amount" id="returnAmt">R250</div>
-                    </div>
-                    
-                    <button class="pw-place-btn" id="placeBtn">Place Wager</button>
                 </div>
+            </div>
+
+            <!-- ===== TAB 2: OVER / UNDER ===== -->
+            <div class="pw-tab-panel" id="panel-overunder">
+                <div class="wt-search">
+                    <input type="text" id="ouSearch" placeholder="Search players..." autocomplete="off">
+                    <i class="fa-solid fa-search"></i>
+                </div>
+                <div class="wt-count" id="ouCount"></div>
+                <div class="ou-grid" id="ouGrid"></div>
+            </div>
+
+            <!-- ===== TAB 3: HEAD-TO-HEAD ===== -->
+            <div class="pw-tab-panel" id="panel-headtohead">
+                <div class="wt-search">
+                    <input type="text" id="h2hSearch" placeholder="Search matchups..." autocomplete="off">
+                    <i class="fa-solid fa-search"></i>
+                </div>
+                <div class="wt-count" id="h2hCount"></div>
+                <div class="h2h-grid" id="h2hGrid"></div>
             </div>
         </div>
+
+       <!-- GT Brand Section Start -->
+       <div class="gt-brand-section section-padding fix">
+            <style>
+                .gt-brand-section .gt-brand-box { border: none; background: none; padding: 10px 25px; }
+                .gt-brand-section .swiper-slide { width: auto !important; margin-right: 20px; }
+                .gt-brand-text { font-size: clamp(1rem, 2.5vw, 1.8rem); font-weight: 800; text-transform: uppercase; letter-spacing: 3px; white-space: nowrap; text-align: center; transition: all 0.4s ease; padding: 10px 0; user-select: none; background: linear-gradient(90deg, #FFD700, #FF0040, #9B59B6, #FFD700); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.3; }
+                .gt-brand-section .swiper-slide:nth-child(3n+1) .gt-brand-text { background: linear-gradient(90deg, #FFD700, #FF0040, #9B59B6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+                .gt-brand-section .swiper-slide:nth-child(3n+2) .gt-brand-text { background: linear-gradient(90deg, #FF0040, #9B59B6, #FFD700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+                .gt-brand-section .swiper-slide:nth-child(3n+3) .gt-brand-text { background: linear-gradient(90deg, #9B59B6, #FFD700, #FF0040); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+                .swiper-slide:hover .gt-brand-text, .swiper-slide-active .gt-brand-text { opacity: 1; text-shadow: none; }
+            </style>
+            <div class="container">
+                <div class="swiper gt-brand-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Maus</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Welcome</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Shumba</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Kabal</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Batsie</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Beyonder</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Nagi</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Mamo</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">SpongeBob</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Double G</div></div></div>
+                        <div class="swiper-slide"><div class="gt-brand-box"><div class="gt-brand-text">Evil Jeff</div></div></div>
+                    </div>
+                </div>
+            </div>
+       </div>
 
         <!-- GT Footer Section Start -->
         <footer class="gt-footer-section section-bg">
@@ -752,9 +603,9 @@
         <!--<< Main.js >>-->
         <script src="assets/js/main.js"></script>
         
-        <!--<< Player Wager Script >>-->
+        <!--<< Unified Player Wager Script >>-->
         <script>
-            // Player Data - 48 Real URL League Players (stats from players.html)
+            // ===== ALL 49 PLAYERS =====
             const players = [
                 { id: 1, n: "pink.etc", t: "FREE AGENT", r: "legend", rating: 88, avg: 9.5, kills: 123, apps: 13 },
                 { id: 2, n: "AG | Mausメ", t: "FREE AGENT", r: "legend", rating: 84, avg: 9.3, kills: 112, apps: 12 },
@@ -803,39 +654,98 @@
                 { id: 45, n: "sYm✪Leo", t: "FREE AGENT", r: "common", rating: 13, avg: 2.0, kills: 4, apps: 2 },
                 { id: 46, n: "Vortex • ixt", t: "FREE AGENT", r: "common", rating: 6, avg: 1.0, kills: 1, apps: 1 },
                 { id: 47, n: "ColdG2000", t: "FREE AGENT", r: "common", rating: 2, avg: 0.0, kills: 0, apps: 3 },
-                { id: 48, n: "blunt(isdaddy)", t: "FREE AGENT", r: "common", rating: 1, avg: 0.0, kills: 0, apps: 1 }
+                { id: 48, n: "blunt(isdaddy)", t: "FREE AGENT", r: "common", rating: 1, avg: 0.0, kills: 0, apps: 1 },
+                { id: 49, n: "Evil Jeff", t: "FREE AGENT", r: "elite", rating: 50, avg: 5.89, kills: 53, apps: 9 }
             ];
-            
-            // Calculate realistic odds based on URL Rating + kill average + appearances
-            // Higher rating & more kills = lower odds (more likely to perform)
-            // Fewer appearances = higher variance = slightly higher odds
+
             function getOdds(player) {
-                // Base odds from rating (88 rating → ~1.50x, 1 rating → ~15x)
                 let baseOdds = 15 - (player.rating / 88) * 13.5;
-                
-                // Kill average modifier: high avg lowers odds
                 if (player.avg >= 8) baseOdds *= 0.75;
                 else if (player.avg >= 5) baseOdds *= 0.88;
                 else if (player.avg >= 3) baseOdds *= 1.0;
                 else if (player.avg >= 1) baseOdds *= 1.15;
                 else baseOdds *= 1.4;
-                
-                // Consistency bonus: more appearances = more reliable
                 if (player.apps >= 10) baseOdds *= 0.92;
                 else if (player.apps >= 5) baseOdds *= 1.0;
-                else baseOdds *= 1.12; // fewer games = less predictable
-                
-                // Rarity tier adjustment (slight)
+                else baseOdds *= 1.12;
                 const rarityMod = { legend: 0.85, rare: 0.92, elite: 1.0, common: 1.08 };
                 baseOdds *= rarityMod[player.r] || 1.0;
-                
-                // Clamp between 1.25 and 25.00
                 return Math.max(1.25, Math.min(25.00, baseOdds)).toFixed(2);
             }
-            
+
+            function getPlayer(id) { return players.find(p => p.id === id); }
+
+            // ===== GENERATE O/U DATA FOR ALL 49 PLAYERS =====
+            function generateOUData() {
+                return players.map(p => {
+                    // Line = rounded to nearest 0.5, based on avg kills
+                    let line = Math.round(p.avg * 2) / 2;
+                    if (line < 0.5) line = 0.5;
+                    // Balanced odds: slight edge based on consistency
+                    let overOdds, underOdds;
+                    const variance = p.apps >= 8 ? 0.03 : p.apps >= 4 ? 0.06 : 0.10;
+                    // Seed a small random-looking offset based on player id for variety
+                    const seed = ((p.id * 7 + 13) % 17) / 17; // 0-1
+                    const offset = (seed - 0.5) * 0.20; // -0.10 to +0.10
+                    overOdds = 1.87 + offset - variance;
+                    underOdds = 1.87 - offset + variance;
+                    // Clamp
+                    overOdds = Math.max(1.65, Math.min(2.20, overOdds));
+                    underOdds = Math.max(1.65, Math.min(2.20, underOdds));
+                    return { pid: p.id, line, over: parseFloat(overOdds.toFixed(2)), under: parseFloat(underOdds.toFixed(2)) };
+                });
+            }
+
+            // ===== GENERATE H2H MATCHUPS FOR ALL PLAYERS (balanced pairing) =====
+            function generateH2HData() {
+                // Sort by composite score (rating + avg*3) to pair similar players
+                const sorted = [...players].sort((a, b) => (b.rating + b.avg * 3) - (a.rating + a.avg * 3));
+                const matchups = [];
+                const matchLabels = ['Match 1 · 8:15 PM', 'Match 2 · 8:40 PM', 'Match 3 · 9:05 PM'];
+                for (let i = 0; i < sorted.length - 1; i += 2) {
+                    const p1 = sorted[i], p2 = sorted[i + 1];
+                    // Calculate H2H odds from their relative strength
+                    const s1 = p1.rating + p1.avg * 3;
+                    const s2 = p2.rating + p2.avg * 3;
+                    const total = s1 + s2;
+                    let prob1 = total > 0 ? s1 / total : 0.5;
+                    prob1 = Math.max(0.30, Math.min(0.70, prob1)); // cap extremes
+                    const odds1 = parseFloat((1 / prob1).toFixed(2));
+                    const odds2 = parseFloat((1 / (1 - prob1)).toFixed(2));
+                    const matchLabel = matchLabels[matchups.length % 3];
+                    matchups.push({ p1: p1.id, p2: p2.id, odds1, odds2, match: matchLabel });
+                }
+                return matchups;
+            }
+
+            const ouData = generateOUData();
+            const h2hData = generateH2HData();
+
             let selectedPlayer = null;
-            
+
             document.addEventListener('DOMContentLoaded', () => {
+                const modal = document.getElementById('loginRequiredModal');
+
+                // ===== TAB SWITCHING =====
+                document.querySelectorAll('.pw-tab').forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        document.querySelectorAll('.pw-tab').forEach(t => t.classList.remove('active'));
+                        document.querySelectorAll('.pw-tab-panel').forEach(p => p.classList.remove('active'));
+                        this.classList.add('active');
+                        document.getElementById('panel-' + this.dataset.tab).classList.add('active');
+                    });
+                });
+
+                // ===== MATCH SELECTION =====
+                document.getElementById('matches').addEventListener('click', function(e) {
+                    const match = e.target.closest('.pw-match');
+                    if (match) {
+                        document.querySelectorAll('.pw-match').forEach(m => m.classList.remove('active'));
+                        match.classList.add('active');
+                    }
+                });
+
+                // ===== MOST KILLS - Search & Bet =====
                 const searchInput = document.getElementById('searchInput');
                 const resultsDiv = document.getElementById('results');
                 const selectedCard = document.getElementById('selectedCard');
@@ -846,134 +756,249 @@
                 const betAmt = document.getElementById('betAmt');
                 const returnAmt = document.getElementById('returnAmt');
                 const clearBtn = document.getElementById('clearBtn');
-                const placeBtn = document.getElementById('placeBtn');
-                
-                // Search functionality
+                const placeBtnMK = document.getElementById('placeBtn');
+
                 searchInput.addEventListener('input', function() {
                     const query = this.value.trim().toLowerCase();
-                    
-                    if (query.length === 0) {
-                        resultsDiv.classList.remove('show');
-                        return;
-                    }
-                    
-                    // Filter players matching query
-                    const matches = players.filter(p => 
-                        p.n.toLowerCase().includes(query) || 
-                        p.t.toLowerCase().includes(query)
-                    ).slice(0, 8);
-                    
+                    if (query.length === 0) { resultsDiv.classList.remove('show'); return; }
+                    const matches = players.filter(p => p.n.toLowerCase().includes(query) || p.t.toLowerCase().includes(query)).slice(0, 8);
                     if (matches.length === 0) {
                         resultsDiv.innerHTML = '<div class="pw-no-results">No players found</div>';
                     } else {
                         resultsDiv.innerHTML = matches.map(p => `
                             <div class="pw-result" data-id="${p.id}" tabindex="0">
-                                <div>
-                                    <div class="name">${p.n}</div>
-                                    <div class="team">${p.t} · Rating: ${p.rating} · ${p.avg} kills/game</div>
-                                </div>
+                                <div><div class="name">${p.n}</div><div class="team">${p.t} · Rating: ${p.rating} · ${p.avg} kills/game</div></div>
                                 <div class="odds">${getOdds(p)}x</div>
-                            </div>
-                        `).join('');
+                            </div>`).join('');
                     }
-                    
                     resultsDiv.classList.add('show');
                 });
-                
-                // Close dropdown when clicking outside
+
                 document.addEventListener('click', function(e) {
-                    if (!e.target.closest('.pw-search-wrap')) {
-                        resultsDiv.classList.remove('show');
-                    }
+                    if (!e.target.closest('.pw-search-wrap')) resultsDiv.classList.remove('show');
                 });
-                
-                // Select player from results
+
                 resultsDiv.addEventListener('click', function(e) {
                     const result = e.target.closest('.pw-result');
-                    if (result) {
-                        const id = parseInt(result.dataset.id);
-                        selectPlayer(players.find(p => p.id === id));
-                    }
+                    if (result) selectPlayer(players.find(p => p.id === parseInt(result.dataset.id)));
                 });
-                
-                // Keyboard support
                 resultsDiv.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter') {
                         const result = e.target.closest('.pw-result');
-                        if (result) {
-                            const id = parseInt(result.dataset.id);
-                            selectPlayer(players.find(p => p.id === id));
-                        }
+                        if (result) selectPlayer(players.find(p => p.id === parseInt(result.dataset.id)));
                     }
                 });
-                
-                // Select a player
+
                 function selectPlayer(player) {
                     selectedPlayer = player;
-                    
                     selName.textContent = player.n;
                     selTeam.textContent = player.t + ' · Rating: ' + player.rating + ' · ' + player.avg + ' kills/game';
                     selOdds.textContent = getOdds(player) + 'x';
-                    
                     searchInput.value = '';
                     resultsDiv.classList.remove('show');
-                    
                     selectedCard.classList.add('show');
                     emptyState.style.display = 'none';
-                    
                     updateReturn();
                 }
-                
-                // Clear selection
+
                 clearBtn.addEventListener('click', function() {
                     selectedPlayer = null;
                     selectedCard.classList.remove('show');
                     emptyState.style.display = 'block';
                     searchInput.focus();
                 });
-                
-                // Update return calculation
+
                 function updateReturn() {
                     if (!selectedPlayer) return;
                     const amt = parseFloat(betAmt.value) || 0;
                     const odds = parseFloat(getOdds(selectedPlayer));
-                    const ret = Math.floor(amt * odds);
-                    returnAmt.textContent = 'R' + ret.toLocaleString();
+                    returnAmt.textContent = Math.floor(amt * odds).toLocaleString() + ' URL';
                 }
-                
                 betAmt.addEventListener('input', updateReturn);
-                
-                // Quick amount buttons
+
                 document.querySelector('.pw-quick').addEventListener('click', function(e) {
-                    if (e.target.dataset.amt) {
-                        betAmt.value = e.target.dataset.amt;
-                        updateReturn();
-                    }
+                    if (e.target.dataset.amt) { betAmt.value = e.target.dataset.amt; updateReturn(); }
                 });
-                
-                // Match selection
-                document.getElementById('matches').addEventListener('click', function(e) {
-                    const match = e.target.closest('.pw-match');
-                    if (match) {
-                        document.querySelectorAll('.pw-match').forEach(m => m.classList.remove('active'));
-                        match.classList.add('active');
-                    }
-                });
-                
-                // Place bet
-                placeBtn.addEventListener('click', function() {
+
+                placeBtnMK.addEventListener('click', function() {
+                    if (!URLAuth.isLoggedIn()) { modal.style.display = 'flex'; return; }
                     if (selectedPlayer) {
                         const match = document.querySelector('.pw-match.active .num').textContent;
-                        const amt = betAmt.value;
-                        const ret = returnAmt.textContent;
-                        alert(`Wager Placed!\n\n${match}\nPlayer: ${selectedPlayer.n}\nTeam: ${selectedPlayer.t}\nBet: R${amt}\nOdds: ${getOdds(selectedPlayer)}x\nPotential: ${ret}\n\nGood luck!`);
-                        
-                        // Reset
+                        alert(`Wager Placed!\n\n${match}\nPlayer: ${selectedPlayer.n}\nTeam: ${selectedPlayer.t}\nBet: ${betAmt.value} URL\nOdds: ${getOdds(selectedPlayer)}x\nPotential: ${returnAmt.textContent}\n\nGood luck!`);
                         clearBtn.click();
                         betAmt.value = 100;
                     }
                 });
+
+                // ===== OVER / UNDER - Render ALL 49 Players =====
+                const ouGrid = document.getElementById('ouGrid');
+                const ouSearch = document.getElementById('ouSearch');
+                const ouCount = document.getElementById('ouCount');
+
+                function renderOU(filter) {
+                    const q = (filter || '').toLowerCase();
+                    const filtered = ouData.filter(ou => {
+                        const p = getPlayer(ou.pid);
+                        return p && (p.n.toLowerCase().includes(q) || p.t.toLowerCase().includes(q));
+                    });
+                    ouCount.innerHTML = 'Showing <strong>' + filtered.length + '</strong> of <strong>' + ouData.length + '</strong> players';
+                    ouGrid.innerHTML = filtered.map((ou, idx) => {
+                        const p = getPlayer(ou.pid);
+                        const realIdx = ouData.indexOf(ou);
+                        return `
+                        <div class="ou-card" data-ou="${realIdx}">
+                            <div class="ou-top">
+                                <div><div class="ou-name">${p.n}</div><div class="ou-team">${p.t} · Rating ${p.rating}</div></div>
+                                <div class="ou-avg"><span class="ou-avg-val">${p.avg}</span><span class="ou-avg-lbl">Avg K/G</span></div>
+                            </div>
+                            <div class="ou-line-row">
+                                <div class="ou-line-lbl">Kill Line</div>
+                                <div class="ou-line-num">${ou.line}</div>
+                                <div class="ou-line-kills">kills this match</div>
+                            </div>
+                            <div class="ou-btns">
+                                <div class="ou-btn over" data-side="over" data-odds="${ou.over}">
+                                    <span class="ou-btn-lbl"><i class="fa-solid fa-arrow-up"></i> Over</span>
+                                    <span class="ou-btn-odds">${ou.over.toFixed(2)}x</span>
+                                </div>
+                                <div class="ou-btn under" data-side="under" data-odds="${ou.under}">
+                                    <span class="ou-btn-lbl"><i class="fa-solid fa-arrow-down"></i> Under</span>
+                                    <span class="ou-btn-odds">${ou.under.toFixed(2)}x</span>
+                                </div>
+                            </div>
+                            <div class="ou-bet-row">
+                                <input type="number" class="ou-bet-input" placeholder="Bet amount (URL)" value="100" min="10">
+                                <button class="ou-bet-btn ou-place-wager">Place Bet</button>
+                            </div>
+                        </div>`;
+                    }).join('');
+                }
+                renderOU('');
+                ouSearch.addEventListener('input', function() { renderOU(this.value); });
+
+                ouGrid.addEventListener('click', function(e) {
+                    const btn = e.target.closest('.ou-btn');
+                    if (btn) {
+                        const card = btn.closest('.ou-card');
+                        card.querySelectorAll('.ou-btn').forEach(b => b.classList.remove('sel'));
+                        btn.classList.add('sel');
+                        card.querySelector('.ou-bet-row').classList.add('show');
+                        return;
+                    }
+                    const placeBtn = e.target.closest('.ou-place-wager');
+                    if (placeBtn) {
+                        if (!URLAuth.isLoggedIn()) { modal.style.display = 'flex'; return; }
+                        const card = placeBtn.closest('.ou-card');
+                        const idx = parseInt(card.dataset.ou);
+                        const ou = ouData[idx];
+                        const p = getPlayer(ou.pid);
+                        const sel = card.querySelector('.ou-btn.sel');
+                        if (!sel) return;
+                        const side = sel.dataset.side;
+                        const odds = sel.dataset.odds;
+                        const amt = card.querySelector('.ou-bet-input').value;
+                        const ret = Math.floor(amt * parseFloat(odds));
+                        alert('Wager Placed!\n\nO/U: ' + p.n + '\nLine: ' + ou.line + ' kills\nPick: ' + side.toUpperCase() + '\nOdds: ' + odds + 'x\nBet: ' + amt + ' URL\nPotential Return: ' + ret + ' URL\n\nGood luck!');
+                        card.querySelectorAll('.ou-btn').forEach(b => b.classList.remove('sel'));
+                        card.querySelector('.ou-bet-row').classList.remove('show');
+                    }
+                });
+
+                // ===== HEAD-TO-HEAD - Render All Matchups =====
+                const h2hGrid = document.getElementById('h2hGrid');
+                const h2hSearch = document.getElementById('h2hSearch');
+                const h2hCount = document.getElementById('h2hCount');
+
+                function renderH2H(filter) {
+                    const q = (filter || '').toLowerCase();
+                    const filtered = h2hData.filter(h => {
+                        const p1 = getPlayer(h.p1), p2 = getPlayer(h.p2);
+                        return (p1 && p2) && (p1.n.toLowerCase().includes(q) || p2.n.toLowerCase().includes(q) || p1.t.toLowerCase().includes(q) || p2.t.toLowerCase().includes(q));
+                    });
+                    h2hCount.innerHTML = 'Showing <strong>' + filtered.length + '</strong> of <strong>' + h2hData.length + '</strong> matchups';
+                    h2hGrid.innerHTML = filtered.map(h => {
+                        const p1 = getPlayer(h.p1), p2 = getPlayer(h.p2);
+                        const realIdx = h2hData.indexOf(h);
+                        return `
+                        <div class="h2h-card" data-h2h="${realIdx}">
+                            <div class="h2h-match-label"><i class="fa-regular fa-clock"></i> ${h.match}</div>
+                            <div class="h2h-matchup">
+                                <div class="h2h-player" data-pick="1" data-odds="${h.odds1}">
+                                    <div class="h2h-pname">${p1.n}</div>
+                                    <div class="h2h-pteam">${p1.t}</div>
+                                    <div class="h2h-pstat"><strong>${p1.avg}</strong> avg kills · Rating <strong>${p1.rating}</strong></div>
+                                    <span class="h2h-podds">${h.odds1.toFixed(2)}x</span>
+                                </div>
+                                <div class="h2h-vs">VS</div>
+                                <div class="h2h-player" data-pick="2" data-odds="${h.odds2}">
+                                    <div class="h2h-pname">${p2.n}</div>
+                                    <div class="h2h-pteam">${p2.t}</div>
+                                    <div class="h2h-pstat"><strong>${p2.avg}</strong> avg kills · Rating <strong>${p2.rating}</strong></div>
+                                    <span class="h2h-podds">${h.odds2.toFixed(2)}x</span>
+                                </div>
+                            </div>
+                            <div class="h2h-bet-row">
+                                <input type="number" class="h2h-bet-input" placeholder="Bet amount (URL)" value="100" min="10">
+                                <button class="h2h-bet-btn h2h-place-wager">Place Bet</button>
+                            </div>
+                        </div>`;
+                    }).join('');
+                }
+                renderH2H('');
+                h2hSearch.addEventListener('input', function() { renderH2H(this.value); });
+
+                h2hGrid.addEventListener('click', function(e) {
+                    const player = e.target.closest('.h2h-player');
+                    if (player) {
+                        const card = player.closest('.h2h-card');
+                        card.querySelectorAll('.h2h-player').forEach(p => p.classList.remove('sel'));
+                        player.classList.add('sel');
+                        card.querySelector('.h2h-bet-row').classList.add('show');
+                        return;
+                    }
+                    const placeBtn = e.target.closest('.h2h-place-wager');
+                    if (placeBtn) {
+                        if (!URLAuth.isLoggedIn()) { modal.style.display = 'flex'; return; }
+                        const card = placeBtn.closest('.h2h-card');
+                        const idx = parseInt(card.dataset.h2h);
+                        const h = h2hData[idx];
+                        const sel = card.querySelector('.h2h-player.sel');
+                        if (!sel) return;
+                        const pick = sel.dataset.pick;
+                        const pickedPlayer = getPlayer(pick === '1' ? h.p1 : h.p2);
+                        const opponent = getPlayer(pick === '1' ? h.p2 : h.p1);
+                        const odds = sel.dataset.odds;
+                        const amt = card.querySelector('.h2h-bet-input').value;
+                        const ret = Math.floor(amt * parseFloat(odds));
+                        alert('Wager Placed!\n\nHead-to-Head\nYour Pick: ' + pickedPlayer.n + '\nvs ' + opponent.n + '\nOdds: ' + odds + 'x\nBet: ' + amt + ' URL\nPotential Return: ' + ret + ' URL\n\nGood luck!');
+                        card.querySelectorAll('.h2h-player').forEach(p => p.classList.remove('sel'));
+                        card.querySelector('.h2h-bet-row').classList.remove('show');
+                    }
+                });
+
+                // ===== MODAL CLOSE =====
+                modal.addEventListener('click', function(e) { if (e.target === modal) modal.style.display = 'none'; });
+                document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.style.display === 'flex') modal.style.display = 'none'; });
             });
         </script>
+        <!--<< Auth.js >>-->
+        <script src="assets/js/auth.js"></script>
+
+        <!-- Login Required Dialog -->
+        <div id="loginRequiredModal" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.75); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
+            <div style="background:linear-gradient(145deg,#1a1a2e,#16213e); border:1px solid rgba(255,215,0,0.2); border-radius:16px; padding:40px 35px; max-width:400px; width:90%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.6); position:relative; animation:modalPop 0.3s ease;">
+                <div style="width:70px;height:70px;border-radius:50%;background:rgba(255,8,8,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+                    <i class="fa-solid fa-lock" style="font-size:1.8rem;color:#FF0808;"></i>
+                </div>
+                <h3 style="color:#fff;font-family:'Chakra Petch',sans-serif;font-size:1.4rem;margin-bottom:10px;">Login Required</h3>
+                <p style="color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.5;margin-bottom:25px;">You need to be logged in to place a wager. Please login or create an account to continue.</p>
+                <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+                    <a href="login.html" style="display:inline-flex;align-items:center;gap:6px;padding:12px 28px;background:linear-gradient(135deg,#FF0808,#a50000);color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-family:'Chakra Petch',sans-serif;text-transform:uppercase;font-size:0.85rem;letter-spacing:0.5px;transition:all 0.3s ease;"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                    <a href="register.html" style="display:inline-flex;align-items:center;gap:6px;padding:12px 28px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:#fff;border-radius:10px;text-decoration:none;font-weight:700;font-family:'Chakra Petch',sans-serif;text-transform:uppercase;font-size:0.85rem;letter-spacing:0.5px;transition:all 0.3s ease;"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                </div>
+                <button onclick="document.getElementById('loginRequiredModal').style.display='none'" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.08);border:none;color:rgba(255,255,255,0.5);width:32px;height:32px;border-radius:50%;font-size:1.1rem;cursor:pointer;transition:all 0.3s ease;">&times;</button>
+            </div>
+        </div>
+        <style>@keyframes modalPop{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}</style>
     </body>
 </html>

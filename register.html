@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Gramentheme">
+        <meta name="description" content="Register - Ultimate Resilient League">
+        <title>URL - Register</title>
+        <link rel="shortcut icon" href="assets/img/favicon.svg">
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="assets/css/meanmenu.css">
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+        <link rel="stylesheet" href="assets/css/nice-select.css">
+        <link rel="stylesheet" href="assets/css/main.css">
+
+        <style>
+            /* ===== AUTH PAGE STYLES ===== */
+            .url-auth-section {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 120px 20px 60px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .url-auth-section::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(ellipse at 30% 20%, rgba(255, 8, 8, 0.08) 0%, transparent 50%),
+                            radial-gradient(ellipse at 70% 80%, rgba(255, 215, 0, 0.06) 0%, transparent 50%);
+                pointer-events: none;
+            }
+
+            .url-auth-container {
+                width: 100%;
+                max-width: 480px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .url-auth-card {
+                background: rgba(28, 29, 32, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 20px;
+                padding: 50px 40px;
+                backdrop-filter: blur(20px);
+                box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .url-auth-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, #FFD700, #FF0808, #FFD700);
+            }
+
+            .url-auth-logo {
+                text-align: center;
+                margin-bottom: 35px;
+            }
+
+            .url-auth-logo img {
+                max-height: 80px;
+                width: auto;
+            }
+
+            .url-auth-title {
+                text-align: center;
+                margin-bottom: 8px;
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #fff;
+                font-family: 'Chakra Petch', sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+
+            .url-auth-subtitle {
+                text-align: center;
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.95rem;
+                margin-bottom: 35px;
+            }
+
+            .url-form-group {
+                margin-bottom: 22px;
+                position: relative;
+            }
+
+            .url-form-label {
+                display: block;
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 0.85rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 8px;
+                font-family: 'Chakra Petch', sans-serif;
+            }
+
+            .url-form-input {
+                width: 100%;
+                padding: 14px 18px;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                color: #fff;
+                font-size: 1rem;
+                font-family: 'Chakra Petch', sans-serif;
+                transition: all 0.3s ease;
+                outline: none;
+            }
+
+            .url-form-input::placeholder {
+                color: rgba(255, 255, 255, 0.3);
+            }
+
+            .url-form-input:focus {
+                border-color: rgba(255, 215, 0, 0.5);
+                background: rgba(255, 255, 255, 0.08);
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+            }
+
+            .url-form-input.error {
+                border-color: #ff4444;
+            }
+
+            .url-form-input.valid {
+                border-color: #2ecc71;
+            }
+
+            .url-input-icon {
+                position: absolute;
+                right: 16px;
+                top: 42px;
+                color: rgba(255, 255, 255, 0.3);
+                font-size: 0.9rem;
+                pointer-events: none;
+            }
+
+            .url-password-toggle {
+                position: absolute;
+                right: 16px;
+                top: 42px;
+                color: rgba(255, 255, 255, 0.4);
+                cursor: pointer;
+                background: none;
+                border: none;
+                font-size: 0.95rem;
+                padding: 4px;
+                transition: color 0.3s ease;
+            }
+
+            .url-password-toggle:hover {
+                color: rgba(255, 255, 255, 0.8);
+            }
+
+            .url-field-hint {
+                font-size: 0.75rem;
+                color: rgba(255, 255, 255, 0.35);
+                margin-top: 5px;
+            }
+
+            .url-field-hint.error-text {
+                color: #ff6b6b;
+            }
+
+            .url-password-strength {
+                display: flex;
+                gap: 4px;
+                margin-top: 8px;
+            }
+
+            .url-strength-bar {
+                flex: 1;
+                height: 3px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 2px;
+                transition: background 0.3s ease;
+            }
+
+            .url-strength-bar.weak { background: #ff4444; }
+            .url-strength-bar.medium { background: #FFD700; }
+            .url-strength-bar.strong { background: #2ecc71; }
+
+            .url-strength-label {
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                margin-top: 4px;
+                color: rgba(255, 255, 255, 0.4);
+            }
+
+            .url-terms-check {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                margin-bottom: 25px;
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+
+            .url-terms-check input[type="checkbox"] {
+                width: 16px;
+                height: 16px;
+                accent-color: #FFD700;
+                cursor: pointer;
+                margin-top: 2px;
+                flex-shrink: 0;
+            }
+
+            .url-terms-check a {
+                color: #FFD700;
+                text-decoration: none;
+            }
+
+            .url-terms-check a:hover {
+                color: #FF0808;
+            }
+
+            .url-auth-submit {
+                width: 100%;
+                padding: 16px;
+                border: none;
+                border-radius: 12px;
+                font-size: 1.05rem;
+                font-weight: 700;
+                font-family: 'Chakra Petch', sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                cursor: pointer;
+                transition: all 0.4s ease;
+                position: relative;
+                overflow: hidden;
+                color: #fff;
+                background: linear-gradient(135deg, #FFD700, #FF8C00);
+            }
+
+            .url-auth-submit:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            }
+
+            .url-auth-submit:active {
+                transform: translateY(0);
+            }
+
+            .url-auth-submit:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+                transform: none;
+                box-shadow: none;
+            }
+
+            .url-auth-submit.loading {
+                pointer-events: none;
+                opacity: 0.8;
+            }
+
+            .url-auth-divider {
+                display: flex;
+                align-items: center;
+                margin: 28px 0;
+                gap: 15px;
+            }
+
+            .url-auth-divider::before,
+            .url-auth-divider::after {
+                content: '';
+                flex: 1;
+                height: 1px;
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            .url-auth-divider span {
+                color: rgba(255, 255, 255, 0.4);
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .url-auth-switch {
+                text-align: center;
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 0.95rem;
+            }
+
+            .url-auth-switch a {
+                color: #FF0808;
+                font-weight: 700;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .url-auth-switch a:hover {
+                color: #FFD700;
+            }
+
+            .url-auth-message {
+                padding: 12px 16px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                font-size: 0.9rem;
+                display: none;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .url-auth-message.error {
+                display: flex;
+                background: rgba(255, 68, 68, 0.15);
+                border: 1px solid rgba(255, 68, 68, 0.3);
+                color: #ff6b6b;
+            }
+
+            .url-auth-message.success {
+                display: flex;
+                background: rgba(39, 174, 96, 0.15);
+                border: 1px solid rgba(39, 174, 96, 0.3);
+                color: #2ecc71;
+            }
+
+            .url-auth-message i {
+                font-size: 1.1rem;
+                flex-shrink: 0;
+            }
+
+            /* Benefits panel */
+            .url-register-benefits {
+                margin-top: 30px;
+                padding: 20px;
+                background: rgba(255, 255, 255, 0.03);
+                border-radius: 12px;
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .url-register-benefits h4 {
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 12px;
+                font-family: 'Chakra Petch', sans-serif;
+            }
+
+            .url-benefit-item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 6px 0;
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.85rem;
+            }
+
+            .url-benefit-item i {
+                color: #FFD700;
+                font-size: 0.8rem;
+                width: 16px;
+                text-align: center;
+            }
+
+            /* Floating particles */
+            .url-auth-particles {
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                z-index: 0;
+                overflow: hidden;
+            }
+
+            .url-auth-particle {
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: rgba(255, 215, 0, 0.3);
+                border-radius: 50%;
+                animation: authFloat linear infinite;
+            }
+
+            .url-auth-particle:nth-child(2) { width: 6px; height: 6px; background: rgba(255, 8, 8, 0.2); animation-duration: 18s; left: 20%; }
+            .url-auth-particle:nth-child(3) { width: 3px; height: 3px; background: rgba(255, 215, 0, 0.2); animation-duration: 22s; left: 40%; animation-delay: -5s; }
+            .url-auth-particle:nth-child(4) { width: 5px; height: 5px; background: rgba(255, 8, 8, 0.15); animation-duration: 20s; left: 60%; animation-delay: -8s; }
+            .url-auth-particle:nth-child(5) { width: 4px; height: 4px; background: rgba(255, 215, 0, 0.25); animation-duration: 25s; left: 80%; animation-delay: -3s; }
+            .url-auth-particle:nth-child(6) { width: 7px; height: 7px; background: rgba(255, 8, 8, 0.1); animation-duration: 28s; left: 90%; animation-delay: -12s; }
+
+            @keyframes authFloat {
+                0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+            }
+
+            /* Rules Button */
+            .url-rules-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                width: 100%;
+                padding: 14px 20px;
+                margin-bottom: 25px;
+                background: linear-gradient(135deg, #9B59B6, #8E44AD);
+                border: 1px solid rgba(155, 89, 182, 0.5);
+                border-radius: 12px;
+                color: #fff;
+                font-size: 1rem;
+                font-weight: 700;
+                font-family: 'Chakra Petch', sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                text-decoration: none;
+                cursor: pointer;
+                transition: all 0.4s ease;
+                box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+            }
+
+            .url-rules-btn:hover {
+                background: linear-gradient(135deg, #8E44AD, #7D3C98);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(155, 89, 182, 0.5);
+                color: #fff;
+            }
+
+            .url-rules-btn:active {
+                transform: translateY(0);
+            }
+
+            .url-rules-btn i {
+                font-size: 1.1rem;
+            }
+
+            /* Mobile */
+            @media (max-width: 576px) {
+                .url-auth-card { padding: 35px 25px; }
+                .url-auth-title { font-size: 1.4rem; }
+                .url-rules-btn {
+                    padding: 12px 16px;
+                    font-size: 0.9rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="spinner"></div>
+                <div class="txt-loading">
+                    <span data-text-preloader="U" class="letters-loading">U</span>
+                    <span data-text-preloader="R" class="letters-loading">R</span>
+                    <span data-text-preloader="L" class="letters-loading">L</span>
+                </div>
+                <p class="text-center">Loading</p>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-left"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                    <div class="col-3 loader-section section-right"><div class="bg"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <button id="gt-back-top" class="gt-back-to-top show">
+            <i class="fa-regular fa-arrow-up"></i>
+        </button>
+
+        <div class="mouseCursor cursor-outer"></div>
+        <div class="mouseCursor cursor-inner"></div>
+
+        <!-- Offcanvas Area Start -->
+        <div class="fix-area">
+            <div class="offcanvas__info">
+                <div class="offcanvas__wrapper">
+                    <div class="offcanvas__content">
+                        <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                            <div class="offcanvas__logo">
+                                <a href="index.html">
+                                    <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="logo-img" style="max-height: 100px; width: auto;">
+                                </a>
+                            </div>
+                            <div class="offcanvas__close">
+                                <button><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="mobile-menu fix mb-3"></div>
+                        <div class="social-icon d-flex align-items-center">
+                            <a href="#"><i class="fab fa-discord"></i></a>
+                        </div>
+                        <a href="rulebook.html" class="rulebook-shine-btn" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px 20px;margin-top:20px;background:linear-gradient(135deg,#9B59B6,#8E44AD);border:1px solid rgba(155,89,182,0.5);border-radius:12px;color:#fff;font-size:0.95rem;font-weight:700;font-family:'Chakra Petch',sans-serif;text-transform:uppercase;letter-spacing:2px;text-decoration:none;box-shadow:0 4px 15px rgba(155,89,182,0.3);transition:all 0.3s ease;"><i class="fa-solid fa-book-open"></i> Official Rulebook</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas__overlay"></div>
+
+        <!-- Header Section Start -->
+        <header id="header-sticky" class="header-1 header-2 header-3">
+            <div class="container-fluid">
+                <div class="mega-menu-wrapper">
+                    <div class="header-main">
+                        <div class="logo">
+                            <a href="index.html" class="header-logo">
+                                <img loading="lazy" src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="logo-img" style="max-height: 100px; width: auto;">
+                            </a>
+                        </div>
+                        <div class="header-right d-flex justify-content-end align-items-center mt-0">
+                            <div class="mean__menu-wrapper">
+                                <div class="main-menu">
+                                    <nav id="mobile-menu">
+                                        <ul>
+                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="league.html">League</a></li>
+                                            <li><a href="players.html">Players</a></li>
+                                            <li><a href="game.html">Teams</a></li>
+                                            <li><a href="market.html">Market</a></li>
+                                            <li>
+                                                <a href="match-details.html">Wagers</a>
+                                                <ul class="submenu">
+                                                    <li><a href="match.html">Team Wagers</a></li>
+                                                    <li><a href="match-details.html">Player Wagers</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="header__hamburger d-xl-block my-auto">
+                                <div class="sidebar__toggle">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Floating particles -->
+        <div class="url-auth-particles">
+            <div class="url-auth-particle"></div>
+            <div class="url-auth-particle"></div>
+            <div class="url-auth-particle"></div>
+            <div class="url-auth-particle"></div>
+            <div class="url-auth-particle"></div>
+            <div class="url-auth-particle"></div>
+        </div>
+
+        <div id="smooth-wrapper">
+            <div id="smooth-content">
+                <!-- Register Section -->
+                <section class="url-auth-section">
+                    <div class="url-auth-container">
+                        <div class="url-auth-card">
+                            <div class="url-auth-logo">
+                                <a href="index.html">
+                                    <img src="assets/img/logo/URL_Tournament_Logo_Final.png" alt="URL Logo" style="max-height: 80px; width: auto;">
+                                </a>
+                            </div>
+
+                            <!-- Rules Button -->
+                            <a href="rulebook.html" class="url-rules-btn">
+                                <i class="fa-solid fa-book-open"></i>
+                                <span>Official Rulebook</span>
+                            </a>
+
+                            <h1 class="url-auth-title">Join The League</h1>
+                            <p class="url-auth-subtitle">Create your URL account and start competing</p>
+
+                            <div id="authMessage" class="url-auth-message">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <span id="authMessageText"></span>
+                            </div>
+
+                            <form id="registerForm" autocomplete="on">
+                                <div class="url-form-group">
+                                    <label class="url-form-label" for="regUsername">Username</label>
+                                    <input type="text" id="regUsername" class="url-form-input" placeholder="Choose your gamertag" required autocomplete="username" minlength="3" maxlength="20">
+                                    <i class="fa-solid fa-gamepad url-input-icon"></i>
+                                    <div class="url-field-hint">3-20 characters. This is your public display name.</div>
+                                </div>
+
+                                <div class="url-form-group">
+                                    <label class="url-form-label" for="regEmail">Email</label>
+                                    <input type="email" id="regEmail" class="url-form-input" placeholder="Enter your email" required autocomplete="email">
+                                    <i class="fa-solid fa-envelope url-input-icon"></i>
+                                </div>
+
+                                <div class="url-form-group">
+                                    <label class="url-form-label" for="regPassword">Password</label>
+                                    <input type="password" id="regPassword" class="url-form-input" placeholder="Create a password" required autocomplete="new-password" minlength="6">
+                                    <button type="button" class="url-password-toggle" onclick="togglePassword('regPassword', this)">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                    <div class="url-password-strength">
+                                        <div class="url-strength-bar" id="str1"></div>
+                                        <div class="url-strength-bar" id="str2"></div>
+                                        <div class="url-strength-bar" id="str3"></div>
+                                        <div class="url-strength-bar" id="str4"></div>
+                                    </div>
+                                    <div class="url-strength-label" id="strengthLabel">At least 6 characters</div>
+                                </div>
+
+                                <div class="url-form-group">
+                                    <label class="url-form-label" for="regConfirmPassword">Confirm Password</label>
+                                    <input type="password" id="regConfirmPassword" class="url-form-input" placeholder="Confirm your password" required autocomplete="new-password">
+                                    <button type="button" class="url-password-toggle" onclick="togglePassword('regConfirmPassword', this)">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
+                                </div>
+
+                                <div class="url-terms-check">
+                                    <input type="checkbox" id="agreeTerms" required>
+                                    <label for="agreeTerms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                                </div>
+
+                                <button type="submit" class="url-auth-submit" id="registerBtn">
+                                    <i class="fa-solid fa-user-plus"></i> Create Account
+                                </button>
+                            </form>
+
+                            <div class="url-auth-divider"><span>or</span></div>
+
+                            <p class="url-auth-switch">
+                                Already have an account? <a href="login.html">Sign in</a>
+                            </p>
+
+                            <div class="url-register-benefits">
+                                <h4>What you get</h4>
+                                <div class="url-benefit-item">
+                                    <i class="fa-solid fa-percent"></i>
+                                    <span>10% discount on your first URL purchase</span>
+                                </div>
+                                <div class="url-benefit-item">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                    <span>Track player stats and rankings</span>
+                                </div>
+                                <div class="url-benefit-item">
+                                    <i class="fa-solid fa-trophy"></i>
+                                    <span>Place wagers on matches</span>
+                                </div>
+                                <div class="url-benefit-item">
+                                    <i class="fa-solid fa-store"></i>
+                                    <span>Access the player card market</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Footer -->
+                <footer class="gt-footer-section section-bg">
+                    <div class="container">
+                        <div class="footer-bottom wow fadeInUp" data-wow-delay=".3s">
+                            <div class="footer-wrapper">
+                                <p>2025 Ultimate Resilient League. All Rights Reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <!-- JS -->
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <script src="assets/js/viewport.jquery.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/jquery.nice-select.min.js"></script>
+        <script src="assets/js/jquery.waypoints.js"></script>
+        <script src="assets/js/jquery.counterup.min.js"></script>
+        <script src="assets/js/swiper-bundle.min.js"></script>
+        <script src="assets/js/jquery.meanmenu.min.js"></script>
+        <script src="assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="assets/js/gsap.js"></script>
+        <script src="assets/js/gsap-scroll-to-plugin.js"></script>
+        <script src="assets/js/gsap-scroll-smoother.js"></script>
+        <script src="assets/js/gsap-scroll-trigger.js"></script>
+        <script src="assets/js/SplitText.min.js"></script>
+        <script src="assets/js/splitType.js"></script>
+        <script src="assets/js/script-gsap.js"></script>
+        <script src="assets/js/wow.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/auth.js"></script>
+
+        <script>
+            // Toggle password visibility
+            function togglePassword(inputId, btn) {
+                const input = document.getElementById(inputId);
+                const icon = btn.querySelector('i');
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.replace('fa-eye', 'fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    icon.classList.replace('fa-eye-slash', 'fa-eye');
+                }
+            }
+
+            // Redirect if already logged in
+            if (URLAuth.isLoggedIn()) {
+                window.location.href = 'index.html';
+            }
+
+            // Password strength meter
+            document.getElementById('regPassword').addEventListener('input', function() {
+                const password = this.value;
+                const bars = [
+                    document.getElementById('str1'),
+                    document.getElementById('str2'),
+                    document.getElementById('str3'),
+                    document.getElementById('str4')
+                ];
+                const label = document.getElementById('strengthLabel');
+                let strength = 0;
+
+                if (password.length >= 6) strength++;
+                if (password.length >= 8) strength++;
+                if (/[A-Z]/.test(password) && /[a-z]/.test(password)) strength++;
+                if (/[0-9]/.test(password) || /[^A-Za-z0-9]/.test(password)) strength++;
+
+                // Reset bars
+                bars.forEach(b => b.className = 'url-strength-bar');
+
+                if (password.length === 0) {
+                    label.textContent = 'At least 6 characters';
+                    label.style.color = 'rgba(255,255,255,0.4)';
+                    return;
+                }
+
+                const levels = [
+                    { cls: 'weak', text: 'Weak', color: '#ff4444' },
+                    { cls: 'weak', text: 'Fair', color: '#ff8844' },
+                    { cls: 'medium', text: 'Good', color: '#FFD700' },
+                    { cls: 'strong', text: 'Strong', color: '#2ecc71' }
+                ];
+
+                const lvl = levels[Math.min(strength, 3)];
+                for (let i = 0; i <= Math.min(strength, 3); i++) {
+                    bars[i].classList.add(lvl.cls);
+                }
+                label.textContent = lvl.text;
+                label.style.color = lvl.color;
+            });
+
+            // Real-time validation for confirm password
+            document.getElementById('regConfirmPassword').addEventListener('input', function() {
+                const password = document.getElementById('regPassword').value;
+                if (this.value && this.value !== password) {
+                    this.classList.add('error');
+                    this.classList.remove('valid');
+                } else if (this.value && this.value === password) {
+                    this.classList.remove('error');
+                    this.classList.add('valid');
+                } else {
+                    this.classList.remove('error', 'valid');
+                }
+            });
+
+            // Handle register form
+            document.getElementById('registerForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const username = document.getElementById('regUsername').value;
+                const email = document.getElementById('regEmail').value;
+                const password = document.getElementById('regPassword').value;
+                const confirmPassword = document.getElementById('regConfirmPassword').value;
+                const agreeTerms = document.getElementById('agreeTerms').checked;
+                const btn = document.getElementById('registerBtn');
+                const msgEl = document.getElementById('authMessage');
+                const msgText = document.getElementById('authMessageText');
+
+                // Client-side validation
+                if (password !== confirmPassword) {
+                    msgEl.className = 'url-auth-message error';
+                    msgEl.querySelector('i').className = 'fa-solid fa-circle-exclamation';
+                    msgText.textContent = 'Passwords do not match.';
+                    return;
+                }
+
+                if (!agreeTerms) {
+                    msgEl.className = 'url-auth-message error';
+                    msgEl.querySelector('i').className = 'fa-solid fa-circle-exclamation';
+                    msgText.textContent = 'You must agree to the Terms of Service.';
+                    return;
+                }
+
+                // Loading state
+                btn.classList.add('loading');
+                btn.innerHTML = '<i class="fa-solid fa-spinner"></i> Creating account...';
+
+                setTimeout(() => {
+                    const result = URLAuth.register(username, email, password);
+
+                    if (result.success) {
+                        msgEl.className = 'url-auth-message success';
+                        msgEl.querySelector('i').className = 'fa-solid fa-circle-check';
+                        msgText.textContent = result.message + ' Redirecting...';
+
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1200);
+                    } else {
+                        msgEl.className = 'url-auth-message error';
+                        msgEl.querySelector('i').className = 'fa-solid fa-circle-exclamation';
+                        msgText.textContent = result.message;
+
+                        btn.classList.remove('loading');
+                        btn.innerHTML = '<i class="fa-solid fa-user-plus"></i> Create Account';
+                    }
+                }, 800);
+            });
+        </script>
+    </body>
+</html>

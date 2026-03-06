@@ -1,0 +1,330 @@
+{
+  "league": {
+    "name": "Ultimate Resilient League",
+    "season": 1,
+    "buyInPrice": 5000,
+    "totalTeams": 10,
+    "totalPlayers": 47,
+    "franchiseCost": {
+      "zar": 1000,
+      "urlCoins": 5000
+    },
+    "matchesPerDay": 3,
+    "playersPerMatch": 4,
+    "playersPerTeam": 6,
+    "schedule": "Monday to Friday"
+  },
+  "rules": {
+    "version": "1.0",
+    "lastUpdated": "2026-03-05",
+    "sections": [
+      "League Overview",
+      "League Structure", 
+      "Match Scoring System",
+      "Team Ownership",
+      "Player Registration",
+      "Draft & Player Selection",
+      "Transfer Windows",
+      "Transfer Restrictions",
+      "Match Attendance",
+      "League Integrity",
+      "Discord League Structure",
+      "Website Transparency",
+      "Casting & Broadcasting",
+      "Relegation System",
+      "URL Coin Ecosystem",
+      "Dispute Resolution",
+      "Final Authority",
+      "Transparency & Calculation Formulas"
+    ],
+    "transferWindows": ["Weekend 1", "Weekend 2"],
+    "keyRules": {
+      "playerCooldown": "Transferred players cannot transfer again immediately",
+      "noMidWeekSignings": "Emergency player replacements NOT allowed mid-week",
+      "prelobbyRequirement": "All players MUST participate in pre-season lobbies",
+      "suspiciousTransfers": "Require league admin approval",
+      "rosterProtection": "If a player drops out mid-week, team must continue with remaining players"
+    },
+    "scoring": {
+      "placement": {
+        "1st": 10, "2nd": 9, "3rd": 8, "4th": 7, "5th": 6,
+        "6th": 5, "7th": 4, "8th": 3, "9th": 2, "10th": 1
+      },
+      "killPoints": 1,
+      "noShowPenalty": { "placement": 10, "placementPoints": 1, "killPoints": 0 },
+      "formulas": {
+        "matchPoints": "Placement Points + Total Kills",
+        "leaguePoints": "Sum of all Match Points",
+        "teamKills": "Sum of all kills across matches"
+      }
+    },
+    "franchiseValue": {
+      "baseValue": 5000,
+      "conversionRate": { "urlToZar": 0.20 },
+      "multiplierFormula": "0.7 + (Performance Index × 1.3)",
+      "multiplierRange": { "min": 0.7, "max": 2.0 },
+      "franchiseValueFormula": "Base Value × Multiplier"
+    },
+    "performanceIndex": {
+      "formula": "(0.6 × Points Ratio) + (0.3 × Kills Ratio) + (0.1 × Rank Bonus)",
+      "weights": { "points": 0.6, "kills": 0.3, "rank": 0.1 },
+      "rankBonus": {
+        "1st": 1.0, "2nd": 0.9, "3rd": 0.8, "4th": 0.7, "5th": 0.6,
+        "6th": 0.5, "7th": 0.4, "8th": 0.3, "9th": 0.2, "10th": 0.1
+      }
+    },
+    "playerRating": {
+      "averageKillsFormula": "Total Kills / Matches Played",
+      "ratingRange": "0-99"
+    },
+    "verificationProcess": {
+      "steps": [
+        "Admin calculates results",
+        "Independent verifier confirms calculations",
+        "Results published"
+      ]
+    },
+    "relegation": {
+      "bottomTeams": 3,
+      "consequence": "May face relegation or loss of franchise status"
+    }
+  },
+  "teams": [
+    {
+      "rank": 1,
+      "name": "Dream Team",
+      "tag": "DT",
+      "kills": 238,
+      "points": 734,
+      "value": 10000,
+      "color": "#FFD700",
+      "accent": "#FFA500",
+      "roster": [
+        { "ign": "AG | Mausメ", "role": "FRAGGER", "rarity": "legend", "urlRating": 84, "kills": 112, "appearances": 12, "value": 575 },
+        { "ign": "Rи • Waven", "role": "FRAGGER", "rarity": "rare", "urlRating": 74, "kills": 89, "appearances": 10, "value": 516 },
+        { "ign": "Σи | zaza", "role": "IGL", "rarity": "rare", "urlRating": 69, "kills": 95, "appearances": 10, "value": 496 },
+        { "ign": "ryze0", "role": "SUPPORT", "rarity": "elite", "urlRating": 58, "kills": 76, "appearances": 13, "value": 427 }
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "Dark Triad",
+      "tag": "DV",
+      "kills": 182,
+      "points": 659,
+      "value": 7144,
+      "color": "#00CED1",
+      "accent": "#008B8B",
+      "roster": [
+        { "ign": "Monkey.etc", "role": "SUPPORT", "rarity": "common", "urlRating": 38, "kills": 59, "appearances": 5, "value": 339 },
+        { "ign": "Σи | Malik", "role": "TANK", "rarity": "common", "urlRating": 33, "kills": 26, "appearances": 2, "value": 260 },
+        { "ign": "BEYONDER • яe", "role": "IGL", "rarity": "common", "urlRating": 32, "kills": 35, "appearances": 13, "value": 255 },
+        { "ign": "¹Seeyah²¹", "role": "IGL", "rarity": "common", "urlRating": 19, "kills": 21, "appearances": 9, "value": 176 },
+        { "ign": "DO1LAR • ixt", "role": "IGL", "rarity": "common", "urlRating": 13, "kills": 7, "appearances": 5, "value": 142 }
+      ]
+    },
+    {
+      "rank": 3,
+      "name": "Viltrum",
+      "tag": "VLT",
+      "kills": 190,
+      "points": 567,
+      "value": 9182,
+      "color": "#FF0040",
+      "accent": "#FF4060",
+      "roster": [
+        { "ign": "pink.etc", "role": "IGL", "rarity": "legend", "urlRating": 88, "kills": 123, "appearances": 13, "value": 600, "imageUrl": "https://preview.redd.it/motoko-kusanagi-bp-character-wallpapers-v0-gm7g83f40he91.jpg?width=532&format=pjpg&auto=webp&s=d8e91e52fc582d7d43b4b39f4ee5435a58c720e0" },
+        { "ign": "Rи • Tariq", "role": "IGL", "rarity": "elite", "urlRating": 51, "kills": 51, "appearances": 8, "value": 396 },
+        { "ign": "Rи • ayanda<3", "role": "SUPPORT", "rarity": "elite", "urlRating": 46, "kills": 42, "appearances": 5, "value": 371 },
+        { "ign": "Rи • Auradebt", "role": "TANK", "rarity": "elite", "urlRating": 41, "kills": 45, "appearances": 10, "value": 338 },
+        { "ign": "blue.etc", "role": "SUPPORT", "rarity": "common", "urlRating": 18, "kills": 13, "appearances": 13, "value": 161, "imageUrl": "https://preview.redd.it/kestrel-dancer-of-discord-pp19-bizon-iconic-v0-yjqmsjaimnme1.png?width=1080&crop=smart&auto=webp&s=38469b90887f2b5bfab1bf08a67091ea05ee4a9a" }
+      ]
+    },
+    {
+      "rank": 4,
+      "name": "Epstein Files",
+      "tag": "EF",
+      "kills": 186,
+      "points": 514,
+      "value": 8568,
+      "color": "#9B59B6",
+      "accent": "#8E44AD",
+      "roster": [
+        { "ign": "NF | LIAM", "role": "FRAGGER", "rarity": "common", "urlRating": 38, "kills": 49, "appearances": 10, "value": 316 },
+        { "ign": "sYm✪Allfather", "role": "TANK", "rarity": "common", "urlRating": 35, "kills": 37, "appearances": 10, "value": 301 },
+        { "ign": "Tyzllah.etc", "role": "IGL", "rarity": "common", "urlRating": 32, "kills": 35, "appearances": 13, "value": 255 },
+        { "ign": "sYm✪Holiday", "role": "FRAGGER", "rarity": "common", "urlRating": 19, "kills": 21, "appearances": 2, "value": 187 },
+        { "ign": "R • Yang", "role": "SUPPORT", "rarity": "common", "urlRating": 17, "kills": 12, "appearances": 7, "value": 160 }
+      ]
+    },
+    {
+      "rank": 5,
+      "name": "Only Fans",
+      "tag": "OF",
+      "kills": 139,
+      "points": 463,
+      "value": 6901,
+      "color": "#E91E63",
+      "accent": "#C2185B",
+      "roster": [
+        { "ign": "patrick.etc", "role": "SUPPORT", "rarity": "common", "urlRating": 35, "kills": 12, "appearances": 2, "value": 290 },
+        { "ign": "Rи • Domino", "role": "SUPPORT", "rarity": "common", "urlRating": 32, "kills": 32, "appearances": 10, "value": 255 },
+        { "ign": "B²M | Avo • λη", "role": "TANK", "rarity": "common", "urlRating": 20, "kills": 18, "appearances": 3, "value": 192 },
+        { "ign": "BeerusT", "role": "SUPPORT", "rarity": "common", "urlRating": 19, "kills": 13, "appearances": 1, "value": 193 },
+        { "ign": "sYm✪Leo", "role": "SUPPORT", "rarity": "common", "urlRating": 13, "kills": 4, "appearances": 2, "value": 149 }
+      ]
+    },
+    {
+      "rank": 6,
+      "name": "Valhala",
+      "tag": "VH",
+      "kills": 128,
+      "points": 420,
+      "value": 6736,
+      "color": "#2ECC71",
+      "accent": "#27AE60",
+      "roster": [
+        { "ign": "ZИ Σи | Pooki", "role": "SUPPORT", "rarity": "elite", "urlRating": 50, "kills": 53, "appearances": 7, "value": 395 },
+        { "ign": "juuzou", "role": "TANK", "rarity": "elite", "urlRating": 42, "kills": 35, "appearances": 9, "value": 335 },
+        { "ign": "MC | Mo", "role": "SUPPORT", "rarity": "common", "urlRating": 31, "kills": 48, "appearances": 11, "value": 251 },
+        { "ign": "soraʕλn", "role": "IGL", "rarity": "common", "urlRating": 21, "kills": 14, "appearances": 5, "value": 197 },
+        { "ign": "ColdG2000", "role": "SUPPORT", "rarity": "common", "urlRating": 2, "kills": 0, "appearances": 3, "value": 125 }
+      ]
+    },
+    {
+      "rank": 7,
+      "name": "Mamos Pink Cartel",
+      "tag": "MPC",
+      "kills": 121,
+      "points": 408,
+      "value": 5821,
+      "color": "#FF69B4",
+      "accent": "#FF1493",
+      "roster": [
+        { "ign": "ZŁ.BuZz ;)", "role": "TANK", "rarity": "elite", "urlRating": 50, "kills": 63, "appearances": 13, "value": 388 },
+        { "ign": "Rи • Aim", "role": "IGL", "rarity": "elite", "urlRating": 42, "kills": 49, "appearances": 12, "value": 345 },
+        { "ign": "Member", "role": "SUPPORT", "rarity": "common", "urlRating": 30, "kills": 53, "appearances": 13, "value": 233 },
+        { "ign": "sYm✪Himothy", "role": "SUPPORT", "rarity": "common", "urlRating": 21, "kills": 18, "appearances": 10, "value": 186 },
+        { "ign": "blunt(isdaddy)", "role": "TANK", "rarity": "common", "urlRating": 1, "kills": 0, "appearances": 1, "value": 123 }
+      ]
+    },
+    {
+      "rank": 8,
+      "name": "Tier 0 Elites",
+      "tag": "T0E",
+      "kills": 141,
+      "points": 354,
+      "value": 6906,
+      "color": "#4A90D9",
+      "accent": "#2C6FAC",
+      "roster": [
+        { "ign": "44 • Ban0", "role": "IGL", "rarity": "elite", "urlRating": 42, "kills": 31, "appearances": 13, "value": 332 },
+        { "ign": "C1N", "role": "SUPPORT", "rarity": "common", "urlRating": 33, "kills": 42, "appearances": 13, "value": 270 },
+        { "ign": "39Intro.etc", "role": "SUPPORT", "rarity": "common", "urlRating": 32, "kills": 30, "appearances": 8, "value": 261 },
+        { "ign": "FΣ | dazing", "role": "SUPPORT", "rarity": "common", "urlRating": 21, "kills": 12, "appearances": 4, "value": 197 },
+        { "ign": "Vortex • ixt", "role": "TANK", "rarity": "common", "urlRating": 6, "kills": 1, "appearances": 1, "value": 148 }
+      ]
+    },
+    {
+      "rank": 9,
+      "name": "Big Baddies Of SA",
+      "tag": "BBSA",
+      "kills": 59,
+      "points": 297,
+      "value": 5453,
+      "color": "#F39C12",
+      "accent": "#E67E22",
+      "roster": [
+        { "ign": "ZŁ.SID ;)", "role": "TANK", "rarity": "elite", "urlRating": 50, "kills": 37, "appearances": 5, "value": 383 },
+        { "ign": "INS • Yolanda", "role": "FRAGGER", "rarity": "elite", "urlRating": 43, "kills": 61, "appearances": 5, "value": 370 },
+        { "ign": "SpongeBo.zën", "role": "SUPPORT", "rarity": "common", "urlRating": 29, "kills": 29, "appearances": 10, "value": 233 },
+        { "ign": "DADDY.BISHOP", "role": "FRAGGER", "rarity": "common", "urlRating": 22, "kills": 10, "appearances": 3, "value": 196 }
+      ]
+    },
+    {
+      "rank": 10,
+      "name": "Rouge Legion",
+      "tag": "RL",
+      "kills": 28,
+      "points": 88,
+      "value": 3000,
+      "color": "#E74C3C",
+      "accent": "#C0392B",
+      "roster": [
+        { "ign": "LGN • Mvement", "role": "FRAGGER", "rarity": "elite", "urlRating": 46, "kills": 74, "appearances": 12, "value": 374 },
+        { "ign": "Ghost", "role": "FRAGGER", "rarity": "common", "urlRating": 27, "kills": 46, "appearances": 8, "value": 222 },
+        { "ign": "makio*", "role": "IGL", "rarity": "common", "urlRating": 24, "kills": 11, "appearances": 3, "value": 202 },
+        { "ign": "ØPŠ • ZAM", "role": "FRAGGER", "rarity": "common", "urlRating": 18, "kills": 6, "appearances": 2, "value": 174 },
+        { "ign": "H®unter~sung", "role": "FRAGGER", "rarity": "common", "urlRating": 17, "kills": 13, "appearances": 10, "value": 160 }
+      ]
+    }
+  ],
+  "allPlayers": [
+    { "ign": "pink.etc", "team": "Viltrum", "role": "IGL", "rarity": "legend", "urlRating": 88, "kills": 123, "appearances": 13, "value": 600 },
+    { "ign": "AG | Mausメ", "team": "Dream Team", "role": "FRAGGER", "rarity": "legend", "urlRating": 84, "kills": 112, "appearances": 12, "value": 575 },
+    { "ign": "Rи • Waven", "team": "Dream Team", "role": "FRAGGER", "rarity": "rare", "urlRating": 74, "kills": 89, "appearances": 10, "value": 516 },
+    { "ign": "Σи | zaza", "team": "Dream Team", "role": "IGL", "rarity": "rare", "urlRating": 69, "kills": 95, "appearances": 10, "value": 496 },
+    { "ign": "ryze0", "team": "Dream Team", "role": "SUPPORT", "rarity": "elite", "urlRating": 58, "kills": 76, "appearances": 13, "value": 427 },
+    { "ign": "Rи • Tariq", "team": "Viltrum", "role": "IGL", "rarity": "elite", "urlRating": 51, "kills": 51, "appearances": 8, "value": 396 },
+    { "ign": "ZИ Σи | Pooki", "team": "Valhala", "role": "SUPPORT", "rarity": "elite", "urlRating": 50, "kills": 53, "appearances": 7, "value": 395 },
+    { "ign": "ZŁ.BuZz ;)", "team": "Mamos Pink Cartel", "role": "TANK", "rarity": "elite", "urlRating": 50, "kills": 63, "appearances": 13, "value": 388 },
+    { "ign": "ZŁ.SID ;)", "team": "Big Baddies Of SA", "role": "TANK", "rarity": "elite", "urlRating": 50, "kills": 37, "appearances": 5, "value": 383 },
+    { "ign": "Evil Jeff", "team": "Free Agent", "role": "FRAGGER", "rarity": "elite", "urlRating": 50, "kills": 53, "appearances": 9, "value": 378 },
+    { "ign": "LGN • Mvement", "team": "Rouge Legion", "role": "FRAGGER", "rarity": "elite", "urlRating": 46, "kills": 74, "appearances": 12, "value": 374 },
+    { "ign": "Rи • ayanda<3", "team": "Viltrum", "role": "SUPPORT", "rarity": "elite", "urlRating": 46, "kills": 42, "appearances": 5, "value": 371 },
+    { "ign": "INS • Yolanda", "team": "Big Baddies Of SA", "role": "FRAGGER", "rarity": "elite", "urlRating": 43, "kills": 61, "appearances": 5, "value": 370 },
+    { "ign": "Rи • Aim", "team": "Mamos Pink Cartel", "role": "IGL", "rarity": "elite", "urlRating": 42, "kills": 49, "appearances": 12, "value": 345 },
+    { "ign": "juuzou", "team": "Valhala", "role": "TANK", "rarity": "elite", "urlRating": 42, "kills": 35, "appearances": 9, "value": 335 },
+    { "ign": "44 • Ban0", "team": "Tier 0 Elites", "role": "IGL", "rarity": "elite", "urlRating": 42, "kills": 31, "appearances": 13, "value": 332 },
+    { "ign": "Rи • Auradebt", "team": "Viltrum", "role": "TANK", "rarity": "elite", "urlRating": 41, "kills": 45, "appearances": 10, "value": 338 },
+    { "ign": "Monkey.etc", "team": "Dark Triad", "role": "SUPPORT", "rarity": "common", "urlRating": 38, "kills": 59, "appearances": 5, "value": 339 },
+    { "ign": "NF | LIAM", "team": "Epstein Files", "role": "FRAGGER", "rarity": "common", "urlRating": 38, "kills": 49, "appearances": 10, "value": 316 },
+    { "ign": "sYm✪Allfather", "team": "Epstein Files", "role": "TANK", "rarity": "common", "urlRating": 35, "kills": 37, "appearances": 10, "value": 301 },
+    { "ign": "patrick.etc", "team": "Only Fans", "role": "SUPPORT", "rarity": "common", "urlRating": 35, "kills": 12, "appearances": 2, "value": 290 },
+    { "ign": "C1N", "team": "Tier 0 Elites", "role": "SUPPORT", "rarity": "common", "urlRating": 33, "kills": 42, "appearances": 13, "value": 270 },
+    { "ign": "Σи | Malik", "team": "Dark Triad", "role": "TANK", "rarity": "common", "urlRating": 33, "kills": 26, "appearances": 2, "value": 260 },
+    { "ign": "Tyzllah.etc", "team": "Epstein Files", "role": "IGL", "rarity": "common", "urlRating": 32, "kills": 35, "appearances": 13, "value": 255 },
+    { "ign": "BEYONDER • яe", "team": "Dark Triad", "role": "IGL", "rarity": "common", "urlRating": 32, "kills": 35, "appearances": 13, "value": 255 },
+    { "ign": "Rи • Domino", "team": "Only Fans", "role": "SUPPORT", "rarity": "common", "urlRating": 32, "kills": 32, "appearances": 10, "value": 255 },
+    { "ign": "39Intro.etc", "team": "Tier 0 Elites", "role": "SUPPORT", "rarity": "common", "urlRating": 32, "kills": 30, "appearances": 8, "value": 261 },
+    { "ign": "MC | Mo", "team": "Valhala", "role": "SUPPORT", "rarity": "common", "urlRating": 31, "kills": 48, "appearances": 11, "value": 251 },
+    { "ign": "Member", "team": "Mamos Pink Cartel", "role": "SUPPORT", "rarity": "common", "urlRating": 30, "kills": 53, "appearances": 13, "value": 233 },
+    { "ign": "SpongeBo.zën", "team": "Big Baddies Of SA", "role": "SUPPORT", "rarity": "common", "urlRating": 29, "kills": 29, "appearances": 10, "value": 233 },
+    { "ign": "Ghost", "team": "Rouge Legion", "role": "FRAGGER", "rarity": "common", "urlRating": 27, "kills": 46, "appearances": 8, "value": 222 },
+    { "ign": "makio*", "team": "Rouge Legion", "role": "IGL", "rarity": "common", "urlRating": 24, "kills": 11, "appearances": 3, "value": 202 },
+    { "ign": "DADDY.BISHOP", "team": "Big Baddies Of SA", "role": "FRAGGER", "rarity": "common", "urlRating": 22, "kills": 10, "appearances": 3, "value": 196 },
+    { "ign": "sYm✪Himothy", "team": "Mamos Pink Cartel", "role": "SUPPORT", "rarity": "common", "urlRating": 21, "kills": 18, "appearances": 10, "value": 186 },
+    { "ign": "soraʕλn", "team": "Valhala", "role": "IGL", "rarity": "common", "urlRating": 21, "kills": 14, "appearances": 5, "value": 197 },
+    { "ign": "FΣ | dazing", "team": "Tier 0 Elites", "role": "SUPPORT", "rarity": "common", "urlRating": 21, "kills": 12, "appearances": 4, "value": 197 },
+    { "ign": "B²M | Avo • λη", "team": "Only Fans", "role": "TANK", "rarity": "common", "urlRating": 20, "kills": 18, "appearances": 3, "value": 192 },
+    { "ign": "¹Seeyah²¹", "team": "Dark Triad", "role": "IGL", "rarity": "common", "urlRating": 19, "kills": 21, "appearances": 9, "value": 176 },
+    { "ign": "sYm✪Holiday", "team": "Epstein Files", "role": "FRAGGER", "rarity": "common", "urlRating": 19, "kills": 21, "appearances": 2, "value": 187 },
+    { "ign": "BeerusT", "team": "Only Fans", "role": "SUPPORT", "rarity": "common", "urlRating": 19, "kills": 13, "appearances": 1, "value": 193 },
+    { "ign": "blue.etc", "team": "Viltrum", "role": "SUPPORT", "rarity": "common", "urlRating": 18, "kills": 13, "appearances": 13, "value": 161 },
+    { "ign": "ØPŠ • ZAM", "team": "Rouge Legion", "role": "FRAGGER", "rarity": "common", "urlRating": 18, "kills": 6, "appearances": 2, "value": 174 },
+    { "ign": "H®unter~sung", "team": "Rouge Legion", "role": "FRAGGER", "rarity": "common", "urlRating": 17, "kills": 13, "appearances": 10, "value": 160 },
+    { "ign": "R • Yang", "team": "Epstein Files", "role": "SUPPORT", "rarity": "common", "urlRating": 17, "kills": 12, "appearances": 7, "value": 160 },
+    { "ign": "DO1LAR • ixt", "team": "Dark Triad", "role": "IGL", "rarity": "common", "urlRating": 13, "kills": 7, "appearances": 5, "value": 142 },
+    { "ign": "sYm✪Leo", "team": "Only Fans", "role": "SUPPORT", "rarity": "common", "urlRating": 13, "kills": 4, "appearances": 2, "value": 149 },
+    { "ign": "Vortex • ixt", "team": "Tier 0 Elites", "role": "TANK", "rarity": "common", "urlRating": 6, "kills": 1, "appearances": 1, "value": 148 },
+    { "ign": "ColdG2000", "team": "Valhala", "role": "SUPPORT", "rarity": "common", "urlRating": 2, "kills": 0, "appearances": 3, "value": 125 },
+    { "ign": "blunt(isdaddy)", "team": "Mamos Pink Cartel", "role": "TANK", "rarity": "common", "urlRating": 1, "kills": 0, "appearances": 1, "value": 123 }
+  ],
+  "rarityTiers": {
+    "legend": { "ratingRange": "80-99", "color": "#FFD700", "multiplier": 3.0 },
+    "rare": { "ratingRange": "60-79", "color": "#FF0040", "multiplier": 2.0 },
+    "elite": { "ratingRange": "40-59", "color": "#9B59B6", "multiplier": 1.5 },
+    "common": { "ratingRange": "1-39", "color": "#4A90D9", "multiplier": 1.0 }
+  },
+  "roles": ["IGL", "FRAGGER", "SUPPORT", "TANK"],
+  "statistics": {
+    "totalKills": 1512,
+    "totalPoints": 4506,
+    "totalMarketValue": 69711,
+    "averageTeamValue": 6971,
+    "highestRatedPlayer": { "ign": "pink.etc", "rating": 88 },
+    "mostKills": { "ign": "pink.etc", "kills": 123 },
+    "mostValuablePlayer": { "ign": "pink.etc", "value": 600 }
+  },
+  "lastUpdated": "2026-03-05"
+}
